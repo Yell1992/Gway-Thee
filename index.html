@@ -1,378 +1,448 @@
 <!DOCTYPE html>
-<html lang="my">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🔥 ဂွေးသီး | Shop and Service</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gway Thee Shop</title>
+
+  
+
 <style>
+/*==========  CORE  ==========*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
 body {
-  margin:0;
-  font-family:Arial, sans-serif;
-  background:#111;
-  color:#fff;
-  text-align:center;
+  background: #000;
+  color: #fff;
+  overflow-x: hidden;
+  text-align: center;
 }
-/* Header */
-header { padding:30px 15px 10px; }
-header h1 {
-  font-size:54px;
-  margin:0;
-  color:#9b59b6; /* စာလုံးကို အနီထားမယ် */
-  font-weight:bold;
-  animation:waveText 3s ease-in-out infinite;
 
-  /* Glow effect (အစိမ်းနဲ့ ထွက်မယ်) */
-  text-shadow:
-    0 0 10px #9b59b6,
-    0 0 20px #9b59b6,
-    0 0 40px #9b59b6,
-    0 0 80px #9b59b6;
+/*==========  NEON NAME  ==========*/
+.name-wrap {
+  display: inline-block;
+  position: relative;
+  padding: 10px 30px;
+  border-radius: 50px;
+  overflow: hidden;
+  background: #000;
+  margin: 20px auto;
+  z-index: 0;
 }
-/* Home Menu */
+.name-wrap::before {
+  content: '';
+  position: absolute;
+  inset: -6px; /* အပြင်ပိုင်း glow ထူချင်လို့ -2px → -6px */
+  background: conic-gradient(#ff00ff,#00ffff,#00ff00,#ffff00,#ff00ff);
+  animation: spin 4s linear infinite;
+  border-radius: 55px; /* ထူတာနဲ့လိုက်ဖက်အောင် အနည်းငယ်ကြီး */
+  z-index: -2;
+}
+.name-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 6px;  /* အတွင်း mask ကို 2px → 6px */
+  background: #000;
+  border-radius: 49px;
+  z-index: -1;
+}
+.name-text {
+  font-size: 36px;
+  font-weight: 900;
+  background: linear-gradient(90deg,#ff00ff,#00ffff,#ff00ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: moveGrad 2s linear infinite, wave 2s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform .3s ease;
+  text-shadow: 0 0 10px #0ff, 0 0 20px #09f;
+}
+.name-text:hover {
+  transform: scale(1.1) rotateY(10deg) rotateX(5deg);
+}
+
+/* Animations */
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes moveGrad { to { background-position: 200%; } }
+@keyframes wave {
+  0%,100% { transform: translateY(0); }
+  25% { transform: translateY(-5px); }
+  50% { transform: translateY(5px); }
+  75% { transform: translateY(-3px); }
+}
+
+/*==========  SHOP SUBTITLE  ==========*/
+.shop-sub {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ffcc00;
+  text-shadow: 0 0 8px #ff6600, 0 0 12px #ff3300;
+  animation: glow 1.5s infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 8px #ff6600, 0 0 12px #ff3300; }
+  to { text-shadow: 0 0 18px #ffaa00, 0 0 25px #ff6600; }
+}
+
+/*==========  HOME MENU  ==========*/
 #homeMenu {
-
-  gap:20px; padding:40px 20px; max-width:600px; margin:0 auto;
+  display: grid;
+  gap: 20px;
+  padding: 40px 20px;
+  max-width: 600px;
+  margin: 0 auto;
 }
 .menu-card {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,.7);
   border-radius: 15px;
-  padding: 30px 7px;
+  padding: 20px 7px;
   cursor: pointer;
-  transition: 0.3s;
   border: 2px solid violet;
-  animation: rainbowGlow 3s linear infinite; /* ကာလာစုံ glow animation */
+  font-size: 15px;
+  transition: .3s;
+  animation: floatWave 2.5s ease-in-out infinite, rainbowGlow 3s linear infinite;
 }
-
-/* 🌈 Rainbow glow animation */
-@keyframes rainbowGlow {
-  0% {
-    box-shadow: 
-      0 0 10px red,
-      0 0 20px orange,
-      0 0 30px yellow;
-  }
-  33% {
-    box-shadow: 
-      0 0 10px green,
-      0 0 20px cyan,
-      0 0 30px blue;
-  }
-  66% {
-    box-shadow: 
-      0 0 10px purple,
-      0 0 20px violet,
-      0 0 30px pink;
-  }
-  100% {
-    box-shadow: 
-      0 0 10px red,
-      0 0 20px orange,
-      0 0 30px yellow;
-  }
+.menu-card h2 {
+  margin: 0;
+  text-shadow: 0 0 5px #9b59b6;
 }
-
-/* Hover effect */
 .menu-card:hover {
-  transform:scale(1.05);
-  box-shadow:
-    0 0 20px #9b59b6,
-    0 0 40px #9b59b6,
-    0 0 60px #9b59b6;
-  background:rgba(155,89,182,0.15);
-  color:#000;
+  transform: scale(1.05) rotateY(10deg) rotateX(5deg);
+  box-shadow: 0 0 20px #9b59b6,
+              0 0 40px #9b59b6,
+              0 0 60px #9b59b6;
+  background: rgba(155,89,182,.15);
+  color: #000;
 }
-
-/* Text */
-.menu-card h2 { 
-  margin:0; 
-  font-size:15px; 
-  text-shadow:0 0 5px #9b59b6;
-}
-
-/* တစ်ခုပြီး တစ်ခု လှုပ်အောင် delay ထည့် */
+/* Delay for each menu-card */
 .menu-card:nth-child(1) { animation-delay: 0s; }
-.menu-card:nth-child(2) { animation-delay: 0.3s; }
-.menu-card:nth-child(3) { animation-delay: 0.6s; }
-.menu-card:nth-child(4) { animation-delay: 0.9s; }
+.menu-card:nth-child(2) { animation-delay: .3s; }
+.menu-card:nth-child(3) { animation-delay: .6s; }
+.menu-card:nth-child(4) { animation-delay: .9s; }
 .menu-card:nth-child(5) { animation-delay: 1.2s; }
 
-/* bounce animation */
-@keyframes bounceMenu {
-  0%, 100% { transform: translateY(0); }
+/* Animations */
+@keyframes floatWave {
+  0%,100% { transform: translateY(0); }
   50% { transform: translateY(-8px); }
 }
-
-.menu-card:hover {
-  transform:scale(1.05);
-  box-shadow:0 0 20px #9b59b6,
-             0 0 40px #9b59b6,
-             0 0 60px #9b59b6; /* 🟣 stronger purple glow */
-  background:rgba(155,89,182,0.15); /* 🟣 light purple hover background */
-  color:#000;
+@keyframes rainbowGlow {
+  0%,100% { box-shadow: 0 0 10px red, 0 0 20px orange, 0 0 30px yellow; }
+  33% { box-shadow: 0 0 10px green, 0 0 20px cyan, 0 0 30px blue; }
+  66% { box-shadow: 0 0 10px purple, 0 0 20px violet, 0 0 30px pink; }
+}
+/*==========  SECTIONS  ==========*/
+section {
+  display: none;
+  padding: 30px 25px;
+  margin: 30px auto;
+  max-width: 900px;
+  background: rgba(0, 0, 0, 0.85);
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 15px #111;
+  animation: sectionShow 0.6s ease forwards;
+  transition: all 0.4s ease-in-out;
+}
+section.active {
+  display: block;
 }
 
-.menu-card h2 { 
-  margin:0; 
-  font-size:15px; 
-  text-shadow:0 0 5px #9b59b6; /* 🟣 purple text shadow */
+/* Animation */
+@keyframes sectionShow {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-#homeMenu .full { 
-  grid-column:span 2; 
+/*==========  SECTION TITLES  ==========*/
+section h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  font-size: 28px;
+  font-weight: bold;
+  color: #00ffff;
+  text-shadow: 0 0 8px #00ffff, 0 0 15px #09f;
+  animation: titleWave 3s ease-in-out infinite;
 }
-/* Sections */
-section { display:none; padding:25px 15px; }
+@keyframes titleWave {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+section p {
+  color: #ffcc00;
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 16px;
+  text-shadow: 0 0 6px #ff9900;
+}
+
+/*==========  PRODUCT / PRICE CARD  ==========*/
 .products {
-  display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  gap:15px; margin-top:20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+  gap: 20px;
+  margin-top: 20px;
 }
 .card {
-  background:rgba(0,0,0,0.6); border:1px solid #fff;
-  padding:12px; border-radius:10px; box-shadow:0 0 8px #ffdd00;
+  background: rgba(20,20,20,0.9);
+  border: 2px solid #ff00ff;
+  border-radius: 14px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 0 12px #ff00ff, 0 0 25px #00ffff;
+  animation: cardFloat 3s ease-in-out infinite,
+             cardGlow 4s linear infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.card h3 { color:#ffdd00; margin:8px 0; text-shadow:0 0 5px #ffdd00; }
-.card p { color:#ff4444; font-weight:bold; text-shadow:0 0 5px #ff4444; }
+.card:hover {
+  transform: scale(1.08) rotateY(6deg);
+  box-shadow: 0 0 20px #0ff, 0 0 35px #f0f;
+}
+.card h3 {
+  color: #0ff;
+  margin: 8px 0;
+  text-shadow: 0 0 6px #0ff, 0 0 10px #09f;
+}
+.card p {
+  color: #ff4444;
+  font-weight: bold;
+  text-shadow: 0 0 5px #f33;
+}
+
+/* Animations */
+@keyframes cardFloat {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+@keyframes cardGlow {
+  0%,100% { box-shadow: 0 0 12px #ff00ff, 0 0 25px #00ffff; }
+  50% { box-shadow: 0 0 18px #00ffff, 0 0 35px #ff00ff; }
+}
+
+/*==========  BUTTONS  ==========*/
 .card button {
-  padding:6px 10px; border:none; border-radius:6px;
-  background:#00ff00; font-weight:bold; cursor:pointer;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #ff00ff, #00ffff);
+  font-weight: bold;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
+  transition: all 0.3s ease;
 }
-.card button:hover { background:#00cc00; }
-/* Modal */
+.card button:hover {
+  transform: scale(1.1) rotateX(10deg);
+  background: linear-gradient(90deg, #00ffff, #ff00ff);
+  box-shadow: 0 0 15px #0ff, 0 0 30px #f0f;
+}
+
+/*==========  MODAL  ==========*/
 .modal {
-  display:none; position:fixed; top:0;left:0;width:100%;height:100%;
-  background:rgba(0,0,0,0.8); justify-content:center; align-items:center;
-  z-index:1000;
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
 .modal-content {
-  background:#222; padding:20px; border-radius:15px;
-  max-width:400px; width:90%; text-align:center;
-  box-shadow:0 0 15px #00ff00;
+  background: #222;
+  padding: 20px;
+  border-radius: 15px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 0 15px #0f0;
 }
-.modal-content h3 { margin-top:0; color:#00ff00; }
-.modal-content label { display:block; margin:10px 0 5px; color:#ccc; text-align:left; }
+.modal-content h3 {
+  margin-top: 0;
+  color: #0f0;
+}
+.modal-content label {
+  display: block;
+  margin: 10px 0 5px;
+  color: #ccc;
+  text-align: left;
+}
 .modal-content input {
-  width:100%;padding:8px;border:none;border-radius:6px;margin-bottom:10px;
+  width: 100%;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  margin-bottom: 10px;
 }
 .modal-content .info-text {
-  color:violet; font-weight:bold; margin:15px 0; font-size:16px;
-  text-shadow:0 0 8px violet;
+  color: violet;
+  font-weight: bold;
+  margin: 15px 0;
+  font-size: 16px;
+  text-shadow: 0 0 8px violet;
 }
 .modal-content button {
-  width:60%;padding:10px;margin-top:10px;border:none;border-radius:8px;
-  cursor:pointer;font-weight:bold; color:#fff;
+  width: 60%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #fff;
 }
-.okBtn {background:blue; box-shadow:0 0 8px blue;}
-.okBtn:hover {background:darkblue;}
-.copied {color:lime;font-weight:bold;text-align:center;margin-top:10px;}
-.closeBtn {background:red; box-shadow:0 0 8px red;}
-.closeBtn:hover {background:darkred;}
-
-
-/* တစ်ခုပြီး တစ်ခု လှုပ်အောင် delay ချထား */
-.menu-card:nth-child(1) { animation-delay: 0s; }
-.menu-card:nth-child(2) { animation-delay: 0.3s; }
-.menu-card:nth-child(3) { animation-delay: 0.6s; }
-.menu-card:nth-child(4) { animation-delay: 0.9s; }
-.menu-card:nth-child(5) { animation-delay: 1.2s; }
-
-/* bounce animation keyframes */
-@keyframes bounceMenu {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+.okBtn { background: #00f; box-shadow: 0 0 8px #00f; }
+.okBtn:hover { background: #00c; }
+.closeBtn { background: red; box-shadow: 0 0 8px red; }
+.closeBtn:hover { background: #c00; }
+.copied {
+  color: #0f0;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
 }
+
+/*==========  BANK INFO  ==========*/
 .bank-info-row {
-  display: flex;               
-  justify-content: center;     
-  gap: 20px;                   
+  display: flex;
+  justify-content: center;
+  gap: 20px;
   margin: 20px 0;
 }
-
 .pay-box {
-  padding: 8px 10px;
-  border-radius: 15px;
+  padding: 10px 20px;       /* အပေါ်အောက် နည်း, ဘယ်ညာ ပိုကြီး */
+  border-radius: 12px;
   text-align: center;
   color: #fff;
-  min-width: 100px;
+  width: 200px;             /* အလျား Fix */
+  height: 90px;             /* အနံ တိုအောင် */
+  display: flex;            /* အထဲစာလုံးအလယ်အလတ်ပြမယ် */
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-
 .kpay {
-  background: rgba(0,0,0,0.6);
-  border: 2px solid #00ff00;
-  box-shadow: 0 0 12px #00ff00, 0 0 25px #00ff00;
+  background: rgba(0,0,0,.6);
+  border: 2px solid #0f0;
+  box-shadow: 0 0 12px #0f0, 0 0 25px #0f0;
 }
-
 .kplus {
-  background: rgba(0,0,0,0.6);
+  background: rgba(0,0,0,.6);
   border: 2px solid #9b59b6;
   box-shadow: 0 0 12px #9b59b6, 0 0 25px #9b59b6;
 }
-
 .label {
-  font-size: 20px;
+  font-size: 12px;
   font-weight: bold;
-  margin-bottom: 5px;
+  margin-bottom: 4px;
   text-transform: uppercase;
 }
-
 .pay-sub {
-  font-size: 14px;
-  margin: 2px 0;
+  font-size: 11px;
+  margin: 0;
 }
-
 .copy-btn {
-  margin-top: 8px;
-  padding: 5px 10px;
+  margin-top: 4px;
+  padding: 3px 6px;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 12px;
   font-weight: bold;
 }
+/*==========  COPIED MSG  ==========*/
 #copiedMsg {
   display: none;
   position: fixed;
-  top: 30px;   /* အပေါ်ထိပ်မှာ ထွက်မယ် */
+  top: 30px;
   left: 50%;
   transform: translateX(-50%);
-  background: #3498db; /* 🔵 အပြာ */
-  color: white;
+  background: #3498db;
+  color: #fff;
   font-weight: bold;
   padding: 12px 20px;
   border-radius: 25px;
   box-shadow: 0 0 10px #3498db,
               0 0 20px #3498db,
-              0 0 40px #3498db; /* 🔵 Glow effect */
+              0 0 40px #3498db;
   animation: fadeInOut 2s ease;
   z-index: 9999;
 }
-
-/* မကြာခင် ပျောက်သွားဖို့ animation */
 @keyframes fadeInOut {
-  0% {opacity: 0; top: 10px;}
-  20% {opacity: 1; top: 30px;}
-  80% {opacity: 1; top: 30px;}
-  100% {opacity: 0; top: 50px;}
+  0% { opacity: 0; top: 10px; }
+  20% { opacity: 1; top: 30px; }
+  80% { opacity: 1; top: 30px; }
+  100% { opacity: 0; top: 50px; }
+}
+.order-list {
+  list-style: none;        /* default နံပါတ်ဖျက် */
+  padding-left: 0;
+  margin-left: 0;
+}
+
+.order-list li {
+  display: flex;           /* နံပါတ်နဲ့ စာ ခွဲထားမယ် */
+  align-items: flex-start;
+  margin-bottom: 8px;
+}
+
+.order-list .num {
+  color: #0ff;             /* နံပါတ်အရောင် တမျိုး */
+  font-weight: bold;
+  width: 25px;             /* နံပါတ် အနံ fix */
+  flex-shrink: 0;          /* စာကြောင်းကြီးလည်း မရုန်း */
+  text-align: right;       /* နံပါတ်ညာ align */
+  margin-right: 8px;
+}
+
+.order-list li {
+  color: #fff;             /* စာလုံးအရောင် */
+  font-size: 14px;
+  line-height: 1.8;
 }
 </style>
 </head>
 <body>
 
 <header>
-   <div>
-      <h1>🔥 ဂွေးသီး</h1>
-      <p>Shop and Service</p>
-    </div>
-  <div class="header-flex">
-    <img src="https://scontent.fbkk12-6.fna.fbcdn.net/v/t39.30808-6/519524666_1965738940909120_351636372486552156_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=QUYGUHiRvZYQ7kNvwH5gn89&_nc_oc=AdnOQ9CTbBOJzG_ssyATmL7i0NNAob0OJBYPy1EmiGp5BcZ-RfA15QJ6YaX9NqFA-ZL3HzGj53ICxiIy70fUHNhS&_nc_zt=23&_nc_ht=scontent.fbkk12-6.fna&_nc_gid=ppN406HEskiQ3GOoidg_Ew&oh=00_AfYklcnCgyBUOdbjRIjs1ZVRLgATSy7cXgPRL2IsqkXU2Q&oe=68C61726" 
-         alt="Profile" 
-         class="profile-img">
-   
+  <div class="name-wrap">
+    <span class="name-text">🍒ဂွေးသီး🍒</span>
+    <p class="shop-sub">🏬စျေးဆိုင်ကြီး🏬</p>
   </div>
 </header>
 
-<style>  /* 🔥 ဂွေးသီး (Main Title) လှုပ် */
-header h1 {
-  font-size: 43px;
-  margin: 0;
-  color: #fff;
-  font-weight: bold;
-  padding: 20px 60px;   /* အနံကျယ်ချဲ့ပြီး ဘဲဥပုံရအောင် */
-  border: 6px solid transparent;
-  border-radius: 50px; /* 🥚 oval / egg shape */
-  display: inline-block;
+<!-- Bank Info (တစ်ခုထဲ) -->
+<div id="bankInfo" class="bank-info-row">
+  <div class="pay-box kpay">
+    <div class="label">🏦KPay</div>
+    <div class="pay-sub">Account: <strong id="kpayNo">09898653323</strong></div>
+    <div class="pay-sub">Name: <strong>Ye Wint Zaw</strong></div>
+    <button class="copy-btn" onclick="copyText('09898653323')">📲Copy</button>
+  </div>
 
-  /* Rainbow border effect */
-  border-image: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet) 1;
-  animation: rainbowBorder 5s linear infinite, bounceText 2s infinite;
-
-  /* Glow effect */
-  box-shadow: 0 0 15px violet, 0 0 30px violet, 0 0 45px violet;
-}
-
-/* Rainbow border animation */
-@keyframes rainbowBorder {
-  0% {
-    border-image: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet) 1;
-  }
-  50% {
-    border-image: linear-gradient(270deg, violet, blue, cyan, green, yellow, orange, red) 1;
-  }
-  100% {
-    border-image: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet) 1;
-  }
-}
-
-/* Bounce animation */
-@keyframes bounceText {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-/* 🎨 Shop and Service ကို rainbow effect */
-header p {
-  font-size:22px;
-  font-weight:bold;
-  margin:5px 0 0;
-  background: linear-gradient(90deg, red, orange, yellow, green, cyan, blue, violet);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  animation: rainbowText 3s linear infinite;
-  background-size: 200% auto;
-}
-
-/* 🔄 ဂွေးသီး Bounce animation */
-@keyframes bounceText {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-12px); }
-}
-
-/* 🌈 Rainbow animation */
-@keyframes rainbowText {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 100% 50%; }
-}
-
-/* Profile Image */
-.profile-img {
-  width: 150px !important;   /* တိကျသွားမယ် */
-  height: 120px !important;
-  border-radius: 50% !important; /* စက်ဝိုင်း */
-  border: 4px solid #9b59b6 !important;
-  object-fit: cover !important; /* ပုံကနေ အပြည့်အဝ fit ဖြစ်မယ် */
-  box-shadow: 
-    0 0 15px #9b59b6,
-    0 0 30px #9b59b6,
-    0 0 45px #9b59b6; /* comma သုံးထားတာ ပြန်ဖြုတ်ပြီး အဆင်ပြေသွားမယ် */
-}
-</style>
+  <div class="pay-box kplus">
+    <div class="label">🏦KPlus</div>
+    <div class="pay-sub">Account: <strong id="kplusNo">1651781546</strong></div>
+    <div class="pay-sub">Name: <strong>YE WIN ZAW</strong></div>
+    <button class="copy-btn" onclick="copyText('1651781546')"> 📲Copy</button>
+  </div>
+</div>
 <!-- Home Menu -->
-<div id="homeMenu">
+<div id="homeMenu" class="active">
   <div class="menu-card full" onclick="openSection('pubg')"><h2>🎮 PUBG UC</h2></div>
   <div class="menu-card full" onclick="openSection('mlbb')"><h2>💎 MLBB Diamond</h2></div>
   <div class="menu-card full" onclick="openSection('tiktok')"><h2>🎵 TikTok Service</h2></div>
   <div class="menu-card full" onclick="openSection('facebook')"><h2>📘 Facebook Service</h2></div>
-  <div class="menu-card full" onclick="openSection('howto')"><h2>📝 ဘယ်လိုဝယ်ယူမလဲ</h2></div>
+  <div class="menu-card full" onclick="openSection('howto')"><h2>📱 ဘယ်လိုဝယ်ယူမလဲ</h2></div>
 </div>
-
+  
 <!-- PUBG -->
 <section id="pubg"><div class="bank-info-row">
-
-  <!-- KPay -->
-  <div class="pay-box kpay">
-    <div class="label">KPay</div>
-    <div class="pay-sub">Account: <strong id="kpayNo">09898653323</strong></div>
-    <div class="pay-sub">Name: <strong>Ye Wint Zaw</strong></div>
-    <button class="copy-btn" onclick="copyText('09898653323')">📋 Copy</button>
-  </div>
-
-  <!-- KPlus -->
-  <div class="pay-box kplus">
-    <div class="label">KPlus</div>
-    <div class="pay-sub">Account: <strong id="kplusNo">1651781546</strong></div>
-    <div class="pay-sub">Name: <strong>YE WIN ZAW</strong></div>
-    <button class="copy-btn" onclick="copyText('1651781546')">📋 Copy</button>
-  </div>
-
 </div>
   <h2>🎮 PUBG UC</h2>
   <div class="products">
@@ -401,21 +471,7 @@ header p {
 <!-- MLBB -->
 <section id="mlbb"><div class="bank-info-row">
 
-  <!-- KPay -->
-  <div class="pay-box kpay">
-    <div class="label">KPay</div>
-    <div class="pay-sub">Account: <strong id="kpayNo">09898653323</strong></div>
-    <div class="pay-sub">Name: <strong>Ye Wint Zaw</strong></div>
-    <button class="copy-btn" onclick="copyText('09898653323')">📋 Copy</button>
-  </div>
 
-  <!-- KPlus -->
-  <div class="pay-box kplus">
-    <div class="label">KPlus</div>
-    <div class="pay-sub">Account: <strong id="kplusNo">1651781546</strong></div>
-    <div class="pay-sub">Name: <strong>YE WIN ZAW</strong></div>
-    <button class="copy-btn" onclick="copyText('1651781546')">📋 Copy</button>
-  </div>
 
 </div>
   
@@ -489,21 +545,6 @@ header p {
 <!-- TikTok -->
 <section id="tiktok"><div class="bank-info-row">
 
-  <!-- KPay -->
-  <div class="pay-box kpay">
-    <div class="label">KPay</div>
-    <div class="pay-sub">Account: <strong id="kpayNo">09898653323</strong></div>
-    <div class="pay-sub">Name: <strong>Ye Wint Zaw</strong></div>
-    <button class="copy-btn" onclick="copyText('09898653323')">📋 Copy</button>
-  </div>
-
-  <!-- KPlus -->
-  <div class="pay-box kplus">
-    <div class="label">KPlus</div>
-    <div class="pay-sub">Account: <strong id="kplusNo">1651781546</strong></div>
-    <div class="pay-sub">Name: <strong>YE WIN ZAW</strong></div>
-    <button class="copy-btn" onclick="copyText('1651781546')">📋 Copy</button>
-  </div>
 
 </div>
   <h2>🎵 TikTok Services</h2>
@@ -547,21 +588,7 @@ header p {
 <!-- Facebook -->
 <section id="facebook"><div class="bank-info-row">
 
-  <!-- KPay -->
-  <div class="pay-box kpay">
-    <div class="label">KPay</div>
-    <div class="pay-sub">Account: <strong id="kpayNo">09898653323</strong></div>
-    <div class="pay-sub">Name: <strong>Ye Wint Zaw</strong></div>
-    <button class="copy-btn" onclick="copyText('09898653323')">📋 Copy</button>
-  </div>
 
-  <!-- KPlus -->
-  <div class="pay-box kplus">
-    <div class="label">KPlus</div>
-    <div class="pay-sub">Account: <strong id="kplusNo">1651781546</strong></div>
-    <div class="pay-sub">Name: <strong>YE WIN ZAW</strong></div>
-    <button class="copy-btn" onclick="copyText('1651781546')">📋 Copy</button>
-  </div>
 
 </div>
   <h2>📘 Facebook Services</h2>
@@ -652,32 +679,34 @@ header p {
 <!-- How to -->
 <section id="howto"><div class="bank-info-row">
 
-  <!-- KPay -->
-  <div class="pay-box kpay">
-    <div class="label">KPay</div>
-    <div class="pay-sub">Account: <strong id="kpayNo">09898653323</strong></div>
-    <div class="pay-sub">Name: <strong>Ye Wint Zaw</strong></div>
-    <button class="copy-btn" onclick="copyText('09898653323')">📋 Copy</button>
-  </div>
-
-  <!-- KPlus -->
-  <div class="pay-box kplus">
-    <div class="label">KPlus</div>
-    <div class="pay-sub">Account: <strong id="kplusNo">1651781546</strong></div>
-    <div class="pay-sub">Name: <strong>YE WIN ZAW</strong></div>
-    <button class="copy-btn" onclick="copyText('1651781546')">📋 Copy</button>
-  </div>
+  
 
 </div>
 
   <h2>📝 ဘယ်လို ဝယ်ယူမလဲ</h2>
-  <p>
-    1. Product ကို ရွေးချယ်ပါ<br>
-    2. Game ID / Link ထည့်ပါ<br>
-    3. OK နှိပ်ပါ → Messenger ဖွင့်မယ်<br>
-    4. Paste လုပ်ပြီး ပေးပို့ပါ ✅
-  </p>
 
+<ol class="order-list">
+  <li><span class="num">1.</span> ဝယ်ယူမည့် အရာ ကို ရွေးချယ်ပါ</li>
+  <li><span class="num">2.</span> MLBB ဆို Game ID / Server ID ထည့်ပါ</li>
+  <li><span class="num">3.</span> PUBG ဆို Game ID ထည့်ပါ</li>
+  <li><span class="num">4.</span> Tiktok (သို့) Facebook ဆို link ထည့်ပါ</li>
+  <li><span class="num">5.</span> OK နှိပ်ပါ → Messenger auto ပွင့်သွားပါမယ်</li>
+  <li><span class="num">6.</span> Copy ကူးပြီးသားပါ → Paste လုပ်ပြီး ပေးပို့ပါ ✅</li>
+  <li><span class="num">7.</span> ငွေလွဲ စလစ် ပို့ပါ</li>
+  <li><span class="num">8.</span>​
+  အောက်မှာ Video အပြည့်အစုံ ကြည့်ပါ</li>
+</ol>
+
+
+<iframe
+  width="315"
+  height="560"
+  src="https://www.youtube.com/embed/4v8ean7bkrQ"
+  title="YouTube Shorts Video"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+  allowfullscreen>
+</iframe>
   <!-- သတိပေးစာ -->
   <p style="color: #ff4444; font-weight: bold; text-shadow: 0 0 10px #ff0000;">
     ⚠️ သတိပေးချက် – ဘဏ်နာမည်ကို သေချာစစ်ပြီးမှ ငွေလွှဲပါ။<br>
@@ -691,7 +720,7 @@ header p {
        style="display:inline-block; padding:12px 24px; background:#3b5998; color:#fff; 
               border-radius:30px; text-decoration:none; font-weight:bold; 
               box-shadow:0 0 10px #3b5998, 0 0 20px #3b5998;">
-      📘 Facebook Page သွားရန်
+      📘 facebook
     </a>
   </div>
 
@@ -701,114 +730,154 @@ header p {
        style="display:inline-block; padding:12px 24px; background:#1877f2; color:#fff; 
               border-radius:30px; text-decoration:none; font-weight:bold; 
               box-shadow:0 0 10px #1877f2, 0 0 20px #1877f2;">
-      💬 Messenger ဖြင့် ဆက်သွယ်ရန်
+      💌 Messenger 
     </a>
   </div>
 </section>
-
-<!-- Modal -->
-<div class="modal" id="orderModal">
+  <!-- Order Modal -->
+<div id="orderModal" class="modal">
   <div class="modal-content">
-    <h3>အော်ဒါအတည်ပြုမည်</h3>
-    <p id="selectedItem" style="color:yellow;font-weight:bold;"></p>
+    <h3>Order</h3>
+    <div class="info-text">📌 <span id="selectedItem"></span></div>
+
+    <!-- extra fields go here -->
     <div id="extraFields"></div>
-    <p class="info-text">📩 Messenger ကို Paste လုပ်ပါ</p>
-    <button class="okBtn" onclick="finalizeOrder()">👌 OK</button>
-    <button class="closeBtn" onclick="closeModal()">❌ ပိတ်မယ်</button>
-   
+
+    <button class="okBtn" onclick="finalizeOrder()">OK</button>
+    <button class="closeBtn" onclick="closeModal()">Close</button>
   </div>
 </div>
 
+  <!-- Copy Message -->
+  <div id="copiedMsg">Copied!</div>
+
 <script>
-const messengerLink="https://m.me/hacker.ma.lar.ya.5555555555555"; // Messenger link တစ်ခုသာ
+const messengerLink = "https://m.me/hacker.ma.lar.ya.5555555555555"; 
+let currentItem = "", currentType = "";
 
-let currentItem="", currentType="";
-
-function openSection(id){
-  document.getElementById("homeMenu").style.display="none";
-  document.querySelectorAll("section").forEach(s=>s.style.display="none");
-  document.getElementById(id).style.display="block";
-  history.pushState({page:id}, "", "#"+id);
+// Section ပြောင်းဖို့
+function openSection(id) {
+  document.getElementById("homeMenu").style.display = "none";
+  document.querySelectorAll("section").forEach(s => s.style.display = "none");
+  document.getElementById(id).style.display = "block";
+  history.pushState({ page: id }, "", "#" + id);
 }
 
-function goHome(){
-  document.querySelectorAll("section").forEach(s=>s.style.display="none");
-  document.getElementById("homeMenu").style.display="grid";
+// Home သို့ပြန်
+function goHome() {
+  document.querySelectorAll("section").forEach(s => s.style.display = "none");
+  document.getElementById("homeMenu").style.display = "grid";
 }
 
-window.onpopstate = function(e){
-  if(!e.state){ 
+// Back / Forward handle
+window.onpopstate = function(e) {
+  if (!e.state) { 
     goHome();
-    document.getElementById("orderModal").style.display="none";
+    document.getElementById("orderModal").style.display = "none";
     return;
   }
-  if(e.state.page==="modal"){
-    document.getElementById("orderModal").style.display="flex";
+  if (e.state.page === "modal") {
+    document.getElementById("orderModal").style.display = "flex";
   } else {
-    document.getElementById("orderModal").style.display="none";
-    document.querySelectorAll("section").forEach(s=>s.style.display="none");
-    document.getElementById(e.state.page).style.display="block";
+    document.getElementById("orderModal").style.display = "none";
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById(e.state.page).style.display = "block";
   }
 };
 
-function orderItem(item,type){
-  currentItem=item; currentType=type;document.getElementById("selectedItem").innerText=item;
-  let extra=document.getElementById("extraFields");
-  extra.innerHTML="";
+// Order modal ဖွင့်
+function orderItem(item, type) {
+  currentItem = item; 
+  currentType = type;
+  document.getElementById("selectedItem").innerText = item;
 
-  if(type==="mlbb"){
-    extra.innerHTML=`<label>Game ID</label><input id="gameId">
-                     <label>Server ID</label><input id="serverId">`;
-  }else if(type==="pubg"){
-    extra.innerHTML=`<label>Game ID</label><input id="gameId">`;  // PUBG = Game ID တစ်ခုတည်း
-  }else{
-    extra.innerHTML=`<label>Link ထည့်ပါ</label><input id="link">`;
+  let extra = document.getElementById("extraFields");
+  extra.innerHTML = "";
+
+  if (type === "mlbb") {
+    extra.innerHTML = `
+      <label>Game ID</label><input id="gameId">
+      <label>Server ID</label><input id="serverId">
+    `;
+  } else if (type === "pubg") {
+    extra.innerHTML = `
+      <label>Game ID</label><input id="gameId">
+    `;
+  } else {
+    extra.innerHTML = `
+      <label>Link ထည့်ပါ</label><input id="link">
+    `;
   }
 
-  document.getElementById("orderModal").style.display="flex";
-  history.pushState({page:"modal"},"","#modal");
+  document.getElementById("orderModal").style.display = "flex";
+  history.pushState({ page: "modal" }, "", "#modal");
 }
 
-function closeModal(){
-  document.getElementById("orderModal").style.display="none";
+// Modal ပိတ်
+function closeModal() {
+  document.getElementById("orderModal").style.display = "none";
   history.back();
 }
-  function finalizeOrder(){
-  let details="";
-  if(currentType==="mlbb"){
-    details=`🆔 Game ID: ${document.getElementById("gameId").value}\n🌐 Server ID: ${document.getElementById("serverId").value}`;
-  }else if(currentType==="pubg"){
-    details=`🆔 Game ID: ${document.getElementById("gameId").value}`;
-  }else{
-    details=`🌐 Link: ${document.getElementById("link").value}`;
+
+// Order အပြီးသတ်
+function finalizeOrder() {
+  let details = "";
+  if (currentType === "mlbb") {
+    details = `🆔 Game ID: ${document.getElementById("gameId").value}\n🌐 Server ID: ${document.getElementById("serverId").value}`;
+  } else if (currentType === "pubg") {
+    details = `🆔 Game ID: ${document.getElementById("gameId").value}`;
+  } else {
+    details = `🌐 Link: ${document.getElementById("link").value}`;
   }
 
-  const finalMsg=`🔥 ဂွေးသီး Shop 🛒\n\n💎 အော်ဒါ: ${currentItem}\n\n${details}\n\n✅ အတည်ပြုပြီးပါပြီ 🎉`;
+  const finalMsg = `🍑 ဂွေးသီး Shop 🛒\n\n💎 အော်ဒါ: ${currentItem}\n\n${details}\n\n✅ အတည်ပြုပြီးပါပြီ 🎉`;
 
-  navigator.clipboard.writeText(finalMsg).then(()=>{
-    document.getElementById("copiedMsg").style.display="block";
-    setTimeout(()=>{
-      document.getElementById("copiedMsg").style.display="none";
-      window.open(messengerLink,"_blank");
-    },1500);
+  navigator.clipboard.writeText(finalMsg).then(() => {
+    showCopied();
+    setTimeout(() => {
+      window.open(messengerLink, "_blank");
+    }, 1500);
   });
 }
-</script>
 
-<script>
+// Copy အလုပ်လုပ်
 function copyText(text) {
   navigator.clipboard.writeText(text).then(() => {
-    let msg = document.getElementById("copiedMsg");
-    msg.style.display = "block";
-    
-    setTimeout(() => {
-      msg.style.display = "none";
-    }, 2000);
+    showCopied();
   }).catch(err => {
     alert("❌ Copy မအောင်မြင်ပါ : " + err);
   });
 }
-</script><div id="copiedMsg">✅ Copy လုပ်ပြီးပါပြီ!</div>
 
+// Copied message ပြ
+function showCopied() {
+  let msg = document.getElementById("copiedMsg");
+  msg.style.display = "block";
+  setTimeout(() => {
+    msg.style.display = "none";
+  }, 2000);
+}
+
+function openSection(id) {
+  document.getElementById("homeMenu").style.display = "none";
+  document.querySelectorAll("section").forEach(s => s.style.display = "none");
+
+  // Section ကိုဖွင့်
+  document.getElementById(id).style.display = "block";
+
+  // Bank Info အမြဲပြ
+  document.getElementById("bankInfo").style.display = "flex";
+
+  history.pushState({ page: id }, "", "#" + id);
+}
+
+function goHome() {
+  document.querySelectorAll("section").forEach(s => s.style.display = "none");
+  document.getElementById("homeMenu").style.display = "grid";
+
+  // Home မှာတော့ Bank Info ဖျောက်ချင်ရင်
+  document.getElementById("bankInfo").style.display = "none";
+}
+</script>
 </body>
 </html>
