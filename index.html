@@ -21,45 +21,50 @@ body {
   text-align: center;
 }
 
-/*==========  NEON NAME  ==========*/
+/*==========  NEON NAME (Frame + Double Glow + Big Size) ==========*/
 .name-wrap {
   display: inline-block;
   position: relative;
-  padding: 10px 30px;
+  padding: 15px 30px;       /* အနည်းငယ် ကြီးအောင်ပြောင်း */
   border-radius: 50px;
   overflow: hidden;
   background: #000;
-  margin: 20px auto;
+  margin: 30px auto;
   z-index: 0;
 }
 .name-wrap::before {
   content: '';
   position: absolute;
-  inset: -6px; /* အပြင်ပိုင်း glow ထူချင်လို့ -2px → -6px */
+  inset: -8px;  /* glow ထူထူအောင် */
   background: conic-gradient(#ff00ff,#00ffff,#00ff00,#ffff00,#ff00ff);
   animation: spin 4s linear infinite;
-  border-radius: 55px; /* ထူတာနဲ့လိုက်ဖက်အောင် အနည်းငယ်ကြီး */
+  border-radius: 65px;
   z-index: -2;
 }
 .name-wrap::after {
   content: '';
   position: absolute;
-  inset: 6px;  /* အတွင်း mask ကို 2px → 6px */
+  inset: 8px;
   background: #000;
-  border-radius: 49px;
+  border-radius: 55px;
   z-index: -1;
 }
+
 .name-text {
-  font-size: 36px;
+  font-size: 64px;   /* ကြီးအောင် */
   font-weight: 900;
   background: linear-gradient(90deg,#ff00ff,#00ffff,#ff00ff);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: moveGrad 2s linear infinite, wave 2s ease-in-out infinite;
   cursor: pointer;
   transition: transform .3s ease;
-  text-shadow: 0 0 10px #0ff, 0 0 20px #09f;
+  animation: moveGrad 2s linear infinite, 
+             wave 2s ease-in-out infinite, 
+             glowPulse 1.5s ease-in-out infinite;
+  text-shadow: 0 0 12px #ff00ff,
+               0 0 24px #00ffff,
+               0 0 36px #ff00ff;
 }
 .name-text:hover {
   transform: scale(1.1) rotateY(10deg) rotateX(5deg);
@@ -70,9 +75,13 @@ body {
 @keyframes moveGrad { to { background-position: 200%; } }
 @keyframes wave {
   0%,100% { transform: translateY(0); }
-  25% { transform: translateY(-5px); }
-  50% { transform: translateY(5px); }
-  75% { transform: translateY(-3px); }
+  25% { transform: translateY(-6px); }
+  50% { transform: translateY(6px); }
+  75% { transform: translateY(-4px); }
+}
+@keyframes glowPulse {
+  0%,100% { text-shadow: 0 0 12px #ff00ff,0 0 24px #00ffff,0 0 36px #ff00ff; }
+  50% { text-shadow: 0 0 18px #00ffff,0 0 32px #ff00ff,0 0 50px #00ffff; }
 }
 
 /*==========  SHOP SUBTITLE  ==========*/
@@ -314,45 +323,62 @@ section p {
   gap: 20px;
   margin: 20px 0;
 }
-.pay-box {
-  padding: 10px 20px;       /* အပေါ်အောက် နည်း, ဘယ်ညာ ပိုကြီး */
-  border-radius: 12px;
-  text-align: center;
+.pay-box strong {
+  font-size: 14px;      /* စာလုံးသေး */
   color: #fff;
-  width: 200px;             /* အလျား Fix */
-  height: 90px;             /* အနံ တိုအောင် */
-  display: flex;            /* အထဲစာလုံးအလယ်အလတ်ပြမယ် */
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: block;
+  margin: 2px 0;
+}
+
+.center-note {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin: 15px 0;
+  background: linear-gradient(90deg,#ff00ff,#00ffff,#ff00ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: glowText 2s ease-in-out infinite;
+}
+
+@keyframes glowText {
+  0%,100% { text-shadow: 0 0 8px #ff00ff, 0 0 16px #00ffff; }
+  50%     { text-shadow: 0 0 16px #00ffff, 0 0 32px #ff00ff; }
 }
 .kpay {
   background: rgba(0,0,0,.6);
   border: 2px solid #0f0;
   box-shadow: 0 0 12px #0f0, 0 0 25px #0f0;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  text-align: center;
 }
+
 .kplus {
   background: rgba(0,0,0,.6);
   border: 2px solid #9b59b6;
   box-shadow: 0 0 12px #9b59b6, 0 0 25px #9b59b6;
+  padding: 12px;
+  border-radius: 10px;
+  text-align: center;
 }
+
 .label {
-  font-size: 12px;
+  font-size: 15px;
   font-weight: bold;
-  margin-bottom: 4px;
-  text-transform: uppercase;
+  margin-bottom: 8px;
+  color: #fff;
 }
-.pay-sub {
-  font-size: 11px;
-  margin: 0;
-}
+
 .copy-btn {
-  margin-top: 4px;
-  padding: 3px 6px;
+  margin-top: 10px;
+  padding: 6px 12px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 12px;
+  background: #222;
+  color: #0f0;
   font-weight: bold;
 }
 /*==========  COPIED MSG  ==========*/
@@ -405,6 +431,67 @@ section p {
   font-size: 14px;
   line-height: 1.8;
 }
+
+  .card {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 300px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+  .price {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 15px 0;
+  }
+  .qty-control {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  .qty-btn {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .qty {
+    font-size: 20px;
+    min-width: 35px;
+    text-align: center;
+  }
+.qty-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 5px 0;
+  gap: 10px;
+}
+
+.qty-control button {
+  background: #ff00ff;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 18px;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #ff00ff;
+}
+
+.qty-control span {
+  font-size: 18px;
+  color: #0ff;
+  min-width: 20px;
+  text-align: center;
+}
 </style>
 </head>
 <body>
@@ -416,21 +503,27 @@ section p {
   </div>
 </header>
 
-<!-- Bank Info (တစ်ခုထဲ) -->
 <div id="bankInfo" class="bank-info-row">
+
+  <!-- KPay Box -->
   <div class="pay-box kpay">
-    <div class="label">🏦KPay</div>
-    <div class="pay-sub">Account: <strong id="kpayNo">09898653323</strong></div>
-    <div class="pay-sub">Name: <strong>Ye Wint Zaw</strong></div>
-    <button class="copy-btn" onclick="copyText('09898653323')">📲Copy</button>
+    <div class="label">🏦 KPay</div>
+    <div><strong id="kpayNo">09898653323</strong></div>
+    <div><strong>Ye Wint Zaw</strong></div>
+    <button class="copy-btn" onclick="copyText('09898653323')">📲 Copy</button>
   </div>
 
+  <!-- Center Note with Effect -->
+  <div class="center-note">👈 ဘဏ်နံပါတ် ကို ဒီမှာ Copy ယူပါ 👉</div>
+
+  <!-- KPlus Box -->
   <div class="pay-box kplus">
-    <div class="label">🏦KPlus</div>
-    <div class="pay-sub">Account: <strong id="kplusNo">1651781546</strong></div>
-    <div class="pay-sub">Name: <strong>YE WIN ZAW</strong></div>
-    <button class="copy-btn" onclick="copyText('1651781546')"> 📲Copy</button>
+    <div class="label">🏦 KPlus</div>
+    <div><strong id="kplusNo">1651781546</strong></div>
+    <div><strong>Ye Win Zaw</strong></div>
+    <button class="copy-btn" onclick="copyText('1651781546')">📲 Copy</button>
   </div>
+
 </div>
 <!-- Home Menu -->
 <div id="homeMenu" class="active">
@@ -476,19 +569,33 @@ section p {
 </div>
   
   <h2>💎 MLBB Diamonds</h2>
-
-  <!-- Weekly Pass + Double Diamonds -->
-  <h3 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">✨ Weekly Pass + 🎮 Diamonds×2ဆ ✨</h3>
-  <div class="products">
-    <div class="card">
-      <h3>Weekly Pass</h3>
-      <p>60B</p>
-      <button onclick="orderItem('MLBB Weekly Pass - 60B','mlbb')">ရွေးချယ်မည်</button>
-    </div>
+  
+    <h3 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">✨ Weekly Pass  ✨</h3>
+    
+    <h3 style="color:yellow; text-shadow:0 0 8px yellow; margin-top:25px;">💎 Weekly Pass ဝယ်ယူလျှင် စိန် 80လုံး ရမယ်..
+    ထည့်သည့်နေ့မှ နေ့တိုင်း စိန် 20 လုံး 7 ရက်ဝင်ယူရမယ်..စုစုပေါင်း စိန် 220လုံးနှင့် တခြား လက်ဆောင်များ ရရှိမှာ ဖြစ်ပါတယ်..ကြိုက်နှစ်သက် သလောက် ကဒ်ရွှေးချယ် နိုင်ပါသည်။💎</h3>
+<div class="card">
+  <h3>Weekly Pass</h3>
+  <div class="qty-control">
+    <button onclick="decreaseQty()">-</button>
+    <span id="qty">1</span>
+    <button onclick="increaseQty()">+</button>
+  </div>
+  <p id="price">60B</p>
+  <button onclick="selectProduct()">ရွေးချယ်မည်</button>
+</div>
+  
+  <h3 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">✨  🎮 Diamonds×2ဆ ✨</h3>
+  
+  <h3 style="color:orangered; text-shadow:0 0 8px orangered;">✨  Diamonds ×2ဆ သည် တမျိုးကို
+  တစ်ကြိမ်သာဝယ်ယူနိုင်ပါသည်
+  အကုန်လုံး တစ်ကြိမ်ဆီ ဝယ်ယူပီးလျှင်
+  ထပ်မံဝယ်ယူလို့မရနိုင်ပါ✨</h3>
+ <div class="products">
     <div class="card">
       <h3>50 + 50 Diamonds</h3>
       <p>35B</p>
-      <button onclick="orderItem('MLBB 50+50 Diamonds - 35B','mlbb')">ရွေးချယ်မည်</button>
+  <button onclick="orderItem('MLBB Weekly Pass - 60B','mlbb')">ရွေးချယ်မည်</button>
     </div>
     <div class="card">
       <h3>150 + 150 Diamonds</h3>
@@ -509,6 +616,10 @@ section p {
 
   <!-- Normal Diamonds -->
   <h3 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">💎 Normal Diamonds 💎</h3>
+   <h3 style=color:red; text-shadow:0 0 8px darkred; margin-top:25px;">💎နှစ်သက်သလောက် ဝယ်ယူနိုင်ပါသည်
+   Diamonds အများအပြားဝယ်ယူလိုလျှင်
+   Massenger သို့ တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်💎</h3>
+  
   <div class="products">
     <div class="card">
       <h3>11 Diamonds</h3>
@@ -858,25 +969,36 @@ function showCopied() {
   }, 2000);
 }
 
-function openSection(id) {
-  document.getElementById("homeMenu").style.display = "none";
-  document.querySelectorAll("section").forEach(s => s.style.display = "none");
+/* ---------- WP (Weekly Pass) Qty + စျေးတွက် ---------- */
+const basePrice = 60;
 
-  // Section ကိုဖွင့်
-  document.getElementById(id).style.display = "block";
-
-  // Bank Info အမြဲပြ
-  document.getElementById("bankInfo").style.display = "flex";
-
-  history.pushState({ page: id }, "", "#" + id);
+function updatePrice() {
+  let qty = parseInt(document.getElementById("qty").innerText);
+  let total = basePrice * qty;
+  document.getElementById("price").innerText = total + "B";
 }
 
-function goHome() {
-  document.querySelectorAll("section").forEach(s => s.style.display = "none");
-  document.getElementById("homeMenu").style.display = "grid";
+function increaseQty() {
+  let qtyElem = document.getElementById("qty");
+  let qty = parseInt(qtyElem.innerText);
+  qtyElem.innerText = qty + 1;
+  updatePrice();
+}
 
-  // Home မှာတော့ Bank Info ဖျောက်ချင်ရင်
-  document.getElementById("bankInfo").style.display = "none";
+function decreaseQty() {
+  let qtyElem = document.getElementById("qty");
+  let qty = parseInt(qtyElem.innerText);
+  if (qty > 1) {
+    qtyElem.innerText = qty - 1;
+    updatePrice();
+  }
+}
+
+// Qty + စျေးနဲ့ အဟောင်း orderItem() ကို ခေါ်မယ်
+function selectProduct() {
+  let qty = parseInt(document.getElementById("qty").innerText);
+  let total = basePrice * qty;
+  orderItem(`MLBB Weekly Pass ×${qty} - ${total}B`, "mlbb");
 }
 </script>
 </body>
