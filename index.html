@@ -3,9 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Gway Thee Shop">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Android Meta Tags -->
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    
     <title>Fixed CSS - No Duplicates</title>
     <style>
-        /*==========  CORE  ==========*/
+         
         * {
             margin: 0;
             padding: 0;
@@ -21,66 +32,41 @@
             min-height: 100vh;
         }
 
-        /*==========  NEON NAME ==========*/
-        .name-wrap {
-            display: inline-block;
-            position: relative;
-            padding: 20px 25px;
-            border-radius: 50px;
-            overflow: hidden;
-            background: #000;
-            margin: 30px auto;
-            z-index: 0;
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.3);
-        }
-        .name-wrap::before {
-            content: '';
-            position: absolute;
-            inset: -8px;
-            background: conic-gradient(#ff00ff, #00ffff, #00ff00, #ffff00, #ff00ff);
-            animation: spin 4s linear infinite;
-            border-radius: 65px;
-            z-index: -2;
-        }
-        .name-wrap::after {
-            content: '';
-            position: absolute;
-            inset: 3px;
-            background: #000;
-            border-radius: 55px;
-            z-index: -1;
-        }
+.name-wrap {
+    display: inline-block;
+    padding: 20px 30px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.9);
+    margin: 30px auto;
+    border: 2px solid #ff00ff;
+    box-shadow: 
+        0 0 15px rgba(255, 0, 255, 0.3),
+        inset 0 0 15px rgba(0, 255, 255, 0.1);
+    animation: float 4s ease-in-out infinite;
+}
 
-        .name-text {
-            font-size: 42px;
-            font-weight: 900;
-            background: linear-gradient(90deg, #ff00ff, #00ffff, #ff00ff);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            cursor: pointer;
-            transition: transform .3s ease;
-            animation: moveGrad 2s linear infinite, 
-                       wave 2s ease-in-out infinite, 
-                       glowPulse 1.5s ease-in-out infinite;
-            text-shadow: 0 0 15px #ff00ff,
-                         0 0 30px #00ffff,
-                         0 0 45px #ff00ff;
-        }
+.name-text {
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        0 0 10px #ff00ff,
+        0 0 20px rgba(0, 255, 255, 0.5);
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
 
-        /* Animations */
-        @keyframes spin { to { transform: rotate(900deg); } }
-        @keyframes moveGrad { to { background-position: 200%; } }
-        @keyframes wave {
-            0%,100% { transform: translateY(0); }
-            25% { transform: translateY(-6px); }
-            50% { transform: translateY(6px); }
-            75% { transform: translateY(-4px); }
-        }
-        @keyframes glowPulse {
-            0%,100% { text-shadow: 0 0 15px #ff00ff,0 0 30px #00ffff,0 0 45px #ff00ff; }
-            50% { text-shadow: 0 0 25px #00ffff,0 0 40px #ff00ff,0 0 60px #00ffff; }
-        }
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px #ff00ff, 0 0 20px rgba(0, 255, 255, 0.5); }
+    to { text-shadow: 0 0 15px #00ffff, 0 0 25px rgba(255, 0, 255, 0.5); }
+}
+
+
+
 
         /*==========  COLORFUL SECTIONS ==========*/
         section {
@@ -601,42 +587,55 @@
         }
 
         /*==========  PAYMENT INFO  ==========*/
-        #bankInfo {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-        }
-        .pay-box {
-            background: rgba(0,0,0,0.6);
-            border-radius: 10px;
-            padding: 12px;
-            min-width: 120px;
-            min-height: 120px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            border: 2px solid;
-        }
-        .kpay { border-color: #0f0; box-shadow: 0 0 12px #0f0, 0 0 25px #0f0; }
-        .kplus { border-color: #9b59b6; box-shadow: 0 0 12px #9b59b6, 0 0 25px #9b59b6; }
+#bankInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+.pay-box {
+    background: rgba(0,0,0,0.6);
+    border-radius: 10px;
+    padding: 12px;
+    min-width: 120px;
+    min-height: 120px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid;
+}
+.kpay { border-color: #0f0; box-shadow: 0 0 12px #0f0, 0 0 25px #0f0; }
+.kplus { border-color: #9b59b6; box-shadow: 0 0 12px #9b59b6, 0 0 25px #9b59b6; }
 
-        .center-note {
-            font-size: 18px;
-            font-weight: bold;
-            text-align: center;
-            margin: 15px 0;
-            background: linear-gradient(90deg,#ff00ff,#00ffff,#ff00ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: glowText 2s ease-in-out infinite;
-        }
-        @keyframes glowText {
-            0%,100% { text-shadow: 0 0 8px #ff00ff, 0 0 16px #00ffff; }
-            50%     { text-shadow: 0 0 16px #00ffff, 0 0 32px #ff00ff; }
-        }
+.center-note {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin: 15px 0;
+    background: linear-gradient(90deg,#ff00ff,#00ffff,#ff00ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: glowText 2s ease-in-out infinite;
+}
+@keyframes glowText {
+    0%,100% { text-shadow: 0 0 8px #ff00ff, 0 0 16px #00ffff; }
+    50%     { text-shadow: 0 0 16px #00ffff, 0 0 32px #ff00ff; }
+}
+
+/* ✅ ဒီနေရာမှာ ထည့်ပါ */
+.bank-copy {
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    border: 3px solid #00ff00;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+}
+
+.order-copy {
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    border: 3px solid #ff00ff;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+}
         
         /*==========  FIXED ORDER MODAL ==========*/
         .modal {
@@ -996,19 +995,6 @@
   box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
 }
 
-/* Video Container */
-.video-container {
-  margin: 30px 0;
-  display: flex;
-  justify-content: center;
-}
-
-.video-container iframe {
-  border-radius: 15px;
-  border: 3px solid #00ff00;
-  box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
-  max-width: 100%;
-}
 
 /* Warning Message */
 .warning-box {
@@ -1087,7 +1073,201 @@
     font-size: 16px;
   }
 }
-    </style>
+/*==========  TAB SYSTEM ==========*/
+.tab-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.tab-btn {
+  padding: 12px 25px;
+  border: 2px solid #00ffff;
+  border-radius: 25px;
+  background: rgba(0,0,0,0.7);
+  color: #00ffff;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.tab-btn:hover {
+  background: rgba(0, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
+  color: #000;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/*==========  CASH PRICE SECTION ==========*/
+.cash-price-section {
+  margin: 20px 0;
+}
+
+.cash-title {
+  color: #00ff00;
+  text-shadow: 0 0 15px #00ff00;
+  font-size: 24px;
+  margin-bottom: 15px;
+  text-align: center;
+  border: 2px solid #00ff00;
+  border-radius: 10px;
+  padding: 10px 20px;
+  background: rgba(0,0,0,0.4);
+}
+
+/* Credit Description Style */
+.credit-description {
+  text-align: center;
+  margin: 10px 0;
+  padding: 12px;
+  background: rgba(255, 107, 53, 0.1);
+  border-radius: 10px;
+  border: 2px solid #ff6b35;
+  color: #ff6b35;
+  font-weight: bold;
+}
+
+/* Cash Description Style */
+.cash-description {
+  text-align: center;
+  margin: 10px 0;
+  padding: 12px;
+  background: rgba(0, 255, 0, 0.1);
+  border-radius: 10px;
+  border: 2px solid #00ff00;
+  color: #00ff00;
+  font-weight: bold;
+}
+/* ကံစမ်းမဲ Button Styles */
+.mini-lottery-btn {
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid #ffffff;
+    width: 100%;
+    max-width: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mini-lottery-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+}
+
+.mini-lottery-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: glowMove 2s linear infinite;
+    z-index: 1;
+    border-radius: 30px;
+}
+
+@keyframes glowMove {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    #lotterySection {
+        margin: 15px auto;
+        max-width: 280px;
+        padding: 0 15px;
+    }
+    
+    .mini-lottery-btn {
+        padding: 10px 20px;
+        font-size: 15px;
+        max-width: 220px;
+    }
+}
+
+/* iOS Safari Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+    body {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .card, .menu-card, .name-wrap {
+        -webkit-transform: translateZ(0);
+    }
+    
+    /* iOS input zoom prevention */
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Mobile Tap Highlights */
+button, .menu-card, .card, .copy-btn {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+/* Mobile Performance */
+* {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+/* Very Small Phones */
+@media (max-width: 320px) {
+    .card {
+        width: calc(50% - 5px) !important;
+        min-height: 150px !important;
+    }
+    
+    .card h3 {
+        font-size: 12px !important;
+        padding: 4px 6px !important;
+    }
+    
+    .card button {
+        font-size: 10px !important;
+        padding: 8px 10px !important;
+    }
+}
+</style>
 
 
 </head>
@@ -1101,12 +1281,12 @@
 </header>
 
 <div id="bankInfo">
-
   <div class="pay-box kpay">
     <div class="label">🏦 KPay</div>
     <div><strong id="kpayNo">09898653323</strong></div>
     <div><strong>Ye Wint Zaw</strong></div>
-    <button class="copy-btn" onclick="copyText('09898653323')">📲 Copy</button>
+    <!-- ✅ ပြင်ဆင်ပြီး -->
+    <button class="copy-btn" onclick="mobileCopyText('09898653323', 'bank')">📲 Copy</button>
   </div>
 
   <div class="center-note">👈 ဘဏ်နံပါတ် ကို ဒီမှာ Copy ယူပါ 👉</div>
@@ -1115,10 +1295,19 @@
     <div class="label">🏦 KPlus</div>
     <div><strong id="kplusNo">1651781546</strong></div>
     <div><strong>Ye Win Zaw</strong></div>
-    <button class="copy-btn" onclick="copyText('1651781546')">📲 Copy</button>
+    <!-- ✅ ပြင်ဆင်ပြီး -->
+    <button class="copy-btn" onclick="mobileCopyText('1651781546', 'bank')">📲 Copy</button>
   </div>
-
 </div>
+
+<!-- ကံစမ်းမဲ Button (သေးသေးလေး) -->
+<div id="lotterySection" style="text-align: center; margin: 15px auto; max-width: 300px; padding: 0 20px;">
+  <button class="mini-lottery-btn" onclick="openLottery()">
+    <span>🎡 ကံစမ်းမဲ ကံစမ်းရန်</span>
+    <div class="btn-glow"></div>
+  </button>
+</div>
+
 <!-- Home Menu -->
 <div id="homeMenu" class="active">
   <div class="menu-card full" onclick="openSection('pubg')"><h2>🎮 PUBG UC</h2></div>
@@ -1127,6 +1316,8 @@
   <div class="menu-card full" onclick="openSection('facebook')"><h2>📘 Facebook Service</h2></div>
   <div class="menu-card full" onclick="openSection('howto')"><h2>📱 ဘယ်လိုဝယ်ယူမလဲ</h2></div>
 </div>
+
+
   
 
 <!-- PUBG -->
@@ -1158,115 +1349,257 @@
 </section> 
 
 
-<!-- MLBB Section ထဲက WP part ကို ဒီလိုအစားထိုးပါ -->
+
+<!-- MLBB Section -->
 <section id="mlbb">
   <h2>💎 MLBB Diamonds</h2>
   
-  <!-- Weekly Pass Section -->
-  <div class="weekly-pass-section">
-    <h3 class="wp-title">✨ Weekly Pass ✨</h3>
+  <!-- Tab Buttons -->
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="openTab('creditTab')">🔄 အကြွေးစျေး</button>
+    <button class="tab-btn" onclick="openTab('cashTab')">💵 လက်ငင်းစျေး</button>
+  </div>
+
+  <!-- အကြွေးစျေး Tab -->
+  <div id="creditTab" class="tab-content active">
     
-    <div class="wp-description">
-      <p>💎 Weekly Pass ဝယ်ယူလျှင် စိန် 80လုံး ရမယ်</p>
-      <p>ထည့်သည့်နေ့မှ နေ့တိုင်း စိန် 20 လုံး 7 ရက်ဝင်ယူရမယ်</p>
-      <p>စုစုပေါင်း စိန် 220လုံးနှင့် တခြား လက်ဆောင်များ ရရှိမှာ ဖြစ်ပါတယ်</p>
+    <!-- Credit Description -->
+    <div class="credit-description">
+      <p>💰 အကြွေးဝယ်ယူမည်ဆိုပါက ဤစျေးနှုန်းများအတိုင်းဖြစ်ပါသည်</p>
     </div>
-    
-    <div class="wp-card-container">
-      <div class="wp-card">
-        <h3>✨ Weekly Pass ✨</h3>
-        <div class="qty-control-wrapper">
-          <div class="qty-control">
-            <button class="qty-btn minus" onclick="decreaseQty()">-</button>
-            <span id="qty" class="qty-display">1</span>
-            <button class="qty-btn plus" onclick="increaseQty()">+</button>
+    <div class="credit-description">
+      <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
+    </div>
+    <div class="credit-description">
+      <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
+    </div>
+
+    <!-- Weekly Pass Section -->
+    <div class="weekly-pass-section">
+      <h3 class="wp-title">✨ Weekly Pass ✨</h3>
+      
+      <div class="wp-description">
+        <p>💎 Weekly Pass ဝယ်ယူလျှင် စိန် 80လုံး ရမယ်</p>
+        <p>ထည့်သည့်နေ့မှ နေ့တိုင်း စိန် 20 လုံး 7 ရက်ဝင်ယူရမယ်</p>
+        <p>စုစုပေါင်း စိန် 220လုံးနှင့် တခြား လက်ဆောင်များ ရရှိမှာ ဖြစ်ပါတယ်</p>
+      </div>
+      
+      <div class="wp-card-container">
+        <div class="wp-card">
+          <h3>✨ Weekly Pass ✨</h3>
+          <div class="qty-control-wrapper">
+            <div class="qty-control">
+              <button class="qty-btn minus" onclick="decreaseQty()">-</button>
+              <span id="qty" class="qty-display">1</span>
+              <button class="qty-btn plus" onclick="increaseQty()">+</button>
+            </div>
+            <div class="price-container">
+              <span class="price-label">စျေးနှုန်း:</span>
+              <span id="price" class="price-amount">60B</span>
+            </div>
           </div>
-          <div class="price-container">
-            <span class="price-label">စျေးနှုန်း:</span>
-            <span id="price" class="price-amount">60B</span>
-          </div>
+          <button class="select-btn" onclick="selectProduct()">ရွေးချယ်မည်</button>
         </div>
-        <button class="select-btn" onclick="selectProduct()">ရွေးချယ်မည်</button>
       </div>
     </div>
-  </div>
 
-  
+    <!-- Diamonds ×2 Section -->
+    <h4 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">✨ Diamonds ×2ဆ ✨</h4>
+    
+    <div class="double-diamond-description">
+      <p>✨ Diamonds ×2ဆ သည် တမျိုးကို တစ်ကြိမ်သာဝယ်ယူနိုင်ပါသည်<br>
+      အကုန်လုံး တစ်ကြိမ်ဆီ ဝယ်ယူပီးလျှင် ထပ်မံဝယ်ယူလို့မရနိုင်ပါ✨</p>
+    </div>
 
-  <!-- Diamonds ×2 Section -->
-  <h4 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">✨ Diamonds ×2ဆ ✨</h4>
-  
-  <div class="double-diamond-description">
-    <p>✨ Diamonds ×2ဆ သည် တမျိုးကို တစ်ကြိမ်သာဝယ်ယူနိုင်ပါသည်<br>
-    အကုန်လုံး တစ်ကြိမ်ဆီ ဝယ်ယူပီးလျှင် ထပ်မံဝယ်ယူလို့မရနိုင်ပါ✨</p>
-  </div>
+    <div class="products">
+      <div class="card">
+        <h3>50 + 50 </h3>
+        <p>35B</p>
+        <button onclick="orderItem('MLBB 50+50 Diamonds - 35B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+      <div class="card">
+        <h3>150 + 150 </h3>
+        <p>100B</p>
+        <button onclick="orderItem('MLBB 150+150 Diamonds - 100B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+      <div class="card">
+        <h3>250 + 250 </h3>
+        <p>155B</p>
+        <button onclick="orderItem('MLBB 250+250 Diamonds - 155B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+      <div class="card">
+        <h3>500 + 500 </h3>
+        <p>300B</p>
+        <button onclick="orderItem('MLBB 500+500 Diamonds - 300B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+    </div>
 
-  <div class="products">
-    <div class="card">
-      <h3>50 + 50 </h3>
-      <p>35B</p>
-      <button onclick="orderItem('MLBB 50+50 Diamonds - 35B','mlbb')">ရွေးချယ်မည်</button>
+    <!-- Normal Diamonds Section -->
+    <h4 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">💎 Normal Diamonds 💎</h4>
+    
+    <div class="normal-diamond-description">
+      <p>💎နှစ်သက်သလောက် ဝယ်ယူနိုင်ပါသည်<br>
+      Diamonds အများအပြားဝယ်ယူလိုလျှင်<br>
+      Messenger သို့ တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်💎</p>
     </div>
-    <div class="card">
-      <h3>150 + 150 </h3>
-      <p>100B</p>
-      <button onclick="orderItem('MLBB 150+150 Diamonds - 100B','mlbb')">ရွေးချယ်မည်</button>
-    </div>
-    <div class="card">
-      <h3>250 + 250 </h3>
-      <p>165B</p>
-      <button onclick="orderItem('MLBB 250+250 Diamonds - 165B','mlbb')">ရွေးချယ်မည်</button>
-    </div>
-    <div class="card">
-      <h3>500 + 500 </h3>
-      <p>330B</p>
-      <button onclick="orderItem('MLBB 500+500 Diamonds - 330B','mlbb')">ရွေးချယ်မည်</button>
-    </div>
-  </div>
 
-  <!-- Normal Diamonds Section -->
-  <h4 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">💎 Normal Diamonds 💎</h4>
-  
-  <div class="normal-diamond-description">
-    <p>💎နှစ်သက်သလောက် ဝယ်ယူနိုင်ပါသည်<br>
-    Diamonds အများအပြားဝယ်ယူလိုလျှင်<br>
-    Messenger သို့ တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်💎</p>
-  </div>
+    <div class="products">
+      <div class="card">
+        <h3>11 Diamonds</h3>
+        <p>9B</p>
+        <button onclick="orderItem('MLBB 11 Diamonds - 9B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+      <div class="card">
+        <h3>86 Diamonds</h3>
+        <p>45B</p>
+        <button onclick="orderItem('MLBB 86 Diamonds - 45B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+      <div class="card">
+        <h3>172 Diamonds</h3>
+        <p>90B</p>
+        <button onclick="orderItem('MLBB 172 Diamonds - 90B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+      <div class="card">
+        <h3>257 Diamonds</h3>
+        <p>130B</p>
+        <button onclick="orderItem('MLBB 257 Diamonds - 130B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+      <div class="card">
+        <h3>343 Diamonds</h3>
+        <p>170B</p>
+        <button onclick="orderItem('MLBB 343 Diamonds - 170B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+      <div class="card">
+        <h3>429 Diamonds</h3>
+        <p>210B</p>
+        <button onclick="orderItem('MLBB 429 Diamonds - 210B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+      <div class="card">
+        <h3>706 Diamonds</h3>
+        <p>340B</p>
+        <button onclick="orderItem('MLBB 706 Diamonds - 340B','mlbb')">ရွေးချယ်မည်</button>
+      </div>
+    </div>
+  </div> <!-- creditTab ပိတ်တာ -->
 
-  <div class="products">
-    <div class="card">
-      <h3>11 Diamonds</h3>
-      <p>9B</p>
-      <button onclick="orderItem('MLBB 11 Diamonds - 9B','mlbb')">ရွေးချယ်မည်</button>
+  <!-- လက်ငင်းစျေး Tab -->
+  <div id="cashTab" class="tab-content">
+    <div class="cash-price-section">
+      
+      <!-- Cash Description -->
+      <div class="cash-description">
+        <p>💰 လက်ငင်းငွေသွင်းဝယ်ယူမည်ဆိုပါက ဤစျေးနှုန်းများအတိုင်းဖြစ်ပါသည်</p>
+      </div>
+
+      <!-- Weekly Pass Section -->
+      <div class="weekly-pass-section">
+        <h3 class="wp-title">✨ Weekly Pass ✨</h3>
+        
+        <div class="wp-description">
+          <p>💎 Weekly Pass ဝယ်ယူလျှင် စိန် 80လုံး ရမယ်</p>
+          <p>ထည့်သည့်နေ့မှ နေ့တိုင်း စိန် 20 လုံး 7 ရက်ဝင်ယူရမယ်</p>
+          <p>စုစုပေါင်း စိန် 220လုံးနှင့် တခြား လက်ဆောင်များ ရရှိမှာ ဖြစ်ပါတယ်</p>
+        </div>
+        
+        <div class="wp-card-container">
+          <div class="wp-card">
+            <h3>✨ Weekly Pass ✨</h3>
+            <div class="qty-control-wrapper">
+              <div class="qty-control">
+                <button class="qty-btn minus" onclick="decreaseQtyCash()">-</button>
+                <span id="qtyCash" class="qty-display">1</span>
+                <button class="qty-btn plus" onclick="increaseQtyCash()">+</button>
+              </div>
+              <div class="price-container">
+                <span class="price-label">စျေးနှုန်း:</span>
+                <span id="priceCash" class="price-amount">55B</span>
+              </div>
+            </div>
+            <button class="select-btn" onclick="selectProductCash()">ရွေးချယ်မည်</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Diamonds ×2 Section -->
+      <h4 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">✨ Diamonds ×2ဆ ✨</h4>
+      
+      <div class="double-diamond-description">
+        <p>✨ Diamonds ×2ဆ သည် တမျိုးကို တစ်ကြိမ်သာဝယ်ယူနိုင်ပါသည်<br>
+        အကုန်လုံး တစ်ကြိမ်ဆီ ဝယ်ယူပီးလျှင် ထပ်မံဝယ်ယူလို့မရနိုင်ပါ✨</p>
+      </div>
+
+      <div class="products">
+        <div class="card">
+          <h3>50 + 50 </h3>
+          <p>30B</p>
+          <button onclick="orderItem('MLBB 50+50 Diamonds - 30B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+        <div class="card">
+          <h3>150 + 150 </h3>
+          <p>90B</p>
+          <button onclick="orderItem('MLBB 150+150 Diamonds - 90B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+        <div class="card">
+          <h3>250 + 250 </h3>
+          <p>145B</p>
+          <button onclick="orderItem('MLBB 250+250 Diamonds - 145B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+        <div class="card">
+          <h3>500 + 500 </h3>
+          <p>290B</p>
+          <button onclick="orderItem('MLBB 500+500 Diamonds - 290B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+      </div>
+
+      <!-- Normal Diamonds Section -->
+      <h4 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">💎 Normal Diamonds 💎</h4>
+      
+      <div class="normal-diamond-description">
+        <p>💎နှစ်သက်သလောက် ဝယ်ယူနိုင်ပါသည်<br>
+        Diamonds အများအပြားဝယ်ယူလိုလျှင်<br>
+        Messenger သို့ တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်💎</p>
+      </div>
+
+      <div class="products">
+        <div class="card">
+          <h3>11 Diamonds</h3>
+          <p>8B</p>
+          <button onclick="orderItem('MLBB 11 Diamonds - 8B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+        <div class="card">
+          <h3>86 Diamonds</h3>
+          <p>40B</p>
+          <button onclick="orderItem('MLBB 86 Diamonds - 40B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+        <div class="card">
+          <h3>172 Diamonds</h3>
+          <p>85B</p>
+          <button onclick="orderItem('MLBB 172 Diamonds - 85B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+        <div class="card">
+          <h3>257 Diamonds</h3>
+          <p>120B</p>
+          <button onclick="orderItem('MLBB 257 Diamonds - 120B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+        <div class="card">
+          <h3>343 Diamonds</h3>
+          <p>160B</p>
+          <button onclick="orderItem('MLBB 343 Diamonds - 160B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+        <div class="card">
+          <h3>429 Diamonds</h3>
+          <p>200B</p>
+          <button onclick="orderItem('MLBB 429 Diamonds - 200B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+        <div class="card">
+          <h3>706 Diamonds</h3>
+          <p>330B</p>
+          <button onclick="orderItem('MLBB 706 Diamonds - 330B','mlbb')">ရွေးချယ်မည်</button>
+        </div>
+      </div>
     </div>
-    <div class="card">
-      <h3>86 Diamonds</h3>
-      <p>45B</p>
-      <button onclick="orderItem('MLBB 86 Diamonds - 45B','mlbb')">ရွေးချယ်မည်</button>
-    </div>
-    <div class="card">
-      <h3>172 Diamonds</h3>
-      <p>90B</p>
-      <button onclick="orderItem('MLBB 172 Diamonds - 90B','mlbb')">ရွေးချယ်မည်</button>
-    </div>
-    <div class="card">
-      <h3>257 Diamonds</h3>
-      <p>130B</p>
-      <button onclick="orderItem('MLBB 257 Diamonds - 130B','mlbb')">ရွေးချယ်မည်</button>
-    </div>
-    <div class="card">
-      <h3>343 Diamonds</h3>
-      <p>180B</p>
-      <button onclick="orderItem('MLBB 343 Diamonds - 180B','mlbb')">ရွေးချယ်မည်</button>
-    </div>
-    <div class="card">
-      <h3>429 Diamonds</h3>
-      <p>220B</p>
-      <button onclick="orderItem('MLBB 429 Diamonds - 220B','mlbb')">ရွေးချယ်မည်</button>
-    </div>
-  </div>
+  </div> 
 </section>
-
 <!-- TikTok -->
 <section id="tiktok"><div class="bank-info-row">
 
@@ -1407,26 +1740,16 @@
 
   <ol class="order-list">
     <li>ဝယ်ယူမည့် အရာ ကို ရွေးချယ်ပါ</li>
+     <li>မိမိ နာမည်ထည့်ပါ</li>
     <li>MLBB ဆို Game ID / Server ID ထည့်ပါ</li>
     <li>PUBG ဆို Game ID ထည့်ပါ</li>
     <li>Tiktok (သို့) Facebook ဆို link ထည့်ပါ</li>
-    <li>OK နှိပ်ပါ → Messenger auto ပွင့်သွားပါမယ်</li>
-    <li>Copy ကူးပြီးသားပါ → Paste လုပ်ပြီး ပေးပို့ပါ ✅</li>
-    <li>ငွေလွဲ စလစ် ပို့ပါ</li>
-    <li>အောက်မှာ Video အပြည့်အစုံ ကြည့်ပါ</li>
+    <li>OK နှိပ်ပါ → </li>
+    <li>အောင်မြင်ပါပီ..ခဏစောင့်ပေးပါ✅</li>
+   
+    
   </ol>
 
-  <div class="video-container">
-    <iframe
-      width="500"
-      height="315"
-      src="https://www.youtube.com/embed/4v8ean7bkrQ"
-      title="YouTube Tutorial Video"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
 
   <div class="warning-box">
     <p>⚠️ သတိပေးချက် – ဘဏ်နာမည်ကို သေချာစစ်ပြီးမှ ငွေလွှဲပါ။</p>
@@ -1473,9 +1796,12 @@
 
 <script>
 // CLEANED AND FIXED JAVASCRIPT
-const messengerLink = "https://m.me/hacker.ma.lar.ya.5555555555555"; 
+
 let currentItem = "", currentType = "";
 
+
+const TELEGRAM_BOT_TOKEN = '8378213405:AAE39lvznw4LvYAjJVfHZpiKAykwjtnafFk';
+const TELEGRAM_CHAT_ID = '5236329716';
 // Section management
 function openSection(id) {
   document.getElementById("homeMenu").style.display = "none";
@@ -1498,20 +1824,23 @@ function orderItem(item, type) {
   let extra = document.getElementById("extraFields");
   extra.innerHTML = "";
 
-  if (type === "mlbb") {
+if (type === "mlbb") {
     extra.innerHTML = `
-      <label>Game ID</label><input id="gameId" placeholder="Game ID ထည့်ပါ">
-      <label>Server ID</label><input id="serverId" placeholder="Server ID ထည့်ပါ">
+      <label>Game ID</label><input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
+      <label>Server ID</label><input id="serverId" placeholder="Server ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
+      <label>သင့်နာမည်</label><input id="userName" placeholder="ဂိမ်းစနာမည်မဟုတ်ပဲမိမိနာမည်ထည့်ပေးပါ (မဖြစ်မနေထည့်ရမည်)">
     `;
-  } else if (type === "pubg") {
+} else if (type === "pubg") {
     extra.innerHTML = `
-      <label>Game ID</label><input id="gameId" placeholder="Game ID ထည့်ပါ">
+      <label>Game ID</label><input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
+      <label>သင့်နာမည်</label><input id="userName" placeholder="ဂိမ်းနာမည်မဟုတ်ပဲမိမိနာမည်ထည့်ပေးပါ (မဖြစ်မနေထည့်ရမည်)">
     `;
-  } else {
+} else {
     extra.innerHTML = `
-      <label>Link ထည့်ပါ</label><input id="link" placeholder="Link ထည့်ပါ">
+      <label>Link ထည့်ပါ</label><input id="link" placeholder="Link ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
+      <label>သင့်နာမည်</label><input id="userName" placeholder="ဂိမ်းနာမည်မဟုတ်ပဲမိမိနာမည်ထည့်ပေးပါ (မဖြစ်မနေထည့်ရမည်)">
     `;
-  }
+}
 
   document.getElementById("orderModal").style.display = "flex";
   history.pushState({ page: "modal" }, "", "#modal");
@@ -1524,52 +1853,105 @@ function closeModal() {
   }
 }
 
-function finalizeOrder() {
-  let details = "";
-  
-  try {
-    if (currentType === "mlbb") {
-      const gameId = document.getElementById("gameId")?.value || "";
-      const serverId = document.getElementById("serverId")?.value || "";
-      details = `🆔 Game ID: ${gameId}\n🌐 Server ID: ${serverId}`;
-    } else if (currentType === "pubg") {
-      const gameId = document.getElementById("gameId")?.value || "";
-      details = `🆔 Game ID: ${gameId}`;
-    } else {
-      const link = document.getElementById("link")?.value || "";
-      details = `🌐 Link: ${link}`;
-    }
-
-    const finalMsg = `🍑 ဂွေးသီး Shop 🛒\n\n💎 အော်ဒါ: ${currentItem}\n\n${details}\n\n✅ အတည်ပြုပြီးပါပြီ 🎉`;
-
-    // Copy to clipboard
-    navigator.clipboard.writeText(finalMsg).then(() => {
-      showCopied('order');
-      setTimeout(() => {
-        closeModal();
-        window.open(messengerLink, "_blank");
-      }, 2000);
-    }).catch(() => {
-      // Fallback
-      const textArea = document.createElement('textarea');
-      textArea.value = finalMsg;
-      document.body.appendChild(textArea);
-      textArea.select();
-      document.execCommand('copy');
-      document.body.removeChild(textArea);
-      showCopied('order');
-      setTimeout(() => {
-        closeModal();
-        window.open(messengerLink, "_blank");
-      }, 2000);
-    });
+async function finalizeOrder() {
+    let orderData = {};
     
-  } catch (error) {
-    console.error('Order error:', error);
-    alert('❌ အော်ဒါမှားယွင်းနေပါသည်။ ထပ်ကြိုးစားပါ။');
-    closeModal();
-  }
+    try {
+        
+        const userName = document.getElementById("userName")?.value || "";
+
+        
+        if (currentType === "mlbb") {
+            const gameId = document.getElementById("gameId")?.value || "";
+            const serverId = document.getElementById("serverId")?.value || "";
+            
+            if (!gameId.trim()) {
+                alert("❌ Game ID ထည့်ပေးပါ");
+                document.getElementById("gameId").focus();
+                return;
+            }
+            if (!serverId.trim()) {
+                alert("❌ Server ID ထည့်ပေးပါ");
+                document.getElementById("serverId").focus();
+                return;
+            }
+            if (!userName.trim()) {
+                alert("❌ သင့်နာမည်ထည့်ပေးပါ");
+                document.getElementById("userName").focus();
+                return;
+            }
+            
+            orderData = { 
+                product: currentItem, 
+                price: currentItem.split('-')[1]?.trim(), 
+                gameId, 
+                serverId,
+                userName,
+                type: 'MLBB'
+            };
+        } else if (currentType === "pubg") {
+            const gameId = document.getElementById("gameId")?.value || "";
+            
+            if (!gameId.trim()) {
+                alert("❌ Game ID ထည့်ပေးပါ");
+                document.getElementById("gameId").focus();
+                return;
+            }
+            if (!userName.trim()) {
+                alert("❌ သင့်နာမည်ထည့်ပေးပါ");
+                document.getElementById("userName").focus();
+                return;
+            }
+            
+            orderData = { 
+                product: currentItem, 
+                price: currentItem.split('-')[1]?.trim(), 
+                gameId,
+                userName,
+                type: 'PUBG'
+            };
+        } else {
+            const link = document.getElementById("link")?.value || "";
+            
+            if (!link.trim()) {
+                alert("❌ Link ထည့်ပေးပါ");
+                document.getElementById("link").focus();
+                return;
+            }
+            if (!userName.trim()) {
+                alert("❌ သင့်နာမည်ထည့်ပေးပါ");
+                document.getElementById("userName").focus();
+                return;
+            }
+            
+            orderData = { 
+                product: currentItem, 
+                price: currentItem.split('-')[1]?.trim(), 
+                link,
+                userName,
+                type: currentType.toUpperCase()
+            };
+        }
+
+        // Send to Telegram
+        const success = await sendToTelegram(orderData);
+        
+        if (success) {
+            showCopied('order');
+            setTimeout(() => {
+                closeModal();
+            }, 2000);
+        } else {
+            alert('❌ Telegram ပို့ခြင်းမအောင်မြင်ပါ။ ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ။');
+        }
+        
+    } catch (error) {
+        console.error('Order error:', error);
+        alert('❌ အော်ဒါမှားယွင်းနေပါသည်။ ထပ်ကြိုးစားပါ။');
+        closeModal();
+    }
 }
+ 
 
 // Copy functions
 function copyText(text, type = 'bank') {
@@ -1595,11 +1977,11 @@ function showCopied(type = 'bank') {
   
   if (type === 'order') {
     msg.classList.add('order-copy');
-    msg.querySelector('.copied-text').textContent = 'အော်ဒါကူးယူပြီးပါပြီ!';
-    msg.querySelector('.copied-subtext').textContent = 'Messenger သို့ ကူးသွားမည်...';
+    msg.querySelector('.copied-text').textContent = 'အောင်မြင်ပါပီ!🥰';
+    msg.querySelector('.copied-subtext').textContent = 'Order မှာယူပီးပါပီ..ခဏစောင့်ပေးပါ';
   } else {
     msg.classList.add('bank-copy');
-    msg.querySelector('.copied-text').textContent = 'ကူးယူပြီးပါပြီ!';
+    msg.querySelector('.copied-text').textContent = 'အောင်မြင်ပါပြီ!';
     msg.querySelector('.copied-subtext').textContent = 'ဘဏ်နံပါတ် clipboard ထဲရောက်နေပါပြီ';
   }
   
@@ -1746,33 +2128,97 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Enhanced copy function with better feedback
-function enhancedCopy(text, type = 'bank') {
-  // Show loading state
-  const originalText = document.querySelector('.copy-btn')?.textContent;
-  if (document.querySelector('.copy-btn')) {
-    document.querySelector('.copy-btn').textContent = 'Copying...';
-    document.querySelector('.copy-btn').disabled = true;
-  }
+
   
-  copyText(text, type);
-  
-  // Restore button after delay
-  setTimeout(() => {
-    if (document.querySelector('.copy-btn')) {
-      document.querySelector('.copy-btn').textContent = originalText || '📲 Copy';
-      document.querySelector('.copy-btn').disabled = false;
+
+
+async function sendToTelegram(orderData) {
+    try {
+        
+        let orderType = 'လက်ငင်းစျေး'; 
+        
+        
+        const creditProducts = {
+            // Weekly Pass
+            'Weekly Pass': { cash: 55, credit: 60 },
+            
+            // Diamonds ×2ဆ
+            '50+50 Diamonds': { cash: 30, credit: 35 },
+            '150+150 Diamonds': { cash: 90, credit: 100 },
+            '250+250 Diamonds': { cash: 145, credit: 155 },
+            '500+500 Diamonds': { cash: 290, credit: 300 },
+            
+            // ရိုးရိုး Diamonds
+            '11 Diamonds': { cash: 8, credit: 9 },
+            '86 Diamonds': { cash: 40, credit: 45 },
+            '172 Diamonds': { cash: 85, credit: 90 },
+            '257 Diamonds': { cash: 120, credit: 130 },
+            '343 Diamonds': { cash: 160, credit: 170 },
+            '429 Diamonds': { cash: 200, credit: 210 },
+            '706 Diamonds': { cash: 330, credit: 340 }
+        };
+
+        
+        let isCreditPrice = false;
+        
+        for (const [productName, prices] of Object.entries(creditProducts)) {
+            if (orderData.product.includes(productName)) {
+              
+                const orderPrice = parseInt(orderData.price.replace('B', ''));
+                
+                if (orderPrice === prices.credit) {
+                    isCreditPrice = true;
+                    break;
+                } else if (orderPrice === prices.cash) {
+                    isCreditPrice = false;
+                    break;
+                }
+            }
+        }
+        
+        if (isCreditPrice) {
+            orderType = 'အကြွေးစျေး';
+        } else {
+            orderType = 'လက်ငင်းစျေး';
+        }
+
+
+        
+        const message = `
+🆕 **ဂွေးသီး -စျေးဆိုင်ကြီး** 
+━━━━━━━━━━━━━━━━━━
+🎮↪ ${orderData.type}
+💰 ↪ ${orderType}
+🛒 ↪ ${orderData.product}
+💵 ↪ ${orderData.price}
+👤 ↪ ${orderData.userName || 'မထည့်ရသေးပါ'}
+
+${orderData.gameId ? `🎮 Game ID:\n\`${orderData.gameId}\`` : ''}
+${orderData.serverId ? `🌐 Server ID:\n\`${orderData.serverId}\`` : ''}
+${orderData.link ? `🔗 Link:\n\`${orderData.link}\`` : ''}
+
+⏰ ${new Date().toLocaleString()}
+        `;
+
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        });
+
+        return response.ok;
+    } catch (error) {
+        console.error('Telegram sending error:', error);
+        return false;
     }
-  }, 2000);
 }
 
-// Update bank copy buttons to use enhanced copy
-document.querySelectorAll('.copy-btn').forEach(btn => {
-  const originalOnclick = btn.getAttribute('onclick');
-  if (originalOnclick && originalOnclick.includes('copyText')) {
-    btn.setAttribute('onclick', originalOnclick.replace('copyText', 'enhancedCopy'));
-  }
-});
 
 // Auto-focus first input in modal when opened
 const observer = new MutationObserver(function(mutations) {
@@ -1819,6 +2265,122 @@ orderItem = function(item, type) {
 };
 
 console.log('Gway Thee Shop JavaScript loaded successfully!');
+
+// ========== TAB MANAGEMENT FUNCTIONS ==========
+function openTab(tabId) {
+  // Hide all tab contents
+  document.querySelectorAll('.tab-content').forEach(tab => {
+    tab.classList.remove('active');
+  });
+  
+  // Remove active from all buttons
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.classList.remove('active');
+  });
+  
+  // Show selected tab
+  document.getElementById(tabId).classList.add('active');
+  
+  // Activate clicked button
+  event.target.classList.add('active');
+}
+
+// ========== CASH TAB WEEKLY PASS FUNCTIONS ==========
+const basePriceCash = 55;
+
+function updatePriceCash() {
+  let qty = parseInt(document.getElementById("qtyCash").innerText);
+  let total = basePriceCash * qty;
+  document.getElementById("priceCash").innerText = total + "B";
+}
+
+function increaseQtyCash() {
+  let qtyElem = document.getElementById("qtyCash");
+  let qty = parseInt(qtyElem.innerText);
+  qtyElem.innerText = qty + 1;
+  updatePriceCash();
+}
+
+function decreaseQtyCash() {
+  let qtyElem = document.getElementById("qtyCash");
+  let qty = parseInt(qtyElem.innerText);
+  if (qty > 1) {
+    qtyElem.innerText = qty - 1;
+    updatePriceCash();
+  }
+}
+
+function selectProductCash() {
+  let qty = parseInt(document.getElementById("qtyCash").innerText);
+  let total = basePriceCash * qty;
+  orderItem(`MLBB Weekly Pass ×${qty} - ${total}B`, "mlbb");
+}
+
+function openLottery() {
+    // Open lottery website in new tab
+    window.open('https://yell1992.github.io/Yell1992/', '_blank');
+    
+    // Add click feedback animation
+    const button = document.querySelector('.mini-lottery-btn');
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        button.style.transform = 'scale(1)';
+    }, 150);
+    
+    // Optional: Analytics or tracking
+    console.log('User clicked lottery button');
+}
+
+
+// Mobile Touch Improvements
+document.addEventListener('touchstart', function() {}, { passive: true });
+document.addEventListener('touchmove', function() {}, { passive: true });
+
+// Mobile Input Focus with iOS Zoom Prevention
+function mobileFocusInput(inputId) {
+    setTimeout(() => {
+        const input = document.getElementById(inputId);
+        if (input) {
+            // iOS zoom prevention
+            input.style.fontSize = '16px';
+            input.focus();
+        }
+    }, 300);
+}
+
+// Enhanced Copy for All Mobile Devices
+function mobileCopyText(text, type = 'bank') {
+    // Create temporary input for better mobile copy
+    const tempInput = document.createElement('input');
+    tempInput.style.fontSize = '16px'; // iOS zoom prevention
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    
+    // Select and copy
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999);
+    
+    let success = false;
+    try {
+        success = document.execCommand('copy');
+    } catch (err) {
+        console.error('Copy failed:', err);
+    }
+    
+    document.body.removeChild(tempInput);
+    
+    if (success) {
+        showCopied(type);
+        return true;
+    } else {
+        // Fallback for mobile
+        navigator.clipboard.writeText(text).then(() => {
+            showCopied(type);
+        }).catch(() => {
+            alert('Copy လုပ်ရန်နှိပ်ပါ: ' + text);
+        });
+    }
+}
 </script>
 </body>
 </html>
