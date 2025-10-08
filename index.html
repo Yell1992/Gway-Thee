@@ -14,7 +14,10 @@
     <meta name="theme-color" content="#000000">
     <meta name="mobile-web-app-capable" content="yes">
     
-    <title>Fixed CSS - No Duplicates</title>
+    <title>Gway Thee Shop.com </title>
+    <!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
     <style>
          
         * {
@@ -1267,12 +1270,226 @@ button, .menu-card, .card, .copy-btn {
         padding: 8px 10px !important;
     }
 }
+
+/* ========== LOGIN SYSTEM STYLES ========== */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    backdrop-filter: blur(10px);
+}
+
+.login-container {
+    background: rgba(0, 0, 0, 0.95);
+    padding: 40px 30px;
+    border-radius: 25px;
+    border: 3px solid #ff00ff;
+    box-shadow: 
+        0 0 30px rgba(255, 0, 255, 0.4),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: modalSlideIn 0.5s ease-out;
+}
+
+.login-header {
+    margin-bottom: 30px;
+}
+
+.login-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        0 0 10px #ff00ff,
+        0 0 20px rgba(0, 255, 255, 0.5);
+    margin-bottom: 10px;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.login-subtitle {
+    font-size: 20px;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    font-weight: bold;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.username-input {
+    padding: 15px 20px;
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.username-input:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+    transform: scale(1.02);
+}
+
+.username-input::placeholder {
+    color: #888;
+    text-align: center;
+}
+
+.login-btn {
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+}
+
+.error-message {
+    color: #ff4444;
+    background: rgba(255, 68, 68, 0.1);
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #ff4444;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff0000;
+    margin-top: 15px;
+    animation: shake 0.5s ease-in-out;
+}
+
+.success-message {
+    color: #00ff00;
+    background: rgba(0, 255, 0, 0.1);
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ff00;
+    margin-top: 15px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.username-display {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: #00ffff;
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 2px solid #00ffff;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ffff;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    z-index: 1000;
+    font-size: 16px;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Mobile Responsive for Login */
+@media (max-width: 768px) {
+    .login-container {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .login-title {
+        font-size: 32px;
+    }
+    
+    .login-subtitle {
+        font-size: 16px;
+    }
+    
+    .username-input {
+        padding: 12px 15px;
+        font-size: 16px;
+    }
+    
+    .login-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+    
+    .username-display {
+        top: 10px;
+        right: 10px;
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+}
 </style>
 
 
 </head>
 <body>
+<!-- Login Overlay -->
+<div id="loginOverlay" class="login-overlay">
+  <div class="login-container">
+    <div class="login-header">
+      <h1 class="login-title">🍒ဂွေးသီး🍒</h1>
+      <p class="login-subtitle">🏬စျေးဆိုင်ကြီး🏬</p>
+    </div>
+    
+    <div class="login-form">
+      <input 
+        type="text" 
+        id="usernameInput" 
+        placeholder="သင့်နာမည်ထည့်ပါ (အနည်းဆုံး ၅ လုံး)" 
+        class="username-input"
+      >
+      <button onclick="handleLogin()" class="login-btn">
+        <span>ဝင်မည်</span>
+        <div class="btn-glow"></div>
+      </button>
+    </div>
 
+    <div id="loginError" class="error-message" style="display: none;">
+      နာမည်တူရှိတယ် ပြောင်းပေးပါ
+    </div>
+
+    <div id="loginSuccess" class="success-message" style="display: none;">
+      အောင်မြင်ပါသည်
+    </div>
+  </div>
+</div>
+
+<!-- Username Display -->
+<div id="usernameDisplay" class="username-display" style="display: none;"></div>
 <header>
   <div class="name-wrap">
     <span class="name-text">🍒ဂွေးသီး🍒</span>
@@ -1795,6 +2012,20 @@ button, .menu-card, .card, .copy-btn {
 </div>
 
 <script>
+// ========== FIREBASE CONFIGURATION ==========
+const firebaseConfig = {
+    apiKey: "AIzaSyBtv_3J7OmczCrbl1wPrvBdS_7m7bpVboI",
+    authDomain: "gway-shop.firebaseapp.com",
+    databaseURL: "https://gway-shop-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "gway-shop",
+    storageBucket: "gway-shop.firebasestorage.app",
+    messagingSenderId: "904287740689",
+    appId: "1:904287740689:web:18c045484718292b9c62b0"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
 // CLEANED AND FIXED JAVASCRIPT
 
 let currentItem = "", currentType = "";
@@ -1828,17 +2059,17 @@ if (type === "mlbb") {
     extra.innerHTML = `
       <label>Game ID</label><input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
       <label>Server ID</label><input id="serverId" placeholder="Server ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
-      <label>သင့်နာမည်</label><input id="userName" placeholder="ဂိမ်းစနာမည်မဟုတ်ပဲမိမိနာမည်ထည့်ပေးပါ (မဖြစ်မနေထည့်ရမည်)">
+     
     `;
 } else if (type === "pubg") {
     extra.innerHTML = `
       <label>Game ID</label><input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
-      <label>သင့်နာမည်</label><input id="userName" placeholder="ဂိမ်းနာမည်မဟုတ်ပဲမိမိနာမည်ထည့်ပေးပါ (မဖြစ်မနေထည့်ရမည်)">
+    
     `;
 } else {
     extra.innerHTML = `
       <label>Link ထည့်ပါ</label><input id="link" placeholder="Link ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
-      <label>သင့်နာမည်</label><input id="userName" placeholder="ဂိမ်းနာမည်မဟုတ်ပဲမိမိနာမည်ထည့်ပေးပါ (မဖြစ်မနေထည့်ရမည်)">
+     
     `;
 }
 
@@ -1854,81 +2085,69 @@ function closeModal() {
 }
 
 async function finalizeOrder() {
+    const username = localStorage.getItem('gway_username') || 'Unknown User';
+    
+    // Add username to order data
+    const finalizeBtn = document.querySelector('#orderModal button');
+    finalizeBtn.disabled = true;
+    finalizeBtn.textContent = '...ပို့နေပါသည်...';
+    
     let orderData = {};
     
     try {
-        
-        const userName = document.getElementById("userName")?.value || "";
-
-        
         if (currentType === "mlbb") {
-            const gameId = document.getElementById("gameId")?.value || "";
-            const serverId = document.getElementById("serverId")?.value || "";
+            const gameId = document.getElementById("gameId")?.value.trim() || "";
+            const serverId = document.getElementById("serverId")?.value.trim() || "";
             
-            if (!gameId.trim()) {
+            if (!gameId) {
                 alert("❌ Game ID ထည့်ပေးပါ");
                 document.getElementById("gameId").focus();
                 return;
             }
-            if (!serverId.trim()) {
+            if (!serverId) {
                 alert("❌ Server ID ထည့်ပေးပါ");
                 document.getElementById("serverId").focus();
                 return;
             }
-            if (!userName.trim()) {
-                alert("❌ သင့်နာမည်ထည့်ပေးပါ");
-                document.getElementById("userName").focus();
-                return;
-            }
             
             orderData = { 
+                username: username,
                 product: currentItem, 
                 price: currentItem.split('-')[1]?.trim(), 
                 gameId, 
                 serverId,
-                userName,
                 type: 'MLBB'
             };
         } else if (currentType === "pubg") {
-            const gameId = document.getElementById("gameId")?.value || "";
+            const gameId = document.getElementById("gameId")?.value.trim() || "";
             
-            if (!gameId.trim()) {
+            if (!gameId) {
                 alert("❌ Game ID ထည့်ပေးပါ");
                 document.getElementById("gameId").focus();
                 return;
             }
-            if (!userName.trim()) {
-                alert("❌ သင့်နာမည်ထည့်ပေးပါ");
-                document.getElementById("userName").focus();
-                return;
-            }
             
             orderData = { 
+                username: username,
                 product: currentItem, 
                 price: currentItem.split('-')[1]?.trim(), 
                 gameId,
-                userName,
                 type: 'PUBG'
             };
         } else {
-            const link = document.getElementById("link")?.value || "";
+            const link = document.getElementById("link")?.value.trim() || "";
             
-            if (!link.trim()) {
+            if (!link) {
                 alert("❌ Link ထည့်ပေးပါ");
                 document.getElementById("link").focus();
                 return;
             }
-            if (!userName.trim()) {
-                alert("❌ သင့်နာမည်ထည့်ပေးပါ");
-                document.getElementById("userName").focus();
-                return;
-            }
             
             orderData = { 
+                username: username,
                 product: currentItem, 
                 price: currentItem.split('-')[1]?.trim(), 
                 link,
-                userName,
                 type: currentType.toUpperCase()
             };
         }
@@ -1942,13 +2161,15 @@ async function finalizeOrder() {
                 closeModal();
             }, 2000);
         } else {
-            alert('❌ Telegram ပို့ခြင်းမအောင်မြင်ပါ။ ကျေးဇူးပြု၍ နောက်မှထပ်ကြိုးစားပါ။');
+            alert('❌ Telegram ပို့ခြင်းမအောင်မြင်ပါ။');
         }
         
     } catch (error) {
         console.error('Order error:', error);
-        alert('❌ အော်ဒါမှားယွင်းနေပါသည်။ ထပ်ကြိုးစားပါ။');
-        closeModal();
+        alert('❌ အော်ဒါမှားယွင်းနေပါသည်။');
+    } finally {
+        finalizeBtn.disabled = false;
+        finalizeBtn.textContent = 'မှာယူမည်';
     }
 }
  
@@ -2134,9 +2355,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 async function sendToTelegram(orderData) {
     try {
-        
         let orderType = 'လက်ငင်းစျေး'; 
-        
         
         const creditProducts = {
             // Weekly Pass
@@ -2158,12 +2377,10 @@ async function sendToTelegram(orderData) {
             '706 Diamonds': { cash: 330, credit: 340 }
         };
 
-        
         let isCreditPrice = false;
         
         for (const [productName, prices] of Object.entries(creditProducts)) {
             if (orderData.product.includes(productName)) {
-              
                 const orderPrice = parseInt(orderData.price.replace('B', ''));
                 
                 if (orderPrice === prices.credit) {
@@ -2182,22 +2399,26 @@ async function sendToTelegram(orderData) {
             orderType = 'လက်ငင်းစျေး';
         }
 
-
-        
+        // ✅ ဒီ message ကိုပဲ ပြင်ရမယ်
         const message = `
-🆕 **ဂွေးသီး -စျေးဆိုင်ကြီး** 
+🆕 **ဂွေးသီး -စျေးဆိုင်ကြီး**
 ━━━━━━━━━━━━━━━━━━
-🎮↪ ${orderData.type}
-💰 ↪ ${orderType}
-🛒 ↪ ${orderData.product}
-💵 ↪ ${orderData.price}
-👤 ↪ ${orderData.userName || 'မထည့်ရသေးပါ'}
+👤        ${orderData.username}**  
+🎮        ${orderData.type}
+💰        ${orderType}
+🛒        ${orderData.product}
+💵        ${orderData.price}
 
-${orderData.gameId ? `🎮 Game ID:\n\`${orderData.gameId}\`` : ''}
-${orderData.serverId ? `🌐 Server ID:\n\`${orderData.serverId}\`` : ''}
-${orderData.link ? `🔗 Link:\n\`${orderData.link}\`` : ''}
+${orderData.gameId ? `🎮 Game ID:\n\`
+${orderData.gameId}\`` : ''}
 
-⏰ ${new Date().toLocaleString()}
+${orderData.serverId ? `🌐 Server ID:\n\`
+${orderData.serverId}\`` : ''}
+
+${orderData.link ? `🔗 Link:\n\`
+${orderData.link}\`` : ''}
+
+⏰ ${new Date().toLocaleString('en-GB', { hour12: false })}
         `;
 
         const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
@@ -2266,6 +2487,118 @@ orderItem = function(item, type) {
 
 console.log('Gway Thee Shop JavaScript loaded successfully!');
 
+// ========== LOGIN SYSTEM FUNCTIONS ==========
+function handleLogin() {
+    const usernameInput = document.getElementById('usernameInput');
+    const username = usernameInput.value.trim();
+    
+    // Hide previous messages
+    hideMessages();
+    
+    // Validate username
+    if (username.length < 5) {
+        showError('အနည်းဆုံး ၅ လုံးထည့်ပါ');
+        return;
+    }
+    
+    // Show loading state
+    const loginBtn = document.querySelector('.login-btn');
+    loginBtn.innerHTML = '<span>စစ်ဆေးနေသည်...</span>';
+    loginBtn.disabled = true;
+    
+    // Check if username exists in Firebase
+    checkUsername(username)
+        .then(exists => {
+            if (exists) {
+                showError('နာမည်တူရှိတယ် ပြောင်းပေးပါ');
+            } else {
+                // Save new username to Firebase
+                saveUsername(username)
+                    .then(() => {
+                        showSuccess();
+                        setTimeout(() => {
+                            completeLogin(username);
+                        }, 1500);
+                    })
+                    .catch(error => {
+                        showError('Error ရှိပါတယ်');
+                    });
+            }
+        })
+        .catch(error => {
+            showError('Error ရှိပါတယ်');
+        })
+        .finally(() => {
+            // Reset button state
+            loginBtn.innerHTML = '<span>ဝင်မည်</span><div class="btn-glow"></div>';
+            loginBtn.disabled = false;
+        });
+}
+
+function checkUsername(username) {
+    return database.ref('usernames/' + username).once('value')
+        .then(snapshot => snapshot.exists());
+}
+
+function saveUsername(username) {
+    return database.ref('usernames/' + username).set(true);
+}
+
+function completeLogin(username) {
+    // Save to localStorage
+    localStorage.setItem('gway_username', username);
+    
+    // Hide login overlay
+    document.getElementById('loginOverlay').style.display = 'none';
+    
+    // Show username display
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    usernameDisplay.textContent = username;
+    usernameDisplay.style.display = 'block';
+    
+    // Show main content
+    document.querySelector('header').style.display = 'block';
+    document.getElementById('bankInfo').style.display = 'flex';
+    document.getElementById('lotterySection').style.display = 'block';
+    document.getElementById('homeMenu').style.display = 'grid';
+}
+
+function showError(message) {
+    const errorDiv = document.getElementById('loginError');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+}
+
+function showSuccess() {
+    document.getElementById('loginSuccess').style.display = 'block';
+}
+
+function hideMessages() {
+    document.getElementById('loginError').style.display = 'none';
+    document.getElementById('loginSuccess').style.display = 'none';
+}
+
+// Auto login check on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const savedUsername = localStorage.getItem('gway_username');
+    
+    if (savedUsername && savedUsername.length >= 5) {
+        completeLogin(savedUsername);
+    } else {
+        document.getElementById('loginOverlay').style.display = 'flex';
+        document.querySelector('header').style.display = 'none';
+        document.getElementById('bankInfo').style.display = 'none';
+        document.getElementById('lotterySection').style.display = 'none';
+        document.getElementById('homeMenu').style.display = 'none';
+    }
+});
+
+// Enter key support for login
+document.getElementById('usernameInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        handleLogin();
+    }
+});
 // ========== TAB MANAGEMENT FUNCTIONS ==========
 function openTab(tabId) {
   // Hide all tab contents
