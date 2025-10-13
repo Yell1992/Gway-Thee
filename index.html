@@ -213,7 +213,7 @@
         .menu-card:nth-child(2) { border-color: #00ffff; }
         .menu-card:nth-child(3) { border-color: #ff0055; }
         .menu-card:nth-child(4) { border-color: #1877f2; }
-        .menu-card:nth-child(5) { border-color: #00ff00; }
+       
 
         .menu-card:hover {
             transform: translateY(-5px) scale(1.02);
@@ -224,7 +224,7 @@
         .menu-card:nth-child(2):hover { box-shadow: 0 0 25px #00ffff; }
         .menu-card:nth-child(3):hover { box-shadow: 0 0 25px #ff0055; }
         .menu-card:nth-child(4):hover { box-shadow: 0 0 25px #1877f2; }
-        .menu-card:nth-child(5):hover { box-shadow: 0 0 25px #00ff00; }
+     
 
         /*==========  FIXED PRODUCT CARD HEIGHT ==========*/
         .card {
@@ -901,181 +901,7 @@
             }
         }
         
-      /*==========  HOW TO SECTION ==========*/
-#howto {
-  display: none; /* မူလအားဖြင့် မပြပါ */
-  padding: 30px 25px;
-  margin: 30px auto;
-  max-width: 900px;
-  background: rgba(0, 0, 0, 0.9);
-  border-radius: 20px;
-  border: 3px solid #00ff00;
-  background-clip: padding-box;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 255, 0, 0.4);
-  position: relative;
-  overflow: hidden;
-}
 
-/* ကျန်တဲ့ CSS code တွေ ဆက်ရှိမယ် */
-
-#howto::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(0,255,0,0.1), transparent);
-  transition: left 0.6s;
-}
-
-#howto:hover::before {
-  left: 100%;
-}
-
-#howto h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 32px;
-  font-weight: bold;
-  display: inline-block;
-  padding: 12px 25px;
-  border-radius: 15px;
-  background: rgba(0, 0, 0, 0.8);
-  position: relative;
-  overflow: hidden;
-  color: #00ff00;
-  border: 2px solid #00ff00;
-  text-shadow: 0 0 10px #00ff00;
-  box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
-}
-
-/* Order List Styling */
-.order-list {
-  list-style: none;
-  counter-reset: order-counter;
-  margin: 30px 0;
-  padding: 0;
-  text-align: left;
-}
-
-.order-list li {
-  counter-increment: order-counter;
-  margin-bottom: 20px;
-  padding: 15px 20px 15px 70px;
-  background: rgba(0, 0, 0, 0.5);
-  border-radius: 12px;
-  border-left: 4px solid #00ff00;
-  position: relative;
-  font-size: 18px;
-  line-height: 1.5;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-}
-
-.order-list li:hover {
-  transform: translateX(5px);
-  background: rgba(0, 0, 0, 0.7);
-  box-shadow: 0 6px 15px rgba(0, 255, 0, 0.2);
-}
-
-.order-list li::before {
-  content: counter(order-counter);
-  position: absolute;
-  left: 15px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  background: linear-gradient(135deg, #00ff00, #00cc00);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 18px;
-  color: #000;
-  box-shadow: 0 0 10px rgba(0, 255, 0, 0.7);
-}
-
-
-/* Warning Message */
-.warning-box {
-  background: rgba(255, 0, 0, 0.1);
-  border: 2px solid #ff4444;
-  border-radius: 15px;
-  padding: 20px;
-  margin: 30px 0;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
-}
-
-.warning-box p {
-  color: #ff4444;
-  font-weight: bold;
-  text-shadow: 0 0 10px #ff0000;
-  margin-bottom: 10px;
-  font-size: 18px;
-}
-
-.highlight {
-  color: yellow;
-  text-shadow: 0 0 10px yellow;
-  font-weight: bold;
-}
-
-
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  #howto {
-    padding: 20px 15px;
-    margin: 20px 10px;
-  }
-  
-  #howto h2 {
-    font-size: 24px;
-    padding: 10px 20px;
-  }
-  
-  .order-list li {
-    font-size: 16px;
-    padding: 12px 15px 12px 60px;
-  }
-  
-  .order-list li::before {
-    width: 35px;
-    height: 35px;
-    font-size: 16px;
-  }
-  
-  .video-container iframe {
-    width: 100%;
-    height: 300px;
-  }
-}
-
-@media (max-width: 480px) {
-  #howto h2 {
-    font-size: 20px;
-  }
-  
-  .order-list li {
-    font-size: 14px;
-    padding: 10px 12px 10px 50px;
-  }
-  
-  .order-list li::before {
-    width: 30px;
-    height: 30px;
-    font-size: 14px;
-    left: 10px;
-  }
-  
-  .warning-box p {
-    font-size: 16px;
-  }
-}
 /*==========  TAB SYSTEM ==========*/
 .tab-buttons {
   display: flex;
@@ -1146,8 +972,8 @@
   padding: 12px;
   background: rgba(255, 107, 53, 0.1);
   border-radius: 10px;
-  border: 2px solid #ff6b35;
-  color: #ff6b35;
+  border: 2px solid red;
+  color: red;
   font-weight: bold;
 }
 
@@ -1218,7 +1044,7 @@
     
     .mini-lottery-btn {
         padding: 10px 20px;
-        font-size: 15px;
+        font-size: 25px;
         max-width: 220px;
     }
 }
@@ -1469,7 +1295,7 @@ button, .menu-card, .card, .copy-btn {
       <input 
         type="text" 
         id="usernameInput" 
-        placeholder="သင့်နာမည်ထည့်ပါ (အနည်းဆုံး ၅ လုံး)" 
+        placeholder="Username (သင့်နာမည်ထည့်ပေးပါ)" 
         class="username-input"
       >
       <button onclick="handleLogin()" class="login-btn">
@@ -1527,11 +1353,11 @@ button, .menu-card, .card, .copy-btn {
 
 <!-- Home Menu -->
 <div id="homeMenu" class="active">
-  <div class="menu-card full" onclick="openSection('pubg')"><h2>🎮 PUBG UC</h2></div>
-  <div class="menu-card full" onclick="openSection('mlbb')"><h2>💎 MLBB Diamond</h2></div>
-  <div class="menu-card full" onclick="openSection('tiktok')"><h2>🎵 TikTok Service</h2></div>
-  <div class="menu-card full" onclick="openSection('facebook')"><h2>📘 Facebook Service</h2></div>
-  <div class="menu-card full" onclick="openSection('howto')"><h2>📱 ဘယ်လိုဝယ်ယူမလဲ</h2></div>
+  <div class="menu-card full" onclick="openSection('pubg')"><h2>🎮 PUBG UC ဝယ်မည်</h2></div>
+  <div class="menu-card full" onclick="openSection('mlbb')"><h2>💎 MLBB စိန် ဝယ်မည်</h2></div>
+  <div class="menu-card full" onclick="openSection('tiktok')"><h2>🎵 TikTok ဝယ်မည်</h2></div>
+  <div class="menu-card full" onclick="openSection('facebook')"><h2>📘 Facebook ဝယ်မည်</h2></div>
+
 </div>
 
 
@@ -1541,35 +1367,41 @@ button, .menu-card, .card, .copy-btn {
 <section id="pubg"><div class="bank-info-row">
 </div>
   <h2>🎮 PUBG UC</h2>
+      <div class="credit-description">
+      <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
+    </div>
+    <div class="credit-description">
+      <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
+    </div>
   <div class="products">
     <div class="card">
       <h3>60 UC</h3>
       <p>35B</p>
-      <button onclick="orderItem('PUBG 60 UC - 35B','pubg')">ရွေးချယ်မည်</button>
+      <button onclick="orderItem('PUBG 60 UC - 35B','pubg')">ဝယ်ယူမယ်</button>
     </div>
     <div class="card">
       <h3>180 UC</h3>
-      <p>110B</p>
-      <button onclick="orderItem('PUBG 180 UC - 110B','pubg')">ရွေးချယ်မည်</button>
+      <p>115B</p>
+      <button onclick="orderItem('PUBG 180 UC - 110B','pubg')">ဝယ်ယူမယ်</button>
     </div>
     <div class="card">
       <h3>325 UC</h3>
-      <p>175B</p>
-      <button onclick="orderItem('PUBG 325 UC - 175B','pubg')">ရွေးချယ်မည်</button>
+      <p>180B</p>
+      <button onclick="orderItem('PUBG 325 UC - 175B','pubg')">ဝယ်ယူမယ်</button>
     </div>
     <div class="card">
       <h3>660 UC</h3>
-      <p>340B</p>
-      <button onclick="orderItem('PUBG 660 UC - 340B','pubg')">ရွေးချယ်မည်</button>
+      <p>350B</p>
+      <button onclick="orderItem('PUBG 660 UC - 340B','pubg')">ဝယ်ယူမယ်</button>
     </div>
   </div>
-</section> 
+</section>
 
 
 
 <!-- MLBB Section -->
 <section id="mlbb">
-  <h2>💎 MLBB Diamonds</h2>
+  <h2>💎 MLBB စိန်များ</h2>
   
   <!-- Tab Buttons -->
   <div class="tab-buttons">
@@ -1603,7 +1435,7 @@ button, .menu-card, .card, .copy-btn {
       
       <div class="wp-card-container">
         <div class="wp-card">
-          <h3>✨ Weekly Pass ✨</h3>
+          <h3>✨  Weekly Pass ✨</h3>
           <div class="qty-control-wrapper">
             <div class="qty-control">
               <button class="qty-btn minus" onclick="decreaseQty()">-</button>
@@ -1611,90 +1443,94 @@ button, .menu-card, .card, .copy-btn {
               <button class="qty-btn plus" onclick="increaseQty()">+</button>
             </div>
             <div class="price-container">
-              <span class="price-label">စျေးနှုန်း:</span>
+          
               <span id="price" class="price-amount">60B</span>
             </div>
           </div>
-          <button class="select-btn" onclick="selectProduct()">ရွေးချယ်မည်</button>
+          <button class="select-btn" onclick="selectProduct()">ဝယ်ယူမယ်</button>
         </div>
       </div>
     </div>
 
     <!-- Diamonds ×2 Section -->
-    <h4 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">✨ Diamonds ×2ဆ ✨</h4>
+    <h2 style="color:yellow; text-shadow:0 0 8px yellow;">✨ Diamonds ×2ဆ ✨</h2>
     
-    <div class="double-diamond-description">
-      <p>✨ Diamonds ×2ဆ သည် တမျိုးကို တစ်ကြိမ်သာဝယ်ယူနိုင်ပါသည်<br>
-      အကုန်လုံး တစ်ကြိမ်ဆီ ဝယ်ယူပီးလျှင် ထပ်မံဝယ်ယူလို့မရနိုင်ပါ✨</p>
+     <div class="double-diamond-description">
+        <p>✨ Diamonds ×2ဆ သည် တမျိုးကို တစ်ကြိမ်သာဝယ်ယူနိုင်ပါသည်<br>
+        အကုန်လုံး တစ်ကြိမ်ဆီ ဝယ်ယူပီးလျှင် ထပ်မံဝယ်ယူလို့မရနိုင်ပါ✨</p>
     </div>
 
     <div class="products">
       <div class="card">
-        <h3>50 + 50 </h3>
+        <h3>50 + 50</h3>
+        <h3>စုစုပေါင်း 100 လုံး </h3>
         <p>35B</p>
-        <button onclick="orderItem('MLBB 50+50 Diamonds - 35B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 50+50  - 35B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
       <div class="card">
         <h3>150 + 150 </h3>
+        <h3>စုစုပေါင်း 300 လုံး </h3>
         <p>100B</p>
-        <button onclick="orderItem('MLBB 150+150 Diamonds - 100B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 150+150  - 100B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
       <div class="card">
         <h3>250 + 250 </h3>
+        <h3>စုစုပေါင်း 500 လုံး </h3>
         <p>155B</p>
-        <button onclick="orderItem('MLBB 250+250 Diamonds - 155B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 250+250  - 155B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
       <div class="card">
         <h3>500 + 500 </h3>
+        <h3>စုစုပေါင်း 1000 လုံး </h3>
         <p>300B</p>
-        <button onclick="orderItem('MLBB 500+500 Diamonds - 300B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 500+500  - 300B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
     </div>
 
     <!-- Normal Diamonds Section -->
-    <h4 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">💎 Normal Diamonds 💎</h4>
+   <h2 style="color:yellowgreen; text-shadow:0 0 8px yellow;">✨ ရိုးရိုးစိန်များ✨</h2>
     
     <div class="normal-diamond-description">
-      <p>💎နှစ်သက်သလောက် ဝယ်ယူနိုင်ပါသည်<br>
+      <p> 💎  နှစ်သက်သလောက် ဝယ်ယူနိုင်ပါသည်<br>
       Diamonds အများအပြားဝယ်ယူလိုလျှင်<br>
       Messenger သို့ တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်💎</p>
     </div>
 
     <div class="products">
       <div class="card">
-        <h3>11 Diamonds</h3>
+        <h3>11 လုံး</h3>
         <p>9B</p>
-        <button onclick="orderItem('MLBB 11 Diamonds - 9B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 11 - 9B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
       <div class="card">
-        <h3>86 Diamonds</h3>
+        <h3>86 လုံး</h3>
         <p>45B</p>
-        <button onclick="orderItem('MLBB 86 Diamonds - 45B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 86  - 45B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
       <div class="card">
-        <h3>172 Diamonds</h3>
+        <h3>172 လုံး</h3>
         <p>90B</p>
-        <button onclick="orderItem('MLBB 172 Diamonds - 90B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem('172  - 90B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
       <div class="card">
-        <h3>257 Diamonds</h3>
+        <h3>257 လုံး</h3>
         <p>130B</p>
-        <button onclick="orderItem('MLBB 257 Diamonds - 130B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 257  - 130B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
       <div class="card">
-        <h3>343 Diamonds</h3>
+        <h3>343 လုံး</h3>
         <p>170B</p>
-        <button onclick="orderItem('MLBB 343 Diamonds - 170B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 343  - 170B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
       <div class="card">
-        <h3>429 Diamonds</h3>
+        <h3>429 လုံး</h3>
         <p>210B</p>
-        <button onclick="orderItem('MLBB 429 Diamonds - 210B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 429  - 210B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
       <div class="card">
-        <h3>706 Diamonds</h3>
+        <h3>706 လုံး</h3>
         <p>340B</p>
-        <button onclick="orderItem('MLBB 706 Diamonds - 340B','mlbb')">ရွေးချယ်မည်</button>
+        <button onclick="orderItem(' 706  - 340B','mlbb')">ဝယ်ယူမယ်</button>
       </div>
     </div>
   </div> <!-- creditTab ပိတ်တာ -->
@@ -1728,11 +1564,11 @@ button, .menu-card, .card, .copy-btn {
                 <button class="qty-btn plus" onclick="increaseQtyCash()">+</button>
               </div>
               <div class="price-container">
-                <span class="price-label">စျေးနှုန်း:</span>
+             
                 <span id="priceCash" class="price-amount">55B</span>
               </div>
             </div>
-            <button class="select-btn" onclick="selectProductCash()">ရွေးချယ်မည်</button>
+            <button class="select-btn" onclick="selectProductCash()">ဝယ်ယူမယ်</button>
           </div>
         </div>
       </div>
@@ -1748,23 +1584,27 @@ button, .menu-card, .card, .copy-btn {
       <div class="products">
         <div class="card">
           <h3>50 + 50 </h3>
+          <h3>စုစုပေါင်း 100 လုံး </h3>
           <p>30B</p>
-          <button onclick="orderItem('MLBB 50+50 Diamonds - 30B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 50+50 Diamonds - 30B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
         <div class="card">
           <h3>150 + 150 </h3>
+          <h3>စုစုပေါင်း 300 လုံး </h3>
           <p>90B</p>
-          <button onclick="orderItem('MLBB 150+150 Diamonds - 90B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 150+150 - 90B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
         <div class="card">
           <h3>250 + 250 </h3>
+             <h3>စုစုပေါင်း 500 လုံး </h3>
           <p>145B</p>
-          <button onclick="orderItem('MLBB 250+250 Diamonds - 145B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem('250+250= - 145B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
         <div class="card">
           <h3>500 + 500 </h3>
+          <h3>စုစုပေါင်း 1000 လုံး </h3>
           <p>290B</p>
-          <button onclick="orderItem('MLBB 500+500 Diamonds - 290B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 500+500 = - 290B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
       </div>
 
@@ -1779,39 +1619,39 @@ button, .menu-card, .card, .copy-btn {
 
       <div class="products">
         <div class="card">
-          <h3>11 Diamonds</h3>
+          <h3>11 လုံး</h3>
           <p>8B</p>
-          <button onclick="orderItem('MLBB 11 Diamonds - 8B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 11  - 8B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
         <div class="card">
-          <h3>86 Diamonds</h3>
+          <h3>86 လုံး</h3>
           <p>40B</p>
-          <button onclick="orderItem('MLBB 86 Diamonds - 40B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 86  - 40B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
         <div class="card">
-          <h3>172 Diamonds</h3>
+          <h3>172 လုံး</h3>
           <p>85B</p>
-          <button onclick="orderItem('MLBB 172 Diamonds - 85B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 172  - 85B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
         <div class="card">
-          <h3>257 Diamonds</h3>
+          <h3>257 လုံး</h3>
           <p>120B</p>
-          <button onclick="orderItem('MLBB 257 Diamonds - 120B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 257  - 120B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
         <div class="card">
-          <h3>343 Diamonds</h3>
+          <h3>343 လုံး</h3>
           <p>160B</p>
-          <button onclick="orderItem('MLBB 343 Diamonds - 160B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 343  - 160B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
         <div class="card">
-          <h3>429 Diamonds</h3>
+          <h3>429 လုံး</h3>
           <p>200B</p>
-          <button onclick="orderItem('MLBB 429 Diamonds - 200B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 429  - 200B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
         <div class="card">
-          <h3>706 Diamonds</h3>
+          <h3>706 လုံး</h3>
           <p>330B</p>
-          <button onclick="orderItem('MLBB 706 Diamonds - 330B','mlbb')">ရွေးချယ်မည်</button>
+          <button onclick="orderItem(' 706  - 330B','mlbb')">ဝယ်ယူမယ်</button>
         </div>
       </div>
     </div>
@@ -1823,40 +1663,46 @@ button, .menu-card, .card, .copy-btn {
 
 </div>
   <h2>🎵 TikTok Services</h2>
+      <div class="credit-description">
+      <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
+    </div>
+    <div class="credit-description">
+      <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
+    </div>
 
   <!-- Followers -->
   <h2 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">👥 Followers</h2>
   <div class="products">
-    <div class="card"><h3>100 </h3><p>20B</p><button onclick="orderItem('TikTok 100 Followers - 20B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 </h3><p>180B</p><button onclick="orderItem('TikTok 1k Followers - 180B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 </h3><p>1700B</p><button onclick="orderItem('TikTok 10k Followers - 1700B','tiktok')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 </h3><p>20B</p><button onclick="orderItem('TikTok 100 Followers - 20B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 </h3><p>180B</p><button onclick="orderItem('TikTok 1k Followers - 180B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 </h3><p>1700B</p><button onclick="orderItem('TikTok 10k Followers - 1700B','tiktok')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Likes -->
   <h2 style="color:#ff4444; text-shadow:0 0 8px #ff4444; margin-top:25px;">❤️ Likes</h2>
   <div class="products">
-    <div class="card"><h3>1,000 👍</h3><p>5B</p><button onclick="orderItem('TikTok 1k Likes - 5B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>5,000 👍</h3><p>20B</p><button onclick="orderItem('TikTok 5k Likes - 20B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 👍</h3><p>35B</p><button onclick="orderItem('TikTok 10k Likes - 35B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>100,000 👍</h3><p>200B</p><button onclick="orderItem('TikTok 100k Likes - 200B','tiktok')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>1,000 👍</h3><p>5B</p><button onclick="orderItem('TikTok 1k Likes - 5B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>5,000 👍</h3><p>20B</p><button onclick="orderItem('TikTok 5k Likes - 20B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 👍</h3><p>35B</p><button onclick="orderItem('TikTok 10k Likes - 35B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>100,000 👍</h3><p>200B</p><button onclick="orderItem('TikTok 100k Likes - 200B','tiktok')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Views -->
   <h2 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">👀 Views</h2>
   <div class="products">
-    <div class="card"><h3>1,000 Views</h3><p>5B</p><button onclick="orderItem('TikTok 1k Views - 5B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>5,000 Views</h3><p>15B</p><button onclick="orderItem('TikTok 5k Views - 15B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Views</h3><p>25B</p><button onclick="orderItem('TikTok 10k Views - 25B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>100,000 Views</h3><p>120B</p><button onclick="orderItem('TikTok 100k Views - 120B','tiktok')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>1,000 Views</h3><p>5B</p><button onclick="orderItem('TikTok 1k Views - 5B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>5,000 Views</h3><p>15B</p><button onclick="orderItem('TikTok 5k Views - 15B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Views</h3><p>25B</p><button onclick="orderItem('TikTok 10k Views - 25B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>100,000 Views</h3><p>120B</p><button onclick="orderItem('TikTok 100k Views - 120B','tiktok')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Shares -->
   <h2 style="color:#00ff00; text-shadow:0 0 8px #00ff00; margin-top:25px;">🔄 Shares</h2>
   <div class="products">
-    <div class="card"><h3>1,000 Shares</h3><p>5B</p><button onclick="orderItem('TikTok 1k Shares - 5B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>5,000 Shares</h3><p>20B</p><button onclick="orderItem('TikTok 5k Shares - 20B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Shares</h3><p>35B</p><button onclick="orderItem('TikTok 10k Shares - 35B','tiktok')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>100,000 Shares</h3><p>200B</p><button onclick="orderItem('TikTok 100k Shares - 200B','tiktok')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>1,000 Shares</h3><p>5B</p><button onclick="orderItem('TikTok 1k Shares - 5B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>5,000 Shares</h3><p>20B</p><button onclick="orderItem('TikTok 5k Shares - 20B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Shares</h3><p>35B</p><button onclick="orderItem('TikTok 10k Shares - 35B','tiktok')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>100,000 Shares</h3><p>200B</p><button onclick="orderItem('TikTok 100k Shares - 200B','tiktok')">ဝယ်ယူမယ်</button></div>
   </div>
 </section>
 
@@ -1867,116 +1713,96 @@ button, .menu-card, .card, .copy-btn {
 
 </div>
   <h2>📘 Facebook Services</h2>
+      <div class="credit-description">
+      <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
+    </div>
+    <div class="credit-description">
+      <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
+    </div>
 
   <!-- Followers -->
   <h2 style="color:#00ccff; text-shadow:0 0 8px #00ccff;">👥 Followers</h2>
   <div class="products">
-    <div class="card"><h3>100 Followers</h3><p>10B</p><button onclick="orderItem('Facebook 100 Followers - 10B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 Followers</h3><p>80B</p><button onclick="orderItem('Facebook 1k Followers - 80B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Followers</h3><p>700B</p><button onclick="orderItem('Facebook 10k Followers - 700B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 Followers</h3><p>10B</p><button onclick="orderItem('Facebook 100 Followers - 10B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 Followers</h3><p>80B</p><button onclick="orderItem('Facebook 1k Followers - 80B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Followers</h3><p>700B</p><button onclick="orderItem('Facebook 10k Followers - 700B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Views -->
   <h2 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">👀 Views</h2>
   <div class="products">
-    <div class="card"><h3>100 Views</h3><p>4B</p><button onclick="orderItem('Facebook 100 Views - 4B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 Views</h3><p>15B</p><button onclick="orderItem('Facebook 1k Views - 15B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Views</h3><p>60B</p><button onclick="orderItem('Facebook 10k Views - 60B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>100,000 Views</h3><p>400B</p><button onclick="orderItem('Facebook 100k Views - 400B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 Views</h3><p>4B</p><button onclick="orderItem('Facebook 100 Views - 4B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 Views</h3><p>15B</p><button onclick="orderItem('Facebook 1k Views - 15B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Views</h3><p>60B</p><button onclick="orderItem('Facebook 10k Views - 60B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>100,000 Views</h3><p>400B</p><button onclick="orderItem('Facebook 100k Views - 400B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Shares -->
   <h2 style="color:#00ff00; text-shadow:0 0 8px #00ff00; margin-top:25px;">🔄 Shares</h2>
   <div class="products">
-    <div class="card"><h3>1,000 Shares</h3><p>8B</p><button onclick="orderItem('Facebook 1k Shares - 8B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>5,000 Shares</h3><p>30B</p><button onclick="orderItem('Facebook 5k Shares - 30B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Shares</h3><p>50B</p><button onclick="orderItem('Facebook 10k Shares - 50B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>100,000 Shares</h3><p>400B</p><button onclick="orderItem('Facebook 100k Shares - 400B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>1,000 Shares</h3><p>8B</p><button onclick="orderItem('Facebook 1k Shares - 8B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>5,000 Shares</h3><p>30B</p><button onclick="orderItem('Facebook 5k Shares - 30B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Shares</h3><p>50B</p><button onclick="orderItem('Facebook 10k Shares - 50B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>100,000 Shares</h3><p>400B</p><button onclick="orderItem('Facebook 100k Shares - 400B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Like -->
   <h2 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc; margin-top:25px;">👍 Like</h2>
   <div class="products">
-    <div class="card"><h3>100 Likes</h3><p>10B</p><button onclick="orderItem('Facebook Like 100 - 10B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 Likes</h3><p>85B</p><button onclick="orderItem('Facebook Like 1k - 85B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Likes</h3><p>800B</p><button onclick="orderItem('Facebook Like 10k - 800B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 Likes</h3><p>10B</p><button onclick="orderItem('Facebook Like 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 Likes</h3><p>85B</p><button onclick="orderItem('Facebook Like 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Likes</h3><p>800B</p><button onclick="orderItem('Facebook Like 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Love -->
   <h2 style="color:#ff4444; text-shadow:0 0 8px #ff4444; margin-top:25px;">❤️ Love</h2>
   <div class="products">
-    <div class="card"><h3>100 Loves</h3><p>10B</p><button onclick="orderItem('Facebook Love 100 - 10B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 Loves</h3><p>85B</p><button onclick="orderItem('Facebook Love 1k - 85B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Loves</h3><p>800B</p><button onclick="orderItem('Facebook Love 10k - 800B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 Loves</h3><p>10B</p><button onclick="orderItem('Facebook Love 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 Loves</h3><p>85B</p><button onclick="orderItem('Facebook Love 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Loves</h3><p>800B</p><button onclick="orderItem('Facebook Love 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Care -->
   <h2 style="color:#ff66cc; text-shadow:0 0 8px #ff66cc; margin-top:25px;">🤗 Care</h2>
   <div class="products">
-    <div class="card"><h3>100 Cares</h3><p>10B</p><button onclick="orderItem('Facebook Care 100 - 10B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 Cares</h3><p>85B</p><button onclick="orderItem('Facebook Care 1k - 85B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Cares</h3><p>800B</p><button onclick="orderItem('Facebook Care 10k - 800B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 Cares</h3><p>10B</p><button onclick="orderItem('Facebook Care 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 Cares</h3><p>85B</p><button onclick="orderItem('Facebook Care 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Cares</h3><p>800B</p><button onclick="orderItem('Facebook Care 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Wow -->
   <h2 style="color:#ffaa00; text-shadow:0 0 8px #ffaa00; margin-top:25px;">😮 Wow</h2>
   <div class="products">
-    <div class="card"><h3>100 Wows</h3><p>10B</p><button onclick="orderItem('Facebook Wow 100 - 10B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 Wows</h3><p>85B</p><button onclick="orderItem('Facebook Wow 1k - 85B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Wows</h3><p>800B</p><button onclick="orderItem('Facebook Wow 10k - 800B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 Wows</h3><p>10B</p><button onclick="orderItem('Facebook Wow 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 Wows</h3><p>85B</p><button onclick="orderItem('Facebook Wow 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Wows</h3><p>800B</p><button onclick="orderItem('Facebook Wow 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Haha -->
   <h2 style="color:#00ff00; text-shadow:0 0 8px #00ff00; margin-top:25px;">😂 Haha</h2>
   <div class="products">
-    <div class="card"><h3>100 Hahas</h3><p>10B</p><button onclick="orderItem('Facebook Haha 100 - 10B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 Hahas</h3><p>85B</p><button onclick="orderItem('Facebook Haha 1k - 85B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Hahas</h3><p>800B</p><button onclick="orderItem('Facebook Haha 10k - 800B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 Hahas</h3><p>10B</p><button onclick="orderItem('Facebook Haha 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 Hahas</h3><p>85B</p><button onclick="orderItem('Facebook Haha 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Hahas</h3><p>800B</p><button onclick="orderItem('Facebook Haha 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Sad -->
   <h2 style="color:#9999ff; text-shadow:0 0 8px #9999ff; margin-top:25px;">😢 Sad</h2>
   <div class="products">
-    <div class="card"><h3>100 Sads</h3><p>10B</p><button onclick="orderItem('Facebook Sad 100 - 10B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 Sads</h3><p>85B</p><button onclick="orderItem('Facebook Sad 1k - 85B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Sads</h3><p>800B</p><button onclick="orderItem('Facebook Sad 10k - 800B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 Sads</h3><p>10B</p><button onclick="orderItem('Facebook Sad 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 Sads</h3><p>85B</p><button onclick="orderItem('Facebook Sad 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Sads</h3><p>800B</p><button onclick="orderItem('Facebook Sad 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 
   <!-- Angry -->
   <h2 style="color:#ff0000; text-shadow:0 0 8px #ff0000; margin-top:25px;">😡 Angry</h2>
   <div class="products">
-    <div class="card"><h3>100 Angrys</h3><p>10B</p><button onclick="orderItem('Facebook Angry 100 - 10B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>1,000 Angrys</h3><p>85B</p><button onclick="orderItem('Facebook Angry 1k - 85B','facebook')">ရွေးချယ်မည်</button></div>
-    <div class="card"><h3>10,000 Angrys</h3><p>800B</p><button onclick="orderItem('Facebook Angry 10k - 800B','facebook')">ရွေးချယ်မည်</button></div>
+    <div class="card"><h3>100 Angrys</h3><p>10B</p><button onclick="orderItem('Facebook Angry 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>1,000 Angrys</h3><p>85B</p><button onclick="orderItem('Facebook Angry 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
+    <div class="card"><h3>10,000 Angrys</h3><p>800B</p><button onclick="orderItem('Facebook Angry 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
   </div>
 </section>
 
-<!-- How to Order Section -->
-<section id="howto">
-  <h2>📝 ဘယ်လို ဝယ်ယူမလဲ</h2>
-
-  <ol class="order-list">
-    <li>ဝယ်ယူမည့် အရာ ကို ရွေးချယ်ပါ</li>
-     <li>မိမိ နာမည်ထည့်ပါ</li>
-    <li>MLBB ဆို Game ID / Server ID ထည့်ပါ</li>
-    <li>PUBG ဆို Game ID ထည့်ပါ</li>
-    <li>Tiktok (သို့) Facebook ဆို link ထည့်ပါ</li>
-    <li>OK နှိပ်ပါ → </li>
-    <li>အောင်မြင်ပါပီ..ခဏစောင့်ပေးပါ✅</li>
-   
-    
-  </ol>
-
-
-  <div class="warning-box">
-    <p>⚠️ သတိပေးချက် – ဘဏ်နာမည်ကို သေချာစစ်ပြီးမှ ငွေလွှဲပါ။</p>
-    <p>✅ ယခုအသုံးပြုမည့် Messenger Account သည် 
-      <span class="highlight">Ye Wint Zaw</span> တစ်ခုပဲ ဖြစ်ပါတယ်။
-    </p>
-  </div>
-
-
-</section>
 
   <!-- Footer -->
   <footer class="footer">
@@ -2028,6 +1854,49 @@ const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
 // CLEANED AND FIXED JAVASCRIPT
 
+// ========== AUTO SAVE SYSTEM FUNCTIONS ==========
+// Load saved MLBB IDs
+function loadSavedMLBBIds() {
+    const savedGameId = localStorage.getItem('mlbb_gameId');
+    const savedServerId = localStorage.getItem('mlbb_serverId');
+    
+    if (savedGameId) {
+        console.log('Loaded saved Game ID:', savedGameId);
+    }
+    if (savedServerId) {
+        console.log('Loaded saved Server ID:', savedServerId);
+    }
+}
+
+// Auto-fill MLBB IDs when modal opens
+function autoFillMLBBIds() {
+    const savedGameId = localStorage.getItem('mlbb_gameId');
+    const savedServerId = localStorage.getItem('mlbb_serverId');
+    
+    const gameIdInput = document.getElementById('gameId');
+    const serverIdInput = document.getElementById('serverId');
+    
+    if (gameIdInput && savedGameId) {
+        gameIdInput.value = savedGameId;
+    }
+    if (serverIdInput && savedServerId) {
+        serverIdInput.value = savedServerId;
+    }
+}
+
+// Save MLBB IDs to localStorage
+function saveMLBBIds(gameId, serverId) {
+    if (gameId && gameId.trim() !== '') {
+        localStorage.setItem('mlbb_gameId', gameId.trim());
+        console.log('Saved Game ID:', gameId.trim());
+    }
+    if (serverId && serverId.trim() !== '') {
+        localStorage.setItem('mlbb_serverId', serverId.trim());
+        console.log('Saved Server ID:', serverId.trim());
+    }
+}
+
+
 let currentItem = "", currentType = "";
 
 
@@ -2046,7 +1915,6 @@ function goHome() {
   document.getElementById("homeMenu").style.display = "grid";
 }
 
-// Order modal functions - SINGLE DEFINITION
 function orderItem(item, type) {
   currentItem = item; 
   currentType = type;
@@ -2055,26 +1923,52 @@ function orderItem(item, type) {
   let extra = document.getElementById("extraFields");
   extra.innerHTML = "";
 
-if (type === "mlbb") {
+  if (type === "mlbb") {
     extra.innerHTML = `
-      <label>Game ID</label><input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
-      <label>Server ID</label><input id="serverId" placeholder="Server ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
-     
+      <label>Game ID</label>
+      <div style="position: relative;">
+        <input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+        <button onclick="clearInput('gameId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+      </div>
+      <label>Server ID</label>
+      <div style="position: relative;">
+        <input id="serverId" placeholder="Server ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+        <button onclick="clearInput('serverId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+      </div>
     `;
-} else if (type === "pubg") {
-    extra.innerHTML = `
-      <label>Game ID</label><input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
     
-    `;
-} else {
+    // Auto-fill saved IDs
+    setTimeout(autoFillMLBBIds, 100);
+    
+  } else if (type === "pubg") {
     extra.innerHTML = `
-      <label>Link ထည့်ပါ</label><input id="link" placeholder="Link ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)">
-     
+      <label>Game ID</label>
+      <div style="position: relative;">
+        <input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+        <button onclick="clearInput('gameId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+      </div>
     `;
-}
+  } else {
+    extra.innerHTML = `
+      <label>Link ထည့်ပါ</label>
+      <div style="position: relative;">
+        <input id="link" placeholder="Link ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+        <button onclick="clearInput('link')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+      </div>
+    `;
+  }
 
   document.getElementById("orderModal").style.display = "flex";
   history.pushState({ page: "modal" }, "", "#modal");
+}
+
+// Clear single input field function
+function clearInput(inputId) {
+  const input = document.getElementById(inputId);
+  if (input) {
+    input.value = '';
+    input.focus();
+  }
 }
 
 function closeModal() {
@@ -2087,7 +1981,6 @@ function closeModal() {
 async function finalizeOrder() {
     const username = localStorage.getItem('gway_username') || 'Unknown User';
     
-    // Add username to order data
     const finalizeBtn = document.querySelector('#orderModal button');
     finalizeBtn.disabled = true;
     finalizeBtn.textContent = '...ပို့နေပါသည်...';
@@ -2109,6 +2002,9 @@ async function finalizeOrder() {
                 document.getElementById("serverId").focus();
                 return;
             }
+            
+            // Save IDs to localStorage
+            saveMLBBIds(gameId, serverId);
             
             orderData = { 
                 username: username,
@@ -2267,11 +2163,13 @@ window.onpopstate = function(e) {
 document.addEventListener('DOMContentLoaded', function() {
   const hash = window.location.hash.substring(1);
   
+  // Load saved MLBB IDs - ✅ ဒီလိုင်းကို ဒီနေရာမှာ ထည့်ပါ
+  loadSavedMLBBIds();
+  
   // Close modal initially
   document.getElementById("orderModal").style.display = "none";
   
   if (hash === "modal") {
-    // If URL has modal hash but no modal should be open, go home
     goHome();
     history.replaceState({ page: "home" }, "", "#");
   } else if (hash && document.getElementById(hash)) {
