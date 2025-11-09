@@ -14,27 +14,34 @@
     <meta name="theme-color" content="#000000">
     <meta name="mobile-web-app-capable" content="yes">
     
-    <title>Gway Thee Shop.com </title>
+    <title>MR.Gwayy Shop</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
     <!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    
     <style>
-         
+        
         * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
-        }
-        body {
-            background: #000;
-            color: #fff;
-            overflow-x: hidden;
-            text-align: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
-            min-height: 100vh;
-        }
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
 
+body {
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+    text-align: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    min-height: 100vh;
+}
+
+/* Header Styles */
 .name-wrap {
     display: inline-block;
     padding: 7px 15px;
@@ -58,6 +65,13 @@
     animation: textGlow 2s ease-in-out infinite alternate;
 }
 
+.shop-sub {
+    font-size: 20px;
+    color: #00ffff;
+    margin-top: 5px;
+    text-shadow: 0 0 10px #00ffff;
+}
+
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-5px); }
@@ -68,727 +82,704 @@
     to { text-shadow: 0 0 15px #00ffff, 0 0 25px rgba(255, 0, 255, 0.5); }
 }
 
-
-
-
-        /*==========  COLORFUL SECTIONS ==========*/
-        section {
-            display: none;
-            padding: 30px 25px;
-            margin: 30px auto;
-            max-width: 900px;
-            background: rgba(0, 0, 0, 0.9);
-            border-radius: 20px;
-            border: 3px solid transparent;
-            background-clip: padding-box;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            animation: sectionShow 0.6s ease forwards;
-            transition: all 0.4s ease-in-out;
-            position: relative;
-            overflow: hidden;
-        }
-
-        section::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.6s;
-        }
-
-        section:hover::before {
-            left: 100%;
-        }
-
-        section.active { display: block; }
-
-        /* Section-specific colors */
-        #pubg {
-            border-color: #ff6b35;
-            box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
-        }
-
-        #mlbb {
-            border-color: #00ffff;
-            box-shadow: 0 0 20px rgba(0, 255, 255, 0.4);
-        }
-
-        #tiktok {
-            border-color: #ff0055;
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.4);
-        }
-
-        #facebook {
-            border-color: #1877f2;
-            box-shadow: 0 0 20px rgba(24, 119, 242, 0.4);
-        }
-
-     
-
-        section h2 {
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 32px;
-            font-weight: bold;
-            display: inline-block;
-            padding: 12px 25px;
-            border-radius: 15px;
-            background: rgba(0, 0, 0, 0.8);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Section-specific header styles */
-        #pubg h2 {
-            color: #ff6b35;
-            border: 2px solid #ff6b35;
-            text-shadow: 0 0 10px #ff6b35;
-            box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
-        }
-
-        #mlbb h2 {
-            color: #00ffff;
-            border: 2px solid #00ffff;
-            text-shadow: 0 0 10px #00ffff;
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        #tiktok h2 {
-            color: #ff0055;
-            border: 2px solid #ff0055;
-            text-shadow: 0 0 10px #ff0055;
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.5);
-        }
-
-        #facebook h2 {
-            color: #1877f2;
-            border: 2px solid #1877f2;
-            text-shadow: 0 0 10px #1877f2;
-            box-shadow: 0 0 15px rgba(24, 119, 242, 0.5);
-        }
-
-     
-
-        /*==========  ENHANCED MENU CARDS ==========*/
-        #homeMenu {
-            display: grid;
-            gap: 25px;
-            padding: 40px 20px;
-            max-width: 500px;
-            margin: 0 auto;
-        }
-
-        .menu-card {
-            background: rgba(0,0,0,0.8);
-            border-radius: 20px;
-            padding: 25px 15px;
-            cursor: pointer;
-            font-size: 16px;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            border: 2px solid;
-            background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,20,30,0.9) 100%);
-        }
-
-        .menu-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
-            transition: left 0.6s;
-        }
-
-        .menu-card:hover::before {
-            left: 100%;
-        }
-
-        .menu-card:nth-child(1) { border-color: #ff6b35; }
-        .menu-card:nth-child(2) { border-color: #00ffff; }
-        .menu-card:nth-child(3) { border-color: #ff0055; }
-        .menu-card:nth-child(4) { border-color: #1877f2; }
-       
-
-        .menu-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        .menu-card:nth-child(1):hover { box-shadow: 0 0 25px #ff6b35; }
-        .menu-card:nth-child(2):hover { box-shadow: 0 0 25px #00ffff; }
-        .menu-card:nth-child(3):hover { box-shadow: 0 0 25px #ff0055; }
-        .menu-card:nth-child(4):hover { box-shadow: 0 0 25px #1877f2; }
-     
-
-        /*==========  FIXED PRODUCT CARD HEIGHT ==========*/
-        .card {
-            width: 180px;
-            height: auto;
-            min-height: 200px;
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(20,20,30,0.95) 0%, rgba(40,40,60,0.95) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: visible;
-            border: 2px solid;
-            padding: 15px 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            margin: 10px 5px;
-        }
-
-        /* Card content ကို သေချာစီအောင် */
-        .card > * {
-            flex-shrink: 0;
-        }
-
-        .card h3 {
-            color: #ffffff;
-            margin: 8px 0;
-            font-size: 15px;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
-            border: 2px solid;
-            border-radius: 8px;
-            padding: 8px 12px;
-            background: rgba(0,0,0,0.3);
-            width: 100%;
-            box-sizing: border-box;
-            line-height: 1.2;
-            min-height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .card p {
-            color: #ffcc00;
-            margin: 8px 0;
-            font-size: 18px;
-            font-weight: 800;
-            text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
-            border: 2px solid #ffcc00;
-            border-radius: 6px;
-            padding: 8px 12px;
-            background: rgba(0,0,0,0.3);
-            box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
-            line-height: 1.2;
-            min-height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Button ကို အောက်ဆုံးမှာ သေချာရောက်အောင် */
-        .card button {
-            padding: 12px 20px;
-            border: none;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #ffffff;
-            cursor: pointer;
-            margin: 10px 0 5px 0;
-            font-size: 14px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            position: relative;
-            overflow: hidden;
-            min-width: 140px;
-            min-height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            line-height: 1.2;
-            flex-shrink: 0;
-        }
-
-        /* Section-specific button styles */
-        #pubg .card button {
-            background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
-            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
-            font-size: 13px;
-        }
-
-        #mlbb .card button {
-            background: linear-gradient(135deg, #00ffff 0%, #00b3b3 100%);
-            box-shadow: 0 4px 12px rgba(0, 255, 255, 0.4);
-            font-size: 13px;
-        }
-
-        #tiktok .card button {
-            background: linear-gradient(135deg, #ff0055 0%, #ff3385 100%);
-            box-shadow: 0 4px 12px rgba(255, 0, 85, 0.4);
-            font-size: 13px;
-        }
-
-        #facebook .card button {
-            background: linear-gradient(135deg, #1877f2 0%, #4a90e2 100%);
-            box-shadow: 0 4px 12px rgba(24, 119, 242, 0.4);
-            font-size: 13px;
-        }
-
-        /* Products container ကိုလည်း adjust လုပ် */
-        .products {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 25px;
-            align-items: stretch;
-        }
-
-        /* Card hover effects */
-        .card:hover {
-            transform: translateY(-8px) scale(1.05);
-            z-index: 10;
-        }
-
-        .card:hover::before {
-            transform: rotate(45deg) translate(50%, 50%);
-        }
-
-        /* Section-specific card borders */
-        #pubg .card { border-color: #ff6b35; }
-        #mlbb .card { border-color: #00ffff; }
-        #tiktok .card { border-color: #ff0055; }
-        #facebook .card { border-color: #1877f2; }
-
-        #pubg .card:hover { box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4); }
-        #mlbb .card:hover { box-shadow: 0 10px 25px rgba(0, 255, 255, 0.4); }
-        #tiktok .card:hover { box-shadow: 0 10px 25px rgba(255, 0, 85, 0.4); }
-        #facebook .card:hover { box-shadow: 0 10px 25px rgba(24, 119, 242, 0.4); }
-
-        /* Section-specific h3 borders */
-        #pubg .card h3 {
-            border-color: #ff6b35;
-            color: #ff6b35;
-            text-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
-        }
-
-        #mlbb .card h3 {
-            border-color: #00ffff;
-            color: #00ffff;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        }
-
-        #tiktok .card h3 {
-            border-color: #ff0055;
-            color: #ff0055;
-            text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
-        }
-
-        #facebook .card h3 {
-            border-color: #1877f2;
-            color: #1877f2;
-            text-shadow: 0 0 10px rgba(24, 119, 242, 0.5);
-        }
-
-        /* Fix for Weekly Pass card */
-        .wp-card {
-            width: 200px;
-            min-height: 240px;
-        }
-
-        .wp-card .qty-control-wrapper {
-            margin: 10px 0;
-        }
-
-        .wp-card .select-btn {
-            margin-top: 15px;
-        }
-
-        /*==========  WEEKLY PASS STYLING ==========*/
-        .weekly-pass-section {
-            margin: 25px 0;
-            padding: 20px;
-            border: 3px solid #ff00ff;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(255,0,255,0.1) 0%, rgba(0,255,255,0.1) 100%);
-            box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
-        }
-
-        .wp-title {
-            color: #00ffcc;
-            text-shadow: 0 0 15px #00ffcc;
-            font-size: 24px;
-            margin-bottom: 15px;
-            text-align: center;
-            border: 2px solid #00ffcc;
-            border-radius: 10px;
-            padding: 10px 20px;
-            background: rgba(0,0,0,0.4);
-        }
-
-        .wp-description {
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 12px;
-            border: 2px solid #00ffff;
-            text-align: center;
-        }
-
-        .wp-description p {
-            color: #00ffff;
-            text-shadow: 0 0 10px #00ffff;
-            line-height: 1.6;
-            margin: 8px 0;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .wp-card-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .wp-card {
-            width: 200px;
-            height: auto;
-            min-height: 220px;
-            border: 3px solid #ff00ff;
-            border-radius: 15px;
-            background: linear-gradient(135deg, rgba(255,0,255,0.15) 0%, rgba(0,255,255,0.15) 100%);
-            padding: 20px 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: space-between;
-            box-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
-        }
-
-        .wp-card h3 {
-            color: #ff00ff;
-            text-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
-            font-size: 18px;
-            margin: 5px 0 15px 0;
-            border: 2px solid #ff00ff;
-            border-radius: 8px;
-            padding: 8px 15px;
-            background: rgba(0,0,0,0.5);
-            width: 100%;
-            text-align: center;
-        }
-
-        .qty-control-wrapper {
-            width: 100%;
-            margin: 15px 0;
-        }
-
-        .qty-control {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            margin: 10px 0;
-            padding: 12px;
-            background: rgba(0,0,0,0.4);
-            border-radius: 12px;
-            border: 2px solid #00ffff;
-        }
-
-        .qty-btn {
-            width: 40px;
-            height: 40px;
-            border: 2px solid #00ffff;
-            background: rgba(0,255,255,0.3);
-            color: #00ffff;
-            border-radius: 50%;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 20px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0;
-        }
-
-        .qty-btn:hover {
-            background: rgba(0,255,255,0.6);
-            transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
-        }
-
-        .qty-display {
-            color: #00ffff;
-            font-size: 24px;
-            font-weight: bold;
-            min-width: 50px;
-            text-shadow: 0 0 15px rgba(0,255,255,0.7);
-            padding: 0 15px;
-            background: rgba(0,0,0,0.3);
-            border-radius: 8px;
-            border: 1px solid #00ffff;
-        }
-
-        .price-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 10px 0;
-            padding: 8px 15px;
-            background: rgba(255,204,0,0.2);
-            border-radius: 8px;
-            border: 2px solid #ffcc00;
-        }
-
-        .price-label {
-            color: #ffcc00;
-            font-size: 16px;
-            font-weight: 600;
-        }
-
-        .price-amount {
-            color: #ffcc00;
-            font-size: 22px;
-            font-weight: bold;
-            text-shadow: 0 0 10px rgba(255,204,0,0.7);
-        }
-
-        .select-btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
-            color: #ffffff;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4);
-            margin-top: 10px;
-            min-width: 150px;
-            min-height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .select-btn:hover {
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 6px 20px rgba(255, 0, 255, 0.6);
-            border: 2px solid #ffffff;
-        }
-
-        /*==========  PAYMENT INFO  ==========*/
+/* Bank Information - Single KPlus Menu Style */
 #bankInfo {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     gap: 15px;
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 0 20px;
 }
+
 .pay-box {
-    background: rgba(0,0,0,0.6);
-    border-radius: 10px;
-    padding: 12px;
-    min-width: 120px;
-    min-height: 120px;
+    background: rgba(0,0,0,0.8);
+    border-radius: 20px;
+    padding: 25px 20px;
     text-align: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 2px solid;
+    border: 2px solid yellow;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,20,30,0.9) 100%);
+    min-height: 140px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.4);
 }
-.kpay { border-color: #0f0; box-shadow: 0 0 12px #0f0, 0 0 25px #0f0; }
-.kplus { border-color: #9b59b6; box-shadow: 0 0 12px #9b59b6, 0 0 25px #9b59b6; }
 
-.center-note {
-    font-size: 18px;
+.pay-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s;
+}
+
+.pay-box:hover::before {
+    left: 100%;
+}
+
+.pay-box:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 30px yellow;
+}
+
+.bank-label {
+    font-size: 28px;
     font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px yellow;
+    color: yellow;
+}
+
+.bank-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.bank-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.bank-number {
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffcc00;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+}
+
+.copy-btn {
+    background: linear-gradient(135deg, #ffcc00 0%, #ff9900 100%);
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid yellow;
+    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
+    min-width: 140px;
+    font-size: 16px;
+}
+
+.copy-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 204, 0, 0.7);
+    background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    #bankInfo {
+        max-width: 400px;
+        gap: 12px;
+    }
+    
+    .pay-box {
+        padding: 22px 15px;
+        min-height: 130px;
+    }
+    
+    .bank-label {
+        font-size: 24px;
+    }
+    
+    .bank-number {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    #bankInfo {
+        max-width: 350px;
+        gap: 10px;
+    }
+    
+    .pay-box {
+        padding: 20px 12px;
+        min-height: 120px;
+    }
+    
+    .bank-label {
+        font-size: 22px;
+    }
+    
+    .copy-btn {
+        padding: 10px 20px;
+        min-width: 120px;
+        font-size: 14px;
+    }
+}
+
+/* Lottery Section */
+#lotterySection {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 300px;
+    padding: 0 20px;
+}
+
+.mini-lottery-btn {
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid #ffffff;
+    width: 100%;
+    max-width: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mini-lottery-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+}
+
+.mini-lottery-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: glowMove 2s linear infinite;
+    z-index: 1;
+    border-radius: 30px;
+}
+
+@keyframes glowMove {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Menu Styles */
+#homeMenu {
+    display: grid;
+    gap: 25px;
+    padding: 40px 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.menu-card {
+    background: rgba(0,0,0,0.8);
+    border-radius: 20px;
+    padding: 25px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid;
+    background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,20,30,0.9) 100%);
+}
+
+.menu-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s;
+}
+
+.menu-card:hover::before {
+    left: 100%;
+}
+
+.menu-card:nth-child(1) { border-color: blue; }
+.menu-card:nth-child(2) { border-color: #ff4444; }
+.menu-card:nth-child(3) { border-color: #00ff00; }
+
+.menu-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.menu-card:nth-child(1):hover { box-shadow: 0 0 25px blueviolet; }
+.menu-card:nth-child(2):hover { box-shadow: 0 0 25px #ff4444; }
+.menu-card:nth-child(3):hover { box-shadow: 0 0 25px #00ff00; }
+
+/* Section Styles */
+section {
+    display: none;
+    padding: 30px 25px;
+    margin: 30px auto;
+    max-width: 900px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: sectionShow 0.6s ease forwards;
+    transition: all 0.4s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s;
+}
+
+section:hover::before {
+    left: 100%;
+}
+
+section.active { display: block; }
+
+@keyframes sectionShow {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section Specific Colors */
+#pubg {
+    border-color: yellow;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+}
+
+#mlbb_credit {
+    border-color: greenyellow;
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.4);
+}
+
+#mlbb_cash {
+    border-color: #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+#pubg h2 {
+    color: blue;
+    border: 2px solid cyan;
+    text-shadow: 0 0 10px deeppink;
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+}
+
+#mlbb_credit h2 {
+    color: plum;
+    border: 2px solid blueviolet;
+    text-shadow: 0 0 10px #ff4444;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+}
+
+#mlbb_cash h2 {
+    color: #00ff00;
+    border: 2px solid yellow;
+    text-shadow: 0 0 10px palegreen;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+/* Description Styles */
+.credit-description {
+    text-align: center;
+    margin: 10px 0;
+    padding: 12px;
+    background: rgba(255, 107, 53, 0.1);
+    border-radius: 10px;
+    border: 2px solid #ff4444;
+    color: #ff4444;
+    font-weight: bold;
+}
+
+.cash-description {
+    text-align: center;
+    margin: 10px 0;
+    padding: 12px;
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 10px;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.diamond-title {
+    color: #ffcc00;
+    text-shadow: 0 0 15px #ffcc00;
+    font-size: 24px;
+    margin: 25px 0 15px 0;
+    text-align: center;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.4);
+}
+
+.double-diamond-description, .normal-diamond-description {
     text-align: center;
     margin: 15px 0;
-    background: linear-gradient(90deg,#ff00ff,#00ffff,#ff00ff);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: glowText 2s ease-in-out infinite;
-}
-@keyframes glowText {
-    0%,100% { text-shadow: 0 0 8px #ff00ff, 0 0 16px #00ffff; }
-    50%     { text-shadow: 0 0 16px #00ffff, 0 0 32px #ff00ff; }
+    padding: 15px;
+    background: rgba(255, 204, 0, 0.1);
+    border-radius: 12px;
+    border: 2px solid #ffcc00;
+    color: #ffcc00;
+    line-height: 1.6;
 }
 
-/* ✅ ဒီနေရာမှာ ထည့်ပါ */
-.bank-copy {
+/* Products Grid */
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    align-items: stretch;
+}
+
+.card {
+    width: 180px;
+    height: auto;
+    min-height: 200px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(20,20,30,0.95) 0%, rgba(40,40,60,0.95) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: visible;
+    border: 2px solid;
+    padding: 15px 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    margin: 10px 5px;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.05);
+    z-index: 10;
+}
+
+#pubg .card { border-color: #ff6b35; }
+#mlbb_credit .card { border-color: #ff4444; }
+#mlbb_cash .card { border-color: #00ff00; }
+
+#pubg .card:hover { box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4); }
+#mlbb_credit .card:hover { box-shadow: 0 10px 25px rgba(255, 68, 68, 0.4); }
+#mlbb_cash .card:hover { box-shadow: 0 10px 25px rgba(0, 255, 0, 0.4); }
+
+.card h3 {
+    color: #ffffff;
+    margin: 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.3);
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 1.2;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pubg .card h3 { border-color: #ff6b35; color: #ff6b35; }
+#mlbb_credit .card h3 { border-color: #ff4444; color: #ff4444; }
+#mlbb_cash .card h3 { border-color: #00ff00; color: #00ff00; }
+
+.total-diamonds {
+    color: #00ffff;
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.price {
+    color: #ffcc00;
+    margin: 8px 0;
+    font-size: 18px;
+    font-weight: 800;
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+    border: 2px solid #ffcc00;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    line-height: 1.2;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    cursor: pointer;
+    margin: 10px 0 5px 0;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+    min-width: 140px;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    flex-shrink: 0;
+}
+
+#pubg .card button {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+#mlbb_credit .card button {
+    background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%);
+    box-shadow: 0 4px 12px rgba(255, 68, 68, 0.4);
+}
+
+#mlbb_cash .card button {
     background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
-    border: 3px solid #00ff00;
-    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.4);
 }
 
-.order-copy {
-    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+.card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Weekly Pass Styles */
+.weekly-pass-section {
+    margin: 25px 0;
+    padding: 20px;
     border: 3px solid #ff00ff;
-    box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255,0,255,0.1) 0%, rgba(0,255,255,0.1) 100%);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
 }
-        
-        /*==========  FIXED ORDER MODAL ==========*/
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            backdrop-filter: blur(10px);
-        }
 
-        .modal-content {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            padding: 30px;
-            border-radius: 20px;
-            max-width: 450px;
-            width: 90%;
-            text-align: center;
-            border: 3px solid #00ffff;
-            box-shadow: 0 0 50px rgba(0, 255, 255, 0.6);
-            animation: modalSlideIn 0.3s ease-out;
-        }
+.wp-title {
+    color: #00ffcc;
+    text-shadow: 0 0 15px #00ffcc;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 2px solid #00ffcc;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.4);
+}
 
-        @keyframes modalSlideIn {
-            from { transform: scale(0.7); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+.wp-description {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    border: 2px solid #00ffff;
+    text-align: center;
+}
 
-        .modal-content h3 {
-            margin-top: 0;
-            color: #00ffff;
-            font-size: 24px;
-            text-shadow: 0 0 10px #00ffff;
-            margin-bottom: 20px;
-        }
+.wp-description p {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    line-height: 1.6;
+    margin: 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
 
-        .modal-content label {
-            display: block;
-            margin: 15px 0 8px;
-            color: #ffffff;
-            text-align: left;
-            font-weight: 600;
-        }
+.wp-card-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
 
-        .modal-content input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #00ffff;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            background: rgba(0,0,0,0.5);
-            color: #ffffff;
-            font-size: 16px;
-        }
+.wp-card {
+    width: 200px;
+    height: auto;
+    min-height: 220px;
+    border: 3px solid #ff00ff;
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(255,0,255,0.15) 0%, rgba(0,255,255,0.15) 100%);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
+}
 
-        .modal-content .info-text {
-            color: #ff00ff;
-            font-weight: bold;
-            margin: 20px 0;
-            font-size: 18px;
-            text-shadow: 0 0 8px #ff00ff;
-            padding: 15px;
-            border: 2px solid #ff00ff;
-            border-radius: 10px;
-            background: rgba(255, 0, 255, 0.1);
-        }
+.wp-card h3 {
+    color: #ff00ff;
+    text-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+    font-size: 18px;
+    margin: 5px 0 15px 0;
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    padding: 8px 15px;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    text-align: center;
+}
 
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
-            justify-content: center;
-        }
+.qty-control-wrapper {
+    width: 100%;
+    margin: 15px 0;
+}
 
-        .modal-content button {
-            flex: 1;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-weight: bold;
-            color: #fff;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            min-width: 120px;
-        }
+.qty-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 0;
+    padding: 12px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    border: 2px solid #00ffff;
+}
 
-        .okBtn { 
-            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
-            box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
-        }
+.qty-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #00ffff;
+    background: rgba(0,255,255,0.3);
+    color: #00ffff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
 
-        .okBtn:hover { 
-            background: linear-gradient(135deg, #00cc00 0%, #009900 100%);
-            transform: translateY(-2px);
-        }
+.qty-btn:hover {
+    background: rgba(0,255,255,0.6);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
 
-        .closeBtn { 
-            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
-            box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
-        }
+.qty-display {
+    color: #00ffff;
+    font-size: 24px;
+    font-weight: bold;
+    min-width: 50px;
+    text-shadow: 0 0 15px rgba(0,255,255,0.7);
+    padding: 0 15px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    border: 1px solid #00ffff;
+}
 
-        .closeBtn:hover { 
-            background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
-            transform: translateY(-2px);
-        }
+.price-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 8px 15px;
+    background: rgba(255,204,0,0.2);
+    border-radius: 8px;
+    border: 2px solid #ffcc00;
+}
 
-        /*==========  COPY MESSAGE ==========*/
-        .copied-message {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
-            color: #fff;
-            font-weight: bold;
-            padding: 20px 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
-            z-index: 99999;
-            border: 3px solid #ffffff;
-            text-align: center;
-        }
+.price-amount {
+    color: #ffcc00;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,204,0,0.7);
+}
 
-        .copied-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-        }
+.select-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4);
+    margin-top: 10px;
+    min-width: 150px;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-        .copied-icon { font-size: 32px; }
-        .copied-text { font-size: 20px; font-weight: 800; }
-        .copied-subtext { font-size: 14px; opacity: 0.9; }
+.select-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 0, 255, 0.6);
+    border: 2px solid #ffffff;
+}
 
-        /*==========  FOOTER ==========*/
-        .footer {
-            margin-top: 30px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.7);
-            border-top: 1px solid #333;
-        }
-        
-      /* Social Links Styles ကိုဒီလိုပြင်မယ် */
+/* Footer Styles */
+.footer {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-top: 1px solid #333;
+}
+
 .social-links {
     display: flex;
     justify-content: center;
@@ -849,314 +840,167 @@
     background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
     box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
     border-color: #ffffff;
-    transform: translateY(-3px) scale(1.05);
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    .social-links {
-        gap: 10px;
-    }
-    
-    .social-link {
-        padding: 8px 15px;
-        font-size: 14px;
-        min-width: 100px;
-    }
+.copyright {
+    color: red;
+    font-size: 20px;
+    margin-top: 20px;
 }
 
-@media (max-width: 480px) {
-    .social-links {
-        flex-direction: column;
-        gap: 8px;
-    }
-    
-    .social-link {
-        width: 100%;
-        max-width: 200px;
-        padding: 10px 15px;
-    }
-}
-
-        /*==========  RESPONSIVE DESIGN ==========*/
-        @media (max-width: 768px) {
-            .card {
-                width: 160px;
-                min-height: 180px;
-                margin: 8px 4px;
-            }
-            
-            .card h3 {
-                font-size: 14px;
-                padding: 6px 10px;
-                min-height: 45px;
-            }
-            
-            .card p {
-                font-size: 16px;
-                padding: 6px 10px;
-                min-height: 40px;
-            }
-            
-            .card button {
-                min-width: 120px;
-                min-height: 40px;
-                font-size: 12px;
-                padding: 10px 15px;
-                margin: 8px 0 4px 0;
-            }
-            
-            .products {
-                gap: 15px;
-            }
-            
-            .wp-card {
-                width: 180px;
-                min-height: 200px;
-            }
-            
-            .modal-content {
-                width: 95%;
-                padding: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .card {
-                width: 150px;
-                min-height: 170px;
-                margin: 5px 3px;
-            }
-            
-            .card h3 {
-                font-size: 13px;
-                padding: 5px 8px;
-                min-height: 40px;
-            }
-            
-            .card p {
-                font-size: 15px;
-                padding: 5px 8px;
-                min-height: 35px;
-            }
-            
-            .card button {
-                min-width: 110px;
-                min-height: 35px;
-                font-size: 11px;
-                padding: 8px 12px;
-                margin: 6px 0 3px 0;
-            }
-            
-            .products {
-                gap: 10px;
-            }
-            
-            .wp-card {
-                width: 160px;
-                min-height: 180px;
-                padding: 15px 10px;
-            }
-        }
-        
-
-/*==========  TAB SYSTEM ==========*/
-.tab-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  margin: 20px 0;
-}
-
-.tab-btn {
-  padding: 12px 25px;
-  border: 2px solid #00ffff;
-  border-radius: 25px;
-  background: rgba(0,0,0,0.7);
-  color: #00ffff;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: all 0.3s ease;
-  box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
-}
-
-.tab-btn:hover {
-  background: rgba(0, 255, 255, 0.2);
-  transform: translateY(-2px);
-}
-
-.tab-btn.active {
-  background: linear-gradient(135deg, #00ffff 0%, #ff00ff 100%);
-  color: #000;
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.6);
-}
-
-.tab-content {
-  display: none;
-}
-
-.tab-content.active {
-  display: block;
-  animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/*==========  CASH PRICE SECTION ==========*/
-.cash-price-section {
-  margin: 20px 0;
-}
-
-.cash-title {
-  color: #00ff00;
-  text-shadow: 0 0 15px #00ff00;
-  font-size: 24px;
-  margin-bottom: 15px;
-  text-align: center;
-  border: 2px solid #00ff00;
-  border-radius: 10px;
-  padding: 10px 20px;
-  background: rgba(0,0,0,0.4);
-}
-
-/* Credit Description Style */
-.credit-description {
-  text-align: center;
-  margin: 10px 0;
-  padding: 12px;
-  background: rgba(255, 107, 53, 0.1);
-  border-radius: 10px;
-  border: 2px solid red;
-  color: red;
-  font-weight: bold;
-}
-
-/* Cash Description Style */
-.cash-description {
-  text-align: center;
-  margin: 10px 0;
-  padding: 12px;
-  background: rgba(0, 255, 0, 0.1);
-  border-radius: 10px;
-  border: 2px solid #00ff00;
-  color: #00ff00;
-  font-weight: bold;
-}
-/* ကံစမ်းမဲ Button Styles */
-.mini-lottery-btn {
-    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 25px;
-    cursor: pointer;
-    font-size: 16px;
-    font-weight: bold;
-    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
-    transition: all 0.3s ease;
-    border: 2px solid #ffffff;
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 250px;
-    position: relative;
-    overflow: hidden;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
 }
 
-.mini-lottery-btn:hover {
-    transform: translateY(-2px) scale(1.05);
-    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.6);
+    animation: modalSlideIn 0.3s ease-out;
 }
 
-.mini-lottery-btn span {
-    position: relative;
-    z-index: 2;
+@keyframes modalSlideIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
 }
 
-.btn-glow {
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    right: -10px;
-    bottom: -10px;
-    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
-    animation: glowMove 2s linear infinite;
-    z-index: 1;
-    border-radius: 30px;
+.modal-content h3 {
+    margin-top: 0;
+    color: #00ffff;
+    font-size: 24px;
+    text-shadow: 0 0 10px #00ffff;
+    margin-bottom: 20px;
 }
 
-@keyframes glowMove {
-    0% { transform: translateX(-100%); }
-    100% { transform: translateX(100%); }
+.modal-content label {
+    display: block;
+    margin: 15px 0 8px;
+    color: #ffffff;
+    text-align: left;
+    font-weight: 600;
 }
 
-/* Mobile Responsive */
-@media (max-width: 768px) {
-    #lotterySection {
-        margin: 15px auto;
-        max-width: 280px;
-        padding: 0 15px;
-    }
-    
-    .mini-lottery-btn {
-        padding: 10px 20px;
-        font-size: 25px;
-        max-width: 220px;
-    }
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: rgba(0,0,0,0.5);
+    color: #ffffff;
+    font-size: 16px;
 }
 
-/* iOS Safari Specific Fixes */
-@supports (-webkit-touch-callout: none) {
-    body {
-        -webkit-user-select: none;
-        -webkit-touch-callout: none;
-        -webkit-overflow-scrolling: touch;
-    }
-    
-    .card, .menu-card, .name-wrap {
-        -webkit-transform: translateZ(0);
-    }
-    
-    /* iOS input zoom prevention */
-    input, select, textarea {
-        font-size: 16px !important;
-    }
+.modal-content .info-text {
+    color: #ff00ff;
+    font-weight: bold;
+    margin: 20px 0;
+    font-size: 18px;
+    text-shadow: 0 0 8px #ff00ff;
+    padding: 15px;
+    border: 2px solid #ff00ff;
+    border-radius: 10px;
+    background: rgba(255, 0, 255, 0.1);
 }
 
-/* Mobile Tap Highlights */
-button, .menu-card, .card, .copy-btn {
-    -webkit-tap-highlight-color: transparent;
-    tap-highlight-color: transparent;
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
 }
 
-/* Mobile Performance */
-* {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
+.modal-content button {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    min-width: 120px;
 }
 
-/* Very Small Phones */
-@media (max-width: 320px) {
-    .card {
-        width: calc(50% - 5px) !important;
-        min-height: 150px !important;
-    }
-    
-    .card h3 {
-        font-size: 12px !important;
-        padding: 4px 6px !important;
-    }
-    
-    .card button {
-        font-size: 10px !important;
-        padding: 8px 10px !important;
-    }
+.okBtn { 
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
 }
 
+.okBtn:hover { 
+    background: linear-gradient(135deg, #00cc00 0%, #009900 100%);
+    transform: translateY(-2px);
+}
 
-/* Login Overlay ကို full screen ဖြစ်အောင်သေချာလုပ်ထားပါ */
+.closeBtn { 
+    background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.closeBtn:hover { 
+    background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+    transform: translateY(-2px);
+}
+
+/* Copy Message */
+.copied-message {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    color: #fff;
+    font-weight: bold;
+    padding: 20px 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+    z-index: 99999;
+    border: 3px solid #ffffff;
+    text-align: center;
+}
+
+.copied-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.copied-icon { font-size: 32px; }
+.copied-text { font-size: 20px; font-weight: 800; }
+.copied-subtext { font-size: 14px; opacity: 0.9; }
+
+.bank-copy {
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    border: 3px solid #00ff00;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+}
+
+.order-copy {
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    border: 3px solid #ff00ff;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+}
+
+/* Login Styles */
 .login-overlay {
     position: fixed;
     top: 0;
@@ -1289,33 +1133,12 @@ button, .menu-card, .card, .copy-btn {
     75% { transform: translateX(5px); }
 }
 
-/* Mobile Responsive for Login */
-@media (max-width: 768px) {
-    .login-container {
-        padding: 30px 20px;
-        margin: 20px;
-    }
-    
-    .login-title {
-        font-size: 32px;
-    }
-    
-    .login-subtitle {
-        font-size: 16px;
-    }
-    
-    .username-input {
-        padding: 12px 15px;
-        font-size: 16px;
-    }
-    
-    .login-btn {
-        padding: 12px 25px;
-        font-size: 16px;
-    }
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
-/* ========== USERNAME DISPLAY FIXED POSITION ========== */
+/* Username Display */
 .username-display {
     position: fixed;
     top: 10px;
@@ -1360,7 +1183,6 @@ button, .menu-card, .card, .copy-btn {
     animation: textPulse 2s ease-in-out infinite;
 }
 
-/* Floating animation */
 @keyframes usernameFloat {
     0%, 100% { 
         transform: translateY(0px) rotate(0deg); 
@@ -1380,7 +1202,6 @@ button, .menu-card, .card, .copy-btn {
     }
 }
 
-/* Text pulsing animation */
 @keyframes textPulse {
     0%, 100% { 
         text-shadow: 
@@ -1403,8 +1224,82 @@ button, .menu-card, .card, .copy-btn {
     }
 }
 
-/* Mobile Responsive for Username Display */
+/* Responsive Design */
 @media (max-width: 768px) {
+    .name-text {
+        font-size: 32px;
+    }
+    
+    .shop-sub {
+        font-size: 16px;
+    }
+    
+    #bankInfo {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pay-box {
+        min-width: 120px;
+        min-height: 120px;
+        padding: 12px;
+    }
+    
+    .center-note {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+    
+    .card {
+        width: 160px;
+        min-height: 180px;
+        margin: 8px 4px;
+    }
+    
+    .card h3 {
+        font-size: 14px;
+        padding: 6px 10px;
+        min-height: 45px;
+    }
+    
+    .price {
+        font-size: 16px;
+        padding: 6px 10px;
+        min-height: 40px;
+    }
+    
+    .card button {
+        min-width: 120px;
+        min-height: 40px;
+        font-size: 12px;
+        padding: 10px 15px;
+        margin: 8px 0 4px 0;
+    }
+    
+    .products {
+        gap: 15px;
+    }
+    
+    .wp-card {
+        width: 180px;
+        min-height: 200px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .social-links {
+        gap: 10px;
+    }
+    
+    .social-link {
+        padding: 8px 15px;
+        font-size: 14px;
+        min-width: 100px;
+    }
+    
     .username-display {
         top: 5px;
         right: 5px;
@@ -1417,10 +1312,79 @@ button, .menu-card, .card, .copy-btn {
         font-size: 16px;
         max-width: 130px;
     }
+    
+    .login-container {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .login-title {
+        font-size: 32px;
+    }
+    
+    .login-subtitle {
+        font-size: 16px;
+    }
+    
+    .username-input {
+        padding: 12px 15px;
+        font-size: 16px;
+    }
+    
+    .login-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
 }
 
-/* Very Small Phones */
 @media (max-width: 480px) {
+    .card {
+        width: 150px;
+        min-height: 170px;
+        margin: 5px 3px;
+    }
+    
+    .card h3 {
+        font-size: 13px;
+        padding: 5px 8px;
+        min-height: 40px;
+    }
+    
+    .price {
+        font-size: 15px;
+        padding: 5px 8px;
+        min-height: 35px;
+    }
+    
+    .card button {
+        min-width: 110px;
+        min-height: 35px;
+        font-size: 11px;
+        padding: 8px 12px;
+        margin: 6px 0 3px 0;
+    }
+    
+    .products {
+        gap: 10px;
+    }
+    
+    .wp-card {
+        width: 160px;
+        min-height: 180px;
+        padding: 15px 10px;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .social-link {
+        width: 100%;
+        max-width: 200px;
+        padding: 10px 15px;
+    }
+    
     .username-display {
         top: 3px;
         right: 3px;
@@ -1434,584 +1398,613 @@ button, .menu-card, .card, .copy-btn {
         max-width: 110px;
     }
 }
-</style>
+
+/* iOS Safari Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+    body {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .card, .menu-card, .name-wrap {
+        -webkit-transform: translateZ(0);
+    }
+    
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Mobile Tap Highlights */
+button, .menu-card, .card, .copy-btn {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+/* Mobile Performance */
+* {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
 
 
+/* ✅ ဒီအပိုင်းတွေပဲ ထားခဲ့ပါ */
+.admin-menu {
+    border-color: #ff6b35 !important;
+    background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(255,107,53,0.2) 100%) !important;
+}
+
+.admin-menu:hover {
+    box-shadow: 0 0 25px rgba(255,107,53,0.6) !important;
+    transform: translateY(-5px) scale(1.02);
+}
+
+.admin-menu h2 {
+    color: #ff6b35 !important;
+    text-shadow: 0 0 10px rgba(255,107,53,0.7) !important;
+}
+
+/* ✅ Admin Panel Styles - ဒီအပိုင်းပဲထားခဲ့ */
+#adminPanel {
+    display: none;
+    padding: 30px 25px;
+    margin: 30px auto;
+    max-width: 900px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    border: 3px solid #ff6b35;
+    box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+}
+
+.admin-section {
+    margin-bottom: 30px;
+}
+
+.action-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ✅ Phone Notification Styles - NOTI အတွက် ဒီအပိုင်းပဲထားခဲ့ */
+.phone-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+    z-index: 10000;
+    animation: slideIn 0.3s ease forwards;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.notification-icon {
+    font-size: 20px;
+}
+
+.notification-title {
+    font-weight: bold;
+    color: #00ffff;
+    flex: 1;
+    margin: 0 10px;
+}
+
+.notification-time {
+    font-size: 12px;
+    color: #888;
+}
+
+.notification-body {
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.notification-actions {
+    text-align: right;
+}
+
+.notification-ok {
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* ✅ User Notification Modal Styles - NOTI အတွက် ဒီအပိုင်းပဲထားခဲ့ */
+#userNotificationModal .modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    max-width: 400px;
+    text-align: center;
+}
+
+#userNotificationModal .info-text {
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    color: #ffffff;
+    margin: 15px 0;
+}
+
+/* Mobile Responsive for Notification */
+@media (max-width: 768px) {
+    .phone-notification {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+    }
+}
+
+
+    </style>
 </head>
 <body>
-<!-- Login Overlay -->
-<div id="loginOverlay" class="login-overlay">
-  <div class="login-container">
-    <div class="login-header">
-      <h1 class="login-title">🍒ဂွေးသီး🍒</h1>
-      <p class="login-subtitle">🏬စျေးဆိုင်ကြီး🏬</p>
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-container">
+            <div class="login-header">
+                <h1 class="login-title">MR-Gwayy</h1>
+                <p class="login-subtitle">🏬စျေးဆိုင်ကြီး🏬</p>
+            </div>
+            
+            <div class="login-form">
+                <input 
+                    type="text" 
+                    id="usernameInput" 
+                    placeholder=" သင့်နာမည်(၅)လုံးထည့်ပေးပါ(ဥပမာ.Yell Wint Zaw)" 
+                    class="username-input"
+                >
+                <button onclick="handleLogin()" class="login-btn">
+                    <span>ဝင်မည်</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+
+            <div id="loginError" class="error-message" style="display: none;">
+                နာမည်တူရှိတယ် ပြောင်းပေးပါ
+            </div>
+
+            <div id="loginSuccess" class="success-message" style="display: none;">
+                အောင်မြင်ပါသည်
+            </div>
+        </div>
     </div>
-    
-    <div class="login-form">
-      <input 
-        type="text" 
-        id="usernameInput" 
-        placeholder=" သင့်နာမည်(၅)လုံးထည့်ပေးပါ(ဥပမာ.Yell Wint Zaw)" 
-        class="username-input"
-      >
-      <button onclick="handleLogin()" class="login-btn">
-        <span>ဝင်မည်</span>
-        <div class="btn-glow"></div>
-      </button>
+
+    <!-- Username Display -->
+    <div id="usernameDisplay" class="username-display" style="display: none;">
+        <span id="displayedUsername"></span>
     </div>
 
-    <div id="loginError" class="error-message" style="display: none;">
-      နာမည်တူရှိတယ် ပြောင်းပေးပါ
+    <header>
+        <div class="name-wrap">
+            <span class="name-text">MR-Gwayy</span>
+            <p class="shop-sub">🏬စျေးဆိုင်ကြီး🏬</p>
+        </div>
+    </header>
+
+ 
+<!-- Bank Information -->
+    <div id="bankInfo">
+        <div class="pay-box kplus">
+            <div class="label">🏦 KPlus</div>
+            <div><strong>Ye Win Zaw</strong></div>
+            <div><strong>1651781546</strong></div>
+            <button class="copy-btn" onclick="mobileCopyText('1651781546', 'bank')">📲 Copy</button>
+        </div>
     </div>
-
-    <div id="loginSuccess" class="success-message" style="display: none;">
-      အောင်မြင်ပါသည်
-    </div>
-  </div>
-</div>
-
-<!-- Username Display -->
-<div id="usernameDisplay" class="username-display" style="display: none;">
-    <span id="displayedUsername"></span>
-  
-</div>
-
-
-<header>
-  <div class="name-wrap">
-    <span class="name-text">🍒ဂွေးသီး🍒</span>
-    <p class="shop-sub">🏬စျေးဆိုင်ကြီး🏬</p>
-  </div>
-</header>
-
-<div id="bankInfo">
-  <div class="pay-box kpay">
-    <div class="label">🏦 KPay</div>
-    <div><strong id="kpayNo">09898653323</strong></div>
-    <div><strong>Ye Wint Zaw</strong></div>
-    <!-- ✅ ပြင်ဆင်ပြီး -->
-    <button class="copy-btn" onclick="mobileCopyText('09898653323', 'bank')">📲 Copy</button>
-  </div>
-
-  <div class="center-note">👈 ဘဏ်နံပါတ် ကို ဒီမှာ Copy ယူပါ 👉</div>
-
-  <div class="pay-box kplus">
-    <div class="label">🏦 KPlus</div>
-    <div><strong id="kplusNo">1651781546</strong></div>
-    <div><strong>Ye Win Zaw</strong></div>
-    <!-- ✅ ပြင်ဆင်ပြီး -->
-    <button class="copy-btn" onclick="mobileCopyText('1651781546', 'bank')">📲 Copy</button>
-  </div>
-</div>
-
-<!-- ကံစမ်းမဲ Button (သေးသေးလေး) -->
-<div id="lotterySection" style="text-align: center; margin: 15px auto; max-width: 300px; padding: 0 20px;">
-  <button class="mini-lottery-btn" onclick="openLottery()">
-    <span>🎡 ကံစမ်းမဲ ကံစမ်းရန်</span>
-    <div class="btn-glow"></div>
-  </button>
-</div>
-
-<!-- Home Menu -->
-<div id="homeMenu" class="active">
-  <div class="menu-card full" onclick="openSection('pubg')"><h2>🎮 PUBG UC ဝယ်မည်</h2></div>
-  <div class="menu-card full" onclick="openSection('mlbb')"><h2>💎 MLBB စိန် ဝယ်မည်</h2></div>
-  <div class="menu-card full" onclick="openSection('tiktok')"><h2>🎵 TikTok ဝယ်မည်</h2></div>
-  <div class="menu-card full" onclick="openSection('facebook')"><h2>📘 Facebook ဝယ်မည်</h2></div>
-
-</div>
-
-
-
-
   
 
-<!-- PUBG -->
-<section id="pubg"><div class="bank-info-row">
-</div>
-  <h2>🎮 PUBG UC</h2>
-      <div class="credit-description">
-      <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
+    <!-- Home Menu -->
+    <div id="homeMenu" class="active">
+        <div class="menu-card" onclick="openSection('pubg')">
+            <h2>🎮 PUBG UC ဝယ်မည်</h2>
+        </div>
+        <div class="menu-card" onclick="openSection('mlbb_credit')">
+            <h2>💎 MLBB စိန် (အကြွေး)</h2>
+        </div>
+        <div class="menu-card" onclick="openSection('mlbb_cash')">
+            <h2>💵 MLBB စိန် (လက်ငင်း)</h2>
+        </div>
     </div>
-    <div class="credit-description">
-      <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
-    </div>
-  <div class="products">
-    <div class="card">
-      <h3>60 UC</h3>
-      <p>35B</p>
-      <button onclick="orderItem('PUBG 60 UC - 35B','pubg')">ဝယ်ယူမယ်</button>
-    </div>
-    <div class="card">
-      <h3>180 UC</h3>
-      <p>115B</p>
-      <button onclick="orderItem('PUBG 180 UC - 110B','pubg')">ဝယ်ယူမယ်</button>
-    </div>
-    <div class="card">
-      <h3>325 UC</h3>
-      <p>180B</p>
-      <button onclick="orderItem('PUBG 325 UC - 175B','pubg')">ဝယ်ယူမယ်</button>
-    </div>
-    <div class="card">
-      <h3>660 UC</h3>
-      <p>350B</p>
-      <button onclick="orderItem('PUBG 660 UC - 340B','pubg')">ဝယ်ယူမယ်</button>
-    </div>
-  </div>
-</section>
 
 
-
-<!-- MLBB Section -->
-<section id="mlbb">
-  <h2>💎 MLBB စိန်များ</h2>
-  
-  <!-- Tab Buttons -->
-  <div class="tab-buttons">
-    <button class="tab-btn active" onclick="openTab('creditTab')">🔄 အကြွေးစျေး</button>
-    <button class="tab-btn" onclick="openTab('cashTab')">💵 လက်ငင်းစျေး</button>
-  </div>
-
-  <!-- အကြွေးစျေး Tab -->
-  <div id="creditTab" class="tab-content active">
     
-    <!-- Credit Description -->
-    <div class="credit-description">
-      <p>💰 အကြွေးဝယ်ယူမည်ဆိုပါက ဤစျေးနှုန်းများအတိုင်းဖြစ်ပါသည်</p>
-    </div>
-    <div class="credit-description">
-      <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
-    </div>
-    <div class="credit-description">
-      <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
-    </div>
+   
 
-    <!-- Weekly Pass Section -->
-    <div class="weekly-pass-section">
-      <h3 class="wp-title">✨ Weekly Pass ✨</h3>
-      
-      <div class="wp-description">
-        <p>💎 Weekly Pass ဝယ်ယူလျှင် စိန် 80လုံး ရမယ်</p>
-        <p>ထည့်သည့်နေ့မှ နေ့တိုင်း စိန် 20 လုံး 7 ရက်ဝင်ယူရမယ်</p>
-        <p>စုစုပေါင်း စိန် 220လုံးနှင့် တခြား လက်ဆောင်များ ရရှိမှာ ဖြစ်ပါတယ်</p>
-      </div>
-      
-      <div class="wp-card-container">
-        <div class="wp-card">
-          <h3>✨  Weekly Pass ✨</h3>
-          <div class="qty-control-wrapper">
-            <div class="qty-control">
-              <button class="qty-btn minus" onclick="decreaseQty()">-</button>
-              <span id="qty" class="qty-display">1</span>
-              <button class="qty-btn plus" onclick="increaseQty()">+</button>
-            </div>
-            <div class="price-container">
-          
-              <span id="price" class="price-amount">60B</span>
-            </div>
-          </div>
-          <button class="select-btn" onclick="selectProduct()">ဝယ်ယူမယ်</button>
+    <!-- PUBG Section -->
+    <section id="pubg">
+        <h2>🎮 PUBG UC</h2>
+        <div class="credit-description">
+            <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
         </div>
-      </div>
-    </div>
+        <div class="credit-description">
+            <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
+        </div>
+        
+        <div class="products">
+            <div class="card">
+                <h3>60 UC</h3>
+                <p>35B</p>
+                <button onclick="orderItem('PUBG 60 UC - 35B','pubg')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>180 UC</h3>
+                <p>115B</p>
+                <button onclick="orderItem('PUBG 180 UC - 115B','pubg')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>325 UC</h3>
+                <p>180B</p>
+                <button onclick="orderItem('PUBG 325 UC - 180B','pubg')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>660 UC</h3>
+                <p>350B</p>
+                <button onclick="orderItem('PUBG 660 UC - 350B','pubg')">ဝယ်ယူမယ်</button>
+            </div>
+        </div>
+    </section>
 
-    <!-- Diamonds ×2 Section -->
-    <h2 style="color:yellow; text-shadow:0 0 8px yellow;">✨ Diamonds ×2ဆ ✨</h2>
+    <!-- MLBB Credit Section -->
+    <section id="mlbb_credit">
+        <h2>💎 MLBB စိန်များ (အကြွေး)</h2>
+        
+      
+        <div class="credit-description">
+            <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
+        </div>
+        <div class="credit-description">
+            <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
+        </div>
+
+        <!-- Weekly Pass Section -->
+        <div class="weekly-pass-section">
+            <h3 class="wp-title">✨ Weekly Pass ✨</h3>
+            
+         
+            
+            <div class="wp-card-container">
+                <div class="wp-card">
+                    <h3>✨ Weekly Pass ✨</h3>
+                    <div class="qty-control-wrapper">
+                        <div class="qty-control">
+                            <button class="qty-btn minus" onclick="decreaseQtyCredit()">-</button>
+                            <span id="qtyCredit" class="qty-display">1</span>
+                            <button class="qty-btn plus" onclick="increaseQtyCredit()">+</button>
+                        </div>
+                        <div class="price-container">
+                            <span id="priceCredit" class="price-amount">60B</span>
+                        </div>
+                    </div>
+                    <button class="select-btn" onclick="selectProductCredit()">ဝယ်ယူမယ်</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diamonds ×2 Section -->
+        <h3 class="diamond-title">✨ Diamonds ×2ဆ ✨</h3>
+        
+     
+
+        <div class="products">
+            <div class="card">
+                <h3>50 + 50</h3>
+                <p class="total-diamonds">စုစုပေါင်း 100 လုံး</p>
+                <p class="price">35B</p>
+                <button onclick="orderItem('MLBB 50+50 Diamonds - 35B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>150 + 150</h3>
+                <p class="total-diamonds">စုစုပေါင်း 300 လုံး</p>
+                <p class="price">100B</p>
+                <button onclick="orderItem('MLBB 150+150 Diamonds - 100B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>250 + 250</h3>
+                <p class="total-diamonds">စုစုပေါင်း 500 လုံး</p>
+                <p class="price">155B</p>
+                <button onclick="orderItem('MLBB 250+250 Diamonds - 155B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>500 + 500</h3>
+                <p class="total-diamonds">စုစုပေါင်း 1000 လုံး</p>
+                <p class="price">300B</p>
+                <button onclick="orderItem('MLBB 500+500 Diamonds - 300B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+        </div>
+
+        <!-- Normal Diamonds Section -->
+        <h3 class="diamond-title">✨ ရိုးရိုးစိန်များ ✨</h3>
+        
+     
+
+        <div class="products">
+            <div class="card">
+                <h3>11 လုံး</h3>
+                <p class="price">9B</p>
+                <button onclick="orderItem('MLBB 11 Diamonds - 9B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>86 လုံး</h3>
+                <p class="price">45B</p>
+                <button onclick="orderItem('MLBB 86 Diamonds - 45B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>172 လုံး</h3>
+                <p class="price">90B</p>
+                <button onclick="orderItem('MLBB 172 Diamonds - 90B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>257 လုံး</h3>
+                <p class="price">130B</p>
+                <button onclick="orderItem('MLBB 257 Diamonds - 130B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>343 လုံး</h3>
+                <p class="price">170B</p>
+                <button onclick="orderItem('MLBB 343 Diamonds - 170B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>429 လုံး</h3>
+                <p class="price">210B</p>
+                <button onclick="orderItem('MLBB 429 Diamonds - 210B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>706 လုံး</h3>
+                <p class="price">340B</p>
+                <button onclick="orderItem('MLBB 706 Diamonds - 340B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MLBB Cash Section -->
+    <section id="mlbb_cash">
+        <h2>💎 MLBB စိန်များ (လက်ငင်း)</h2>
+        
+       
+
+        <!-- Weekly Pass Section -->
+        <div class="weekly-pass-section">
+            <h3 class="wp-title">✨ Weekly Pass ✨</h3>
+            
+       
+            
+            <div class="wp-card-container">
+                <div class="wp-card">
+                    <h3>✨ Weekly Pass ✨</h3>
+                    <div class="qty-control-wrapper">
+                        <div class="qty-control">
+                            <button class="qty-btn minus" onclick="decreaseQtyCash()">-</button>
+                            <span id="qtyCash" class="qty-display">1</span>
+                            <button class="qty-btn plus" onclick="increaseQtyCash()">+</button>
+                        </div>
+                        <div class="price-container">
+                            <span id="priceCash" class="price-amount">55B</span>
+                        </div>
+                    </div>
+                    <button class="select-btn" onclick="selectProductCash()">ဝယ်ယူမယ်</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diamonds ×2 Section -->
+        <h3 class="diamond-title">✨ Diamonds ×2ဆ ✨</h3>
+        
+   
+
+        <div class="products">
+            <div class="card">
+                <h3>50 + 50</h3>
+                <p class="total-diamonds">စုစုပေါင်း 100 လုံး</p>
+                <p class="price">30B</p>
+                <button onclick="orderItem('MLBB 50+50 Diamonds - 30B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>150 + 150</h3>
+                <p class="total-diamonds">စုစုပေါင်း 300 လုံး</p>
+                <p class="price">90B</p>
+                <button onclick="orderItem('MLBB 150+150 Diamonds - 90B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>250 + 250</h3>
+                <p class="total-diamonds">စုစုပေါင်း 500 လုံး</p>
+                <p class="price">145B</p>
+                <button onclick="orderItem('MLBB 250+250 Diamonds - 145B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>500 + 500</h3>
+                <p class="total-diamonds">စုစုပေါင်း 1000 လုံး</p>
+                <p class="price">290B</p>
+                <button onclick="orderItem('MLBB 500+500 Diamonds - 290B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+        </div>
+
+        <!-- Normal Diamonds Section -->
+        <h3 class="diamond-title">✨ ရိုးရိုးစိန်များ ✨</h3>
+        
     
-     <div class="double-diamond-description">
-        <p>✨ Diamonds ×2ဆ သည် တမျိုးကို တစ်ကြိမ်သာဝယ်ယူနိုင်ပါသည်<br>
-        အကုန်လုံး တစ်ကြိမ်ဆီ ဝယ်ယူပီးလျှင် ထပ်မံဝယ်ယူလို့မရနိုင်ပါ✨</p>
-    </div>
 
-    <div class="products">
-      <div class="card">
-        <h3>50 + 50</h3>
-        <h3>စုစုပေါင်း 100 လုံး </h3>
-        <p>35B</p>
-        <button onclick="orderItem(' 50+50  - 35B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-      <div class="card">
-        <h3>150 + 150 </h3>
-        <h3>စုစုပေါင်း 300 လုံး </h3>
-        <p>100B</p>
-        <button onclick="orderItem(' 150+150  - 100B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-      <div class="card">
-        <h3>250 + 250 </h3>
-        <h3>စုစုပေါင်း 500 လုံး </h3>
-        <p>155B</p>
-        <button onclick="orderItem(' 250+250  - 155B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-      <div class="card">
-        <h3>500 + 500 </h3>
-        <h3>စုစုပေါင်း 1000 လုံး </h3>
-        <p>300B</p>
-        <button onclick="orderItem(' 500+500  - 300B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-    </div>
-
-    <!-- Normal Diamonds Section -->
-   <h2 style="color:yellowgreen; text-shadow:0 0 8px yellow;">✨ ရိုးရိုးစိန်များ✨</h2>
-    
-    <div class="normal-diamond-description">
-      <p> 💎  နှစ်သက်သလောက် ဝယ်ယူနိုင်ပါသည်<br>
-      Diamonds အများအပြားဝယ်ယူလိုလျှင်<br>
-      Messenger သို့ တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်💎</p>
-    </div>
-
-    <div class="products">
-      <div class="card">
-        <h3>11 လုံး</h3>
-        <p>9B</p>
-        <button onclick="orderItem(' 11 - 9B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-      <div class="card">
-        <h3>86 လုံး</h3>
-        <p>45B</p>
-        <button onclick="orderItem(' 86  - 45B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-      <div class="card">
-        <h3>172 လုံး</h3>
-        <p>90B</p>
-        <button onclick="orderItem('172  - 90B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-      <div class="card">
-        <h3>257 လုံး</h3>
-        <p>130B</p>
-        <button onclick="orderItem(' 257  - 130B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-      <div class="card">
-        <h3>343 လုံး</h3>
-        <p>170B</p>
-        <button onclick="orderItem(' 343  - 170B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-      <div class="card">
-        <h3>429 လုံး</h3>
-        <p>210B</p>
-        <button onclick="orderItem(' 429  - 210B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-      <div class="card">
-        <h3>706 လုံး</h3>
-        <p>340B</p>
-        <button onclick="orderItem(' 706  - 340B','mlbb')">ဝယ်ယူမယ်</button>
-      </div>
-    </div>
-  </div> <!-- creditTab ပိတ်တာ -->
-
-  <!-- လက်ငင်းစျေး Tab -->
-  <div id="cashTab" class="tab-content">
-    <div class="cash-price-section">
-      
-      <!-- Cash Description -->
-      <div class="cash-description">
-        <p>💰 လက်ငင်းငွေသွင်းဝယ်ယူမည်ဆိုပါက ဤစျေးနှုန်းများအတိုင်းဖြစ်ပါသည်</p>
-      </div>
-
-      <!-- Weekly Pass Section -->
-      <div class="weekly-pass-section">
-        <h3 class="wp-title">✨ Weekly Pass ✨</h3>
-        
-        <div class="wp-description">
-          <p>💎 Weekly Pass ဝယ်ယူလျှင် စိန် 80လုံး ရမယ်</p>
-          <p>ထည့်သည့်နေ့မှ နေ့တိုင်း စိန် 20 လုံး 7 ရက်ဝင်ယူရမယ်</p>
-          <p>စုစုပေါင်း စိန် 220လုံးနှင့် တခြား လက်ဆောင်များ ရရှိမှာ ဖြစ်ပါတယ်</p>
-        </div>
-        
-        <div class="wp-card-container">
-          <div class="wp-card">
-            <h3>✨ Weekly Pass ✨</h3>
-            <div class="qty-control-wrapper">
-              <div class="qty-control">
-                <button class="qty-btn minus" onclick="decreaseQtyCash()">-</button>
-                <span id="qtyCash" class="qty-display">1</span>
-                <button class="qty-btn plus" onclick="increaseQtyCash()">+</button>
-              </div>
-              <div class="price-container">
-             
-                <span id="priceCash" class="price-amount">55B</span>
-              </div>
+        <div class="products">
+            <div class="card">
+                <h3>11 လုံး</h3>
+                <p class="price">8B</p>
+                <button onclick="orderItem('MLBB 11 Diamonds - 8B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
-            <button class="select-btn" onclick="selectProductCash()">ဝယ်ယူမယ်</button>
-          </div>
+            <div class="card">
+                <h3>86 လုံး</h3>
+                <p class="price">40B</p>
+                <button onclick="orderItem('MLBB 86 Diamonds - 40B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>172 လုံး</h3>
+                <p class="price">85B</p>
+                <button onclick="orderItem('MLBB 172 Diamonds - 85B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>257 လုံး</h3>
+                <p class="price">120B</p>
+                <button onclick="orderItem('MLBB 257 Diamonds - 120B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>343 လုံး</h3>
+                <p class="price">160B</p>
+                <button onclick="orderItem('MLBB 343 Diamonds - 160B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>429 လုံး</h3>
+                <p class="price">200B</p>
+                <button onclick="orderItem('MLBB 429 Diamonds - 200B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>706 လုံး</h3>
+                <p class="price">330B</p>
+                <button onclick="orderItem('MLBB 706 Diamonds - 330B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
         </div>
-      </div>
+    </section>
+    
 
-      <!-- Diamonds ×2 Section -->
-      <h4 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">✨ Diamonds ×2ဆ ✨</h4>
+<!-- Admin Panel Section -->
+<section id="adminPanel">
+    <h2 style="color: #ff6b35; text-shadow: 0 0 10px rgba(255,107,53,0.7); text-align: center; margin-bottom: 30px;">
+        🛠️ စီမံခန့်ခွဲရေး
+    </h2>
+    
+    <!-- Notification System -->
+    <div class="admin-section">
+        <h3>📨 အသိပေးချက်ပို့ရန်</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <button class="action-btn" onclick="showNotificationForm()" 
+                    style="background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                📤 သုံးစွဲသူများထံပို့မည်
+            </button>
+        </div>
+    </div>
+
+    <!-- User Management -->
+    <div class="admin-section">
+        <h3>👥 သုံးစွဲသူများစီမံခန့်ခွဲမှု</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <button class="action-btn" onclick="viewAllUsers()" 
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                👤 သုံးစွဲသူအားလုံးကြည့်မည်
+            </button>
+            <button class="action-btn" onclick="viewBannedUsers()" 
+                    style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                🚫 ပိတ်ပင်ထားသူများ
+            </button>
+        </div>
+        <div id="usersDisplay" style="margin-top: 20px;"></div>
+    </div>
+
+ 
+
+    <!-- Credit System -->
+    <div class="admin-section">
+        <h3>💳 ခရက်ဒစ်စနစ်</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <button class="action-btn" onclick="showAddCreditForm()" 
+                    style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                ➕ သုံးစွဲသူခရက်ဒစ်ထည့်မည်
+            </button>
       
-      <div class="double-diamond-description">
-        <p>✨ Diamonds ×2ဆ သည် တမျိုးကို တစ်ကြိမ်သာဝယ်ယူနိုင်ပါသည်<br>
-        အကုန်လုံး တစ်ကြိမ်ဆီ ဝယ်ယူပီးလျှင် ထပ်မံဝယ်ယူလို့မရနိုင်ပါ✨</p>
-      </div>
-
-      <div class="products">
-        <div class="card">
-          <h3>50 + 50 </h3>
-          <h3>စုစုပေါင်း 100 လုံး </h3>
-          <p>30B</p>
-          <button onclick="orderItem(' 50+50 Diamonds - 30B','mlbb')">ဝယ်ယူမယ်</button>
+            <button class="action-btn" onclick="viewCreditReports()" 
+                    style="background: linear-gradient(135deg, #ffeb3b 0%, #f9a825 100%); color: black; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                📊 ခရက်ဒစ်အစီရင်ခံစာ
+            </button>
         </div>
-        <div class="card">
-          <h3>150 + 150 </h3>
-          <h3>စုစုပေါင်း 300 လုံး </h3>
-          <p>90B</p>
-          <button onclick="orderItem(' 150+150 - 90B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-        <div class="card">
-          <h3>250 + 250 </h3>
-             <h3>စုစုပေါင်း 500 လုံး </h3>
-          <p>145B</p>
-          <button onclick="orderItem('250+250= - 145B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-        <div class="card">
-          <h3>500 + 500 </h3>
-          <h3>စုစုပေါင်း 1000 လုံး </h3>
-          <p>290B</p>
-          <button onclick="orderItem(' 500+500 = - 290B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-      </div>
-
-      <!-- Normal Diamonds Section -->
-      <h4 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">💎 Normal Diamonds 💎</h4>
-      
-      <div class="normal-diamond-description">
-        <p>💎နှစ်သက်သလောက် ဝယ်ယူနိုင်ပါသည်<br>
-        Diamonds အများအပြားဝယ်ယူလိုလျှင်<br>
-        Messenger သို့ တိုက်ရိုက် ဆက်သွယ်နိုင်ပါသည်💎</p>
-      </div>
-
-      <div class="products">
-        <div class="card">
-          <h3>11 လုံး</h3>
-          <p>8B</p>
-          <button onclick="orderItem(' 11  - 8B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-        <div class="card">
-          <h3>86 လုံး</h3>
-          <p>40B</p>
-          <button onclick="orderItem(' 86  - 40B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-        <div class="card">
-          <h3>172 လုံး</h3>
-          <p>85B</p>
-          <button onclick="orderItem(' 172  - 85B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-        <div class="card">
-          <h3>257 လုံး</h3>
-          <p>120B</p>
-          <button onclick="orderItem(' 257  - 120B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-        <div class="card">
-          <h3>343 လုံး</h3>
-          <p>160B</p>
-          <button onclick="orderItem(' 343  - 160B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-        <div class="card">
-          <h3>429 လုံး</h3>
-          <p>200B</p>
-          <button onclick="orderItem(' 429  - 200B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-        <div class="card">
-          <h3>706 လုံး</h3>
-          <p>330B</p>
-          <button onclick="orderItem(' 706  - 330B','mlbb')">ဝယ်ယူမယ်</button>
-        </div>
-      </div>
-    </div>
-  </div> 
-</section>
-<!-- TikTok -->
-<section id="tiktok"><div class="bank-info-row">
-
-
-</div>
-  <h2>🎵 TikTok Services</h2>
-      <div class="credit-description">
-      <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
-    </div>
-    <div class="credit-description">
-      <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
+        <div id="creditDisplay" style="margin-top: 20px;"></div>
     </div>
 
-  <!-- Followers -->
-  <h2 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc;">👥 Followers</h2>
-  <div class="products">
-    <div class="card"><h3>100 </h3><p>20B</p><button onclick="orderItem('TikTok 100 Followers - 20B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 </h3><p>180B</p><button onclick="orderItem('TikTok 1k Followers - 180B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 </h3><p>1700B</p><button onclick="orderItem('TikTok 10k Followers - 1700B','tiktok')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Likes -->
-  <h2 style="color:#ff4444; text-shadow:0 0 8px #ff4444; margin-top:25px;">❤️ Likes</h2>
-  <div class="products">
-    <div class="card"><h3>1,000 👍</h3><p>5B</p><button onclick="orderItem('TikTok 1k Likes - 5B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>5,000 👍</h3><p>20B</p><button onclick="orderItem('TikTok 5k Likes - 20B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 👍</h3><p>35B</p><button onclick="orderItem('TikTok 10k Likes - 35B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>100,000 👍</h3><p>200B</p><button onclick="orderItem('TikTok 100k Likes - 200B','tiktok')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Views -->
-  <h2 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">👀 Views</h2>
-  <div class="products">
-    <div class="card"><h3>1,000 Views</h3><p>5B</p><button onclick="orderItem('TikTok 1k Views - 5B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>5,000 Views</h3><p>15B</p><button onclick="orderItem('TikTok 5k Views - 15B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Views</h3><p>25B</p><button onclick="orderItem('TikTok 10k Views - 25B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>100,000 Views</h3><p>120B</p><button onclick="orderItem('TikTok 100k Views - 120B','tiktok')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Shares -->
-  <h2 style="color:#00ff00; text-shadow:0 0 8px #00ff00; margin-top:25px;">🔄 Shares</h2>
-  <div class="products">
-    <div class="card"><h3>1,000 Shares</h3><p>5B</p><button onclick="orderItem('TikTok 1k Shares - 5B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>5,000 Shares</h3><p>20B</p><button onclick="orderItem('TikTok 5k Shares - 20B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Shares</h3><p>35B</p><button onclick="orderItem('TikTok 10k Shares - 35B','tiktok')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>100,000 Shares</h3><p>200B</p><button onclick="orderItem('TikTok 100k Shares - 200B','tiktok')">ဝယ်ယူမယ်</button></div>
-  </div>
-</section>
-
-<!-- Facebook -->
-<section id="facebook"><div class="bank-info-row">
-
-
-
-</div>
-  <h2>📘 Facebook Services</h2>
-      <div class="credit-description">
-      <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
-    </div>
-    <div class="credit-description">
-      <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
-    </div>
-
-  <!-- Followers -->
-  <h2 style="color:#00ccff; text-shadow:0 0 8px #00ccff;">👥 Followers</h2>
-  <div class="products">
-    <div class="card"><h3>100 Followers</h3><p>10B</p><button onclick="orderItem('Facebook 100 Followers - 10B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 Followers</h3><p>80B</p><button onclick="orderItem('Facebook 1k Followers - 80B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Followers</h3><p>700B</p><button onclick="orderItem('Facebook 10k Followers - 700B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Views -->
-  <h2 style="color:#ffdd00; text-shadow:0 0 8px #ffdd00; margin-top:25px;">👀 Views</h2>
-  <div class="products">
-    <div class="card"><h3>100 Views</h3><p>4B</p><button onclick="orderItem('Facebook 100 Views - 4B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 Views</h3><p>15B</p><button onclick="orderItem('Facebook 1k Views - 15B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Views</h3><p>60B</p><button onclick="orderItem('Facebook 10k Views - 60B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>100,000 Views</h3><p>400B</p><button onclick="orderItem('Facebook 100k Views - 400B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Shares -->
-  <h2 style="color:#00ff00; text-shadow:0 0 8px #00ff00; margin-top:25px;">🔄 Shares</h2>
-  <div class="products">
-    <div class="card"><h3>1,000 Shares</h3><p>8B</p><button onclick="orderItem('Facebook 1k Shares - 8B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>5,000 Shares</h3><p>30B</p><button onclick="orderItem('Facebook 5k Shares - 30B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Shares</h3><p>50B</p><button onclick="orderItem('Facebook 10k Shares - 50B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>100,000 Shares</h3><p>400B</p><button onclick="orderItem('Facebook 100k Shares - 400B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Like -->
-  <h2 style="color:#00ffcc; text-shadow:0 0 8px #00ffcc; margin-top:25px;">👍 Like</h2>
-  <div class="products">
-    <div class="card"><h3>100 Likes</h3><p>10B</p><button onclick="orderItem('Facebook Like 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 Likes</h3><p>85B</p><button onclick="orderItem('Facebook Like 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Likes</h3><p>800B</p><button onclick="orderItem('Facebook Like 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Love -->
-  <h2 style="color:#ff4444; text-shadow:0 0 8px #ff4444; margin-top:25px;">❤️ Love</h2>
-  <div class="products">
-    <div class="card"><h3>100 Loves</h3><p>10B</p><button onclick="orderItem('Facebook Love 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 Loves</h3><p>85B</p><button onclick="orderItem('Facebook Love 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Loves</h3><p>800B</p><button onclick="orderItem('Facebook Love 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Care -->
-  <h2 style="color:#ff66cc; text-shadow:0 0 8px #ff66cc; margin-top:25px;">🤗 Care</h2>
-  <div class="products">
-    <div class="card"><h3>100 Cares</h3><p>10B</p><button onclick="orderItem('Facebook Care 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 Cares</h3><p>85B</p><button onclick="orderItem('Facebook Care 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Cares</h3><p>800B</p><button onclick="orderItem('Facebook Care 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Wow -->
-  <h2 style="color:#ffaa00; text-shadow:0 0 8px #ffaa00; margin-top:25px;">😮 Wow</h2>
-  <div class="products">
-    <div class="card"><h3>100 Wows</h3><p>10B</p><button onclick="orderItem('Facebook Wow 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 Wows</h3><p>85B</p><button onclick="orderItem('Facebook Wow 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Wows</h3><p>800B</p><button onclick="orderItem('Facebook Wow 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Haha -->
-  <h2 style="color:#00ff00; text-shadow:0 0 8px #00ff00; margin-top:25px;">😂 Haha</h2>
-  <div class="products">
-    <div class="card"><h3>100 Hahas</h3><p>10B</p><button onclick="orderItem('Facebook Haha 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 Hahas</h3><p>85B</p><button onclick="orderItem('Facebook Haha 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Hahas</h3><p>800B</p><button onclick="orderItem('Facebook Haha 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Sad -->
-  <h2 style="color:#9999ff; text-shadow:0 0 8px #9999ff; margin-top:25px;">😢 Sad</h2>
-  <div class="products">
-    <div class="card"><h3>100 Sads</h3><p>10B</p><button onclick="orderItem('Facebook Sad 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 Sads</h3><p>85B</p><button onclick="orderItem('Facebook Sad 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Sads</h3><p>800B</p><button onclick="orderItem('Facebook Sad 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-
-  <!-- Angry -->
-  <h2 style="color:#ff0000; text-shadow:0 0 8px #ff0000; margin-top:25px;">😡 Angry</h2>
-  <div class="products">
-    <div class="card"><h3>100 Angrys</h3><p>10B</p><button onclick="orderItem('Facebook Angry 100 - 10B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>1,000 Angrys</h3><p>85B</p><button onclick="orderItem('Facebook Angry 1k - 85B','facebook')">ဝယ်ယူမယ်</button></div>
-    <div class="card"><h3>10,000 Angrys</h3><p>800B</p><button onclick="orderItem('Facebook Angry 10k - 800B','facebook')">ဝယ်ယူမယ်</button></div>
-  </div>
-</section>
-
-
-<!-- Footer -->
-<footer class="footer">
-    <div class="social-links">
-        <a href="https://www.facebook.com/share/19rS5698mz/" target="_blank" class="social-link facebook">📘 Facebook</a>
-        
-      
-        
-        <a href="https://m.me/hacker.ma.lar.ya.5555555555555" target="_blank" class="social-link messenger">💌 Messenger</a>
-        
-          <!-- Logout Button ဒီမှာထည့်မယ် -->
-        <button onclick="logout()" class="social-link logout-btn" style="background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);">
-            🚪 Logout
+    <!-- Back to Home Button -->
+    <div style="text-align: center; margin-top: 30px;">
+        <button class="mini-lottery-btn" onclick="goHome()" 
+                style="background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); padding: 15px 30px; font-size: 16px;">
+            🏠 ပင်မစာမျက်နှာသို့
         </button>
     </div>
-    
-    <p style="color: #aaa; font-size: 14px;">&copy; 2025 Gway Thee Shop. ကြိုက်နှစ်သက်ရာ ဝယ်ယူပါ.</p>
-</footer>
-  
-  
-<!-- Order Modal -->
-<div id="orderModal" class="modal">
-  <div class="modal-content">
-    <h3>Order</h3>
-    <div class="info-text">📌 <span id="selectedItem"></span></div>
+</section>
 
-    <!-- extra fields go here -->
-    <div id="extraFields"></div>
-
-    <div class="modal-buttons">
-      <button class="okBtn" onclick="finalizeOrder()">OK</button>
-      <button class="closeBtn" onclick="closeModal()">Close</button>
+     <!-- Lottery Button -->
+    <div id="lotterySection">
+        <button class="mini-lottery-btn" onclick="openLottery()">
+            <span>🎡 ကံစမ်းမဲ ကံစမ်းရန်</span>
+            <div class="btn-glow"></div>
+        </button>
     </div>
-  </div>
-</div>
-<!-- Copy Message -->
-<div id="copiedMsg" class="copied-message">
-  <div class="copied-content">
-    <span class="copied-icon">✅</span>
-    <span class="copied-text">ကူးယူပြီးပါပြီ!</span>
-    <span class="copied-subtext">Messenger သို့ ကူးသွားမည်...</span>
-  </div>
-</div>
+   
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/19rS5698mz/" target="_blank" class="social-link facebook">📘 Facebook</a>
+            <a href="https://m.me/hacker.ma.lar.ya.5555555555555" target="_blank" class="social-link messenger">💌 Messenger</a>
+            <button onclick="logout()" class="social-link logout-btn">🚪 Logout</button>
+        </div>
+        
+        <p class="copyright">&copy; 2025 MR-Gwayy (မူပိုင်ခွင့်)</p>
+    </footer>
 
-<script>
-// ========== FIREBASE CONFIGURATION ==========
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <h3>Order</h3>
+            <div class="info-text">📌 <span id="selectedItem"></span></div>
+
+            <div id="extraFields"></div>
+
+            <div class="modal-buttons">
+                <button class="okBtn" onclick="finalizeOrder()">OK</button>
+                <button class="closeBtn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copy Message -->
+    <div id="copiedMsg" class="copied-message">
+        <div class="copied-content">
+            <span class="copied-icon">✅</span>
+            <span class="copied-text">ကူးယူပြီးပါပြီ!</span>
+            <span class="copied-subtext">Messenger သို့ ကူးသွားမည်...</span>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script> 
+    
+    // ========== FIREBASE CONFIGURATION ==========
 const firebaseConfig = {
     apiKey: "AIzaSyBtv_3J7OmczCrbl1wPrvBdS_7m7bpVboI",
     authDomain: "gway-shop.firebaseapp.com",
@@ -2025,175 +2018,176 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 const database = firebase.database();
-// CLEANED AND FIXED JAVASCRIPT
 
-// ========== USER LOGIN ALERT CONFIG ==========
-const USER_LOGIN_BOT_TOKEN = '8223400760:AAF-qCC3IxPGiyxHVBsjLIAIJwRHSx1nPhY';
-const USER_LOGIN_CHAT_ID = '5236329716'; // သင့် chat ID ထည့်ပါ
-
-// User login alert function
-async function sendUserLoginAlert(username) {
-    try {
-        const ipData = await getIPAddress();
-        const message = `
-👤 **ဂွေးသီးဆိုင် - User Login**
-━━━━━━━━━━━━━━━━━━
-🆔 User: ${username}
-📅 Login Time: ${new Date().toLocaleString()}
-🌐 IP Address: ${ipData.ip}
-📱 Device: ${getDeviceType()}
-        `;
-        
-        // Send to Telegram with new bot
-        await fetch(`https://api.telegram.org/bot${USER_LOGIN_BOT_TOKEN}/sendMessage`, {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-                chat_id: USER_LOGIN_CHAT_ID,
-                text: message,
-                parse_mode: 'Markdown'
-            })
-        });
-    } catch (error) {
-        console.error('User login alert error:', error);
-    }
-}
-
-// ========== AUTO SAVE SYSTEM FUNCTIONS ==========
-// Load saved MLBB IDs
-function loadSavedMLBBIds() {
-    const savedGameId = localStorage.getItem('mlbb_gameId');
-    const savedServerId = localStorage.getItem('mlbb_serverId');
-    
-    if (savedGameId) {
-        console.log('Loaded saved Game ID:', savedGameId);
-    }
-    if (savedServerId) {
-        console.log('Loaded saved Server ID:', savedServerId);
-    }
-}
-
-// Auto-fill MLBB IDs when modal opens
-function autoFillMLBBIds() {
-    const savedGameId = localStorage.getItem('mlbb_gameId');
-    const savedServerId = localStorage.getItem('mlbb_serverId');
-    
-    const gameIdInput = document.getElementById('gameId');
-    const serverIdInput = document.getElementById('serverId');
-    
-    if (gameIdInput && savedGameId) {
-        gameIdInput.value = savedGameId;
-    }
-    if (serverIdInput && savedServerId) {
-        serverIdInput.value = savedServerId;
-    }
-}
-
-// Save MLBB IDs to localStorage
-function saveMLBBIds(gameId, serverId) {
-    if (gameId && gameId.trim() !== '') {
-        localStorage.setItem('mlbb_gameId', gameId.trim());
-        console.log('Saved Game ID:', gameId.trim());
-    }
-    if (serverId && serverId.trim() !== '') {
-        localStorage.setItem('mlbb_serverId', serverId.trim());
-        console.log('Saved Server ID:', serverId.trim());
-    }
-}
-
-
-let currentItem = "", currentType = "";
-
-
+// ========== TELEGRAM CONFIGURATION ==========
 const TELEGRAM_BOT_TOKEN = '8378213405:AAE39lvznw4LvYAjJVfHZpiKAykwjtnafFk';
 const TELEGRAM_CHAT_ID = '5236329716';
-// Section management
+const USER_LOGIN_BOT_TOKEN = '8223400760:AAF-qCC3IxPGiyxHVBsjLIAIJwRHSx1nPhY';
+const USER_LOGIN_CHAT_ID = '5236329716';
+
+// ========== GLOBAL VARIABLES ==========
+let currentItem = "";
+let currentType = "";
+
+// ========== LOGIN SYSTEM ==========
+function handleLogin() {
+    const usernameInput = document.getElementById('usernameInput');
+    const username = usernameInput.value.trim();
+    
+    hideMessages();
+    
+    if (username.length < 5) {
+        showError('အနည်းဆုံး ၅ လုံးထည့်ပါ');
+        return;
+    }
+    
+    const loginBtn = document.querySelector('.login-btn');
+    loginBtn.innerHTML = '<span>စစ်ဆေးနေသည်...</span>';
+    loginBtn.disabled = true;
+    
+    checkUsername(username)
+        .then(exists => {
+            if (exists) {
+                showSuccess();
+                setTimeout(() => {
+                    completeLogin(username);
+                }, 1500);
+            } else {
+                saveUsername(username)
+                    .then(() => {
+                        showSuccess();
+                        setTimeout(() => {
+                            completeLogin(username);
+                        }, 1500);
+                    })
+                    .catch(error => {
+                        showError('Error ရှိပါတယ်');
+                    });
+            }
+        })
+        .catch(error => {
+            showError('Error ရှိပါတယ်');
+        })
+        .finally(() => {
+            loginBtn.innerHTML = '<span>ဝင်မည်</span><div class="btn-glow"></div>';
+            loginBtn.disabled = false;
+        });
+}
+
+function checkUsername(username) {
+    return database.ref('usernames/' + username).once('value')
+        .then(snapshot => snapshot.exists());
+}
+
+function saveUsername(username) {
+    return database.ref('usernames/' + username).set(true);
+}
+
+
+function showError(message) {
+    const errorDiv = document.getElementById('loginError');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+}
+
+function showSuccess() {
+    document.getElementById('loginSuccess').style.display = 'block';
+}
+
+function hideMessages() {
+    document.getElementById('loginError').style.display = 'none';
+    document.getElementById('loginSuccess').style.display = 'none';
+}
+
+// ========== SECTION MANAGEMENT ==========
 function openSection(id) {
-  document.getElementById("homeMenu").style.display = "none";
-  document.querySelectorAll("section").forEach(s => s.style.display = "none");
-  document.getElementById(id).style.display = "block";
-  history.pushState({ page: id }, "", "#" + id);
+    document.getElementById("homeMenu").style.display = "none";
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById(id).style.display = "block";
+    history.pushState({ page: id }, "", "#" + id);
 }
 
 function goHome() {
-  document.querySelectorAll("section").forEach(s => s.style.display = "none");
-  document.getElementById("homeMenu").style.display = "grid";
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById("homeMenu").style.display = "grid";
 }
 
+// ========== ORDER SYSTEM ==========
 function orderItem(item, type) {
-  currentItem = item; 
-  currentType = type;
-  document.getElementById("selectedItem").innerText = item;
+    currentItem = item; 
+    currentType = type;
+    document.getElementById("selectedItem").innerText = item;
 
-  let extra = document.getElementById("extraFields");
-  extra.innerHTML = "";
+    let extra = document.getElementById("extraFields");
+    extra.innerHTML = "";
 
-  if (type === "mlbb") {
-    extra.innerHTML = `
-      <label>Game ID</label>
-      <div style="position: relative;">
-        <input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
-        <button onclick="clearInput('gameId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
-      </div>
-      <label>Server ID</label>
-      <div style="position: relative;">
-        <input id="serverId" placeholder="Server ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
-        <button onclick="clearInput('serverId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
-      </div>
-    `;
-    
-    // Auto-fill saved IDs
-    setTimeout(autoFillMLBBIds, 100);
-    
-  } else if (type === "pubg") {
-    extra.innerHTML = `
-      <label>Game ID</label>
-      <div style="position: relative;">
-        <input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
-        <button onclick="clearInput('gameId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
-      </div>
-    `;
-  } else {
-    extra.innerHTML = `
-      <label>Link ထည့်ပါ</label>
-      <div style="position: relative;">
-        <input id="link" placeholder="Link ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
-        <button onclick="clearInput('link')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
-      </div>
-    `;
-  }
+    if (type === "mlbb" || type === "mlbb_credit" || type === "mlbb_cash") {
+        extra.innerHTML = `
+            <label>Game ID</label>
+            <div style="position: relative;">
+                <input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+                <button onclick="clearInput('gameId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+            </div>
+            <label>Server ID</label>
+            <div style="position: relative;">
+                <input id="serverId" placeholder="Server ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+                <button onclick="clearInput('serverId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+            </div>
+        `;
+        
+        setTimeout(autoFillMLBBIds, 100);
+        
+    } else if (type === "pubg") {
+        extra.innerHTML = `
+            <label>Game ID</label>
+            <div style="position: relative;">
+                <input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+                <button onclick="clearInput('gameId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+            </div>
+        `;
+    }
 
-  document.getElementById("orderModal").style.display = "flex";
-  history.pushState({ page: "modal" }, "", "#modal");
+    document.getElementById("orderModal").style.display = "flex";
+    history.pushState({ page: "modal" }, "", "#modal");
 }
 
-// Clear single input field function
 function clearInput(inputId) {
-  const input = document.getElementById(inputId);
-  if (input) {
-    input.value = '';
-    input.focus();
-  }
+    const input = document.getElementById(inputId);
+    if (input) {
+        input.value = '';
+        input.focus();
+    }
 }
 
 function closeModal() {
-  document.getElementById("orderModal").style.display = "none";
-  if (window.location.hash === '#modal') {
-    history.back();
-  }
+    document.getElementById("orderModal").style.display = "none";
+    if (window.location.hash === '#modal') {
+        history.back();
+    }
 }
 
+// Order တင်တဲ့အခါမှာလည်း ban check ထည့်မယ်
 async function finalizeOrder() {
     const username = localStorage.getItem('gway_username') || 'Unknown User';
     
-    const finalizeBtn = document.querySelector('#orderModal button');
+    // Check if user is banned before processing order
+    const isBanned = await checkIfBanned(username);
+    if (isBanned) {
+        alert('🚫 Your account is temporarily suspended. You cannot place orders. Please contact admin for more information.');
+        return;
+    }
+    
+    const finalizeBtn = document.querySelector('#orderModal .okBtn');
+    const originalText = finalizeBtn.textContent;
     finalizeBtn.disabled = true;
     finalizeBtn.textContent = '...ပို့နေပါသည်...';
     
     let orderData = {};
     
+  
+    
     try {
-        if (currentType === "mlbb") {
+        if (currentType === "mlbb" || currentType === "mlbb_credit" || currentType === "mlbb_cash") {
             const gameId = document.getElementById("gameId")?.value.trim() || "";
             const serverId = document.getElementById("serverId")?.value.trim() || "";
             
@@ -2208,7 +2202,6 @@ async function finalizeOrder() {
                 return;
             }
             
-            // Save IDs to localStorage
             saveMLBBIds(gameId, serverId);
             
             orderData = { 
@@ -2235,25 +2228,8 @@ async function finalizeOrder() {
                 gameId,
                 type: 'PUBG'
             };
-        } else {
-            const link = document.getElementById("link")?.value.trim() || "";
-            
-            if (!link) {
-                alert("❌ Link ထည့်ပေးပါ");
-                document.getElementById("link").focus();
-                return;
-            }
-            
-            orderData = { 
-                username: username,
-                product: currentItem, 
-                price: currentItem.split('-')[1]?.trim(), 
-                link,
-                type: currentType.toUpperCase()
-            };
         }
 
-        // Send to Telegram
         const success = await sendToTelegram(orderData);
         
         if (success) {
@@ -2270,207 +2246,188 @@ async function finalizeOrder() {
         alert('❌ အော်ဒါမှားယွင်းနေပါသည်။');
     } finally {
         finalizeBtn.disabled = false;
-        finalizeBtn.textContent = 'မှာယူမည်';
+        finalizeBtn.textContent = originalText;
     }
 }
- 
 
-// Copy functions
-function copyText(text, type = 'bank') {
-  navigator.clipboard.writeText(text).then(() => {
-    showCopied(type);
-  }).catch(() => {
-    // Fallback
-    const textArea = document.createElement('textarea');
-    textArea.value = text;
-    document.body.appendChild(textArea);
-    textArea.select();
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-    showCopied(type);
-  });
+// ========== WEEKLY PASS SYSTEM ==========
+// Credit Weekly Pass
+const basePriceCredit = 60;
+
+function updatePriceCredit() {
+    let qty = parseInt(document.getElementById("qtyCredit").innerText);
+    let total = basePriceCredit * qty;
+    document.getElementById("priceCredit").innerText = total + "B";
+}
+
+function increaseQtyCredit() {
+    let qtyElem = document.getElementById("qtyCredit");
+    let qty = parseInt(qtyElem.innerText);
+    qtyElem.innerText = qty + 1;
+    updatePriceCredit();
+}
+
+function decreaseQtyCredit() {
+    let qtyElem = document.getElementById("qtyCredit");
+    let qty = parseInt(qtyElem.innerText);
+    if (qty > 1) {
+        qtyElem.innerText = qty - 1;
+        updatePriceCredit();
+    }
+}
+
+function selectProductCredit() {
+    let qty = parseInt(document.getElementById("qtyCredit").innerText);
+    let total = basePriceCredit * qty;
+    orderItem(`MLBB Weekly Pass ×${qty} - ${total}B`, "mlbb_credit");
+}
+
+// Cash Weekly Pass
+const basePriceCash = 55;
+
+function updatePriceCash() {
+    let qty = parseInt(document.getElementById("qtyCash").innerText);
+    let total = basePriceCash * qty;
+    document.getElementById("priceCash").innerText = total + "B";
+}
+
+function increaseQtyCash() {
+    let qtyElem = document.getElementById("qtyCash");
+    let qty = parseInt(qtyElem.innerText);
+    qtyElem.innerText = qty + 1;
+    updatePriceCash();
+}
+
+function decreaseQtyCash() {
+    let qtyElem = document.getElementById("qtyCash");
+    let qty = parseInt(qtyElem.innerText);
+    if (qty > 1) {
+        qtyElem.innerText = qty - 1;
+        updatePriceCash();
+    }
+}
+
+function selectProductCash() {
+    let qty = parseInt(document.getElementById("qtyCash").innerText);
+    let total = basePriceCash * qty;
+    orderItem(`MLBB Weekly Pass ×${qty} - ${total}B`, "mlbb_cash");
+}
+
+// ========== UTILITY FUNCTIONS ==========
+function mobileCopyText(text, type = 'bank') {
+    const tempInput = document.createElement('input');
+    tempInput.style.fontSize = '16px';
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999);
+    
+    let success = false;
+    try {
+        success = document.execCommand('copy');
+    } catch (err) {
+        console.error('Copy failed:', err);
+    }
+    
+    document.body.removeChild(tempInput);
+    
+    if (success) {
+        showCopied(type);
+        return true;
+    } else {
+        navigator.clipboard.writeText(text).then(() => {
+            showCopied(type);
+        }).catch(() => {
+            alert('Copy လုပ်ရန်နှိပ်ပါ: ' + text);
+        });
+    }
 }
 
 function showCopied(type = 'bank') {
-  let msg = document.getElementById("copiedMsg");
-  if (!msg) return;
-  
-  msg.classList.remove('bank-copy', 'order-copy');
-  
-  if (type === 'order') {
-    msg.classList.add('order-copy');
-    msg.querySelector('.copied-text').textContent = 'အောင်မြင်ပါပီ!🥰';
-    msg.querySelector('.copied-subtext').textContent = 'Order မှာယူပီးပါပီ..ခဏစောင့်ပေးပါ';
-  } else {
-    msg.classList.add('bank-copy');
-    msg.querySelector('.copied-text').textContent = 'အောင်မြင်ပါပြီ!';
-    msg.querySelector('.copied-subtext').textContent = 'ဘဏ်နံပါတ် clipboard ထဲရောက်နေပါပြီ';
-  }
-  
-  msg.style.display = 'block';
-  setTimeout(() => {
-    msg.style.display = 'none';
-  }, 3000);
-}
-
-// Weekly Pass functions
-const basePrice = 60;
-
-function updatePrice() {
-  let qty = parseInt(document.getElementById("qty").innerText);
-  let total = basePrice * qty;
-  document.getElementById("price").innerText = total + "B";
-}
-
-function increaseQty() {
-  let qtyElem = document.getElementById("qty");
-  let qty = parseInt(qtyElem.innerText);
-  qtyElem.innerText = qty + 1;
-  updatePrice();
-}
-
-function decreaseQty() {
-  let qtyElem = document.getElementById("qty");
-  let qty = parseInt(qtyElem.innerText);
-  if (qty > 1) {
-    qtyElem.innerText = qty - 1;
-    updatePrice();
-  }
-}
-
-function selectProduct() {
-  let qty = parseInt(document.getElementById("qty").innerText);
-  let total = basePrice * qty;
-  orderItem(`MLBB Weekly Pass ×${qty} - ${total}B`, "mlbb");
-}
-
-// Event listeners
-window.onpopstate = function(e) {
-  if (!e.state) { 
-    goHome();
-    document.getElementById("orderModal").style.display = "none";
-    return;
-  }
-  if (e.state.page === "modal") {
-    document.getElementById("orderModal").style.display = "flex";
-  } else {
-    document.getElementById("orderModal").style.display = "none";
-    document.querySelectorAll("section").forEach(s => s.style.display = "none");
-    if (document.getElementById(e.state.page)) {
-      document.getElementById(e.state.page).style.display = "block";
+    let msg = document.getElementById("copiedMsg");
+    if (!msg) return;
+    
+    msg.classList.remove('bank-copy', 'order-copy');
+    
+    if (type === 'order') {
+        msg.classList.add('order-copy');
+        msg.querySelector('.copied-text').textContent = 'အောင်မြင်ပါပီ!🥰';
+        msg.querySelector('.copied-subtext').textContent = 'Order မှာယူပီးပါပီ..ခဏစောင့်ပေးပါ';
     } else {
-      goHome();
+        msg.classList.add('bank-copy');
+        msg.querySelector('.copied-text').textContent = 'အောင်မြင်ပါပြီ!';
+        msg.querySelector('.copied-subtext').textContent = 'ဘဏ်နံပါတ် clipboard ထဲရောက်နေပါပြီ';
     }
-  }
-};
-
-// Page load initialization
-document.addEventListener('DOMContentLoaded', function() {
-  const hash = window.location.hash.substring(1);
-  
-  // Load saved MLBB IDs - ✅ ဒီလိုင်းကို ဒီနေရာမှာ ထည့်ပါ
-  loadSavedMLBBIds();
-  
-  // Close modal initially
-  document.getElementById("orderModal").style.display = "none";
-  
-  if (hash === "modal") {
-    goHome();
-    history.replaceState({ page: "home" }, "", "#");
-  } else if (hash && document.getElementById(hash)) {
-    openSection(hash);
-  }
-  
-  // Add Enter key support for modal
-  document.addEventListener('keypress', function(e) {
-    if (e.key === 'Enter' && document.getElementById("orderModal").style.display === "flex") {
-      finalizeOrder();
-    }
-  });
-});
-
-// Additional utility functions
-function validateInput(input) {
-  return input && input.trim() !== "";
+    
+    msg.style.display = 'block';
+    setTimeout(() => {
+        msg.style.display = 'none';
+    }, 3000);
 }
 
-// Backup function for any missing elements
-function ensureElements() {
-  // Ensure modal exists and is hidden by default
-  if (!document.getElementById("orderModal")) {
-    console.warn("Order modal not found");
-  }
-  
-  // Ensure home menu is visible by default
-  if (document.getElementById("homeMenu")) {
-    document.getElementById("homeMenu").style.display = "grid";
-  }
+function openLottery() {
+    window.open('https://yell1992.github.io/Yell1992/', '_blank');
+    
+    const button = document.querySelector('.mini-lottery-btn');
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        button.style.transform = 'scale(1)';
+    }, 150);
+    
+    console.log('User clicked lottery button');
 }
 
-// Call ensureElements on load
-setTimeout(ensureElements, 100);
-
-// Error boundary for any uncaught errors
-window.addEventListener('error', function(e) {
-  console.error('Global error:', e.error);
-});
-
-// Mobile touch improvements
-document.addEventListener('touchstart', function() {}, {passive: true});
-
-// Performance optimization - debounce resize events
-let resizeTimeout;
-window.addEventListener('resize', function() {
-  clearTimeout(resizeTimeout);
-  resizeTimeout = setTimeout(function() {
-    // Handle resize if needed
-  }, 250);
-});
-
-// Utility function to check if element is in viewport
-function isElementInViewport(el) {
-  const rect = el.getBoundingClientRect();
-  return (
-    rect.top >= 0 &&
-    rect.left >= 0 &&
-    rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-    rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-  );
-}
-
-// Smooth scrolling for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start'
-      });
+// ========== MLBB ID AUTO-SAVE SYSTEM ==========
+function loadSavedMLBBIds() {
+    const savedGameId = localStorage.getItem('mlbb_gameId');
+    const savedServerId = localStorage.getItem('mlbb_serverId');
+    
+    if (savedGameId) {
+        console.log('Loaded saved Game ID:', savedGameId);
     }
-  });
-});
+    if (savedServerId) {
+        console.log('Loaded saved Server ID:', savedServerId);
+    }
+}
 
+function autoFillMLBBIds() {
+    const savedGameId = localStorage.getItem('mlbb_gameId');
+    const savedServerId = localStorage.getItem('mlbb_serverId');
+    
+    const gameIdInput = document.getElementById('gameId');
+    const serverIdInput = document.getElementById('serverId');
+    
+    if (gameIdInput && savedGameId) {
+        gameIdInput.value = savedGameId;
+    }
+    if (serverIdInput && savedServerId) {
+        serverIdInput.value = savedServerId;
+    }
+}
 
-  
+function saveMLBBIds(gameId, serverId) {
+    if (gameId && gameId.trim() !== '') {
+        localStorage.setItem('mlbb_gameId', gameId.trim());
+        console.log('Saved Game ID:', gameId.trim());
+    }
+    if (serverId && serverId.trim() !== '') {
+        localStorage.setItem('mlbb_serverId', serverId.trim());
+        console.log('Saved Server ID:', serverId.trim());
+    }
+}
 
-
+// ========== TELEGRAM INTEGRATION ==========
 async function sendToTelegram(orderData) {
     try {
         let orderType = 'လက်ငင်းစျေး'; 
         
         const creditProducts = {
-            // Weekly Pass
             'Weekly Pass': { cash: 55, credit: 60 },
-            
-            // Diamonds ×2ဆ
             '50+50 Diamonds': { cash: 30, credit: 35 },
             '150+150 Diamonds': { cash: 90, credit: 100 },
             '250+250 Diamonds': { cash: 145, credit: 155 },
             '500+500 Diamonds': { cash: 290, credit: 300 },
-            
-            // ရိုးရိုး Diamonds
             '11 Diamonds': { cash: 8, credit: 9 },
             '86 Diamonds': { cash: 40, credit: 45 },
             '172 Diamonds': { cash: 85, credit: 90 },
@@ -2502,24 +2459,20 @@ async function sendToTelegram(orderData) {
             orderType = 'လက်ငင်းစျေး';
         }
 
-        // ✅ ဒီ message ကိုပဲ ပြင်ရမယ်
         const message = `
 🆕 **ဂွေးသီး -စျေးဆိုင်ကြီး**
 ━━━━━━━━━━━━━━━━━━
-👤        ${orderData.username}**  
-🎮        ${orderData.type}
-💰        ${orderType}
-🛒        ${orderData.product}
-💵        ${orderData.price}
+👤 ${orderData.username}  
+🎮 ${orderData.type}
+💰 ${orderType}
+🛒 ${orderData.product}
+💵 ${orderData.price}
 
-${orderData.gameId ? `🎮 Game ID:\n\`
-${orderData.gameId}\`` : ''}
+${orderData.gameId ? `🎮 Game ID: ${orderData.gameId}` : ''}
 
-${orderData.serverId ? `🌐 Server ID:\n\`
-${orderData.serverId}\`` : ''}
+${orderData.serverId ? `🌐 Server ID: ${orderData.serverId}` : ''}
 
-${orderData.link ? `🔗 Link:\n\`
-${orderData.link}\`` : ''}
+${orderData.link ? `🔗 Link: ${orderData.link}` : ''}
 
 ⏰ ${new Date().toLocaleString('en-GB', { hour12: false })}
         `;
@@ -2543,162 +2496,114 @@ ${orderData.link}\`` : ''}
     }
 }
 
-
-// Auto-focus first input in modal when opened
-const observer = new MutationObserver(function(mutations) {
-  mutations.forEach(function(mutation) {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'style') {
-      const modal = document.getElementById("orderModal");
-      if (modal.style.display === 'flex') {
-        setTimeout(() => {
-          const firstInput = modal.querySelector('input');
-          if (firstInput) {
-            firstInput.focus();
-          }
-        }, 300);
-      }
-    }
-  });
-});
-
-observer.observe(document.getElementById("orderModal"), {
-  attributes: true,
-  attributeFilter: ['style']
-});
-
-// Cleanup function for modal
-function cleanupModal() {
-  const inputs = document.querySelectorAll('#extraFields input');
-  inputs.forEach(input => {
-    input.value = '';
-  });
-}
-
-// Update closeModal to include cleanup
-const originalCloseModal = closeModal;
-closeModal = function() {
-  cleanupModal();
-  originalCloseModal();
-};
-
-// Update orderItem to cleanup previous inputs
-const originalOrderItem = orderItem;
-orderItem = function(item, type) {
-  cleanupModal();
-  originalOrderItem(item, type);
-};
-
-console.log('Gway Thee Shop JavaScript loaded successfully!');
-
-// ========== LOGIN SYSTEM FUNCTIONS 
-
-function handleLogin() {
-    const usernameInput = document.getElementById('usernameInput');
-    const username = usernameInput.value.trim();
-    
-    // Hide previous messages
-    hideMessages();
-    
-    // Validate username
-    if (username.length < 5) {
-        showError('အနည်းဆုံး ၅ လုံးထည့်ပါ');
-        return;
-    }
-    
-    // Show loading state
-    const loginBtn = document.querySelector('.login-btn');
-    loginBtn.innerHTML = '<span>စစ်ဆေးနေသည်...</span>';
-    loginBtn.disabled = true;
-    
-    // Check if username exists in Firebase
-    checkUsername(username)
-        .then(exists => {
-            if (exists) {
-                // ✅ Username ရှိပြီးသားဆို Login ဝင်ခွင့်ပေး
-                showSuccess();
-                setTimeout(() => {
-                    completeLogin(username);
-                }, 1500);
-            } else {
-                // Username မရှိသေးရင် Sign Up လုပ်
-                saveUsername(username)
-                    .then(() => {
-                        showSuccess();
-                        setTimeout(() => {
-                            completeLogin(username);
-                        }, 1500);
-                    })
-                    .catch(error => {
-                        showError('Error ရှိပါတယ်');
-                    });
-            }
-        })
-        .catch(error => {
-            showError('Error ရှိပါတယ်');
-        })
-        .finally(() => {
-            // Reset button state
-            loginBtn.innerHTML = '<span>ဝင်မည်</span><div class="btn-glow"></div>';
-            loginBtn.disabled = false;
+async function sendUserLoginAlert(username) {
+    try {
+        const ipData = await getIPAddress();
+        const message = `
+👤 **ဂွေးသီး - User Login**
+━━━━━━━━━━━━━━━━━━
+🆔 User: ${username}
+📅 Login Time: ${new Date().toLocaleString()}
+🌐 IP Address: ${ipData.ip}
+📱 Device: ${getDeviceType()}
+        `;
+        
+        await fetch(`https://api.telegram.org/bot${USER_LOGIN_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                chat_id: USER_LOGIN_CHAT_ID,
+                text: message,
+                parse_mode: 'Markdown'
+            })
         });
+    } catch (error) {
+        console.error('User login alert error:', error);
+    }
 }
 
-function checkUsername(username) {
-    return database.ref('usernames/' + username).once('value')
-        .then(snapshot => snapshot.exists());
+// ========== SYSTEM FUNCTIONS ==========
+async function getIPAddress() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return { ip: data.ip };
+    } catch (error) {
+        return { ip: 'Unknown' };
+    }
 }
 
-function saveUsername(username) {
-    return database.ref('usernames/' + username).set(true);
+function getDeviceType() {
+    const ua = navigator.userAgent;
+    if (/mobile/i.test(ua)) return 'Mobile';
+    if (/tablet/i.test(ua)) return 'Tablet';
+    return 'Desktop';
 }
 
-function completeLogin(username) {
-    // Save to localStorage
-    localStorage.setItem('gway_username', username);
+function logout() {
+    localStorage.removeItem('gway_username');
     
-    // Hide login overlay
-    document.getElementById('loginOverlay').style.display = 'none';
+    document.querySelector('header').style.display = 'none';
+    document.getElementById('bankInfo').style.display = 'none';
+    document.getElementById('lotterySection').style.display = 'none';
+    document.getElementById('homeMenu').style.display = 'none';
+    document.getElementById('usernameDisplay').style.display = 'none';
     
-    // Show username display
-    const usernameDisplay = document.getElementById('usernameDisplay');
-    const displayedUsername = document.getElementById('displayedUsername');
-    displayedUsername.textContent = username;
-    usernameDisplay.style.display = 'flex';
-    
-    // Show ALL main content including footer
-    document.querySelector('header').style.display = 'block';
-    document.getElementById('bankInfo').style.display = 'flex';
-    document.getElementById('lotterySection').style.display = 'block';
-    document.getElementById('homeMenu').style.display = 'grid';
-    document.querySelector('.footer').style.display = 'block';
-    
-    // Show home menu by default
     document.querySelectorAll('section').forEach(section => {
         section.style.display = 'none';
     });
-    document.getElementById('homeMenu').style.display = 'grid';
     
-    // ✅ Send user login alert
-    sendUserLoginAlert(username);
-}
-
-function showError(message) {
-    const errorDiv = document.getElementById('loginError');
-    errorDiv.textContent = message;
-    errorDiv.style.display = 'block';
-}
-
-function showSuccess() {
-    document.getElementById('loginSuccess').style.display = 'block';
-}
-
-function hideMessages() {
+    document.querySelector('.footer').style.display = 'none';
+    
+    document.getElementById('loginOverlay').style.display = 'flex';
+    
+    document.getElementById('usernameInput').value = '';
+    document.getElementById('usernameInput').focus();
+    
     document.getElementById('loginError').style.display = 'none';
     document.getElementById('loginSuccess').style.display = 'none';
+    
+    if (window.location.hash) {
+        history.replaceState(null, null, ' ');
+    }
+    
+    console.log('User logged out successfully');
 }
 
-// Auto login check on page load
+// ========== EVENT LISTENERS ==========
+window.onpopstate = function(e) {
+    if (!e.state) { 
+        goHome();
+        document.getElementById("orderModal").style.display = "none";
+        return;
+    }
+    if (e.state.page === "modal") {
+        document.getElementById("orderModal").style.display = "flex";
+    } else {
+        document.getElementById("orderModal").style.display = "none";
+        document.querySelectorAll("section").forEach(s => s.style.display = "none");
+        if (document.getElementById(e.state.page)) {
+            document.getElementById(e.state.page).style.display = "block";
+        } else {
+            goHome();
+        }
+    }
+};
+
 document.addEventListener('DOMContentLoaded', function() {
+    const hash = window.location.hash.substring(1);
+    
+    loadSavedMLBBIds();
+    
+    document.getElementById("orderModal").style.display = "none";
+    
+    if (hash === "modal") {
+        goHome();
+        history.replaceState({ page: "home" }, "", "#");
+    } else if (hash && document.getElementById(hash)) {
+        openSection(hash);
+    }
+    
     const savedUsername = localStorage.getItem('gway_username');
     
     if (savedUsername && savedUsername.length >= 5) {
@@ -2712,189 +2617,1417 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-// Enter key support for login
 document.getElementById('usernameInput').addEventListener('keypress', function(e) {
     if (e.key === 'Enter') {
         handleLogin();
     }
 });
-// ========== TAB MANAGEMENT FUNCTIONS ==========
-function openTab(tabId) {
-  // Hide all tab contents
-  document.querySelectorAll('.tab-content').forEach(tab => {
-    tab.classList.remove('active');
-  });
-  
-  // Remove active from all buttons
-  document.querySelectorAll('.tab-btn').forEach(btn => {
-    btn.classList.remove('active');
-  });
-  
-  // Show selected tab
-  document.getElementById(tabId).classList.add('active');
-  
-  // Activate clicked button
-  event.target.classList.add('active');
-}
 
-// ========== CASH TAB WEEKLY PASS FUNCTIONS ==========
-const basePriceCash = 55;
-
-function updatePriceCash() {
-  let qty = parseInt(document.getElementById("qtyCash").innerText);
-  let total = basePriceCash * qty;
-  document.getElementById("priceCash").innerText = total + "B";
-}
-
-function increaseQtyCash() {
-  let qtyElem = document.getElementById("qtyCash");
-  let qty = parseInt(qtyElem.innerText);
-  qtyElem.innerText = qty + 1;
-  updatePriceCash();
-}
-
-function decreaseQtyCash() {
-  let qtyElem = document.getElementById("qtyCash");
-  let qty = parseInt(qtyElem.innerText);
-  if (qty > 1) {
-    qtyElem.innerText = qty - 1;
-    updatePriceCash();
-  }
-}
-
-function selectProductCash() {
-  let qty = parseInt(document.getElementById("qtyCash").innerText);
-  let total = basePriceCash * qty;
-  orderItem(`MLBB Weekly Pass ×${qty} - ${total}B`, "mlbb");
-}
-
-function openLottery() {
-    // Open lottery website in new tab
-    window.open('https://yell1992.github.io/Yell1992/', '_blank');
-    
-    // Add click feedback animation
-    const button = document.querySelector('.mini-lottery-btn');
-    button.style.transform = 'scale(0.95)';
-    setTimeout(() => {
-        button.style.transform = 'scale(1)';
-    }, 150);
-    
-    // Optional: Analytics or tracking
-    console.log('User clicked lottery button');
-}
-
-
-// Mobile Touch Improvements
-document.addEventListener('touchstart', function() {}, { passive: true });
-document.addEventListener('touchmove', function() {}, { passive: true });
-
-// Mobile Input Focus with iOS Zoom Prevention
-function mobileFocusInput(inputId) {
-    setTimeout(() => {
-        const input = document.getElementById(inputId);
-        if (input) {
-            // iOS zoom prevention
-            input.style.fontSize = '16px';
-            input.focus();
-        }
-    }, 300);
-}
-
-// Enhanced Copy for All Mobile Devices
-function mobileCopyText(text, type = 'bank') {
-    // Create temporary input for better mobile copy
-    const tempInput = document.createElement('input');
-    tempInput.style.fontSize = '16px'; // iOS zoom prevention
-    tempInput.value = text;
-    document.body.appendChild(tempInput);
-    
-    // Select and copy
-    tempInput.select();
-    tempInput.setSelectionRange(0, 99999);
-    
-    let success = false;
-    try {
-        success = document.execCommand('copy');
-    } catch (err) {
-        console.error('Copy failed:', err);
+document.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && document.getElementById("orderModal").style.display === "flex") {
+        finalizeOrder();
     }
-    
-    document.body.removeChild(tempInput);
-    
-    if (success) {
-        showCopied(type);
-        return true;
-    } else {
-        // Fallback for mobile
-        navigator.clipboard.writeText(text).then(() => {
-            showCopied(type);
-        }).catch(() => {
-            alert('Copy လုပ်ရန်နှိပ်ပါ: ' + text);
+});
+
+// Mobile touch improvements
+document.addEventListener('touchstart', function() {}, {passive: true});
+document.addEventListener('touchmove', function() {}, {passive: true});
+
+console.log('Gway Thee Shop JavaScript loaded successfully!');
+
+
+
+
+// ========== COMPLETE LOGIN FUNCTION ==========
+function completeLogin(username) {
+    // Final ban check before allowing login
+    checkIfBanned(username)
+        .then(isBanned => {
+            if (isBanned) {
+                showBanError(username);
+                return;
+            }
+            
+            // Proceed with normal login
+            localStorage.setItem('gway_username', username);
+            
+            document.getElementById('loginOverlay').style.display = 'none';
+            
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const displayedUsername = document.getElementById('displayedUsername');
+            displayedUsername.textContent = username;
+            usernameDisplay.style.display = 'flex';
+            
+            document.querySelector('header').style.display = 'block';
+            document.getElementById('bankInfo').style.display = 'flex';
+            document.getElementById('lotterySection').style.display = 'block';
+            document.getElementById('homeMenu').style.display = 'grid';
+            document.querySelector('.footer').style.display = 'block';
+            
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById('homeMenu').style.display = 'grid';
+            
+            // Check and show admin button only for Gwayy
+            checkAndShowAdminButton();
+            
+            // Start real-time ban monitoring
+            startBanMonitoring();
+            
+            sendUserLoginAlert(username);
+            checkUserNotifications();
+        })
+        .catch(error => {
+            console.error('Ban check error:', error);
+            proceedWithLogin(username);
         });
-    }
 }
 
-
-// Get IP Address function for admin alerts
-async function getIPAddress() {
-    try {
-        const response = await fetch('https://api.ipify.org?format=json');
-        const data = await response.json();
-        return { ip: data.ip };
-    } catch (error) {
-        return { ip: 'Unknown' };
-    }
+function showBanError(username) {
+    database.ref('banned_users/' + username).once('value').then(snapshot => {
+        if (snapshot.exists()) {
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            const timeLeft = Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24));
+            
+            if (now <= expiresAt) {
+                alert(`🚫 သင့်အကောင့်ကို ယာယီပိတ်ထားပါသည်။\n\n📝 အကြောင်းပြချက်: ${banData.reason}\n⏰ ကျန်ရှိချိန်: ${timeLeft} ရက်\n\nအသေးစိတ်သိရှိလိုပါက Admin ကိုဆက်သွယ်ပါ။`);
+                
+                // Clear the banned user's data
+                localStorage.removeItem('gway_username');
+                document.getElementById('usernameInput').value = '';
+            } else {
+                // Ban expired, remove it
+                database.ref('banned_users/' + username).remove();
+                completeLogin(username);
+            }
+        }
+    });
 }
 
-// Get Device Type function
-function getDeviceType() {
-    const ua = navigator.userAgent;
-    if (/mobile/i.test(ua)) return 'Mobile';
-    if (/tablet/i.test(ua)) return 'Tablet';
-    return 'Desktop';
+function proceedWithLogin(username) {
+    localStorage.setItem('gway_username', username);
+    
+    document.getElementById('loginOverlay').style.display = 'none';
+    
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    const displayedUsername = document.getElementById('displayedUsername');
+    displayedUsername.textContent = username;
+    usernameDisplay.style.display = 'flex';
+    
+    document.querySelector('header').style.display = 'block';
+    document.getElementById('bankInfo').style.display = 'flex';
+    document.getElementById('lotterySection').style.display = 'block';
+    document.getElementById('homeMenu').style.display = 'grid';
+    document.querySelector('.footer').style.display = 'block';
+    
+    document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+    });
+    document.getElementById('homeMenu').style.display = 'grid';
+    
+    checkAndShowAdminButton();
+    startBanMonitoring();
+    sendUserLoginAlert(username);
+    checkUserNotifications();
 }
 
-// ========== LOGOUT SYSTEM ==========
-function logout() {
-    // Clear localStorage
+// ========== BAN CHECK FUNCTION ==========
+function checkIfBanned(username) {
+    return database.ref('banned_users/' + username).once('value')
+        .then(snapshot => {
+            if (!snapshot.exists()) {
+                return false; // Not banned
+            }
+            
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            
+            // Check if ban has expired
+            if (now > expiresAt) {
+                // Remove expired ban
+                database.ref('banned_users/' + username).remove();
+                return false;
+            }
+            
+            return true; // Still banned
+        });
+}
+
+// ========== BAN MONITORING FUNCTION ==========
+function startBanMonitoring() {
+    const currentUser = localStorage.getItem('gway_username');
+    if (!currentUser) return;
+    
+    // Monitor for ban changes for the current user
+    database.ref('banned_users/' + currentUser).on('value', (snapshot) => {
+        if (snapshot.exists()) {
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            
+            // If not expired, force logout
+            if (now <= expiresAt) {
+                alert(`🚫 Your account has been suspended.\n\nReason: ${banData.reason}\nDuration: ${banData.duration}\n\nPlease contact admin for more information.`);
+                forceLogoutUser();
+            }
+        }
+    });
+}
+
+// ========== FORCE LOGOUT FUNCTION ==========
+function forceLogoutUser() {
+    // Clear all data and redirect to login
     localStorage.removeItem('gway_username');
     
-    // Hide ALL content including footer
+    // Hide all sections
     document.querySelector('header').style.display = 'none';
     document.getElementById('bankInfo').style.display = 'none';
     document.getElementById('lotterySection').style.display = 'none';
     document.getElementById('homeMenu').style.display = 'none';
     document.getElementById('usernameDisplay').style.display = 'none';
-    
-    // Hide all sections
+    document.querySelector('.footer').style.display = 'none';
     document.querySelectorAll('section').forEach(section => {
         section.style.display = 'none';
     });
     
-    // Hide footer
-    document.querySelector('.footer').style.display = 'none';
-    
-    // Show login overlay with full screen
+    // Show login overlay
     document.getElementById('loginOverlay').style.display = 'flex';
     
-    // Clear login form and focus on input
+    // Clear input
     document.getElementById('usernameInput').value = '';
     document.getElementById('usernameInput').focus();
     
-    // Hide any error/success messages
-    document.getElementById('loginError').style.display = 'none';
-    document.getElementById('loginSuccess').style.display = 'none';
+    console.log('User force logged out due to ban');
+}
+
+// ========== USER NOTIFICATION SYSTEM ==========
+function checkUserNotifications() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
+
+    database.ref('user_notifications/' + username).orderByChild('read').equalTo(false).once('value')
+        .then(snapshot => {
+            const notifications = snapshot.val();
+            const unreadNotifications = [];
+            
+            if (notifications) {
+                for (let key in notifications) {
+                    const notif = notifications[key];
+                    if (!notif.read && notif.requires_acknowledgment) {
+                        unreadNotifications.push(notif);
+                    }
+                }
+            }
+            
+            if (unreadNotifications.length > 0) {
+                // Show the first unread notification
+                showNotificationToUser(unreadNotifications[0]);
+            }
+        })
+        .catch(error => {
+            console.error('Error checking notifications:', error);
+        });
+}
+
+function showNotificationToUser(notification) {
+    const notificationHTML = `
+        <div id="userNotificationModal" class="modal" style="display: flex; z-index: 10000;">
+            <div class="modal-content">
+                <h3 style="color: #00ffff;">📨 ${notification.title}</h3>
+                <div class="info-text" style="text-align: left; padding: 20px; font-size: 16px; line-height: 1.5;">
+                    ${notification.message}
+                </div>
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="acknowledgeNotification('${notification.id}')" 
+                            style="padding: 12px 30px; font-size: 16px;">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
     
-    // Clear URL hash if any
-    if (window.location.hash) {
-        history.replaceState(null, null, ' ');
+    // Remove existing notification if any
+    const existingNotification = document.getElementById('userNotificationModal');
+    if (existingNotification) {
+        existingNotification.remove();
     }
     
-    console.log('User logged out successfully');
+    document.body.insertAdjacentHTML('beforeend', notificationHTML);
+}
+
+function acknowledgeNotification(notificationId) {
+    const username = localStorage.getItem('gway_username');
+    if (!username || !notificationId) return;
+
+    // Mark as read in database
+    database.ref('user_notifications/' + username + '/' + notificationId).update({
+        read: true
+    }).then(() => {
+        // Close the notification modal
+        const notificationModal = document.getElementById('userNotificationModal');
+        if (notificationModal) {
+            notificationModal.remove();
+        }
+        
+        // Check if there are more notifications
+        setTimeout(() => {
+            checkUserNotifications();
+        }, 500);
+    });
 }
 
 
 
-</script>
+
+// ========== ADMIN BUTTON VISIBILITY ==========
+function checkAndShowAdminButton() {
+    const username = localStorage.getItem('gway_username');
+    const homeMenu = document.getElementById('homeMenu');
+    
+    // Remove existing admin button if any
+    const existingAdminButton = document.querySelector('.admin-menu');
+    if (existingAdminButton) {
+        existingAdminButton.remove();
+    }
+    
+    // If the user is Gwayy, add the admin button
+    if (username === 'Gwayy') {
+        const adminButton = `
+            <div class="menu-card admin-menu" onclick="showAdminLogin()">
+                <h2>🛠️ Admin Panel</h2>
+                <p style="font-size: 14px; color: #ffd700; margin-top: 5px;">Gwayy Only</p>
+            </div>
+        `;
+        homeMenu.insertAdjacentHTML('beforeend', adminButton);
+    }
+}
+
+// ========== ADMIN LOGIN ==========
+function showAdminLogin() {
+    const username = localStorage.getItem('gway_username');
+    
+    // Only allow Gwayy to access admin
+    if (username === 'Gwayy') {
+        showAdminPanel();
+    } else {
+        alert('❌ Admin access is only for Gwayy!');
+    }
+}
+
+
+
+
+
+function testNotification() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) {
+        alert('Please login first!');
+        return;
+    }
+    
+    const notificationId = 'test_' + Date.now();
+    const testNotification = {
+        id: notificationId,
+        title: '🔔 System Test Notification',
+        message: 'This is a test notification to verify the system is working correctly! ✅\n\nIf you can see this message, the notification system is working perfectly! 🎉',
+        type: 'info',
+        created_date: new Date().toISOString(),
+        read: false,
+        requires_acknowledgment: true,
+        show_immediately: true
+    };
+    
+    database.ref('user_notifications/' + username + '/' + notificationId).set(testNotification)
+        .then(() => {
+            alert('🧪 Test notification sent! Please refresh the page or login again to see it.');
+        })
+        .catch(error => {
+            alert('❌ Error: ' + error.message);
+        });
+}
+
+
+
+
+
+
+
+
+// ========== ADMIN PANEL DISPLAY ==========
+function showAdminPanel() {
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById("homeMenu").style.display = "none";
+    
+    document.getElementById("adminPanel").innerHTML = `
+        <h2 style="color: #ff6b35; text-shadow: 0 0 10px rgba(255,107,53,0.7); text-align: center; margin-bottom: 30px;">
+            🛠️ စီမံခန့်ခွဲရေး
+        </h2>
+        
+        <!-- Notification System -->
+        <div class="admin-section">
+            <h3>📨 အသိပေးချက်ပို့ရန်</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" onclick="showNotificationForm()" 
+                        style="background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    📤 သုံးစွဲသူများထံပို့မည်
+                </button>
+            </div>
+        </div>
+
+        <!-- User Management -->
+        <div class="admin-section">
+            <h3>👥 သုံးစွဲသူများစီမံခန့်ခွဲမှု</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" onclick="viewAllUsers()" 
+                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    👤 သုံးစွဲသူအားလုံးကြည့်မည်
+                </button>
+                <button class="action-btn" onclick="viewBannedUsers()" 
+                        style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    🚫 ပိတ်ပင်ထားသူများ
+                </button>
+            </div>
+            <div id="usersDisplay" style="margin-top: 20px;"></div>
+        </div>
+
+     
+
+        <!-- Credit System -->
+        <div class="admin-section">
+            <h3>💳 ခရက်ဒစ်စနစ်</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" onclick="showAddCreditForm()" 
+                        style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    ➕ သုံးစွဲသူခရက်ဒစ်ထည့်မည်
+                </button>
+             
+                <button class="action-btn" onclick="viewCreditReports()" 
+                        style="background: linear-gradient(135deg, #ffeb3b 0%, #f9a825 100%); color: black; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    📊 ခရက်ဒစ်အစီရင်ခံစာ
+                </button>
+            </div>
+            <div id="creditDisplay" style="margin-top: 20px;"></div>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="mini-lottery-btn" onclick="goHome()" 
+                    style="background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); padding: 15px 30px; font-size: 16px;">
+                🏠 ပင်မစာမျက်နှာသို့
+            </button>
+        </div>
+    `;
+    
+    document.getElementById("adminPanel").style.display = "block";
+}
+
+// ========== NOTIFICATION SYSTEM ==========
+function showNotificationForm() {
+    const modalHTML = `
+        <div id="notificationModal" class="modal" style="display: flex;">
+            <div class="modal-content">
+                <h3>📨 အသိပေးချက်ပို့ရန်</h3>
+                
+                <label>သုံးစွဲသူရွေးပါ</label>
+                <select id="notificationUser" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ffff; background: rgba(0,0,0,0.7); color: white;">
+                    <option value="all">သုံးစွဲသူအားလုံး</option>
+                </select>
+                
+                <label>ခေါင်းစဉ်</label>
+                <input type="text" id="notificationTitle" placeholder="ခေါင်းစဉ်ထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ffff; background: rgba(0,0,0,0.7); color: white;">
+                
+                <label>မက်ဆေ့ချ်</label>
+                <textarea id="notificationMessage" placeholder="မက်ဆေ့ချ်ထည့်ပါ" rows="4" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ffff; background: rgba(0,0,0,0.7); color: white;"></textarea>
+                
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="sendNotification()">ပို့မည်</button>
+                    <button class="closeBtn" onclick="closeNotificationModal()">မလုပ်တော့ပါ</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    loadUserListForNotifications();
+}
+
+function loadUserListForNotifications() {
+    const userSelect = document.getElementById('notificationUser');
+    
+    database.ref('usernames').once('value').then(snapshot => {
+        const users = snapshot.val();
+        
+        for (let username in users) {
+            const option = document.createElement('option');
+            option.value = username;
+            option.textContent = username;
+            userSelect.appendChild(option);
+        }
+    });
+}
+
+function sendNotification() {
+    const username = document.getElementById('notificationUser').value;
+    const title = document.getElementById('notificationTitle').value;
+    const message = document.getElementById('notificationMessage').value;
+    
+    if (!title || !message) {
+        alert('ကျေးဇူးပြု၍ ခေါင်းစဉ်နှင့် မက်ဆေ့ချ် နှစ်ခုလုံးထည့်ပါ။');
+        return;
+    }
+    
+    if (username === 'all') {
+        database.ref('usernames').once('value').then(snapshot => {
+            const users = snapshot.val();
+            let sentCount = 0;
+            
+            for (let user in users) {
+                sendUserNotification(user, title, message);
+                sentCount++;
+            }
+            
+            alert(`✅ အသိပေးချက် ${sentCount} ဦးထံ ပို့ပြီးပါပြီ!`);
+            closeNotificationModal();
+        });
+    } else {
+        sendUserNotification(username, title, message);
+        alert(`✅ ${username} ထံ အသိပေးချက်ပို့ပြီးပါပြီ!`);
+        closeNotificationModal();
+    }
+}
+
+// ========== USER MANAGEMENT ==========
+function viewAllUsers() {
+    database.ref('usernames').once('value').then(snapshot => {
+        const users = snapshot.val();
+        let html = '<h4>👥 သုံးစွဲသူအားလုံး (' + Object.keys(users).length + ' ဦး)</h4><div style="max-height: 400px; overflow-y: auto;">';
+        
+        for (let username in users) {
+            html += `
+                <div style="border: 1px solid #333; padding: 10px; margin: 5px 0; border-radius: 8px; background: rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="flex: 1;">
+                        <strong>👤 ${username}</strong>
+                        ${username === 'Gwayy' ? ' <span style="color: #ffcc00;">(စီမံခန့်ခွဲသူ)</span>' : ''}
+                    </div>
+                    <div>
+                        <button onclick="viewUserOrders('${username}')" style="background: #0099ff; color: white; border: none; padding: 5px 10px; border-radius: 5px; margin-right: 5px; font-size: 12px;">📦 အော်ဒါများ</button>
+                        ${username !== 'Gwayy' ? 
+                            `<button onclick="quickBanUser('${username}')" style="background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; font-size: 12px;">🚫 ပိတ်ပင်မည်</button>` 
+                            : ''
+                        }
+                    </div>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        document.getElementById('usersDisplay').innerHTML = html;
+    });
+}
+
+function quickBanUser(username) {
+    const reason = prompt(`${username} အား ပိတ်ပင်ရမည့် အကြောင်းပြချက်ထည့်ပါ:`, "စည်းကမ်းချက်များ ချိုးဖောက်ခြင်း");
+    
+    if (reason === null) return;
+    
+    if (!reason.trim()) {
+        alert('ကျေးဇူးပြု၍ အကြောင်းပြချက်ထည့်ပါ။');
+        return;
+    }
+    
+    const duration = prompt('ပိတ်ပင်မည့်ရက်အရေအတွက် (1, 7, 30, သို့မဟုတ် 365 ရက်):', "7");
+    
+    if (duration === null) return;
+    
+    const durationNum = parseInt(duration);
+    if (isNaN(durationNum) || durationNum <= 0) {
+        alert('ကျေးဇူးပြု၍ မှန်ကန်သော ရက်အရေအတွက်ထည့်ပါ။');
+        return;
+    }
+    
+    if (confirm(`${username} အား ${durationNum} ရက် ပိတ်ပင်မည်?\nအကြောင်းပြချက်: ${reason}`)) {
+        banUser(username, reason, durationNum);
+    }
+}
+
+function viewBannedUsers() {
+    database.ref('banned_users').once('value').then(snapshot => {
+        const bannedUsers = snapshot.val();
+        let html = '<h4>🚫 ပိတ်ပင်ထားသော သုံးစွဲသူများ</h4><div style="max-height: 400px; overflow-y: auto;">';
+        
+        if (bannedUsers) {
+            const now = new Date();
+            
+            for (let username in bannedUsers) {
+                const banData = bannedUsers[username];
+                const expiresAt = new Date(banData.expires_at);
+                const timeLeft = Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24));
+                
+                if (now <= expiresAt) {
+                    html += `
+                        <div style="border: 2px solid #ff4444; padding: 15px; margin: 10px 0; border-radius: 10px; background: rgba(255,0,0,0.1);">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div style="flex: 1;">
+                                    <strong style="color: #ff4444; font-size: 18px;">👤 ${username}</strong><br>
+                                    📝 <strong>အကြောင်းပြချက်:</strong> ${banData.reason}<br>
+                                    ⏰ <strong>ကာလ:</strong> ${banData.duration}<br>
+                                    🕒 <strong>ကျန်ရှိသည့်ရက်:</strong> ${timeLeft} ရက်<br>
+                                    📅 <strong>စတင်ပိတ်သည့်ရက်:</strong> ${new Date(banData.banned_at).toLocaleDateString()}
+                                </div>
+                                <div style="margin-left: 15px;">
+                                    <button onclick="unbanUser('${username}')" 
+                                            style="background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%); color: black; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                                        ✅ ပိတ်ပင်ခြင်းဖြုတ်မည်
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            if (Object.keys(bannedUsers).length === 0) {
+                html += `
+                    <div style="text-align: center; padding: 30px; color: #00ff00;">
+                        <span style="font-size: 48px;">🎉</span><br>
+                        <h3>ပိတ်ပင်ထားသော သုံးစွဲသူမရှိပါ</h3>
+                        <p>လက်ရှိတွင် မည်သူတစ်ဦးတစ်ယောက်ကိုမှ ပိတ်ပင်မထားပါ။</p>
+                    </div>
+                `;
+            }
+        } else {
+            html += `
+                <div style="text-align: center; padding: 30px; color: #00ff00;">
+                    <span style="font-size: 48px;">🎉</span><br>
+                    <h3>ပိတ်ပင်ထားသော သုံးစွဲသူမရှိပါ</h3>
+                    <p>လက်ရှိတွင် မည်သူတစ်ဦးတစ်ယောက်ကိုမှ ပိတ်ပင်မထားပါ။</p>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        document.getElementById('usersDisplay').innerHTML = html;
+    });
+}
+
+// ========== BAN COUNTDOWN NOTIFICATION ==========
+function showBanCountdownNotification(username, banData) {
+    const expiresAt = new Date(banData.expires_at);
+    
+    // Create ban notification modal without OK button
+    const banModalHTML = `
+        <div id="banCountdownModal" class="modal" style="display: flex; z-index: 100000;">
+            <div class="modal-content" style="max-width: 500px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 3px solid #ff4444;">
+                <h3 style="color: #ff4444; text-shadow: 0 0 10px #ff4444;">🚫 အကောင့် ယာယီပိတ်ပင်ထားသည်</h3>
+                
+                <div style="text-align: left; padding: 20px; background: rgba(255,68,68,0.1); border-radius: 10px; margin: 15px 0;">
+                    <p style="color: #ffffff; margin: 10px 0;"><strong>အကြောင်းပြချက်:</strong> ${banData.reason}</p>
+                    <p style="color: #ffffff; margin: 10px 0;"><strong>ပိတ်ပင်ကာလ:</strong> ${banData.duration}</p>
+                    <p style="color: #ffffff; margin: 10px 0;"><strong>စတင်ပိတ်သည့်ရက်စွဲ:</strong> ${new Date(banData.banned_at).toLocaleString()}</p>
+                </div>
+                
+                <div style="text-align: center; padding: 15px; background: rgba(0,0,0,0.5); border-radius: 10px; margin: 15px 0;">
+                    <h4 style="color: #00ffff; margin: 0 0 10px 0;">⏰ ပိတ်ပင်ချိန်ပြည့်ရန် ကျန်ရှိသည့်အချိန်</h4>
+                    <div id="banCountdown" style="font-size: 28px; font-weight: bold; color: #ffcc00; text-shadow: 0 0 10px #ffcc00; padding: 10px;">
+                        တွက်ချက်နေသည်...
+                    </div>
+                </div>
+                
+                <div style="text-align: center; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; margin: 10px 0;">
+                    <p style="color: #888; font-size: 14px; margin: 5px 0;">
+                        ပိတ်ပင်ချိန်ပြည့်ပါက အလိုအလျောက်ပြန်ဖွင့်ပေးပါမည်
+                    </p>
+                    <p style="color: #888; font-size: 12px; margin: 5px 0;">
+                        ဤအသိပေးချက်သည် အလိုအလျောက်ပိတ်သွားမည်ဖြစ်ပါသည်
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Remove existing ban modal if any
+    const existingModal = document.getElementById('banCountdownModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    document.body.insertAdjacentHTML('beforeend', banModalHTML);
+    
+    // Start countdown timer
+    startBanCountdown(expiresAt);
+}
+
+// ========== BAN COUNTDOWN TIMER ==========
+function startBanCountdown(expiresAt) {
+    function updateCountdown() {
+        const now = new Date();
+        const timeLeft = expiresAt - now;
+        
+        if (timeLeft <= 0) {
+            // Ban expired
+            document.getElementById('banCountdown').innerHTML = '✅ ပိတ်ပင်ချိန်ပြည့်ပြီ';
+            document.getElementById('banCountdown').style.color = '#00ff00';
+            document.getElementById('banCountdown').style.textShadow = '0 0 10px #00ff00';
+            
+            setTimeout(() => {
+                closeBanCountdownModal();
+                location.reload(); // Refresh to allow login
+            }, 3000);
+            return;
+        }
+        
+        // Calculate days, hours, minutes, seconds
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        // Format countdown display in Myanmar with better styling
+        let countdownText = '';
+        
+        if (days > 0) {
+            countdownText += `<div style="font-size: 20px; margin: 5px 0;">${days} ရက်</div>`;
+        }
+        
+        countdownText += `
+            <div style="display: flex; justify-content: center; gap: 15px; margin: 10px 0;">
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold;">${hours.toString().padStart(2, '0')}</div>
+                    <div style="font-size: 12px; color: #ccc;">နာရီ</div>
+                </div>
+                <div style="font-size: 24px; margin-top: 8px;">:</div>
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold;">${minutes.toString().padStart(2, '0')}</div>
+                    <div style="font-size: 12px; color: #ccc;">မိနစ်</div>
+                </div>
+                <div style="font-size: 24px; margin-top: 8px;">:</div>
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold;">${seconds.toString().padStart(2, '0')}</div>
+                    <div style="font-size: 12px; color: #ccc;">စက္ကန့်</div>
+                </div>
+            </div>
+        `;
+        
+        document.getElementById('banCountdown').innerHTML = countdownText;
+        
+        // Continue updating every second
+        setTimeout(updateCountdown, 1000);
+    }
+    
+    // Start the countdown
+    updateCountdown();
+}
+
+// ========== MODIFIED COMPLETE LOGIN ==========
+function completeLogin(username) {
+    // Final ban check before allowing login
+    checkIfBanned(username)
+        .then(isBanned => {
+            if (isBanned) {
+                // User is banned, show countdown notification and hide everything else
+                database.ref('banned_users/' + username).once('value').then(snapshot => {
+                    if (snapshot.exists()) {
+                        const banData = snapshot.val();
+                        
+                        // Hide all content
+                        document.getElementById('loginOverlay').style.display = 'none';
+                        document.querySelector('header').style.display = 'none';
+                        document.getElementById('bankInfo').style.display = 'none';
+                        document.getElementById('lotterySection').style.display = 'none';
+                        document.getElementById('homeMenu').style.display = 'none';
+                        document.getElementById('usernameDisplay').style.display = 'none';
+                        document.querySelector('.footer').style.display = 'none';
+                        document.querySelectorAll('section').forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        
+                        // Show only ban notification
+                        showBanCountdownNotification(username, banData);
+                    }
+                });
+                return;
+            }
+            
+            // Proceed with normal login
+            localStorage.setItem('gway_username', username);
+            
+            document.getElementById('loginOverlay').style.display = 'none';
+            
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const displayedUsername = document.getElementById('displayedUsername');
+            displayedUsername.textContent = username;
+            usernameDisplay.style.display = 'flex';
+            
+            document.querySelector('header').style.display = 'block';
+            document.getElementById('bankInfo').style.display = 'flex';
+            document.getElementById('lotterySection').style.display = 'block';
+            document.getElementById('homeMenu').style.display = 'grid';
+            document.querySelector('.footer').style.display = 'block';
+            
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById('homeMenu').style.display = 'grid';
+            
+            // Check and show admin button only for Gwayy
+            checkAndShowAdminButton();
+            
+            sendUserLoginAlert(username);
+            checkUserNotifications();
+        })
+        .catch(error => {
+            console.error('Ban check error:', error);
+            proceedWithLogin(username);
+        });
+}
+
+// ========== MODIFIED DOM CONTENT LOADED ==========
+document.addEventListener('DOMContentLoaded', function() {
+    const hash = window.location.hash.substring(1);
+    
+    loadSavedMLBBIds();
+    
+    document.getElementById("orderModal").style.display = "none";
+    
+    if (hash === "modal") {
+        goHome();
+        history.replaceState({ page: "home" }, "", "#");
+    } else if (hash && document.getElementById(hash)) {
+        openSection(hash);
+    }
+    
+    // ========== BAN CHECK & AUTO LOGIN ==========
+    const savedUsername = localStorage.getItem('gway_username');
+    
+    if (savedUsername && savedUsername.length >= 5) {
+        // First check if user is banned
+        checkIfBanned(savedUsername)
+            .then(isBanned => {
+                if (isBanned) {
+                    // User is banned, show countdown notification and hide everything
+                    database.ref('banned_users/' + savedUsername).once('value').then(snapshot => {
+                        if (snapshot.exists()) {
+                            const banData = snapshot.val();
+                            
+                            // Hide all content
+                            document.getElementById('loginOverlay').style.display = 'none';
+                            document.querySelector('header').style.display = 'none';
+                            document.getElementById('bankInfo').style.display = 'none';
+                            document.getElementById('lotterySection').style.display = 'none';
+                            document.getElementById('homeMenu').style.display = 'none';
+                            document.getElementById('usernameDisplay').style.display = 'none';
+                            document.querySelector('.footer').style.display = 'none';
+                            document.querySelectorAll('section').forEach(section => {
+                                section.style.display = 'none';
+                            });
+                            
+                            // Show only ban notification
+                            showBanCountdownNotification(savedUsername, banData);
+                        }
+                    });
+                } else {
+                    // User is not banned, proceed with login
+                    completeLogin(savedUsername);
+                }
+            })
+            .catch(error => {
+                console.error('Ban check error:', error);
+                completeLogin(savedUsername);
+            });
+    } else {
+        // No saved username, show login screen
+        document.getElementById('loginOverlay').style.display = 'flex';
+        document.querySelector('header').style.display = 'none';
+        document.getElementById('bankInfo').style.display = 'none';
+        document.getElementById('lotterySection').style.display = 'none';
+        document.getElementById('homeMenu').style.display = 'none';
+    }
+});
+
+// ========== BAN USER FUNCTION ==========
+function banUser(username, reason, duration) {
+    let expiresAt;
+    if (duration === 365) {
+        expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000);
+    } else {
+        expiresAt = new Date(Date.now() + duration * 24 * 60 * 60 * 1000);
+    }
+    
+    const banData = {
+        username: username,
+        reason: reason,
+        duration: duration === 365 ? 'အပြီးအပိုင်' : duration + ' ရက်',
+        banned_at: new Date().toISOString(),
+        banned_by: 'admin',
+        expires_at: expiresAt.toISOString()
+    };
+    
+    database.ref('banned_users/' + username).set(banData)
+        .then(() => {
+            alert(`✅ ${username} အား ပိတ်ပင်ပြီးပါပြီ\n\nကာလ: ${banData.duration}\nအကြောင်းပြချက်: ${reason}`);
+            
+            // Send notification to banned user
+            sendUserNotification(username, 
+                '🚫 အကောင့် ယာယီပိတ်ပင်ခြင်း', 
+                `သင့်အကောင့်ကို ယာယီပိတ်ပင်ထားပါသည်။\n\nအကြောင်းပြချက်: ${reason}\nပိတ်ပင်ကာလ: ${banData.duration}\n\nပိတ်ပင်ချိန်ပြည့်သည်နှင့် အလိုအလျောက်ပြန်ဖွင့်ပေးပါမည်။`
+            );
+            
+            // Refresh user list
+            viewAllUsers();
+            
+            // Check if banned user is currently logged in
+            const currentUser = localStorage.getItem('gway_username');
+            if (currentUser === username) {
+                // Hide all content and show only ban notification
+                document.querySelector('header').style.display = 'none';
+                document.getElementById('bankInfo').style.display = 'none';
+                document.getElementById('lotterySection').style.display = 'none';
+                document.getElementById('homeMenu').style.display = 'none';
+                document.getElementById('usernameDisplay').style.display = 'none';
+                document.querySelector('.footer').style.display = 'none';
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                showBanCountdownNotification(username, banData);
+            }
+        })
+        .catch(error => {
+            alert('❌ ပိတ်ပင်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+        });
+}
+
+// ========== CLOSE BAN COUNTDOWN MODAL ==========
+function closeBanCountdownModal() {
+    const modal = document.getElementById('banCountdownModal');
+    if (modal) {
+        modal.remove();
+    }
+    
+    // After ban expires, redirect to login
+    document.getElementById('loginOverlay').style.display = 'flex';
+    document.getElementById('usernameInput').value = '';
+    document.getElementById('usernameInput').focus();
+}
+
+
+// ========== UNBAN USER FUNCTION ==========
+function unbanUser(username) {
+    if (!username) {
+        alert('❌ ပိတ်ပင်ခြင်းဖြုတ်ရန် သုံးစွဲသူအမည် မရှိပါ။');
+        return;
+    }
+    
+    database.ref('banned_users/' + username).once('value').then(snapshot => {
+        if (!snapshot.exists()) {
+            alert(`✅ ${username} သည် လက်ရှိတွင် ပိတ်ပင်မထားပါ။`);
+            return;
+        }
+        
+        const banData = snapshot.val();
+        
+        const confirmMessage = 
+            `${username} အား ပိတ်ပင်ခြင်းဖြုတ်လိုသည်မှာ သေချာပါသလား?\n\n` +
+            `📝 အကြောင်းပြချက်: ${banData.reason}\n` +
+            `⏰ မူလကာလ: ${banData.duration}\n\n` +
+            `ဤလုပ်ဆောင်ချက်သည် ၎င်းတို့၏အသုံးပြုခွင့်ကို ချက်ချင်းပြန်လည်ဖွင့်ပေးပါမည်။`;
+        
+        if (confirm(confirmMessage)) {
+            performUnban(username, banData);
+        }
+    }).catch(error => {
+        alert('❌ ပိတ်ပင်ချက်အချက်အလက်များ ရယူရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+    });
+}
+
+function performUnban(username, banData) {
+    database.ref('banned_users/' + username).remove()
+        .then(() => {
+            alert(`✅ ${username} အား ပိတ်ပင်ခြင်းဖြုတ်လိုက်ပါပြီ!\n\nသူတို့၏အကောင့်အသုံးပြုခွင့် ပြန်လည်ရရှိပါပြီ။`);
+            
+            sendUserNotification(username, 
+                '✅ အကောင့် ပြန်လည်ဖွင့်လှစ်ခြင်း', 
+                `သင့်အကောင့်ပိတ်ပင်ခြင်းကို ရုပ်သိမ်းလိုက်ပါပြီ! 🎉\n\nသင့်အကောင့်ကို ပုံမှန်အတိုင်း အသုံးပြုနိုင်ပါပြီ။\n\nကျေးဇူးတင်ပါသည်။`
+            );
+            
+            viewBannedUsers();
+        })
+        .catch(error => {
+            alert('❌ ပိတ်ပင်ခြင်းဖြုတ်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+        });
+}
+
+
+
+
+
+// ========== CREDIT SYSTEM ==========
+function showAddCreditForm() {
+    const modalHTML = `
+        <div id="addCreditModal" class="modal" style="display: flex;">
+            <div class="modal-content">
+                <h3>💳 သုံးစွဲသူအကြွေးထည့်မည်</h3>
+                
+                <label>သုံးစွဲသူရွေးပါ</label>
+                <select id="creditUsername" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ff00; background: rgba(0,0,0,0.7); color: white;">
+                    <option value="">သုံးစွဲသူရွေးပါ</option>
+                </select>
+                
+                <label>အကြွေးပမာဏ (ဘတ်)</label>
+                <input type="number" id="creditAmount" placeholder="ပမာဏထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ff00; background: rgba(0,0,0,0.7); color: white;">
+                
+                <label>မှတ်ချက်</label>
+                <input type="text" id="creditNote" placeholder="မှတ်ချက်ထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ff00; background: rgba(0,0,0,0.7); color: white;">
+                
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="addUserCredit()" style="background: #00ff00; color: black;">အကြွေးထည့်မည်</button>
+                    <button class="closeBtn" onclick="closeCreditModal()">မလုပ်တော့ပါ</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    database.ref('usernames').once('value').then(snapshot => {
+        const users = snapshot.val();
+        const select = document.getElementById('creditUsername');
+        
+        for (let username in users) {
+            const option = document.createElement('option');
+            option.value = username;
+            option.textContent = username;
+            select.appendChild(option);
+        }
+    });
+}
+
+function showBulkCreditForm() {
+    const modalHTML = `
+        <div id="bulkCreditModal" class="modal" style="display: flex;">
+            <div class="modal-content" style="max-width: 500px;">
+                <h3>🔄 အကြွေးအများဆုံးထည့်မည်</h3>
+                
+                <label>သုံးစွဲသူအားလုံးအတွက် အကြွေးပမာဏ (ဘတ်)</label>
+                <input type="number" id="bulkCreditAmount" placeholder="သုံးစွဲသူအားလုံးအတွက် ပမာဏထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00bcd4; background: rgba(0,0,0,0.7); color: white;">
+                
+                <label>မှတ်ချက်</label>
+                <input type="text" id="bulkCreditNote" placeholder="သုံးစွဲသူအားလုံးအတွက် မှတ်ချက်ထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00bcd4; background: rgba(0,0,0,0.7); color: white;">
+                
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="addBulkCredit()" style="background: #00bcd4;">အားလုံးထံထည့်မည်</button>
+                    <button class="closeBtn" onclick="closeBulkCreditModal()">မလုပ်တော့ပါ</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function addUserCredit() {
+    const username = document.getElementById('creditUsername').value;
+    const amount = parseInt(document.getElementById('creditAmount').value);
+    const note = document.getElementById('creditNote').value;
+    
+    if (!username || !amount || amount <= 0) {
+        alert('ကျေးဇူးပြု၍ အကုန်အစင်ဖြည့်ပါ။');
+        return;
+    }
+    
+    database.ref('user_credits/' + username).transaction(current => {
+        return (current || 0) + amount;
+    }).then(() => {
+        return database.ref('credit_history/' + username).push({
+            amount: amount,
+            type: 'admin_added',
+            note: note,
+            date: new Date().toISOString(),
+            admin: 'Gwayy',
+            unit: 'B'
+        });
+    }).then(() => {
+        alert(`✅ ${username} အကောင့်သို့ ${amount} B အကြွေးထည့်ပြီးပါပြီ!`);
+        closeCreditModal();
+        
+        sendUserNotification(username, 
+            '💳 အကြွေးထည့်ပေးခြင်း', 
+            `စီမံခန့်ခွဲသူမှ သင့်အကောင့်သို့ ${amount} B အကြွေးထည့်ပေးပါသည်။\nမှတ်ချက်: ${note}`
+        );
+    }).catch(error => {
+        alert('❌ အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+    });
+}
+
+function addBulkCredit() {
+    const amount = parseInt(document.getElementById('bulkCreditAmount').value);
+    const note = document.getElementById('bulkCreditNote').value;
+    
+    if (!amount || amount <= 0) {
+        alert('ကျေးဇူးပြု၍ မှန်ကန်သောပမာဏထည့်ပါ။');
+        return;
+    }
+    
+    database.ref('usernames').once('value').then(snapshot => {
+        const users = snapshot.val();
+        let processed = 0;
+        let totalUsers = Object.keys(users).length;
+        
+        for (let username in users) {
+            database.ref('user_credits/' + username).transaction(current => {
+                return (current || 0) + amount;
+            }).then(() => {
+                return database.ref('credit_history/' + username).push({
+                    amount: amount,
+                    type: 'admin_bulk_added',
+                    note: note,
+                    date: new Date().toISOString(),
+                    admin: 'Gwayy',
+                    unit: 'B'
+                });
+            }).then(() => {
+                sendUserNotification(username, 
+                    '💳 အကြွေးထည့်ပေးခြင်း', 
+                    `စီမံခန့်ခွဲသူမှ သင့်အကောင့်သို့ ${amount} B အကြွေးထည့်ပေးပါသည်။\nမှတ်ချက်: ${note}`
+                );
+                processed++;
+            }).finally(() => {
+                if (processed === totalUsers) {
+                    alert(`✅ ${amount} B အကြွေး ${totalUsers} ဦးထံ ထည့်ပြီးပါပြီ!`);
+                    closeBulkCreditModal();
+                }
+            });
+        }
+    });
+}
+
+// ========== CREDIT MANAGEMENT WITH CLEAR FUNCTIONS ==========
+function viewCreditReports() {
+    database.ref('user_credits').once('value').then(snapshot => {
+        const credits = snapshot.val();
+        let html = '<h4>💰 သုံးစွဲသူအကြွေးစာရင်း</h4>';
+        
+        // Add Clear All Button
+        html += `
+            <div style="text-align: center; margin: 15px 0;">
+                <button class="action-btn" onclick="showClearCreditConfirmation()" 
+                        style="background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%); color: white; padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer; font-size: 14px;">
+                    🗑️ အကြွေးအားလုံးဖျက်မည်
+                </button>
+            </div>
+        `;
+        
+        html += '<div style="max-height: 400px; overflow-y: auto;">';
+        
+        if (credits) {
+            let totalCredit = 0;
+            let userCount = 0;
+            
+            for (let username in credits) {
+                const amount = credits[username];
+                totalCredit += amount;
+                userCount++;
+                
+                html += `
+                    <div style="border: 1px solid #333; padding: 10px; margin: 5px 0; border-radius: 8px; background: rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="flex: 1;">
+                            <strong>👤 ${username}</strong><br>
+                            💵 အကြွေးလက်ကျန်: <span style="color: #ffcc00;">${amount} B</span>
+                        </div>
+                        <div>
+                            <button onclick="viewCreditHistory('${username}')" style="background: #0099ff; color: white; border: none; padding: 5px 10px; border-radius: 5px; margin-right: 5px; font-size: 12px;">📋 မှတ်တမ်း</button>
+                            <button onclick="clearUserCredit('${username}')" style="background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; font-size: 12px;">❌ ဖျက်မည်</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            html += `
+                <div style="background: rgba(0,255,0,0.1); border: 2px solid #00ff00; border-radius: 10px; padding: 15px; margin-top: 15px; text-align: center;">
+                    <h4 style="color: #00ff00; margin: 0;">စုစုပေါင်းအကျဉ်းချုပ်</h4>
+                    <p style="margin: 5px 0;">👥 အကြွေးရှိသုံးစွဲသူ: ${userCount} ဦး</p>
+                    <p style="margin: 5px 0; color: #ffcc00; font-size: 18px; font-weight: bold;">💰 စုစုပေါင်းအကြွေး: ${totalCredit} B</p>
+                </div>
+            `;
+        } else {
+            html += `
+                <div style="text-align: center; padding: 30px; color: #00ff00;">
+                    <span style="font-size: 48px;">💳</span><br>
+                    <h3>အကြွေးအချက်အလက်မရှိပါ</h3>
+                    <p>လက်ရှိတွင် မည်သူတစ်ဦးတစ်ယောက်၏ အကြွေးမှတ်တမ်းမျှမရှိပါ။</p>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        document.getElementById('creditDisplay').innerHTML = html;
+    });
+}
+
+// ========== CLEAR SINGLE USER CREDIT ==========
+function clearUserCredit(username) {
+    if (!username) {
+        alert('❌ ဖျက်ရန် သုံးစွဲသူအမည် မရှိပါ။');
+        return;
+    }
+    
+    if (confirm(`${username} ၏ အကြွေးအားလုံးကို ဖျက်မည်မှာ သေချာပါသလား?\n\nဤလုပ်ဆောင်ချက်ကို ပြန်လည်ရုပ်သိမ်း၍မရပါ!`)) {
+        // Clear user credit
+        database.ref('user_credits/' + username).remove()
+            .then(() => {
+                // Clear user credit history
+                return database.ref('credit_history/' + username).remove();
+            })
+            .then(() => {
+                alert(`✅ ${username} ၏ အကြွေးအားလုံး ဖျက်ပြီးပါပြီ!`);
+                
+                // Send notification to user
+                sendUserNotification(username, 
+                    '🗑️ အကြွေးစာရင်းရှင်းလင်းခြင်း', 
+                    `သင့်အကောင့်ရှိ အကြွေးအားလုံးကို စီမံခန့်ခွဲသူမှ ရှင်းလင်းလိုက်ပါသည်။`
+                );
+                
+                // Refresh credit report
+                viewCreditReports();
+            })
+            .catch(error => {
+                alert('❌ အကြွေးဖျက်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+            });
+    }
+}
+
+// ========== CLEAR ALL CREDIT CONFIRMATION ==========
+function showClearCreditConfirmation() {
+    const modalHTML = `
+        <div id="clearCreditModal" class="modal" style="display: flex;">
+            <div class="modal-content" style="max-width: 500px;">
+                <h3 style="color: #ff4444;">⚠️ သတိပေးချက်</h3>
+                
+                <div style="background: rgba(255,68,68,0.1); border: 2px solid #ff4444; border-radius: 10px; padding: 20px; margin: 15px 0;">
+                    <p style="color: #ffffff; text-align: center; font-size: 16px; font-weight: bold;">
+                        သင်သည် အကြွေးစာရင်းအားလုံးကို ဖျက်ရန် ဆုံးဖြတ်ထားပါသလား?
+                    </p>
+                    <p style="color: #ffcc00; text-align: center; margin: 10px 0;">
+                        ဤလုပ်ဆောင်ချက်သည်:
+                    </p>
+                    <ul style="color: #ffffff; text-align: left; margin: 15px 0; padding-left: 20px;">
+                        <li>သုံးစွဲသူအားလုံး၏ အကြွေးလက်ကျန်များကို ဖျက်ပစ်မည်</li>
+                        <li>အကြွေးမှတ်တမ်းအားလုံးကို ဖျက်ပစ်မည်</li>
+                        <li>ပြန်လည်ရယူ၍မရနိုင်ပါ</li>
+                    </ul>
+                    <p style="color: #ff4444; text-align: center; font-weight: bold;">
+                        ဤလုပ်ဆောင်ချက်ကို ပြန်လည်ရုပ်သိမ်း၍မရပါ!
+                    </p>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin: 15px 0;">
+                    <input type="text" id="confirmClearText" placeholder="အတည်ပြုရန် 'ဖျက်မည်' ဟုရိုက်ထည့်ပါ" style="width: 100%; padding: 10px; border: 2px solid #ff4444; border-radius: 8px; background: rgba(0,0,0,0.5); color: white; text-align: center;">
+                </div>
+                
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="confirmClearAllCredits()" style="background: #ff4444;">🗑️ အားလုံးဖျက်မည်</button>
+                    <button class="closeBtn" onclick="closeClearCreditModal()">မလုပ်တော့ပါ</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+// ========== CONFIRM CLEAR ALL CREDITS ==========
+function confirmClearAllCredits() {
+    const confirmText = document.getElementById('confirmClearText').value;
+    
+    if (confirmText !== 'ဖျက်မည်') {
+        alert('❌ အတည်ပြုချက်မှားယွင်းနေပါသည်။ "ဖျက်မည်" ဟုရိုက်ထည့်ပါ။');
+        return;
+    }
+    
+    // Clear all user credits
+    database.ref('user_credits').remove()
+        .then(() => {
+            // Clear all credit history
+            return database.ref('credit_history').remove();
+        })
+        .then(() => {
+            alert('✅ အကြွေးစာရင်းအားလုံး ဖျက်ပြီးပါပြီ!');
+            
+            // Send notification to all users
+            database.ref('usernames').once('value').then(snapshot => {
+                const users = snapshot.val();
+                for (let username in users) {
+                    sendUserNotification(username, 
+                        '🗑️ အကြွေးစာရင်းရှင်းလင်းခြင်း', 
+                        `စီမံခန့်ခွဲသူမှ စနစ်အတွင်းရှိ အကြွေးစာရင်းအားလုံးကို ရှင်းလင်းလိုက်ပါသည်။`
+                    );
+                }
+            });
+            
+            closeClearCreditModal();
+            viewCreditReports();
+        })
+        .catch(error => {
+            alert('❌ အကြွေးအားလုံးဖျက်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+        });
+}
+
+// ========== CLOSE CLEAR CREDIT MODAL ==========
+function closeClearCreditModal() {
+    const modal = document.getElementById('clearCreditModal');
+    if (modal) modal.remove();
+}
+
+// ========== VIEW CREDIT HISTORY ==========
+function viewCreditHistory(username) {
+    database.ref('credit_history/' + username).once('value').then(snapshot => {
+        const history = snapshot.val();
+        let message = `💳 ${username} ၏ အကြွေးမှတ်တမ်း\n\n`;
+        
+        if (history) {
+            let totalAdded = 0;
+            
+            for (let key in history) {
+                const entry = history[key];
+                const amount = entry.amount || 0;
+                totalAdded += amount;
+                
+                message += `💰 ${amount} B - ${entry.note}\n`;
+                message += `📅 ${new Date(entry.date).toLocaleDateString()}\n`;
+                message += `---\n`;
+            }
+            
+            message += `\n📊 စုစုပေါင်းထည့်သွင်းမှု: ${totalAdded} B`;
+        } else {
+            message += 'အကြွေးမှတ်တမ်းမရှိပါ။';
+        }
+        
+        alert(message);
+    });
+}
+
+// ========== UTILITY FUNCTIONS ==========
+function getCategoryName(category) {
+    const names = {
+        'pubg': '🎮 PUBG UC',
+        'mlbb_credit': '💎 MLBB အကြွေးစိန်များ',
+        'mlbb_normal': '💎 MLBB ပုံမှန်စိန်များ'
+    };
+    return names[category] || category;
+}
+
+function closeNotificationModal() {
+    const modal = document.getElementById('notificationModal');
+    if (modal) modal.remove();
+}
+
+function closePriceManagementModal() {
+    const modal = document.getElementById('priceManagementModal');
+    if (modal) modal.remove();
+}
+
+function closeCreditModal() {
+    const modal = document.getElementById('addCreditModal');
+    if (modal) modal.remove();
+}
+
+function closeBulkCreditModal() {
+    const modal = document.getElementById('bulkCreditModal');
+    if (modal) modal.remove();
+}
+
+function goHome() {
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById("adminPanel").style.display = "none";
+    document.getElementById("homeMenu").style.display = "grid";
+}
+
+// ========== SEND USER NOTIFICATION FUNCTION ==========
+function sendUserNotification(username, title, message) {
+    const notificationId = 'notif_' + Date.now();
+    
+    const notification = {
+        id: notificationId,
+        title: title,
+        message: message,
+        type: 'info',
+        created_date: new Date().toISOString(),
+        read: false,
+        requires_acknowledgment: true,
+        show_immediately: true
+    };
+    
+    // Save to database
+    database.ref('user_notifications/' + username + '/' + notificationId).set(notification);
+}
+
+// ========== VIEW USER ORDERS FUNCTION ==========
+function viewUserOrders(username) {
+    database.ref('orders').orderByChild('username').equalTo(username).once('value').then(snapshot => {
+        const orders = snapshot.val();
+        let message = `📦 ${username} ၏ အော်ဒါများ\n\n`;
+        
+        if (orders) {
+            let orderCount = 0;
+            let totalAmount = 0;
+            
+            for (let orderId in orders) {
+                const order = orders[orderId];
+                orderCount++;
+                
+                // Extract price from order (e.g., "35B" -> 35)
+                const priceMatch = order.price.match(/(\d+)B/);
+                if (priceMatch) {
+                    totalAmount += parseInt(priceMatch[1]);
+                }
+                
+                message += `🛒 ${order.product}\n`;
+                message += `💵 ${order.price}\n`;
+                message += `📅 ${new Date(order.timestamp).toLocaleDateString()}\n`;
+                message += `---\n`;
+            }
+            message += `\n📊 အကျဉ်းချုပ်:\n`;
+            message += `စုစုပေါင်းအော်ဒါ: ${orderCount}\n`;
+            message += `စုစုပေါင်းငွေပမာဏ: ${totalAmount}B`;
+        } else {
+            message += 'ဤသုံးစွဲသူအတွက် အော်ဒါမရှိပါ။';
+        }
+        
+        alert(message);
+    }).catch(error => {
+        alert('အော်ဒါများဖွင့်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+    });
+}
+
+// ========== CHECK IF USER IS BANNED FUNCTION ==========
+function checkIfBanned(username) {
+    return database.ref('banned_users/' + username).once('value')
+        .then(snapshot => {
+            if (!snapshot.exists()) {
+                return false; // Not banned
+            }
+            
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            
+            // Check if ban has expired
+            if (now > expiresAt) {
+                // Remove expired ban
+                database.ref('banned_users/' + username).remove();
+                return false;
+            }
+            
+            return true; // Still banned
+        });
+}
+
+
+    </script>
 </body>
 </html>
