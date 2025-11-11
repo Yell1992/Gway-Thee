@@ -1,0 +1,4378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- iOS Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Gway Thee Shop">
+    <meta name="format-detection" content="telephone=no">
+    
+    <!-- Android Meta Tags -->
+    <meta name="theme-color" content="#000000">
+    <meta name="mobile-web-app-capable" content="yes">
+    
+    <title>MR.Gwayy Shop</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
+    
+    <style>
+        
+        * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+body {
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+    text-align: center;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    min-height: 100vh;
+}
+
+/* Header Styles */
+.name-wrap {
+    display: inline-block;
+    padding: 7px 15px;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.9);
+    margin: 30px auto;
+    border: 2px solid #ff00ff;
+    box-shadow: 
+        0 0 15px rgba(255, 0, 255, 0.3),
+        inset 0 0 15px rgba(0, 255, 255, 0.1);
+    animation: float 4s ease-in-out infinite;
+}
+
+.name-text {
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        0 0 10px #ff00ff,
+        0 0 20px rgba(0, 255, 255, 0.5);
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.shop-sub {
+    font-size: 20px;
+    color: #00ffff;
+    margin-top: 5px;
+    text-shadow: 0 0 10px #00ffff;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+}
+
+@keyframes textGlow {
+    from { text-shadow: 0 0 10px #ff00ff, 0 0 20px rgba(0, 255, 255, 0.5); }
+    to { text-shadow: 0 0 15px #00ffff, 0 0 25px rgba(255, 0, 255, 0.5); }
+}
+
+/* Bank Information - Single KPlus Menu Style */
+#bankInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 500px;
+    padding: 0 20px;
+}
+
+.pay-box {
+    background: rgba(0,0,0,0.8);
+    border-radius: 20px;
+    padding: 25px 20px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid yellow;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,20,30,0.9) 100%);
+    min-height: 140px;
+    width: 100%;
+    box-shadow: 0 0 20px rgba(255, 255, 0, 0.4);
+}
+
+.pay-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s;
+}
+
+.pay-box:hover::before {
+    left: 100%;
+}
+
+.pay-box:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 30px yellow;
+}
+
+.bank-label {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 0 0 15px yellow;
+    color: yellow;
+}
+
+.bank-details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.bank-name {
+    font-weight: bold;
+    font-size: 18px;
+    color: #ffffff;
+}
+
+.bank-number {
+    font-weight: bold;
+    font-size: 20px;
+    color: #ffcc00;
+    text-shadow: 0 0 10px rgba(255, 204, 0, 0.7);
+}
+
+.copy-btn {
+    background: linear-gradient(135deg, #ffcc00 0%, #ff9900 100%);
+    color: #000;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    margin-top: 15px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid yellow;
+    box-shadow: 0 4px 12px rgba(255, 204, 0, 0.4);
+    min-width: 140px;
+    font-size: 16px;
+}
+
+.copy-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(255, 204, 0, 0.7);
+    background: linear-gradient(135deg, #ff9900 0%, #ff6600 100%);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    #bankInfo {
+        max-width: 400px;
+        gap: 12px;
+    }
+    
+    .pay-box {
+        padding: 22px 15px;
+        min-height: 130px;
+    }
+    
+    .bank-label {
+        font-size: 24px;
+    }
+    
+    .bank-number {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    #bankInfo {
+        max-width: 350px;
+        gap: 10px;
+    }
+    
+    .pay-box {
+        padding: 20px 12px;
+        min-height: 120px;
+    }
+    
+    .bank-label {
+        font-size: 22px;
+    }
+    
+    .copy-btn {
+        padding: 10px 20px;
+        min-width: 120px;
+        font-size: 14px;
+    }
+}
+
+/* Lottery Section */
+#lotterySection {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 300px;
+    padding: 0 20px;
+}
+
+.mini-lottery-btn {
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid #ffffff;
+    width: 100%;
+    max-width: 250px;
+    position: relative;
+    overflow: hidden;
+}
+
+.mini-lottery-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+}
+
+.mini-lottery-btn span {
+    position: relative;
+    z-index: 2;
+}
+
+.btn-glow {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: glowMove 2s linear infinite;
+    z-index: 1;
+    border-radius: 30px;
+}
+
+@keyframes glowMove {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+/* Menu Styles */
+#homeMenu {
+    display: grid;
+    gap: 25px;
+    padding: 40px 20px;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.menu-card {
+    background: rgba(0,0,0,0.8);
+    border-radius: 20px;
+    padding: 25px 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid;
+    background: linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(20,20,30,0.9) 100%);
+}
+
+.menu-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s;
+}
+
+.menu-card:hover::before {
+    left: 100%;
+}
+
+.menu-card:nth-child(1) { border-color: blue; }
+.menu-card:nth-child(2) { border-color: #ff4444; }
+.menu-card:nth-child(3) { border-color: #00ff00; }
+
+.menu-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+.menu-card:nth-child(1):hover { box-shadow: 0 0 25px blueviolet; }
+.menu-card:nth-child(2):hover { box-shadow: 0 0 25px #ff4444; }
+.menu-card:nth-child(3):hover { box-shadow: 0 0 25px #00ff00; }
+
+/* Section Styles */
+section {
+    display: none;
+    padding: 30px 25px;
+    margin: 30px auto;
+    max-width: 900px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    border: 3px solid transparent;
+    background-clip: padding-box;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: sectionShow 0.6s ease forwards;
+    transition: all 0.4s ease-in-out;
+    position: relative;
+    overflow: hidden;
+}
+
+section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    transition: left 0.6s;
+}
+
+section:hover::before {
+    left: 100%;
+}
+
+section.active { display: block; }
+
+@keyframes sectionShow {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Section Specific Colors */
+#pubg {
+    border-color: yellow;
+    box-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
+}
+
+#mlbb_credit {
+    border-color: greenyellow;
+    box-shadow: 0 0 20px rgba(255, 68, 68, 0.4);
+}
+
+#mlbb_cash {
+    border-color: #00ff00;
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.4);
+}
+
+section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    display: inline-block;
+    padding: 12px 25px;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.8);
+    position: relative;
+    overflow: hidden;
+}
+
+#pubg h2 {
+    color: blue;
+    border: 2px solid cyan;
+    text-shadow: 0 0 10px deeppink;
+    box-shadow: 0 0 15px rgba(255, 107, 53, 0.5);
+}
+
+#mlbb_credit h2 {
+    color: plum;
+    border: 2px solid blueviolet;
+    text-shadow: 0 0 10px #ff4444;
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+}
+
+#mlbb_cash h2 {
+    color: #00ff00;
+    border: 2px solid yellow;
+    text-shadow: 0 0 10px palegreen;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+}
+
+/* Description Styles */
+.credit-description {
+    text-align: center;
+    margin: 10px 0;
+    padding: 12px;
+    background: rgba(255, 107, 53, 0.1);
+    border-radius: 10px;
+    border: 2px solid #ff4444;
+    color: #ff4444;
+    font-weight: bold;
+}
+
+.cash-description {
+    text-align: center;
+    margin: 10px 0;
+    padding: 12px;
+    background: rgba(0, 255, 0, 0.1);
+    border-radius: 10px;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    font-weight: bold;
+}
+
+.diamond-title {
+    color: #ffcc00;
+    text-shadow: 0 0 15px #ffcc00;
+    font-size: 24px;
+    margin: 25px 0 15px 0;
+    text-align: center;
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.4);
+}
+
+.double-diamond-description, .normal-diamond-description {
+    text-align: center;
+    margin: 15px 0;
+    padding: 15px;
+    background: rgba(255, 204, 0, 0.1);
+    border-radius: 12px;
+    border: 2px solid #ffcc00;
+    color: #ffcc00;
+    line-height: 1.6;
+}
+
+/* Products Grid */
+.products {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+    align-items: stretch;
+}
+
+.card {
+    width: 180px;
+    height: auto;
+    min-height: 200px;
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(20,20,30,0.95) 0%, rgba(40,40,60,0.95) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: visible;
+    border: 2px solid;
+    padding: 15px 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    margin: 10px 5px;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.05);
+    z-index: 10;
+}
+
+#pubg .card { border-color: #ff6b35; }
+#mlbb_credit .card { border-color: #ff4444; }
+#mlbb_cash .card { border-color: #00ff00; }
+
+#pubg .card:hover { box-shadow: 0 10px 25px rgba(255, 107, 53, 0.4); }
+#mlbb_credit .card:hover { box-shadow: 0 10px 25px rgba(255, 68, 68, 0.4); }
+#mlbb_cash .card:hover { box-shadow: 0 10px 25px rgba(0, 255, 0, 0.4); }
+
+.card h3 {
+    color: #ffffff;
+    margin: 8px 0;
+    font-size: 15px;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.3);
+    width: 100%;
+    box-sizing: border-box;
+    line-height: 1.2;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pubg .card h3 { border-color: #ff6b35; color: #ff6b35; }
+#mlbb_credit .card h3 { border-color: #ff4444; color: #ff4444; }
+#mlbb_cash .card h3 { border-color: #00ff00; color: #00ff00; }
+
+.total-diamonds {
+    color: #00ffff;
+    margin: 5px 0;
+    font-size: 14px;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+}
+
+.price {
+    color: #ffcc00;
+    margin: 8px 0;
+    font-size: 18px;
+    font-weight: 800;
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.5);
+    border: 2px solid #ffcc00;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background: rgba(0,0,0,0.3);
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.3);
+    line-height: 1.2;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card button {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+    cursor: pointer;
+    margin: 10px 0 5px 0;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    position: relative;
+    overflow: hidden;
+    min-width: 140px;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1.2;
+    flex-shrink: 0;
+}
+
+#pubg .card button {
+    background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%);
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.4);
+}
+
+#mlbb_credit .card button {
+    background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%);
+    box-shadow: 0 4px 12px rgba(255, 68, 68, 0.4);
+}
+
+#mlbb_cash .card button {
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    box-shadow: 0 4px 12px rgba(0, 255, 0, 0.4);
+}
+
+.card button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+}
+
+/* Weekly Pass Styles */
+.weekly-pass-section {
+    margin: 25px 0;
+    padding: 20px;
+    border: 3px solid #ff00ff;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(255,0,255,0.1) 0%, rgba(0,255,255,0.1) 100%);
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.2);
+}
+
+.wp-title {
+    color: #00ffcc;
+    text-shadow: 0 0 15px #00ffcc;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+    border: 2px solid #00ffcc;
+    border-radius: 10px;
+    padding: 10px 20px;
+    background: rgba(0,0,0,0.4);
+}
+
+.wp-description {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    border: 2px solid #00ffff;
+    text-align: center;
+}
+
+.wp-description p {
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    line-height: 1.6;
+    margin: 8px 0;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.wp-card-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+.wp-card {
+    width: 200px;
+    height: auto;
+    min-height: 220px;
+    border: 3px solid #ff00ff;
+    border-radius: 15px;
+    background: linear-gradient(135deg, rgba(255,0,255,0.15) 0%, rgba(0,255,255,0.15) 100%);
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 0 25px rgba(255, 0, 255, 0.3);
+}
+
+.wp-card h3 {
+    color: #ff00ff;
+    text-shadow: 0 0 15px rgba(255, 0, 255, 0.7);
+    font-size: 18px;
+    margin: 5px 0 15px 0;
+    border: 2px solid #ff00ff;
+    border-radius: 8px;
+    padding: 8px 15px;
+    background: rgba(0,0,0,0.5);
+    width: 100%;
+    text-align: center;
+}
+
+.qty-control-wrapper {
+    width: 100%;
+    margin: 15px 0;
+}
+
+.qty-control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    margin: 10px 0;
+    padding: 12px;
+    background: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    border: 2px solid #00ffff;
+}
+
+.qty-btn {
+    width: 40px;
+    height: 40px;
+    border: 2px solid #00ffff;
+    background: rgba(0,255,255,0.3);
+    color: #00ffff;
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+}
+
+.qty-btn:hover {
+    background: rgba(0,255,255,0.6);
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
+}
+
+.qty-display {
+    color: #00ffff;
+    font-size: 24px;
+    font-weight: bold;
+    min-width: 50px;
+    text-shadow: 0 0 15px rgba(0,255,255,0.7);
+    padding: 0 15px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    border: 1px solid #00ffff;
+}
+
+.price-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+    padding: 8px 15px;
+    background: rgba(255,204,0,0.2);
+    border-radius: 8px;
+    border: 2px solid #ffcc00;
+}
+
+.price-amount {
+    color: #ffcc00;
+    font-size: 22px;
+    font-weight: bold;
+    text-shadow: 0 0 10px rgba(255,204,0,0.7);
+}
+
+.select-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 0, 255, 0.4);
+    margin-top: 10px;
+    min-width: 150px;
+    min-height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.select-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 0, 255, 0.6);
+    border: 2px solid #ffffff;
+}
+
+/* Footer Styles */
+.footer {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    border-top: 1px solid #333;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-link {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: #fff;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-align: center;
+    min-width: 120px;
+}
+
+.social-link.facebook { 
+    background: #3b5998; 
+    box-shadow: 0 0 15px rgba(59, 89, 152, 0.5);
+}
+
+.social-link.messenger { 
+    background: #1877f2; 
+    box-shadow: 0 0 15px rgba(24, 119, 242, 0.5);
+}
+
+.social-link.logout-btn { 
+    background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+    box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    font-family: inherit;
+    font-size: inherit;
+}
+
+.social-link:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+}
+
+.social-link.facebook:hover { 
+    box-shadow: 0 0 25px rgba(59, 89, 152, 0.8);
+    border-color: #ffffff;
+}
+
+.social-link.messenger:hover { 
+    box-shadow: 0 0 25px rgba(24, 119, 242, 0.8);
+    border-color: #ffffff;
+}
+
+.social-link.logout-btn:hover { 
+    background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.8);
+    border-color: #ffffff;
+}
+
+.copyright {
+    color: red;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.95);
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    backdrop-filter: blur(10px);
+}
+
+.modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 30px;
+    border-radius: 20px;
+    max-width: 450px;
+    width: 90%;
+    text-align: center;
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 50px rgba(0, 255, 255, 0.6);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    color: #00ffff;
+    font-size: 24px;
+    text-shadow: 0 0 10px #00ffff;
+    margin-bottom: 20px;
+}
+
+.modal-content label {
+    display: block;
+    margin: 15px 0 8px;
+    color: #ffffff;
+    text-align: left;
+    font-weight: 600;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: rgba(0,0,0,0.5);
+    color: #ffffff;
+    font-size: 16px;
+}
+
+.modal-content .info-text {
+    color: #ff00ff;
+    font-weight: bold;
+    margin: 20px 0;
+    font-size: 18px;
+    text-shadow: 0 0 8px #ff00ff;
+    padding: 15px;
+    border: 2px solid #ff00ff;
+    border-radius: 10px;
+    background: rgba(255, 0, 255, 0.1);
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.modal-content button {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #fff;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    min-width: 120px;
+}
+
+.okBtn { 
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+}
+
+.okBtn:hover { 
+    background: linear-gradient(135deg, #00cc00 0%, #009900 100%);
+    transform: translateY(-2px);
+}
+
+.closeBtn { 
+    background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+    box-shadow: 0 4px 15px rgba(255, 0, 0, 0.3);
+}
+
+.closeBtn:hover { 
+    background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+    transform: translateY(-2px);
+}
+
+/* Copy Message */
+.copied-message {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    color: #fff;
+    font-weight: bold;
+    padding: 20px 30px;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+    z-index: 99999;
+    border: 3px solid #ffffff;
+    text-align: center;
+}
+
+.copied-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.copied-icon { font-size: 32px; }
+.copied-text { font-size: 20px; font-weight: 800; }
+.copied-subtext { font-size: 14px; opacity: 0.9; }
+
+.bank-copy {
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    border: 3px solid #00ff00;
+    box-shadow: 0 0 30px rgba(0, 255, 0, 0.6);
+}
+
+.order-copy {
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    border: 3px solid #ff00ff;
+    box-shadow: 0 0 30px rgba(255, 0, 255, 0.6);
+}
+
+/* Login Styles */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    backdrop-filter: blur(10px);
+}
+
+.login-container {
+    background: rgba(0, 0, 0, 0.95);
+    padding: 40px 30px;
+    border-radius: 25px;
+    border: 3px solid #ff00ff;
+    box-shadow: 
+        0 0 30px rgba(255, 0, 255, 0.4),
+        inset 0 0 20px rgba(0, 255, 255, 0.1);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: modalSlideIn 0.5s ease-out;
+}
+
+.login-header {
+    margin-bottom: 30px;
+}
+
+.login-title {
+    font-size: 42px;
+    font-weight: 900;
+    color: #fff;
+    text-shadow: 
+        0 0 10px #ff00ff,
+        0 0 20px rgba(0, 255, 255, 0.5);
+    margin-bottom: 10px;
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+.login-subtitle {
+    font-size: 20px;
+    color: #00ffff;
+    text-shadow: 0 0 10px #00ffff;
+    font-weight: bold;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.username-input {
+    padding: 15px 20px;
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+}
+
+.username-input:focus {
+    border-color: #ff00ff;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+    transform: scale(1.02);
+}
+
+.username-input::placeholder {
+    color: #888;
+    text-align: center;
+}
+
+.login-btn {
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.4);
+    transition: all 0.3s ease;
+    border: 2px solid #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.login-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
+}
+
+.error-message {
+    color: #ff4444;
+    background: rgba(255, 68, 68, 0.1);
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #ff4444;
+    font-weight: bold;
+    text-shadow: 0 0 10px #ff0000;
+    margin-top: 15px;
+    animation: shake 0.5s ease-in-out;
+}
+
+.success-message {
+    color: #00ff00;
+    background: rgba(0, 255, 0, 0.1);
+    padding: 12px 20px;
+    border-radius: 10px;
+    border: 2px solid #00ff00;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00ff00;
+    margin-top: 15px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Username Display */
+.username-display {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 12px 15px;
+    border-radius: 20px;
+    border: 3px solid #8B00FF;
+    font-weight: bold;
+    box-shadow: 
+        0 0 25px rgba(139, 0, 255, 0.8),
+        0 0 50px rgba(139, 0, 255, 0.4),
+        0 5px 15px rgba(0, 0, 0, 0.7),
+        inset 0 0 15px rgba(139, 0, 255, 0.3);
+    z-index: 1000;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    backdrop-filter: blur(10px);
+    max-width: 180px;
+    text-align: center;
+    animation: usernameFloat 3s ease-in-out infinite;
+}
+
+.username-display span {
+    color: #FFD700;
+    font-weight: 900;
+    font-size: 18px;
+    text-shadow: 
+        0 0 10px #FFD700,
+        0 0 20px #FFD700,
+        0 0 30px #FFD700,
+        0 2px 5px rgba(0, 0, 0, 0.8),
+        0 4px 8px rgba(0, 0, 0, 0.6);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+    letter-spacing: 0.5px;
+    animation: textPulse 2s ease-in-out infinite;
+}
+
+@keyframes usernameFloat {
+    0%, 100% { 
+        transform: translateY(0px) rotate(0deg); 
+        box-shadow: 
+            0 0 25px rgba(139, 0, 255, 0.8),
+            0 0 50px rgba(139, 0, 255, 0.4),
+            0 5px 15px rgba(0, 0, 0, 0.7),
+            inset 0 0 15px rgba(139, 0, 255, 0.3);
+    }
+    50% { 
+        transform: translateY(-3px) rotate(0.5deg); 
+        box-shadow: 
+            0 0 35px rgba(139, 0, 255, 1),
+            0 0 60px rgba(139, 0, 255, 0.6),
+            0 7px 20px rgba(0, 0, 0, 0.8),
+            inset 0 0 20px rgba(139, 0, 255, 0.5);
+    }
+}
+
+@keyframes textPulse {
+    0%, 100% { 
+        text-shadow: 
+            0 0 10px #FFD700,
+            0 0 20px #FFD700,
+            0 0 30px #FFD700,
+            0 2px 5px rgba(0, 0, 0, 0.8),
+            0 4px 8px rgba(0, 0, 0, 0.6);
+        transform: scale(1);
+    }
+    50% { 
+        text-shadow: 
+            0 0 15px #FFD700,
+            0 0 25px #FFD700,
+            0 0 35px #FFD700,
+            0 0 45px #FFD700,
+            0 3px 7px rgba(0, 0, 0, 0.9),
+            0 6px 12px rgba(0, 0, 0, 0.7);
+        transform: scale(1.05);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .name-text {
+        font-size: 32px;
+    }
+    
+    .shop-sub {
+        font-size: 16px;
+    }
+    
+    #bankInfo {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .pay-box {
+        min-width: 120px;
+        min-height: 120px;
+        padding: 12px;
+    }
+    
+    .center-note {
+        font-size: 16px;
+        padding: 8px 15px;
+    }
+    
+    .card {
+        width: 160px;
+        min-height: 180px;
+        margin: 8px 4px;
+    }
+    
+    .card h3 {
+        font-size: 14px;
+        padding: 6px 10px;
+        min-height: 45px;
+    }
+    
+    .price {
+        font-size: 16px;
+        padding: 6px 10px;
+        min-height: 40px;
+    }
+    
+    .card button {
+        min-width: 120px;
+        min-height: 40px;
+        font-size: 12px;
+        padding: 10px 15px;
+        margin: 8px 0 4px 0;
+    }
+    
+    .products {
+        gap: 15px;
+    }
+    
+    .wp-card {
+        width: 180px;
+        min-height: 200px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    .social-links {
+        gap: 10px;
+    }
+    
+    .social-link {
+        padding: 8px 15px;
+        font-size: 14px;
+        min-width: 100px;
+    }
+    
+    .username-display {
+        top: 5px;
+        right: 5px;
+        padding: 10px 12px;
+        max-width: 160px;
+        font-size: 12px;
+    }
+    
+    .username-display span {
+        font-size: 16px;
+        max-width: 130px;
+    }
+    
+    .login-container {
+        padding: 30px 20px;
+        margin: 20px;
+    }
+    
+    .login-title {
+        font-size: 32px;
+    }
+    
+    .login-subtitle {
+        font-size: 16px;
+    }
+    
+    .username-input {
+        padding: 12px 15px;
+        font-size: 16px;
+    }
+    
+    .login-btn {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 150px;
+        min-height: 170px;
+        margin: 5px 3px;
+    }
+    
+    .card h3 {
+        font-size: 13px;
+        padding: 5px 8px;
+        min-height: 40px;
+    }
+    
+    .price {
+        font-size: 15px;
+        padding: 5px 8px;
+        min-height: 35px;
+    }
+    
+    .card button {
+        min-width: 110px;
+        min-height: 35px;
+        font-size: 11px;
+        padding: 8px 12px;
+        margin: 6px 0 3px 0;
+    }
+    
+    .products {
+        gap: 10px;
+    }
+    
+    .wp-card {
+        width: 160px;
+        min-height: 180px;
+        padding: 15px 10px;
+    }
+    
+    .social-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+    
+    .social-link {
+        width: 100%;
+        max-width: 200px;
+        padding: 10px 15px;
+    }
+    
+    .username-display {
+        top: 3px;
+        right: 3px;
+        padding: 8px 10px;
+        max-width: 140px;
+        font-size: 11px;
+    }
+    
+    .username-display span {
+        font-size: 14px;
+        max-width: 110px;
+    }
+}
+
+/* iOS Safari Specific Fixes */
+@supports (-webkit-touch-callout: none) {
+    body {
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        -webkit-overflow-scrolling: touch;
+    }
+    
+    .card, .menu-card, .name-wrap {
+        -webkit-transform: translateZ(0);
+    }
+    
+    input, select, textarea {
+        font-size: 16px !important;
+    }
+}
+
+/* Mobile Tap Highlights */
+button, .menu-card, .card, .copy-btn {
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+/* Mobile Performance */
+* {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+}
+
+
+/* ✅ ဒီအပိုင်းတွေပဲ ထားခဲ့ပါ */
+.admin-menu {
+    border-color: #ff6b35 !important;
+    background: linear-gradient(135deg, rgba(255,107,53,0.1) 0%, rgba(255,107,53,0.2) 100%) !important;
+}
+
+.admin-menu:hover {
+    box-shadow: 0 0 25px rgba(255,107,53,0.6) !important;
+    transform: translateY(-5px) scale(1.02);
+}
+
+.admin-menu h2 {
+    color: #ff6b35 !important;
+    text-shadow: 0 0 10px rgba(255,107,53,0.7) !important;
+}
+
+/* ✅ Admin Panel Styles - ဒီအပိုင်းပဲထားခဲ့ */
+#adminPanel {
+    display: none;
+    padding: 30px 25px;
+    margin: 30px auto;
+    max-width: 900px;
+    background: rgba(0, 0, 0, 0.9);
+    border-radius: 20px;
+    border: 3px solid #ff6b35;
+    box-shadow: 0 10px 30px rgba(255,107,53,0.3);
+}
+
+.admin-section {
+    margin-bottom: 30px;
+}
+
+.action-btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* ✅ Phone Notification Styles - NOTI အတွက် ဒီအပိုင်းပဲထားခဲ့ */
+.phone-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
+    z-index: 10000;
+    animation: slideIn 0.3s ease forwards;
+}
+
+.notification-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.notification-icon {
+    font-size: 20px;
+}
+
+.notification-title {
+    font-weight: bold;
+    color: #00ffff;
+    flex: 1;
+    margin: 0 10px;
+}
+
+.notification-time {
+    font-size: 12px;
+    color: #888;
+}
+
+.notification-body {
+    margin-bottom: 15px;
+    color: #ffffff;
+}
+
+.notification-actions {
+    text-align: right;
+}
+
+.notification-ok {
+    background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideOut {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+}
+
+/* ✅ User Notification Modal Styles - NOTI အတွက် ဒီအပိုင်းပဲထားခဲ့ */
+#userNotificationModal .modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 3px solid #00ffff;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);
+    max-width: 400px;
+    text-align: center;
+}
+
+#userNotificationModal .info-text {
+    background: rgba(0, 255, 255, 0.1);
+    border: 2px solid #00ffff;
+    border-radius: 10px;
+    color: #ffffff;
+    margin: 15px 0;
+}
+
+/* Mobile Responsive for Notification */
+@media (max-width: 768px) {
+    .phone-notification {
+        width: 90%;
+        right: 5%;
+        left: 5%;
+    }
+}
+
+
+/* Notification Icon Styles */
+.notification-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.notification-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounce 1s infinite;
+}
+
+.notification-icon i {
+    font-size: 20px;
+    color: white;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Notification item styles for unread/read */
+.notification-item.unread {
+    border-left: 5px solid #ff00ff !important;
+    background: rgba(255, 0, 255, 0.1) !important;
+}
+
+.notification-item.read {
+    border-left: 5px solid #333 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    opacity: 0.7;
+}
+
+    </style>
+</head>
+<body>
+    <!-- Login Overlay -->
+    <div id="loginOverlay" class="login-overlay">
+        <div class="login-container">
+            <div class="login-header">
+                <h1 class="login-title">MR-Gwayy</h1>
+                <p class="login-subtitle">🏬စျေးဆိုင်ကြီး🏬</p>
+            </div>
+            
+            <div class="login-form">
+                <input 
+                    type="text" 
+                    id="usernameInput" 
+                    placeholder=" သင့်နာမည်(၅)လုံးထည့်ပေးပါ(ဥပမာ.Yell Wint Zaw)" 
+                    class="username-input"
+                >
+                <button onclick="handleLogin()" class="login-btn">
+                    <span>ဝင်မည်</span>
+                    <div class="btn-glow"></div>
+                </button>
+            </div>
+
+            <div id="loginError" class="error-message" style="display: none;">
+                နာမည်တူရှိတယ် ပြောင်းပေးပါ
+            </div>
+
+            <div id="loginSuccess" class="success-message" style="display: none;">
+                အောင်မြင်ပါသည်
+            </div>
+        </div>
+    </div>
+
+    <!-- Username Display -->
+    <div id="usernameDisplay" class="username-display" style="display: none;">
+        <span id="displayedUsername"></span>
+    </div>
+
+    <header>
+        <div class="name-wrap">
+            <span class="name-text">MR-Gwayy</span>
+            <p class="shop-sub">🏬စျေးဆိုင်ကြီး🏬</p>
+        </div>
+    </header>
+
+ 
+<!-- Bank Information -->
+    <div id="bankInfo">
+        <div class="pay-box kplus">
+            <div class="label">🏦 KPlus</div>
+            <div><strong>Ye Win Zaw</strong></div>
+            <div><strong>1651781546</strong></div>
+            <button class="copy-btn" onclick="mobileCopyText('1651781546', 'bank')">📲 Copy</button>
+        </div>
+    </div>
+  
+
+    <!-- Home Menu -->
+    <div id="homeMenu" class="active">
+        <div class="menu-card" onclick="openSection('pubg')">
+            <h2>🎮 PUBG UC ဝယ်မည်</h2>
+        </div>
+        <div class="menu-card" onclick="openSection('mlbb_credit')">
+            <h2>💎 MLBB စိန် (အကြွေး)</h2>
+        </div>
+        <div class="menu-card" onclick="openSection('mlbb_cash')">
+            <h2>💵 MLBB စိန် (လက်ငင်း)</h2>
+        </div>
+    </div>
+
+
+    
+   
+
+    <!-- PUBG Section -->
+    <section id="pubg">
+        <h2>🎮 PUBG UC</h2>
+        <div class="credit-description">
+            <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
+        </div>
+        <div class="credit-description">
+            <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
+        </div>
+        
+        <div class="products">
+            <div class="card">
+                <h3>60 UC</h3>
+                <p>35B</p>
+                <button onclick="orderItem('PUBG 60 UC - 35B','pubg')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>180 UC</h3>
+                <p>115B</p>
+                <button onclick="orderItem('PUBG 180 UC - 115B','pubg')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>325 UC</h3>
+                <p>180B</p>
+                <button onclick="orderItem('PUBG 325 UC - 180B','pubg')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>660 UC</h3>
+                <p>350B</p>
+                <button onclick="orderItem('PUBG 660 UC - 350B','pubg')">ဝယ်ယူမယ်</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MLBB Credit Section -->
+    <section id="mlbb_credit">
+        <h2>💎 MLBB စိန်များ (အကြွေး)</h2>
+        
+      
+        <div class="credit-description">
+            <p>💰 အကြွေးကို လစာထုတ်ပီး (၂)ရက်အတွင်း ပေးချေးပါရန်</p>
+        </div>
+        <div class="credit-description">
+            <p>💰 စည်းကမ်း ဖောက်ဖျက်လျှင် အကြွေးဝယ်ခွင့်ပိတ်ပါမည်</p>
+        </div>
+
+        <!-- Weekly Pass Section -->
+        <div class="weekly-pass-section">
+            <h3 class="wp-title">✨ Weekly Pass ✨</h3>
+            
+         
+            
+            <div class="wp-card-container">
+                <div class="wp-card">
+                    <h3>✨ Weekly Pass ✨</h3>
+                    <div class="qty-control-wrapper">
+                        <div class="qty-control">
+                            <button class="qty-btn minus" onclick="decreaseQtyCredit()">-</button>
+                            <span id="qtyCredit" class="qty-display">1</span>
+                            <button class="qty-btn plus" onclick="increaseQtyCredit()">+</button>
+                        </div>
+                        <div class="price-container">
+                            <span id="priceCredit" class="price-amount">60B</span>
+                        </div>
+                    </div>
+                    <button class="select-btn" onclick="selectProductCredit()">ဝယ်ယူမယ်</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diamonds ×2 Section -->
+        <h3 class="diamond-title">✨ Diamonds ×2ဆ ✨</h3>
+        
+     
+
+        <div class="products">
+            <div class="card">
+                <h3>50 + 50</h3>
+                <p class="total-diamonds">စုစုပေါင်း 100 လုံး</p>
+                <p class="price">40B</p>
+                <button onclick="orderItem('MLBB 50+50 Diamonds - 40B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>150 + 150</h3>
+                <p class="total-diamonds">စုစုပေါင်း 300 လုံး</p>
+                <p class="price">100B</p>
+                <button onclick="orderItem('MLBB 150+150 Diamonds - 100B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>250 + 250</h3>
+                <p class="total-diamonds">စုစုပေါင်း 500 လုံး</p>
+                <p class="price">165B</p>
+                <button onclick="orderItem('MLBB 250+250 Diamonds - 165B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>500 + 500</h3>
+                <p class="total-diamonds">စုစုပေါင်း 1000 လုံး</p>
+                <p class="price">310B</p>
+                <button onclick="orderItem('MLBB 500+500 Diamonds - 310B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+        </div>
+
+        <!-- Normal Diamonds Section -->
+        <h3 class="diamond-title">✨ ရိုးရိုးစိန်များ ✨</h3>
+        
+     
+
+        <div class="products">
+            <div class="card">
+                <h3>11 လုံး</h3>
+                <p class="price">10B</p>
+                <button onclick="orderItem('MLBB 11 Diamonds - 10B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>86 လုံး</h3>
+                <p class="price">50B</p>
+                <button onclick="orderItem('MLBB 86 Diamonds - 50B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>172 လုံး</h3>
+                <p class="price">100B</p>
+                <button onclick="orderItem('MLBB 172 Diamonds - 100B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>257 လုံး</h3>
+                <p class="price">145B</p>
+                <button onclick="orderItem('MLBB 257 Diamonds - 145B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>343 လုံး</h3>
+                <p class="price">190B</p>
+                <button onclick="orderItem('MLBB 343 Diamonds - 190B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>429 လုံး</h3>
+                <p class="price">235B</p>
+                <button onclick="orderItem('MLBB 429 Diamonds - 235B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>514 လုံး</h3>
+                <p class="price">280B</p>
+                <button onclick="orderItem('MLBB 514 Diamonds - 280B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MLBB Cash Section -->
+    <section id="mlbb_cash">
+        <h2>💎 MLBB စိန်များ (လက်ငင်း)</h2>
+        
+       
+
+        <!-- Weekly Pass Section -->
+        <div class="weekly-pass-section">
+            <h3 class="wp-title">✨ Weekly Pass ✨</h3>
+            
+       
+            
+            <div class="wp-card-container">
+                <div class="wp-card">
+                    <h3>✨ Weekly Pass ✨</h3>
+                    <div class="qty-control-wrapper">
+                        <div class="qty-control">
+                            <button class="qty-btn minus" onclick="decreaseQtyCash()">-</button>
+                            <span id="qtyCash" class="qty-display">1</span>
+                            <button class="qty-btn plus" onclick="increaseQtyCash()">+</button>
+                        </div>
+                        <div class="price-container">
+                            <span id="priceCash" class="price-amount">55B</span>
+                        </div>
+                    </div>
+                    <button class="select-btn" onclick="selectProductCash()">ဝယ်ယူမယ်</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Diamonds ×2 Section -->
+        <h3 class="diamond-title">✨ Diamonds ×2ဆ ✨</h3>
+        
+   
+
+        <div class="products">
+            <div class="card">
+                <h3>50 + 50</h3>
+                <p class="total-diamonds">စုစုပေါင်း 100 လုံး</p>
+                <p class="price">35B</p>
+                <button onclick="orderItem('MLBB 50+50 Diamonds - 35B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>150 + 150</h3>
+                <p class="total-diamonds">စုစုပေါင်း 300 လုံး</p>
+                <p class="price">90B</p>
+                <button onclick="orderItem('MLBB 150+150 Diamonds - 90B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>250 + 250</h3>
+                <p class="total-diamonds">စုစုပေါင်း 500 လုံး</p>
+                <p class="price">155B</p>
+                <button onclick="orderItem('MLBB 250+250 Diamonds - 155B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>500 + 500</h3>
+                <p class="total-diamonds">စုစုပေါင်း 1000 လုံး</p>
+                <p class="price">300B</p>
+                <button onclick="orderItem('MLBB 500+500 Diamonds - 300B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+        </div>
+
+        <!-- Normal Diamonds Section -->
+        <h3 class="diamond-title">✨ ရိုးရိုးစိန်များ ✨</h3>
+        
+    
+
+        <div class="products">
+            <div class="card">
+                <h3>11 လုံး</h3>
+                <p class="price">10B</p>
+                <button onclick="orderItem('MLBB 11 Diamonds - 10B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>86 လုံး</h3>
+                <p class="price">45B</p>
+                <button onclick="orderItem('MLBB 86 Diamonds - 45B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>172 လုံး</h3>
+                <p class="price">90B</p>
+                <button onclick="orderItem('MLBB 172 Diamonds - 90B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>257 လုံး</h3>
+                <p class="price">135B</p>
+                <button onclick="orderItem('MLBB 257 Diamonds - 135B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>343 လုံး</h3>
+                <p class="price">180B</p>
+                <button onclick="orderItem('MLBB 343 Diamonds - 180B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>429 လုံး</h3>
+                <p class="price">225B</p>
+                <button onclick="orderItem('MLBB 429 Diamonds - 225B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+            <div class="card">
+                <h3>514 လုံး</h3>
+                <p class="price">270B</p>
+                <button onclick="orderItem('MLBB 514 Diamonds - 270B','mlbb')">ဝယ်ယူမယ်</button>
+            </div>
+        </div>
+    </section>
+    
+
+<!-- Admin Panel Section -->
+<section id="adminPanel">
+    <h2 style="color: #ff6b35; text-shadow: 0 0 10px rgba(255,107,53,0.7); text-align: center; margin-bottom: 30px;">
+        🛠️ စီမံခန့်ခွဲရေး
+    </h2>
+    
+    <!-- Notification System -->
+    <div class="admin-section">
+        <h3>📨 အသိပေးချက်ပို့ရန်</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <button class="action-btn" onclick="showNotificationForm()" 
+                    style="background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                📤 သုံးစွဲသူများထံပို့မည်
+            </button>
+        </div>
+    </div>
+
+    <!-- User Management -->
+    <div class="admin-section">
+        <h3>👥 သုံးစွဲသူများစီမံခန့်ခွဲမှု</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <button class="action-btn" onclick="viewAllUsers()" 
+                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                👤 သုံးစွဲသူအားလုံးကြည့်မည်
+            </button>
+            <button class="action-btn" onclick="viewBannedUsers()" 
+                    style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                🚫 ပိတ်ပင်ထားသူများ
+            </button>
+        </div>
+        <div id="usersDisplay" style="margin-top: 20px;"></div>
+    </div>
+
+ 
+
+    <!-- Credit System -->
+    <div class="admin-section">
+        <h3>💳 ခရက်ဒစ်စနစ်</h3>
+        <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+            <button class="action-btn" onclick="showAddCreditForm()" 
+                    style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                ➕ သုံးစွဲသူခရက်ဒစ်ထည့်မည်
+            </button>
+      
+            <button class="action-btn" onclick="viewCreditReports()" 
+                    style="background: linear-gradient(135deg, #ffeb3b 0%, #f9a825 100%); color: black; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                📊 ခရက်ဒစ်အစီရင်ခံစာ
+            </button>
+        </div>
+        <div id="creditDisplay" style="margin-top: 20px;"></div>
+    </div>
+
+    <!-- Back to Home Button -->
+    <div style="text-align: center; margin-top: 30px;">
+        <button class="mini-lottery-btn" onclick="goHome()" 
+                style="background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); padding: 15px 30px; font-size: 16px;">
+            🏠 ပင်မစာမျက်နှာသို့
+        </button>
+    </div>
+</section>
+
+     <!-- Lottery Button -->
+    <div id="lotterySection">
+        <button class="mini-lottery-btn" onclick="openLottery()">
+            <span>🎡 ကံစမ်းမဲ ကံစမ်းရန်</span>
+            <div class="btn-glow"></div>
+        </button>
+    </div>
+   
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="social-links">
+            <a href="https://www.facebook.com/share/19rS5698mz/" target="_blank" class="social-link facebook">📘 Facebook</a>
+            <a href="https://m.me/hacker.ma.lar.ya.5555555555555" target="_blank" class="social-link messenger">💌 Messenger</a>
+            <button onclick="logout()" class="social-link logout-btn">🚪 Logout</button>
+        </div>
+        
+        <p class="copyright">&copy; 2025 MR-Gwayy (မူပိုင်ခွင့်)</p>
+    </footer>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <h3>Order</h3>
+            <div class="info-text">📌 <span id="selectedItem"></span></div>
+
+            <div id="extraFields"></div>
+
+            <div class="modal-buttons">
+                <button class="okBtn" onclick="finalizeOrder()">OK</button>
+                <button class="closeBtn" onclick="closeModal()">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Copy Message -->
+    <div id="copiedMsg" class="copied-message">
+        <div class="copied-content">
+            <span class="copied-icon">✅</span>
+            <span class="copied-text">ကူးယူပြီးပါပြီ!</span>
+            <span class="copied-subtext">Messenger သို့ ကူးသွားမည်...</span>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script> 
+    
+    // ========== FIREBASE CONFIGURATION ==========
+const firebaseConfig = {
+    apiKey: "AIzaSyBtv_3J7OmczCrbl1wPrvBdS_7m7bpVboI",
+    authDomain: "gway-shop.firebaseapp.com",
+    databaseURL: "https://gway-shop-default-rtdb.asia-southeast1.firebasedatabase.app/",
+    projectId: "gway-shop",
+    storageBucket: "gway-shop.firebasestorage.app",
+    messagingSenderId: "904287740689",
+    appId: "1:904287740689:web:18c045484718292b9c62b0"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const database = firebase.database();
+
+// ========== TELEGRAM CONFIGURATION ==========
+const TELEGRAM_BOT_TOKEN = '8378213405:AAE39lvznw4LvYAjJVfHZpiKAykwjtnafFk';
+const TELEGRAM_CHAT_ID = '5236329716';
+const USER_LOGIN_BOT_TOKEN = '8223400760:AAF-qCC3IxPGiyxHVBsjLIAIJwRHSx1nPhY';
+const USER_LOGIN_CHAT_ID = '5236329716';
+
+// ========== GLOBAL VARIABLES ==========
+let currentItem = "";
+let currentType = "";
+
+// ========== LOGIN SYSTEM ==========
+function handleLogin() {
+    const usernameInput = document.getElementById('usernameInput');
+    const username = usernameInput.value.trim();
+    
+    hideMessages();
+    
+    if (username.length < 3) {
+        showError('အနည်းဆုံး ၃ လုံးထည့်ပါ');
+        return;
+    }
+    
+    const loginBtn = document.querySelector('.login-btn');
+    loginBtn.innerHTML = '<span>စစ်ဆေးနေသည်...</span>';
+    loginBtn.disabled = true;
+    
+    checkUsername(username)
+        .then(exists => {
+            if (exists) {
+                showSuccess();
+                setTimeout(() => {
+                    completeLogin(username);
+                }, 1500);
+            } else {
+                saveUsername(username)
+                    .then(() => {
+                        showSuccess();
+                        setTimeout(() => {
+                            completeLogin(username);
+                        }, 1500);
+                    })
+                    .catch(error => {
+                        showError('Error ရှိပါတယ်');
+                    });
+            }
+        })
+        .catch(error => {
+            showError('Error ရှိပါတယ်');
+        })
+        .finally(() => {
+            loginBtn.innerHTML = '<span>ဝင်မည်</span><div class="btn-glow"></div>';
+            loginBtn.disabled = false;
+        });
+}
+
+function checkUsername(username) {
+    return database.ref('usernames/' + username).once('value')
+        .then(snapshot => snapshot.exists());
+}
+
+function saveUsername(username) {
+    return database.ref('usernames/' + username).set(true);
+}
+
+
+function showError(message) {
+    const errorDiv = document.getElementById('loginError');
+    errorDiv.textContent = message;
+    errorDiv.style.display = 'block';
+}
+
+function showSuccess() {
+    document.getElementById('loginSuccess').style.display = 'block';
+}
+
+function hideMessages() {
+    document.getElementById('loginError').style.display = 'none';
+    document.getElementById('loginSuccess').style.display = 'none';
+}
+
+// ========== SECTION MANAGEMENT ==========
+function openSection(id) {
+    document.getElementById("homeMenu").style.display = "none";
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById(id).style.display = "block";
+    history.pushState({ page: id }, "", "#" + id);
+}
+
+function goHome() {
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById("homeMenu").style.display = "grid";
+}
+
+// ========== ORDER SYSTEM ==========
+function orderItem(item, type) {
+    currentItem = item; 
+    currentType = type;
+    document.getElementById("selectedItem").innerText = item;
+
+    let extra = document.getElementById("extraFields");
+    extra.innerHTML = "";
+
+    if (type === "mlbb" || type === "mlbb_credit" || type === "mlbb_cash") {
+        extra.innerHTML = `
+            <label>Game ID</label>
+            <div style="position: relative;">
+                <input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+                <button onclick="clearInput('gameId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+            </div>
+            <label>Server ID</label>
+            <div style="position: relative;">
+                <input id="serverId" placeholder="Server ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+                <button onclick="clearInput('serverId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+            </div>
+        `;
+        
+        setTimeout(autoFillMLBBIds, 100);
+        
+    } else if (type === "pubg") {
+        extra.innerHTML = `
+            <label>Game ID</label>
+            <div style="position: relative;">
+                <input id="gameId" placeholder="Game ID ထည့်ပါ (မဖြစ်မနေထည့်ရမည်)" style="padding-right: 40px; width: 100%;">
+                <button onclick="clearInput('gameId')" style="position: absolute; right: 0; top: 50%; transform: translateY(-50%); background: none; border: none; color: #ff4444; font-size: 35px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">×</button>
+            </div>
+        `;
+    }
+
+    document.getElementById("orderModal").style.display = "flex";
+    history.pushState({ page: "modal" }, "", "#modal");
+}
+
+function clearInput(inputId) {
+    const input = document.getElementById(inputId);
+    if (input) {
+        input.value = '';
+        input.focus();
+    }
+}
+
+function closeModal() {
+    document.getElementById("orderModal").style.display = "none";
+    if (window.location.hash === '#modal') {
+        history.back();
+    }
+}
+
+// Order တင်တဲ့အခါမှာလည်း ban check ထည့်မယ်
+async function finalizeOrder() {
+    const username = localStorage.getItem('gway_username') || 'Unknown User';
+    
+    // Check if user is banned before processing order
+    const isBanned = await checkIfBanned(username);
+    if (isBanned) {
+        alert('🚫 Your account is temporarily suspended. You cannot place orders. Please contact admin for more information.');
+        return;
+    }
+    
+    const finalizeBtn = document.querySelector('#orderModal .okBtn');
+    const originalText = finalizeBtn.textContent;
+    finalizeBtn.disabled = true;
+    finalizeBtn.textContent = '...ပို့နေပါသည်...';
+    
+    let orderData = {};
+    
+  
+    
+    try {
+        if (currentType === "mlbb" || currentType === "mlbb_credit" || currentType === "mlbb_cash") {
+            const gameId = document.getElementById("gameId")?.value.trim() || "";
+            const serverId = document.getElementById("serverId")?.value.trim() || "";
+            
+            if (!gameId) {
+                alert("❌ Game ID ထည့်ပေးပါ");
+                document.getElementById("gameId").focus();
+                return;
+            }
+            if (!serverId) {
+                alert("❌ Server ID ထည့်ပေးပါ");
+                document.getElementById("serverId").focus();
+                return;
+            }
+            
+            saveMLBBIds(gameId, serverId);
+            
+            orderData = { 
+                username: username,
+                product: currentItem, 
+                price: currentItem.split('-')[1]?.trim(), 
+                gameId, 
+                serverId,
+                type: 'MLBB'
+            };
+        } else if (currentType === "pubg") {
+            const gameId = document.getElementById("gameId")?.value.trim() || "";
+            
+            if (!gameId) {
+                alert("❌ Game ID ထည့်ပေးပါ");
+                document.getElementById("gameId").focus();
+                return;
+            }
+            
+            orderData = { 
+                username: username,
+                product: currentItem, 
+                price: currentItem.split('-')[1]?.trim(), 
+                gameId,
+                type: 'PUBG'
+            };
+        }
+
+        const success = await sendToTelegram(orderData);
+        
+        if (success) {
+            showCopied('order');
+            setTimeout(() => {
+                closeModal();
+            }, 2000);
+        } else {
+            alert('❌ Telegram ပို့ခြင်းမအောင်မြင်ပါ။');
+        }
+        
+    } catch (error) {
+        console.error('Order error:', error);
+        alert('❌ အော်ဒါမှားယွင်းနေပါသည်။');
+    } finally {
+        finalizeBtn.disabled = false;
+        finalizeBtn.textContent = originalText;
+    }
+}
+
+// ========== WEEKLY PASS SYSTEM ==========
+// Credit Weekly Pass
+const basePriceCredit = 60;
+
+function updatePriceCredit() {
+    let qty = parseInt(document.getElementById("qtyCredit").innerText);
+    let total = basePriceCredit * qty;
+    document.getElementById("priceCredit").innerText = total + "B";
+}
+
+function increaseQtyCredit() {
+    let qtyElem = document.getElementById("qtyCredit");
+    let qty = parseInt(qtyElem.innerText);
+    qtyElem.innerText = qty + 1;
+    updatePriceCredit();
+}
+
+function decreaseQtyCredit() {
+    let qtyElem = document.getElementById("qtyCredit");
+    let qty = parseInt(qtyElem.innerText);
+    if (qty > 1) {
+        qtyElem.innerText = qty - 1;
+        updatePriceCredit();
+    }
+}
+
+function selectProductCredit() {
+    let qty = parseInt(document.getElementById("qtyCredit").innerText);
+    let total = basePriceCredit * qty;
+    orderItem(`MLBB Weekly Pass ×${qty} - ${total}B`, "mlbb_credit");
+}
+
+// Cash Weekly Pass
+const basePriceCash = 55;
+
+function updatePriceCash() {
+    let qty = parseInt(document.getElementById("qtyCash").innerText);
+    let total = basePriceCash * qty;
+    document.getElementById("priceCash").innerText = total + "B";
+}
+
+function increaseQtyCash() {
+    let qtyElem = document.getElementById("qtyCash");
+    let qty = parseInt(qtyElem.innerText);
+    qtyElem.innerText = qty + 1;
+    updatePriceCash();
+}
+
+function decreaseQtyCash() {
+    let qtyElem = document.getElementById("qtyCash");
+    let qty = parseInt(qtyElem.innerText);
+    if (qty > 1) {
+        qtyElem.innerText = qty - 1;
+        updatePriceCash();
+    }
+}
+
+function selectProductCash() {
+    let qty = parseInt(document.getElementById("qtyCash").innerText);
+    let total = basePriceCash * qty;
+    orderItem(`MLBB Weekly Pass ×${qty} - ${total}B`, "mlbb_cash");
+}
+
+// ========== UTILITY FUNCTIONS ==========
+function mobileCopyText(text, type = 'bank') {
+    const tempInput = document.createElement('input');
+    tempInput.style.fontSize = '16px';
+    tempInput.value = text;
+    document.body.appendChild(tempInput);
+    
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999);
+    
+    let success = false;
+    try {
+        success = document.execCommand('copy');
+    } catch (err) {
+        console.error('Copy failed:', err);
+    }
+    
+    document.body.removeChild(tempInput);
+    
+    if (success) {
+        showCopied(type);
+        return true;
+    } else {
+        navigator.clipboard.writeText(text).then(() => {
+            showCopied(type);
+        }).catch(() => {
+            alert('Copy လုပ်ရန်နှိပ်ပါ: ' + text);
+        });
+    }
+}
+
+function showCopied(type = 'bank') {
+    let msg = document.getElementById("copiedMsg");
+    if (!msg) return;
+    
+    msg.classList.remove('bank-copy', 'order-copy');
+    
+    if (type === 'order') {
+        msg.classList.add('order-copy');
+        msg.querySelector('.copied-text').textContent = 'အောင်မြင်ပါပီ!🥰';
+        msg.querySelector('.copied-subtext').textContent = 'Order မှာယူပီးပါပီ..ခဏစောင့်ပေးပါ';
+    } else {
+        msg.classList.add('bank-copy');
+        msg.querySelector('.copied-text').textContent = 'အောင်မြင်ပါပြီ!';
+        msg.querySelector('.copied-subtext').textContent = 'ဘဏ်နံပါတ် clipboard ထဲရောက်နေပါပြီ';
+    }
+    
+    msg.style.display = 'block';
+    setTimeout(() => {
+        msg.style.display = 'none';
+    }, 3000);
+}
+
+function openLottery() {
+    window.open('https://yell1992.github.io/Yell1992/', '_blank');
+    
+    const button = document.querySelector('.mini-lottery-btn');
+    button.style.transform = 'scale(0.95)';
+    setTimeout(() => {
+        button.style.transform = 'scale(1)';
+    }, 150);
+    
+    console.log('User clicked lottery button');
+}
+
+// ========== MLBB ID AUTO-SAVE SYSTEM ==========
+function loadSavedMLBBIds() {
+    const savedGameId = localStorage.getItem('mlbb_gameId');
+    const savedServerId = localStorage.getItem('mlbb_serverId');
+    
+    if (savedGameId) {
+        console.log('Loaded saved Game ID:', savedGameId);
+    }
+    if (savedServerId) {
+        console.log('Loaded saved Server ID:', savedServerId);
+    }
+}
+
+function autoFillMLBBIds() {
+    const savedGameId = localStorage.getItem('mlbb_gameId');
+    const savedServerId = localStorage.getItem('mlbb_serverId');
+    
+    const gameIdInput = document.getElementById('gameId');
+    const serverIdInput = document.getElementById('serverId');
+    
+    if (gameIdInput && savedGameId) {
+        gameIdInput.value = savedGameId;
+    }
+    if (serverIdInput && savedServerId) {
+        serverIdInput.value = savedServerId;
+    }
+}
+
+function saveMLBBIds(gameId, serverId) {
+    if (gameId && gameId.trim() !== '') {
+        localStorage.setItem('mlbb_gameId', gameId.trim());
+        console.log('Saved Game ID:', gameId.trim());
+    }
+    if (serverId && serverId.trim() !== '') {
+        localStorage.setItem('mlbb_serverId', serverId.trim());
+        console.log('Saved Server ID:', serverId.trim());
+    }
+}
+
+
+// ========== TELEGRAM INTEGRATION ==========
+async function sendToTelegram(orderData) {
+    try {
+        let orderType = 'လက်ငင်းစျေး'; 
+        
+        const creditProducts = {
+            'Weekly Pass': { cash: 55, credit: 60 },
+            '50+50 Diamonds': { cash: 35, credit: 40 },
+            '150+150 Diamonds': { cash: 90, credit: 100 },
+            '250+250 Diamonds': { cash: 155, credit: 165 },
+            '500+500 Diamonds': { cash: 308, credit: 310 },
+            '11 Diamonds': { cash: 10, credit: 10 },
+            '86 Diamonds': { cash: 45, credit: 50 },
+            '172 Diamonds': { cash: 90, credit: 100 },
+            '257 Diamonds': { cash: 135, credit: 145 },
+            '343 Diamonds': { cash: 180, credit: 190 },
+            '429 Diamonds': { cash: 225, credit: 235 },
+            '514 Diamonds': { cash: 270, credit: 280 }
+        };
+
+        let isCreditPrice = false;
+        
+        for (const [productName, prices] of Object.entries(creditProducts)) {
+            if (orderData.product.includes(productName)) {
+                const orderPrice = parseInt(orderData.price.replace('B', ''));
+                
+                if (orderPrice === prices.credit) {
+                    isCreditPrice = true;
+                    break;
+                } else if (orderPrice === prices.cash) {
+                    isCreditPrice = false;
+                    break;
+                }
+            }
+        }
+        
+        if (isCreditPrice) {
+            orderType = 'အကြွေးစျေး';
+        } else {
+            orderType = 'လက်ငင်းစျေး';
+        }
+
+        const message = `
+🆕 **ဂွေးသီး -စျေးဆိုင်ကြီး**
+━━━━━━━━━━━━━━━━━━
+👤 ${orderData.username}  
+🎮 ${orderData.type}
+💰 ${orderType}
+🛒 ${orderData.product}
+💵 ${orderData.price}
+
+${orderData.gameId ? `🎮 Game ID:\n\`${orderData.gameId}\`` : ''}
+
+${orderData.serverId ? `🌐 Server ID:\n\`${orderData.serverId}\`` : ''}
+
+⏰ ${new Date().toLocaleString('en-GB', { hour12: false })}
+        `;
+
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        });
+
+        return response.ok;
+    } catch (error) {
+        console.error('Telegram sending error:', error);
+        return false;
+    }
+}
+
+
+
+async function sendUserLoginAlert(username) {
+    try {
+        const ipData = await getIPAddress();
+        const message = `
+👤 **ဂွေးသီး - User Login**
+━━━━━━━━━━━━━━━━━━
+🆔 User: ${username}
+📅 Login Time: ${new Date().toLocaleString()}
+🌐 IP Address: ${ipData.ip}
+📱 Device: ${getDeviceType()}
+        `;
+        
+        await fetch(`https://api.telegram.org/bot${USER_LOGIN_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                chat_id: USER_LOGIN_CHAT_ID,
+                text: message,
+                parse_mode: 'Markdown'
+            })
+        });
+    } catch (error) {
+        console.error('User login alert error:', error);
+    }
+}
+
+// ========== SYSTEM FUNCTIONS ==========
+async function getIPAddress() {
+    try {
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return { ip: data.ip };
+    } catch (error) {
+        return { ip: 'Unknown' };
+    }
+}
+
+function getDeviceType() {
+    const ua = navigator.userAgent;
+    if (/mobile/i.test(ua)) return 'Mobile';
+    if (/tablet/i.test(ua)) return 'Tablet';
+    return 'Desktop';
+}
+
+function logout() {
+    localStorage.removeItem('gway_username');
+    
+    document.querySelector('header').style.display = 'none';
+    document.getElementById('bankInfo').style.display = 'none';
+    document.getElementById('lotterySection').style.display = 'none';
+    document.getElementById('homeMenu').style.display = 'none';
+    document.getElementById('usernameDisplay').style.display = 'none';
+    
+    document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+    });
+    
+    document.querySelector('.footer').style.display = 'none';
+    
+    document.getElementById('loginOverlay').style.display = 'flex';
+    
+    document.getElementById('usernameInput').value = '';
+    document.getElementById('usernameInput').focus();
+    
+    document.getElementById('loginError').style.display = 'none';
+    document.getElementById('loginSuccess').style.display = 'none';
+    
+    if (window.location.hash) {
+        history.replaceState(null, null, ' ');
+    }
+    
+    console.log('User logged out successfully');
+}
+
+// ========== EVENT LISTENERS ==========
+window.onpopstate = function(e) {
+    if (!e.state) { 
+        goHome();
+        document.getElementById("orderModal").style.display = "none";
+        return;
+    }
+    if (e.state.page === "modal") {
+        document.getElementById("orderModal").style.display = "flex";
+    } else {
+        document.getElementById("orderModal").style.display = "none";
+        document.querySelectorAll("section").forEach(s => s.style.display = "none");
+        if (document.getElementById(e.state.page)) {
+            document.getElementById(e.state.page).style.display = "block";
+        } else {
+            goHome();
+        }
+    }
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hash = window.location.hash.substring(1);
+    
+    loadSavedMLBBIds();
+    
+    document.getElementById("orderModal").style.display = "none";
+    
+    if (hash === "modal") {
+        goHome();
+        history.replaceState({ page: "home" }, "", "#");
+    } else if (hash && document.getElementById(hash)) {
+        openSection(hash);
+    }
+    
+    const savedUsername = localStorage.getItem('gway_username');
+    
+    if (savedUsername && savedUsername.length >= 5) {
+        completeLogin(savedUsername);
+    } else {
+        document.getElementById('loginOverlay').style.display = 'flex';
+        document.querySelector('header').style.display = 'none';
+        document.getElementById('bankInfo').style.display = 'none';
+        document.getElementById('lotterySection').style.display = 'none';
+        document.getElementById('homeMenu').style.display = 'none';
+    }
+});
+
+document.getElementById('usernameInput').addEventListener('keypress', function(e) {
+    if (e.key === 'Enter') {
+        handleLogin();
+    }
+});
+
+document.addEventListener('keypress', function(e) {
+    if (e.key === 'Enter' && document.getElementById("orderModal").style.display === "flex") {
+        finalizeOrder();
+    }
+});
+
+// Mobile touch improvements
+document.addEventListener('touchstart', function() {}, {passive: true});
+document.addEventListener('touchmove', function() {}, {passive: true});
+
+console.log('Gway Thee Shop JavaScript loaded successfully!');
+
+
+
+
+
+function showBanError(username) {
+    database.ref('banned_users/' + username).once('value').then(snapshot => {
+        if (snapshot.exists()) {
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            const timeLeft = Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24));
+            
+            if (now <= expiresAt) {
+                alert(`🚫 သင့်အကောင့်ကို ယာယီပိတ်ထားပါသည်။\n\n📝 အကြောင်းပြချက်: ${banData.reason}\n⏰ ကျန်ရှိချိန်: ${timeLeft} ရက်\n\nအသေးစိတ်သိရှိလိုပါက Admin ကိုဆက်သွယ်ပါ။`);
+                
+                // Clear the banned user's data
+                localStorage.removeItem('gway_username');
+                document.getElementById('usernameInput').value = '';
+            } else {
+                // Ban expired, remove it
+                database.ref('banned_users/' + username).remove();
+                completeLogin(username);
+            }
+        }
+    });
+}
+
+
+
+// ========== BAN CHECK FUNCTION ==========
+function checkIfBanned(username) {
+    return database.ref('banned_users/' + username).once('value')
+        .then(snapshot => {
+            if (!snapshot.exists()) {
+                return false; // Not banned
+            }
+            
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            
+            // Check if ban has expired
+            if (now > expiresAt) {
+                // Remove expired ban
+                database.ref('banned_users/' + username).remove();
+                return false;
+            }
+            
+            return true; // Still banned
+        });
+}
+
+
+
+// ========== FORCE LOGOUT FUNCTION ==========
+function forceLogoutUser() {
+    // Clear all data and redirect to login
+    localStorage.removeItem('gway_username');
+    
+    // Hide all sections
+    document.querySelector('header').style.display = 'none';
+    document.getElementById('bankInfo').style.display = 'none';
+    document.getElementById('lotterySection').style.display = 'none';
+    document.getElementById('homeMenu').style.display = 'none';
+    document.getElementById('usernameDisplay').style.display = 'none';
+    document.querySelector('.footer').style.display = 'none';
+    document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+    });
+    
+    // Show login overlay
+    document.getElementById('loginOverlay').style.display = 'flex';
+    
+    // Clear input
+    document.getElementById('usernameInput').value = '';
+    document.getElementById('usernameInput').focus();
+    
+    console.log('User force logged out due to ban');
+}
+
+// ========== USER NOTIFICATION SYSTEM ==========
+// ========== CHECK UNREAD NOTIFICATIONS ==========
+function checkUnreadNotifications() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
+
+    database.ref('user_notifications/' + username).orderByChild('read').equalTo(false).once('value')
+        .then(snapshot => {
+            const unreadCount = snapshot.numChildren();
+            const badge = document.getElementById('notificationBadge');
+            
+            if (unreadCount > 0) {
+                badge.style.display = 'flex';
+                badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+                
+                // Add shake animation for new notifications
+                const icon = document.querySelector('.notification-icon');
+                icon.style.animation = 'pulse 0.5s infinite';
+            } else {
+                badge.style.display = 'none';
+                const icon = document.querySelector('.notification-icon');
+                icon.style.animation = 'pulse 2s infinite';
+            }
+        })
+        .catch(error => {
+            console.error('Error checking unread notifications:', error);
+        });
+}
+
+function showNotificationToUser(notification) {
+    const notificationHTML = `
+        <div id="userNotificationModal" class="modal" style="display: flex; z-index: 10000;">
+            <div class="modal-content">
+                <h3 style="color: #00ffff;">📨 ${notification.title}</h3>
+                <div class="info-text" style="text-align: left; padding: 20px; font-size: 16px; line-height: 1.5;">
+                    ${notification.message}
+                </div>
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="acknowledgeNotification('${notification.id}')" 
+                            style="padding: 12px 30px; font-size: 16px;">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Remove existing notification if any
+    const existingNotification = document.getElementById('userNotificationModal');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    document.body.insertAdjacentHTML('beforeend', notificationHTML);
+}
+
+function acknowledgeNotification(notificationId) {
+    const username = localStorage.getItem('gway_username');
+    if (!username || !notificationId) return;
+
+    // Mark as read in database
+    database.ref('user_notifications/' + username + '/' + notificationId).update({
+        read: true
+    }).then(() => {
+        // Close the notification modal
+        const notificationModal = document.getElementById('userNotificationModal');
+        if (notificationModal) {
+            notificationModal.remove();
+        }
+        
+        // Check if there are more notifications
+        setTimeout(() => {
+            checkUserNotifications();
+        }, 500);
+    });
+}
+
+// ========== CHECK AND SHOW NOTIFICATION ICON ==========
+function checkAndShowNotificationIcon() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
+
+    // Remove existing icon if any
+    const existingIcon = document.querySelector('.notification-icon');
+    if (existingIcon) {
+        existingIcon.remove();
+    }
+
+    // Create notification icon
+    const notificationIcon = `
+        <div class="notification-icon" onclick="viewNotificationHistory()">
+            <i>📨</i>
+            <div id="notificationBadge" class="notification-badge" style="display: none;">0</div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('afterbegin', notificationIcon);
+    
+    // Check for unread notifications
+    checkUnreadNotifications();
+}
+
+// ========== CHECK UNREAD NOTIFICATIONS ==========
+function checkUnreadNotifications() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
+
+    database.ref('user_notifications/' + username).orderByChild('read').equalTo(false).once('value')
+        .then(snapshot => {
+            const unreadCount = snapshot.numChildren();
+            const badge = document.getElementById('notificationBadge');
+            
+            if (unreadCount > 0) {
+                badge.style.display = 'flex';
+                badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+                
+                // Add shake animation for new notifications
+                const icon = document.querySelector('.notification-icon');
+                icon.style.animation = 'pulse 0.5s infinite';
+            } else {
+                badge.style.display = 'none';
+                const icon = document.querySelector('.notification-icon');
+                icon.style.animation = 'pulse 2s infinite';
+            }
+        })
+        .catch(error => {
+            console.error('Error checking unread notifications:', error);
+        });
+}
+
+
+// ========== REAL-TIME NOTIFICATION MONITORING ==========
+function startRealTimeNotificationMonitoring() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
+
+    // Monitor for new notifications and read status changes
+    database.ref('user_notifications/' + username).on('value', (snapshot) => {
+        checkUnreadNotifications();
+    });
+}
+
+
+// ========== SHOW NOTIFICATION DETAIL ==========
+function showNotificationDetail(notification) {
+    const detailHTML = `
+        <div id="notificationDetailModal" class="modal" style="display: flex; z-index: 10001;">
+            <div class="modal-content" style="max-width: 500px; max-height: 400px;">
+                <div style="text-align: center; margin-bottom: 20px; position: relative;">
+                    <h3 style="color: #00ffff;">${notification.title}</h3>
+                    <div style="position: absolute; top: 0; right: 0;">
+                        <button onclick="closeNotificationDetail()" style="background: none; border: none; color: #ff4444; font-size: 30px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; padding: 0;">×</button>
+                    </div>
+                </div>
+                <div style="max-height: 250px; overflow-y: auto; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px; margin: 15px 0;">
+                    <p style="color: #ffffff; line-height: 1.6; font-size: 16px; white-space: pre-line;">
+                        ${notification.message}
+                    </p>
+                </div>
+                <div style="color: #888; text-align: center; margin: 10px 0;">
+                    <small>📅 ${new Date(notification.created_date).toLocaleString()}</small>
+                </div>
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="closeNotificationDetail()" style="padding: 12px 30px; font-size: 16px;">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Remove existing detail modal if any
+    const existingDetailModal = document.getElementById('notificationDetailModal');
+    if (existingDetailModal) {
+        existingDetailModal.remove();
+    }
+
+    document.body.insertAdjacentHTML('beforeend', detailHTML);
+    
+    // Mark as read when opening detail
+    if (!notification.read) {
+        markAsRead(notification.id);
+    }
+}
+
+// ========== CLOSE NOTIFICATION DETAIL ==========
+function closeNotificationDetail() {
+    const modal = document.getElementById('notificationDetailModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+
+// ========== ADMIN BUTTON VISIBILITY ==========
+function checkAndShowAdminButton() {
+    const username = localStorage.getItem('gway_username');
+    const homeMenu = document.getElementById('homeMenu');
+    
+    // Remove existing admin button if any
+    const existingAdminButton = document.querySelector('.admin-menu');
+    if (existingAdminButton) {
+        existingAdminButton.remove();
+    }
+    
+    // If the user is Gwayy, add the admin button
+    if (username === 'Gwayy') {
+        const adminButton = `
+            <div class="menu-card admin-menu" onclick="showAdminLogin()">
+                <h2>🛠️ Admin Panel</h2>
+                <p style="font-size: 14px; color: #ffd700; margin-top: 5px;">Gwayy Only</p>
+            </div>
+        `;
+        homeMenu.insertAdjacentHTML('beforeend', adminButton);
+    }
+}
+
+// ========== ADMIN LOGIN ==========
+function showAdminLogin() {
+    const username = localStorage.getItem('gway_username');
+    
+    // Only allow Gwayy to access admin
+    if (username === 'Gwayy') {
+        showAdminPanel();
+    } else {
+        alert('❌ Admin access is only for Gwayy!');
+    }
+}
+
+function testNotification() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) {
+        alert('Please login first!');
+        return;
+    }
+    
+    const notificationId = 'test_' + Date.now();
+    const testNotification = {
+        id: notificationId,
+        title: '🔔 System Test Notification',
+        message: 'This is a test notification to verify the system is working correctly! ✅\n\nIf you can see this message, the notification system is working perfectly! 🎉',
+        type: 'info',
+        created_date: new Date().toISOString(),
+        read: false,
+        requires_acknowledgment: true,
+        show_immediately: true
+    };
+    
+    database.ref('user_notifications/' + username + '/' + notificationId).set(testNotification)
+        .then(() => {
+            alert('🧪 Test notification sent! Please refresh the page or login again to see it.');
+        })
+        .catch(error => {
+            alert('❌ Error: ' + error.message);
+        });
+}
+
+// ========== NOTIFICATION SYSTEM ==========
+function showNotificationForm() {
+    const modalHTML = `
+        <div id="notificationModal" class="modal" style="display: flex;">
+            <div class="modal-content">
+                <h3>📨 အသိပေးချက်ပို့ရန်</h3>
+                
+                <label>သုံးစွဲသူရွေးပါ</label>
+                <select id="notificationUser" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ffff; background: rgba(0,0,0,0.7); color: white;">
+                    <option value="all">သုံးစွဲသူအားလုံး</option>
+                </select>
+                
+                <label>ခေါင်းစဉ်</label>
+                <input type="text" id="notificationTitle" placeholder="ခေါင်းစဉ်ထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ffff; background: rgba(0,0,0,0.7); color: white;">
+                
+                <label>မက်ဆေ့ချ်</label>
+                <textarea id="notificationMessage" placeholder="မက်ဆေ့ချ်ထည့်ပါ" rows="4" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ffff; background: rgba(0,0,0,0.7); color: white;"></textarea>
+                
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="sendNotification()">ပို့မည်</button>
+                    <button class="closeBtn" onclick="closeNotificationModal()">မလုပ်တော့ပါ</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    loadUserListForNotifications();
+}
+
+function loadUserListForNotifications() {
+    const userSelect = document.getElementById('notificationUser');
+    
+    database.ref('usernames').once('value').then(snapshot => {
+        const users = snapshot.val();
+        
+        for (let username in users) {
+            const option = document.createElement('option');
+            option.value = username;
+            option.textContent = username;
+            userSelect.appendChild(option);
+        }
+    });
+}
+
+function sendNotification() {
+    const username = document.getElementById('notificationUser').value;
+    const title = document.getElementById('notificationTitle').value;
+    const message = document.getElementById('notificationMessage').value;
+    
+    if (!title || !message) {
+        alert('ကျေးဇူးပြု၍ ခေါင်းစဉ်နှင့် မက်ဆေ့ချ် နှစ်ခုလုံးထည့်ပါ။');
+        return;
+    }
+    
+    if (username === 'all') {
+        database.ref('usernames').once('value').then(snapshot => {
+            const users = snapshot.val();
+            let sentCount = 0;
+            
+            for (let user in users) {
+                sendUserNotification(user, title, message);
+                sentCount++;
+            }
+            
+            alert(`✅ အသိပေးချက် ${sentCount} ဦးထံ ပို့ပြီးပါပြီ!`);
+            closeNotificationModal();
+        });
+    } else {
+        sendUserNotification(username, title, message);
+        alert(`✅ ${username} ထံ အသိပေးချက်ပို့ပြီးပါပြီ!`);
+        closeNotificationModal();
+    }
+}
+
+// ========== VIEW NOTIFICATION HISTORY ==========
+function viewNotificationHistory() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) {
+        alert('Please login first!');
+        return;
+    }
+
+    // Hide badge when opening notification history
+    const badge = document.getElementById('notificationBadge');
+    if (badge) {
+        badge.style.display = 'none';
+        const icon = document.querySelector('.notification-icon');
+        if (icon) {
+            icon.style.animation = 'pulse 2s infinite';
+        }
+    }
+
+    database.ref('user_notifications/' + username).orderByChild('created_date').once('value')
+        .then(snapshot => {
+            const notifications = snapshot.val();
+            let html = `
+                <div style="text-align: center; margin-bottom: 20px; position: relative; padding-right: 40px;">
+                    <h3 style="color: #00ffff;">📨 စာစောင်များ</h3>
+                    <div style="position: absolute; top: 0; right: 0;">
+                        <button onclick="closeNotificationHistory()" style="background: none; border: none; color: #ff4444; font-size: 30px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; padding: 0;">×</button>
+                    </div>
+                    <button onclick="clearNotificationHistory()" style="background: #ff4444; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; margin: 10px 0;">
+                        🗑️ အားလုံးဖျက်မည်
+                    </button>
+                </div>
+                <div id="notificationContent" style="max-height: 500px; overflow-y: auto; cursor: move;">
+            `;
+
+            if (notifications) {
+                // Convert to array and sort by date (newest first)
+                const notificationArray = Object.entries(notifications).map(([id, notif]) => ({
+                    id,
+                    ...notif
+                })).sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
+
+                notificationArray.forEach(notif => {
+                    const date = new Date(notif.created_date).toLocaleString();
+                    const itemClass = notif.read ? 'notification-item read' : 'notification-item unread';
+                    
+                    // Escape quotes for onclick
+                    const notifJson = JSON.stringify(notif).replace(/"/g, '&quot;');
+                    
+                    html += `
+                        <div class="${itemClass}" onclick="showNotificationDetail(${notifJson})" 
+                             style="padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; cursor: pointer; transition: all 0.3s ease;">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div style="flex: 1;">
+                                    <h4 style="color: ${notif.read ? '#888' : '#00ffff'}; margin: 0 0 10px 0;">
+                                        ${notif.read ? '✅' : '🔔'} ${notif.title}
+                                    </h4>
+                                    <p style="color: ${notif.read ? '#aaa' : '#fff'}; margin: 5px 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                        ${notif.message}
+                                    </p>
+                                    <small style="color: #888;">📅 ${date}</small>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                html += `
+                    <div style="text-align: center; padding: 40px; color: #888;">
+                        <span style="font-size: 48px;">📭</span>
+                        <h4>မည်သည့်စာစောင်မှ မရှိသေးပါ</h4>
+                        <p>သင့်ထံ ပို့ထားသော စာစောင်များ ဤနေရာတွင် ပြသပါမည်</p>
+                    </div>
+                `;
+            }
+
+            html += '</div>';
+
+            // Show in modal
+            showNotificationHistoryModal(html);
+            
+            // Make modal draggable
+            makeNotificationModalDraggable();
+        })
+        .catch(error => {
+            console.error('Error loading notifications:', error);
+            alert('စာစောင်များ ဖွင့်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်။');
+        });
+}
+
+// ========== MAKE NOTIFICATION MODAL DRAGGABLE ==========
+function makeNotificationModalDraggable() {
+    const modal = document.getElementById('notificationHistoryModal');
+    const content = document.getElementById('notificationContent');
+    
+    if (!modal || !content) return;
+    
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    
+    // Make the modal header draggable
+    const header = content;
+    
+    header.onmousedown = dragMouseDown;
+    
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // Get the mouse cursor position at startup
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // Call a function whenever the cursor moves
+        document.onmousemove = elementDrag;
+    }
+    
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // Calculate the new cursor position
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // Set the element's new position
+        modal.style.top = (modal.offsetTop - pos2) + "px";
+        modal.style.left = (modal.offsetLeft - pos1) + "px";
+    }
+    
+    function closeDragElement() {
+        // Stop moving when mouse button is released
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
+// ========== SHOW NOTIFICATION HISTORY MODAL ==========
+function showNotificationHistoryModal(content) {
+    const modalHTML = `
+        <div id="notificationHistoryModal" class="modal" style="display: flex;">
+            <div class="modal-content" style="max-width: 600px; max-height: 80vh;">
+                ${content}
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="closeBtn" onclick="closeNotificationHistory()" style="padding: 10px 20px;">
+                        ပိတ်မည်
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Remove existing modal if any
+    const existingModal = document.getElementById('notificationHistoryModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function markAsRead(notificationId) {
+    const username = localStorage.getItem('gway_username');
+    if (!username || !notificationId) return;
+
+    database.ref('user_notifications/' + username + '/' + notificationId).update({
+        read: true
+    }).catch(error => {
+        console.error('Error marking as read:', error);
+    });
+}
+
+// ========== CLEAR NOTIFICATION HISTORY ==========
+function clearNotificationHistory() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
+
+    if (confirm('သင့်အသိပေးချက်အားလုံးကို ဖျက်မည်မှာ သေချာပါသလား?\n\nဤလုပ်ဆောင်ချက်ကို ပြန်လည်ရုပ်သိမ်း၍မရပါ!')) {
+        database.ref('user_notifications/' + username).remove()
+            .then(() => {
+                alert('✅ အသိပေးချက်အားလုံး ဖျက်ပြီးပါပြီ!');
+                closeNotificationHistory();
+            })
+            .catch(error => {
+                alert('❌ ဖျက်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+            });
+    }
+}
+
+// ========== CLOSE NOTIFICATION HISTORY ==========
+function closeNotificationHistory() {
+    const modal = document.getElementById('notificationHistoryModal');
+    if (modal) {
+        modal.remove();
+    }
+    
+    // Refresh badge count after closing (but don't show if all are read)
+    setTimeout(checkUnreadNotifications, 500);
+}
+
+// ========== MODIFIED SEND USER NOTIFICATION ==========
+function sendUserNotification(username, title, message) {
+    const notificationId = 'notif_' + Date.now();
+    
+    const notification = {
+        id: notificationId,
+        title: title,
+        message: message,
+        type: 'info',
+        created_date: new Date().toISOString(),
+        read: false, // Add read status for history
+        requires_acknowledgment: false, // Set to false for history
+        show_immediately: false // Set to false for history
+    };
+    
+    // Save to database for notification history
+    database.ref('user_notifications/' + username + '/' + notificationId).set(notification)
+        .then(() => {
+            console.log(`Notification saved to history for user: ${username}`);
+        })
+        .catch(error => {
+            console.error('Error saving notification to history:', error);
+        });
+}
+
+
+// ========== ADMIN PANEL DISPLAY ==========
+function showAdminPanel() {
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById("homeMenu").style.display = "none";
+    
+    document.getElementById("adminPanel").innerHTML = `
+        <h2 style="color: #ff6b35; text-shadow: 0 0 10px rgba(255,107,53,0.7); text-align: center; margin-bottom: 30px;">
+            🛠️ စီမံခန့်ခွဲရေး
+        </h2>
+        
+        <!-- Notification System -->
+        <div class="admin-section">
+            <h3>📨 အသိပေးချက်ပို့ရန်</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" onclick="showNotificationForm()" 
+                        style="background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    📤 သုံးစွဲသူများထံပို့မည်
+                </button>
+            </div>
+        </div>
+
+        <!-- User Management -->
+        <div class="admin-section">
+            <h3>👥 သုံးစွဲသူများစီမံခန့်ခွဲမှု</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" onclick="viewAllUsers()" 
+                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    👤 သုံးစွဲသူအားလုံးကြည့်မည်
+                </button>
+                <button class="action-btn" onclick="viewBannedUsers()" 
+                        style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    🚫 ပိတ်ပင်ထားသူများ
+                </button>
+            </div>
+            <div id="usersDisplay" style="margin-top: 20px;"></div>
+        </div>
+
+     
+
+        <!-- Credit System -->
+        <div class="admin-section">
+            <h3>💳 ခရက်ဒစ်စနစ်</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" onclick="showAddCreditForm()" 
+                        style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    ➕ သုံးစွဲသူခရက်ဒစ်ထည့်မည်
+                </button>
+             
+                <button class="action-btn" onclick="viewCreditReports()" 
+                        style="background: linear-gradient(135deg, #ffeb3b 0%, #f9a825 100%); color: black; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    📊 ခရက်ဒစ်အစီရင်ခံစာ
+                </button>
+            </div>
+            <div id="creditDisplay" style="margin-top: 20px;"></div>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="mini-lottery-btn" onclick="goHome()" 
+                    style="background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); padding: 15px 30px; font-size: 16px;">
+                🏠 ပင်မစာမျက်နှာသို့
+            </button>
+        </div>
+    `;
+    
+    document.getElementById("adminPanel").style.display = "block";
+}
+
+
+
+
+// ========== USER MANAGEMENT ==========
+function viewAllUsers() {
+    database.ref('usernames').once('value').then(snapshot => {
+        const users = snapshot.val();
+        let html = '<h4>👥 သုံးစွဲသူအားလုံး (' + Object.keys(users).length + ' ဦး)</h4><div style="max-height: 400px; overflow-y: auto;">';
+        
+        for (let username in users) {
+            html += `
+                <div style="border: 1px solid #333; padding: 10px; margin: 5px 0; border-radius: 8px; background: rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                    <div style="flex: 1;">
+                        <strong>👤 ${username}</strong>
+                        ${username === 'Gwayy' ? ' <span style="color: #ffcc00;">(စီမံခန့်ခွဲသူ)</span>' : ''}
+                    </div>
+                    <div>
+                        <button onclick="viewUserOrders('${username}')" style="background: #0099ff; color: white; border: none; padding: 5px 10px; border-radius: 5px; margin-right: 5px; font-size: 12px;">📦 အော်ဒါများ</button>
+                        ${username !== 'Gwayy' ? 
+                            `<button onclick="quickBanUser('${username}')" style="background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; font-size: 12px;">🚫 ပိတ်ပင်မည်</button>` 
+                            : ''
+                        }
+                    </div>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        document.getElementById('usersDisplay').innerHTML = html;
+    });
+}
+
+function quickBanUser(username) {
+    const reason = prompt(`${username} အား ပိတ်ပင်ရမည့် အကြောင်းပြချက်ထည့်ပါ:`, "စည်းကမ်းချက်များ ချိုးဖောက်ခြင်း");
+    
+    if (reason === null) return;
+    
+    if (!reason.trim()) {
+        alert('ကျေးဇူးပြု၍ အကြောင်းပြချက်ထည့်ပါ။');
+        return;
+    }
+    
+    const duration = prompt('ပိတ်ပင်မည့်ရက်အရေအတွက် (1, 7, 30, သို့မဟုတ် 365 ရက်):', "7");
+    
+    if (duration === null) return;
+    
+    const durationNum = parseInt(duration);
+    if (isNaN(durationNum) || durationNum <= 0) {
+        alert('ကျေးဇူးပြု၍ မှန်ကန်သော ရက်အရေအတွက်ထည့်ပါ။');
+        return;
+    }
+    
+    if (confirm(`${username} အား ${durationNum} ရက် ပိတ်ပင်မည်?\nအကြောင်းပြချက်: ${reason}`)) {
+        banUser(username, reason, durationNum);
+    }
+}
+
+function viewBannedUsers() {
+    database.ref('banned_users').once('value').then(snapshot => {
+        const bannedUsers = snapshot.val();
+        let html = '<h4>🚫 ပိတ်ပင်ထားသော သုံးစွဲသူများ</h4><div style="max-height: 400px; overflow-y: auto;">';
+        
+        if (bannedUsers) {
+            const now = new Date();
+            
+            for (let username in bannedUsers) {
+                const banData = bannedUsers[username];
+                const expiresAt = new Date(banData.expires_at);
+                const timeLeft = Math.ceil((expiresAt - now) / (1000 * 60 * 60 * 24));
+                
+                if (now <= expiresAt) {
+                    html += `
+                        <div style="border: 2px solid #ff4444; padding: 15px; margin: 10px 0; border-radius: 10px; background: rgba(255,0,0,0.1);">
+                            <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                                <div style="flex: 1;">
+                                    <strong style="color: #ff4444; font-size: 18px;">👤 ${username}</strong><br>
+                                    📝 <strong>အကြောင်းပြချက်:</strong> ${banData.reason}<br>
+                                    ⏰ <strong>ကာလ:</strong> ${banData.duration}<br>
+                                    🕒 <strong>ကျန်ရှိသည့်ရက်:</strong> ${timeLeft} ရက်<br>
+                                    📅 <strong>စတင်ပိတ်သည့်ရက်:</strong> ${new Date(banData.banned_at).toLocaleDateString()}
+                                </div>
+                                <div style="margin-left: 15px;">
+                                    <button onclick="unbanUser('${username}')" 
+                                            style="background: linear-gradient(135deg, #00ff00 0%, #00cc00 100%); color: black; border: none; padding: 10px 15px; border-radius: 8px; font-weight: bold; cursor: pointer;">
+                                        ✅ ပိတ်ပင်ခြင်းဖြုတ်မည်
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            if (Object.keys(bannedUsers).length === 0) {
+                html += `
+                    <div style="text-align: center; padding: 30px; color: #00ff00;">
+                        <span style="font-size: 48px;">🎉</span><br>
+                        <h3>ပိတ်ပင်ထားသော သုံးစွဲသူမရှိပါ</h3>
+                        <p>လက်ရှိတွင် မည်သူတစ်ဦးတစ်ယောက်ကိုမှ ပိတ်ပင်မထားပါ။</p>
+                    </div>
+                `;
+            }
+        } else {
+            html += `
+                <div style="text-align: center; padding: 30px; color: #00ff00;">
+                    <span style="font-size: 48px;">🎉</span><br>
+                    <h3>ပိတ်ပင်ထားသော သုံးစွဲသူမရှိပါ</h3>
+                    <p>လက်ရှိတွင် မည်သူတစ်ဦးတစ်ယောက်ကိုမှ ပိတ်ပင်မထားပါ။</p>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        document.getElementById('usersDisplay').innerHTML = html;
+    });
+}
+
+// ========== BAN COUNTDOWN NOTIFICATION ==========
+function showBanCountdownNotification(username, banData) {
+    const expiresAt = new Date(banData.expires_at);
+    
+    // Create ban notification modal without OK button
+    const banModalHTML = `
+        <div id="banCountdownModal" class="modal" style="display: flex; z-index: 100000;">
+            <div class="modal-content" style="max-width: 500px; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); border: 3px solid #ff4444;">
+                <h3 style="color: #ff4444; text-shadow: 0 0 10px #ff4444;">🚫 အကောင့် ယာယီပိတ်ပင်ထားသည်</h3>
+                
+                <div style="text-align: left; padding: 20px; background: rgba(255,68,68,0.1); border-radius: 10px; margin: 15px 0;">
+                    <p style="color: #ffffff; margin: 10px 0;"><strong>အကြောင်းပြချက်:</strong> ${banData.reason}</p>
+                    <p style="color: #ffffff; margin: 10px 0;"><strong>ပိတ်ပင်ကာလ:</strong> ${banData.duration}</p>
+                    <p style="color: #ffffff; margin: 10px 0;"><strong>စတင်ပိတ်သည့်ရက်စွဲ:</strong> ${new Date(banData.banned_at).toLocaleString()}</p>
+                </div>
+                
+                <div style="text-align: center; padding: 15px; background: rgba(0,0,0,0.5); border-radius: 10px; margin: 15px 0;">
+                    <h4 style="color: #00ffff; margin: 0 0 10px 0;">⏰ ပိတ်ပင်ချိန်ပြည့်ရန် ကျန်ရှိသည့်အချိန်</h4>
+                    <div id="banCountdown" style="font-size: 28px; font-weight: bold; color: #ffcc00; text-shadow: 0 0 10px #ffcc00; padding: 10px;">
+                        တွက်ချက်နေသည်...
+                    </div>
+                </div>
+                
+                <div style="text-align: center; padding: 10px; background: rgba(255,255,255,0.1); border-radius: 8px; margin: 10px 0;">
+                    <p style="color: #888; font-size: 14px; margin: 5px 0;">
+                        ပိတ်ပင်ချိန်ပြည့်ပါက အလိုအလျောက်ပြန်ဖွင့်ပေးပါမည်
+                    </p>
+                    <p style="color: #888; font-size: 12px; margin: 5px 0;">
+                        ဤအသိပေးချက်သည် အလိုအလျောက်ပိတ်သွားမည်ဖြစ်ပါသည်
+                    </p>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    // Remove existing ban modal if any
+    const existingModal = document.getElementById('banCountdownModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+    
+    document.body.insertAdjacentHTML('beforeend', banModalHTML);
+    
+    // Start countdown timer
+    startBanCountdown(expiresAt);
+}
+
+// ========== BAN COUNTDOWN TIMER ==========
+function startBanCountdown(expiresAt) {
+    function updateCountdown() {
+        const now = new Date();
+        const timeLeft = expiresAt - now;
+        
+        if (timeLeft <= 0) {
+            // Ban expired
+            document.getElementById('banCountdown').innerHTML = '✅ ပိတ်ပင်ချိန်ပြည့်ပြီ';
+            document.getElementById('banCountdown').style.color = '#00ff00';
+            document.getElementById('banCountdown').style.textShadow = '0 0 10px #00ff00';
+            
+            setTimeout(() => {
+                closeBanCountdownModal();
+                location.reload(); // Refresh to allow login
+            }, 3000);
+            return;
+        }
+        
+        // Calculate days, hours, minutes, seconds
+        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+        
+        // Format countdown display in Myanmar with better styling
+        let countdownText = '';
+        
+        if (days > 0) {
+            countdownText += `<div style="font-size: 20px; margin: 5px 0;">${days} ရက်</div>`;
+        }
+        
+        countdownText += `
+            <div style="display: flex; justify-content: center; gap: 15px; margin: 10px 0;">
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold;">${hours.toString().padStart(2, '0')}</div>
+                    <div style="font-size: 12px; color: #ccc;">နာရီ</div>
+                </div>
+                <div style="font-size: 24px; margin-top: 8px;">:</div>
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold;">${minutes.toString().padStart(2, '0')}</div>
+                    <div style="font-size: 12px; color: #ccc;">မိနစ်</div>
+                </div>
+                <div style="font-size: 24px; margin-top: 8px;">:</div>
+                <div style="text-align: center;">
+                    <div style="font-size: 32px; font-weight: bold;">${seconds.toString().padStart(2, '0')}</div>
+                    <div style="font-size: 12px; color: #ccc;">စက္ကန့်</div>
+                </div>
+            </div>
+        `;
+        
+        document.getElementById('banCountdown').innerHTML = countdownText;
+        
+        // Continue updating every second
+        setTimeout(updateCountdown, 1000);
+    }
+    
+    // Start the countdown
+    updateCountdown();
+}
+
+
+// ========== REAL-TIME BAN MONITORING ==========
+function startRealTimeBanMonitoring() {
+    const currentUser = localStorage.getItem('gway_username');
+    if (!currentUser) return;
+
+    // Real-time ban monitoring
+    database.ref('banned_users/' + currentUser).on('value', (snapshot) => {
+        if (snapshot.exists()) {
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            
+            if (now <= expiresAt) {
+                // User is banned, show countdown timer but don't force logout
+                showBanCountdownNotification(currentUser, banData);
+            } else {
+                // Ban expired, remove it
+                database.ref('banned_users/' + currentUser).remove();
+             
+                closeBanCountdownModal();
+                // No notification to user
+            }
+        } else {
+          
+            closeBanCountdownModal();
+            // No notification to user
+        }
+    });
+}
+
+
+function completeLogin(username) {
+    // Final ban check before allowing login
+    checkIfBanned(username)
+        .then(isBanned => {
+            if (isBanned) {
+                // User is banned, but still allow login with countdown timer
+                database.ref('banned_users/' + username).once('value').then(snapshot => {
+                    if (snapshot.exists()) {
+                        const banData = snapshot.val();
+                        
+                        // Proceed with login first (don't hide content)
+                        localStorage.setItem('gway_username', username);
+                        
+                        document.getElementById('loginOverlay').style.display = 'none';
+                        
+                        const usernameDisplay = document.getElementById('usernameDisplay');
+                        const displayedUsername = document.getElementById('displayedUsername');
+                        displayedUsername.textContent = username;
+                        usernameDisplay.style.display = 'flex';
+                        
+                        document.querySelector('header').style.display = 'block';
+                        document.getElementById('bankInfo').style.display = 'flex';
+                        document.getElementById('lotterySection').style.display = 'block';
+                        document.getElementById('homeMenu').style.display = 'grid';
+                        document.querySelector('.footer').style.display = 'block';
+                        
+                        document.querySelectorAll('section').forEach(section => {
+                            section.style.display = 'none';
+                        });
+                        document.getElementById('homeMenu').style.display = 'grid';
+                        
+                        // Check and show admin button only for Gwayy
+                        checkAndShowAdminButton();
+                        
+                        // Check and show notification ICON for all users
+                        checkAndShowNotificationIcon();
+                        
+                        // Start real-time notification monitoring
+                        startRealTimeNotificationMonitoring();
+                        
+                        // Start real-time ban monitoring
+                        startRealTimeBanMonitoring();
+                        
+                        // Then show ban countdown
+                        showBanCountdownNotification(username, banData);
+                        
+                  
+                    }
+                });
+                return;
+            }
+            
+            // User is not banned, proceed with normal login
+            localStorage.setItem('gway_username', username);
+            
+            document.getElementById('loginOverlay').style.display = 'none';
+            
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const displayedUsername = document.getElementById('displayedUsername');
+            displayedUsername.textContent = username;
+            usernameDisplay.style.display = 'flex';
+            
+            document.querySelector('header').style.display = 'block';
+            document.getElementById('bankInfo').style.display = 'flex';
+            document.getElementById('lotterySection').style.display = 'block';
+            document.getElementById('homeMenu').style.display = 'grid';
+            document.querySelector('.footer').style.display = 'block';
+            
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById('homeMenu').style.display = 'grid';
+            
+            // Check and show admin button only for Gwayy
+            checkAndShowAdminButton();
+            
+            // Check and show notification ICON for all users
+            checkAndShowNotificationIcon();
+            
+            // Start real-time notification monitoring
+            startRealTimeNotificationMonitoring();
+            
+            // Start real-time ban monitoring
+            startRealTimeBanMonitoring();
+            
+            // ✅ ဒီမှာပဲ login alert တစ်ခါထဲပို့ပါ
+            sendUserLoginAlert(username);
+            checkUserNotifications();
+        })
+        .catch(error => {
+            console.error('Ban check error:', error);
+            // Error case - proceed with login even if ban check fails
+            localStorage.setItem('gway_username', username);
+            
+            document.getElementById('loginOverlay').style.display = 'none';
+            
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const displayedUsername = document.getElementById('displayedUsername');
+            displayedUsername.textContent = username;
+            usernameDisplay.style.display = 'flex';
+            
+            document.querySelector('header').style.display = 'block';
+            document.getElementById('bankInfo').style.display = 'flex';
+            document.getElementById('lotterySection').style.display = 'block';
+            document.getElementById('homeMenu').style.display = 'grid';
+            document.querySelector('.footer').style.display = 'block';
+            
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById('homeMenu').style.display = 'grid';
+            
+            // Check and show admin button only for Gwayy
+            checkAndShowAdminButton();
+            
+            // Check and show notification ICON for all users
+            checkAndShowNotificationIcon();
+            
+            // Start real-time notification monitoring
+            startRealTimeNotificationMonitoring();
+            
+            // Start real-time ban monitoring
+            startRealTimeBanMonitoring();
+            
+         
+            checkUserNotifications();
+        });
+}
+
+// ========== SETUP USER INTERFACE FUNCTION ==========
+function setupUserInterface(username) {
+    localStorage.setItem('gway_username', username);
+    
+    document.getElementById('loginOverlay').style.display = 'none';
+    
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    const displayedUsername = document.getElementById('displayedUsername');
+    displayedUsername.textContent = username;
+    usernameDisplay.style.display = 'flex';
+    
+    document.querySelector('header').style.display = 'block';
+    document.getElementById('bankInfo').style.display = 'flex';
+    document.getElementById('lotterySection').style.display = 'block';
+    document.getElementById('homeMenu').style.display = 'grid';
+    document.querySelector('.footer').style.display = 'block';
+    
+    document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+    });
+    document.getElementById('homeMenu').style.display = 'grid';
+    
+    // Check and show admin button only for Gwayy
+    checkAndShowAdminButton();
+    
+    // Check and show notification ICON for all users
+    checkAndShowNotificationIcon();
+    
+    // Start real-time notification monitoring
+    startRealTimeNotificationMonitoring();
+    
+    // Start real-time ban monitoring
+    startRealTimeBanMonitoring();
+}
+
+
+// ========== BAN USER FUNCTION ==========
+function banUser(username, reason, duration) {
+    let expiresAt;
+    if (duration === 365) {
+        expiresAt = new Date(Date.now() + 365 * 24 * 60 * 60 * 1000);
+    } else {
+        expiresAt = new Date(Date.now() + duration * 24 * 60 * 60 * 1000);
+    }
+    
+    const banData = {
+        username: username,
+        reason: reason,
+        duration: duration === 365 ? 'အပြီးအပိုင်' : duration + ' ရက်',
+        banned_at: new Date().toISOString(),
+        banned_by: 'admin',
+        expires_at: expiresAt.toISOString()
+    };
+    
+    database.ref('banned_users/' + username).set(banData)
+        .then(() => {
+            alert(`✅ ${username} အား ပိတ်ပင်ပြီးပါပြီ\n\nကာလ: ${banData.duration}\nအကြောင်းပြချက်: ${reason}`);
+            
+            // Send notification to banned user
+            sendUserNotification(username, 
+                '🚫 အကောင့် ယာယီပိတ်ပင်ခြင်း', 
+                `သင့်အကောင့်ကို ယာယီပိတ်ပင်ထားပါသည်။\n\nအကြောင်းပြချက်: ${reason}\nပိတ်ပင်ကာလ: ${banData.duration}\n\nပိတ်ပင်ချိန်ပြည့်သည်နှင့် အလိုအလျောက်ပြန်ဖွင့်ပေးပါမည်။`
+            );
+            
+            // Refresh user list
+            viewAllUsers();
+            
+            // Check if banned user is currently logged in
+            const currentUser = localStorage.getItem('gway_username');
+            if (currentUser === username) {
+                // DON'T hide content - just show countdown timer
+                // Real-time monitoring will automatically show the countdown
+                console.log(`${username} is currently logged in and has been banned`);
+            }
+        })
+        .catch(error => {
+            alert('❌ ပိတ်ပင်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+        });
+}
+
+// ========== CLOSE BAN COUNTDOWN MODAL ==========
+function closeBanCountdownModal() {
+    const modal = document.getElementById('banCountdownModal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+// ========== UNBAN USER FUNCTION ==========
+function unbanUser(username) {
+    if (!username) {
+        alert('❌ ပိတ်ပင်ခြင်းဖြုတ်ရန် သုံးစွဲသူအမည် မရှိပါ။');
+        return;
+    }
+    
+    database.ref('banned_users/' + username).once('value').then(snapshot => {
+        if (!snapshot.exists()) {
+            alert(`✅ ${username} သည် လက်ရှိတွင် ပိတ်ပင်မထားပါ။`);
+            return;
+        }
+        
+        const banData = snapshot.val();
+        
+        const confirmMessage = 
+            `${username} အား ပိတ်ပင်ခြင်းဖြုတ်လိုသည်မှာ သေချာပါသလား?\n\n` +
+            `📝 အကြောင်းပြချက်: ${banData.reason}\n` +
+            `⏰ မူလကာလ: ${banData.duration}\n\n` +
+            `ဤလုပ်ဆောင်ချက်သည် ၎င်းတို့၏အသုံးပြုခွင့်ကို ချက်ချင်းပြန်လည်ဖွင့်ပေးပါမည်။`;
+        
+        if (confirm(confirmMessage)) {
+            performUnban(username, banData);
+        }
+    }).catch(error => {
+        alert('❌ ပိတ်ပင်ချက်အချက်အလက်များ ရယူရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+    });
+}
+
+function performUnban(username, banData) {
+    database.ref('banned_users/' + username).remove()
+        .then(() => {
+            alert(`✅ ${username} အား ပိတ်ပင်ခြင်းဖြုတ်လိုက်ပါပြီ!\n\nသူတို့၏အကောင့်အသုံးပြုခွင့် ပြန်လည်ရရှိပါပြီ။`);
+            
+         
+            
+            viewBannedUsers();
+        })
+        .catch(error => {
+            alert('❌ ပိတ်ပင်ခြင်းဖြုတ်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+        });
+}
+
+// ========== CHECK IF USER IS BANNED FUNCTION ==========
+function checkIfBanned(username) {
+    return database.ref('banned_users/' + username).once('value')
+        .then(snapshot => {
+            if (!snapshot.exists()) {
+                return false; // Not banned
+            }
+            
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            
+            // Check if ban has expired
+            if (now > expiresAt) {
+                // Remove expired ban
+                database.ref('banned_users/' + username).remove();
+                return false;
+            }
+            
+            return true; // Still banned
+        });
+}
+
+
+
+// ========== CREDIT SYSTEM ==========
+function showAddCreditForm() {
+    const modalHTML = `
+        <div id="addCreditModal" class="modal" style="display: flex;">
+            <div class="modal-content">
+                <h3>💳 သုံးစွဲသူအကြွေးထည့်မည်</h3>
+                
+                <label>သုံးစွဲသူရွေးပါ</label>
+                <select id="creditUsername" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ff00; background: rgba(0,0,0,0.7); color: white;">
+                    <option value="">သုံးစွဲသူရွေးပါ</option>
+                </select>
+                
+                <label>အကြွေးပမာဏ (ဘတ်)</label>
+                <input type="number" id="creditAmount" placeholder="ပမာဏထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ff00; background: rgba(0,0,0,0.7); color: white;">
+                
+                <label>မှတ်ချက်</label>
+                <input type="text" id="creditNote" placeholder="မှတ်ချက်ထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00ff00; background: rgba(0,0,0,0.7); color: white;">
+                
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="addUserCredit()" style="background: #00ff00; color: black;">အကြွေးထည့်မည်</button>
+                    <button class="closeBtn" onclick="closeCreditModal()">မလုပ်တော့ပါ</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    
+    database.ref('usernames').once('value').then(snapshot => {
+        const users = snapshot.val();
+        const select = document.getElementById('creditUsername');
+        
+        for (let username in users) {
+            const option = document.createElement('option');
+            option.value = username;
+            option.textContent = username;
+            select.appendChild(option);
+        }
+    });
+}
+
+function showBulkCreditForm() {
+    const modalHTML = `
+        <div id="bulkCreditModal" class="modal" style="display: flex;">
+            <div class="modal-content" style="max-width: 500px;">
+                <h3>🔄 အကြွေးအများဆုံးထည့်မည်</h3>
+                
+                <label>သုံးစွဲသူအားလုံးအတွက် အကြွေးပမာဏ (ဘတ်)</label>
+                <input type="number" id="bulkCreditAmount" placeholder="သုံးစွဲသူအားလုံးအတွက် ပမာဏထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00bcd4; background: rgba(0,0,0,0.7); color: white;">
+                
+                <label>မှတ်ချက်</label>
+                <input type="text" id="bulkCreditNote" placeholder="သုံးစွဲသူအားလုံးအတွက် မှတ်ချက်ထည့်ပါ" style="width: 100%; padding: 10px; margin: 10px 0; border-radius: 8px; border: 2px solid #00bcd4; background: rgba(0,0,0,0.7); color: white;">
+                
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="addBulkCredit()" style="background: #00bcd4;">အားလုံးထံထည့်မည်</button>
+                    <button class="closeBtn" onclick="closeBulkCreditModal()">မလုပ်တော့ပါ</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function addUserCredit() {
+    const username = document.getElementById('creditUsername').value;
+    const amount = parseInt(document.getElementById('creditAmount').value);
+    const note = document.getElementById('creditNote').value;
+    
+    if (!username || !amount || amount <= 0) {
+        alert('ကျေးဇူးပြု၍ အကုန်အစင်ဖြည့်ပါ။');
+        return;
+    }
+    
+    database.ref('user_credits/' + username).transaction(current => {
+        return (current || 0) + amount;
+    }).then(() => {
+        return database.ref('credit_history/' + username).push({
+            amount: amount,
+            type: 'admin_added',
+            note: note,
+            date: new Date().toISOString(),
+            admin: 'Gwayy',
+            unit: 'B'
+        });
+    }).then(() => {
+        alert(`✅ ${username} အကောင့်သို့ ${amount} B အကြွေးထည့်ပြီးပါပြီ!`);
+        closeCreditModal();
+        
+        sendUserNotification(username, 
+            '💳 အကြွေးထည့်ပေးခြင်း', 
+            `MR.Gway က သင့်ထံ${amount} B ကျန်ရှိငွေဖြစ်ပါသည်။\nဝယ်ယူသည့်ပစ္စည်းမှာ: ${note}`
+        );
+    }).catch(error => {
+        alert('❌ အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+    });
+}
+
+function addBulkCredit() {
+    const amount = parseInt(document.getElementById('bulkCreditAmount').value);
+    const note = document.getElementById('bulkCreditNote').value;
+    
+    if (!amount || amount <= 0) {
+        alert('ကျေးဇူးပြု၍ မှန်ကန်သောပမာဏထည့်ပါ။');
+        return;
+    }
+    
+    database.ref('usernames').once('value').then(snapshot => {
+        const users = snapshot.val();
+        let processed = 0;
+        let totalUsers = Object.keys(users).length;
+        
+        for (let username in users) {
+            database.ref('user_credits/' + username).transaction(current => {
+                return (current || 0) + amount;
+            }).then(() => {
+                return database.ref('credit_history/' + username).push({
+                    amount: amount,
+                    type: 'admin_bulk_added',
+                    note: note,
+                    date: new Date().toISOString(),
+                    admin: 'Gwayy',
+                    unit: 'B'
+                });
+            }).then(() => {
+                sendUserNotification(username, 
+                    '💳 အကြွေးထည့်ပေးခြင်း', 
+                    `စီမံခန့်ခွဲသူမှ သင့်အကောင့်သို့ ${amount} B အကြွေးထည့်ပေးပါသည်။\nမှတ်ချက်: ${note}`
+                );
+                processed++;
+            }).finally(() => {
+                if (processed === totalUsers) {
+                    alert(`✅ ${amount} B အကြွေး ${totalUsers} ဦးထံ ထည့်ပြီးပါပြီ!`);
+                    closeBulkCreditModal();
+                }
+            });
+        }
+    });
+}
+
+// ========== CREDIT MANAGEMENT WITH CLEAR FUNCTIONS ==========
+function viewCreditReports() {
+    database.ref('user_credits').once('value').then(snapshot => {
+        const credits = snapshot.val();
+        let html = '<h4>💰 သုံးစွဲသူအကြွေးစာရင်း</h4>';
+        
+        // Add Clear All Button
+        html += `
+            <div style="text-align: center; margin: 15px 0;">
+                <button class="action-btn" onclick="showClearCreditConfirmation()" 
+                        style="background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%); color: white; padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer; font-size: 14px;">
+                    🗑️ အကြွေးအားလုံးဖျက်မည်
+                </button>
+            </div>
+        `;
+        
+        html += '<div style="max-height: 400px; overflow-y: auto;">';
+        
+        if (credits) {
+            let totalCredit = 0;
+            let userCount = 0;
+            
+            for (let username in credits) {
+                const amount = credits[username];
+                totalCredit += amount;
+                userCount++;
+                
+                html += `
+                    <div style="border: 1px solid #333; padding: 10px; margin: 5px 0; border-radius: 8px; background: rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center;">
+                        <div style="flex: 1;">
+                            <strong>👤 ${username}</strong><br>
+                            💵 အကြွေးလက်ကျန်: <span style="color: #ffcc00;">${amount} B</span>
+                        </div>
+                        <div>
+                            <button onclick="viewCreditHistory('${username}')" style="background: #0099ff; color: white; border: none; padding: 5px 10px; border-radius: 5px; margin-right: 5px; font-size: 12px;">📋 မှတ်တမ်း</button>
+                            <button onclick="clearUserCredit('${username}')" style="background: #ff4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; font-size: 12px;">❌ ဖျက်မည်</button>
+                        </div>
+                    </div>
+                `;
+            }
+            
+            html += `
+                <div style="background: rgba(0,255,0,0.1); border: 2px solid #00ff00; border-radius: 10px; padding: 15px; margin-top: 15px; text-align: center;">
+                    <h4 style="color: #00ff00; margin: 0;">စုစုပေါင်းအကျဉ်းချုပ်</h4>
+                    <p style="margin: 5px 0;">👥 အကြွေးရှိသုံးစွဲသူ: ${userCount} ဦး</p>
+                    <p style="margin: 5px 0; color: #ffcc00; font-size: 18px; font-weight: bold;">💰 စုစုပေါင်းအကြွေး: ${totalCredit} B</p>
+                </div>
+            `;
+        } else {
+            html += `
+                <div style="text-align: center; padding: 30px; color: #00ff00;">
+                    <span style="font-size: 48px;">💳</span><br>
+                    <h3>အကြွေးအချက်အလက်မရှိပါ</h3>
+                    <p>လက်ရှိတွင် မည်သူတစ်ဦးတစ်ယောက်၏ အကြွေးမှတ်တမ်းမျှမရှိပါ။</p>
+                </div>
+            `;
+        }
+        
+        html += '</div>';
+        document.getElementById('creditDisplay').innerHTML = html;
+    });
+}
+
+// ========== CLEAR SINGLE USER CREDIT ==========
+function clearUserCredit(username) {
+    if (!username) {
+        alert('❌ ဖျက်ရန် သုံးစွဲသူအမည် မရှိပါ။');
+        return;
+    }
+    
+    if (confirm(`${username} ၏ အကြွေးအားလုံးကို ဖျက်မည်မှာ သေချာပါသလား?\n\nဤလုပ်ဆောင်ချက်ကို ပြန်လည်ရုပ်သိမ်း၍မရပါ!`)) {
+        // Clear user credit
+        database.ref('user_credits/' + username).remove()
+            .then(() => {
+                // Clear user credit history
+                return database.ref('credit_history/' + username).remove();
+            })
+            .then(() => {
+                alert(`✅ ${username} ၏ အကြွေးအားလုံး ဖျက်ပြီးပါပြီ!`);
+                
+                // Send notification to user
+                sendUserNotification(username, 
+                    '🗑️ အကြွေးစာရင်းရှင်းလင်းခြင်း', 
+                    `သင့်အကောင့်ရှိ အကြွေးအားလုံးကို စီမံခန့်ခွဲသူမှ ရှင်းလင်းလိုက်ပါသည်။`
+                );
+                
+                // Refresh credit report
+                viewCreditReports();
+            })
+            .catch(error => {
+                alert('❌ အကြွေးဖျက်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+            });
+    }
+}
+
+// ========== CLEAR ALL CREDIT CONFIRMATION ==========
+function showClearCreditConfirmation() {
+    const modalHTML = `
+        <div id="clearCreditModal" class="modal" style="display: flex;">
+            <div class="modal-content" style="max-width: 500px;">
+                <h3 style="color: #ff4444;">⚠️ သတိပေးချက်</h3>
+                
+                <div style="background: rgba(255,68,68,0.1); border: 2px solid #ff4444; border-radius: 10px; padding: 20px; margin: 15px 0;">
+                    <p style="color: #ffffff; text-align: center; font-size: 16px; font-weight: bold;">
+                        သင်သည် အကြွေးစာရင်းအားလုံးကို ဖျက်ရန် ဆုံးဖြတ်ထားပါသလား?
+                    </p>
+                    <p style="color: #ffcc00; text-align: center; margin: 10px 0;">
+                        ဤလုပ်ဆောင်ချက်သည်:
+                    </p>
+                    <ul style="color: #ffffff; text-align: left; margin: 15px 0; padding-left: 20px;">
+                        <li>သုံးစွဲသူအားလုံး၏ အကြွေးလက်ကျန်များကို ဖျက်ပစ်မည်</li>
+                        <li>အကြွေးမှတ်တမ်းအားလုံးကို ဖျက်ပစ်မည်</li>
+                        <li>ပြန်လည်ရယူ၍မရနိုင်ပါ</li>
+                    </ul>
+                    <p style="color: #ff4444; text-align: center; font-weight: bold;">
+                        ဤလုပ်ဆောင်ချက်ကို ပြန်လည်ရုပ်သိမ်း၍မရပါ!
+                    </p>
+                </div>
+                
+                <div style="display: flex; gap: 10px; margin: 15px 0;">
+                    <input type="text" id="confirmClearText" placeholder="အတည်ပြုရန် 'ဖျက်မည်' ဟုရိုက်ထည့်ပါ" style="width: 100%; padding: 10px; border: 2px solid #ff4444; border-radius: 8px; background: rgba(0,0,0,0.5); color: white; text-align: center;">
+                </div>
+                
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="confirmClearAllCredits()" style="background: #ff4444;">🗑️ အားလုံးဖျက်မည်</button>
+                    <button class="closeBtn" onclick="closeClearCreditModal()">မလုပ်တော့ပါ</button>
+                </div>
+            </div>
+        </div>
+    `;
+    
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+// ========== CONFIRM CLEAR ALL CREDITS ==========
+function confirmClearAllCredits() {
+    const confirmText = document.getElementById('confirmClearText').value;
+    
+    if (confirmText !== 'ဖျက်မည်') {
+        alert('❌ အတည်ပြုချက်မှားယွင်းနေပါသည်။ "ဖျက်မည်" ဟုရိုက်ထည့်ပါ။');
+        return;
+    }
+    
+    // Clear all user credits
+    database.ref('user_credits').remove()
+        .then(() => {
+            // Clear all credit history
+            return database.ref('credit_history').remove();
+        })
+        .then(() => {
+            alert('✅ အကြွေးစာရင်းအားလုံး ဖျက်ပြီးပါပြီ!');
+            
+            // Send notification to all users
+            database.ref('usernames').once('value').then(snapshot => {
+                const users = snapshot.val();
+                for (let username in users) {
+                    sendUserNotification(username, 
+                        '🗑️ အကြွေးစာရင်းရှင်းလင်းခြင်း', 
+                        `စီမံခန့်ခွဲသူမှ စနစ်အတွင်းရှိ အကြွေးစာရင်းအားလုံးကို ရှင်းလင်းလိုက်ပါသည်။`
+                    );
+                }
+            });
+            
+            closeClearCreditModal();
+            viewCreditReports();
+        })
+        .catch(error => {
+            alert('❌ အကြွေးအားလုံးဖျက်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+        });
+}
+
+// ========== CLOSE CLEAR CREDIT MODAL ==========
+function closeClearCreditModal() {
+    const modal = document.getElementById('clearCreditModal');
+    if (modal) modal.remove();
+}
+
+// ========== VIEW CREDIT HISTORY ==========
+function viewCreditHistory(username) {
+    database.ref('credit_history/' + username).once('value').then(snapshot => {
+        const history = snapshot.val();
+        let message = `💳 ${username} ၏ အကြွေးမှတ်တမ်း\n\n`;
+        
+        if (history) {
+            let totalAdded = 0;
+            
+            for (let key in history) {
+                const entry = history[key];
+                const amount = entry.amount || 0;
+                totalAdded += amount;
+                
+                message += `💰 ${amount} B - ${entry.note}\n`;
+                message += `📅 ${new Date(entry.date).toLocaleDateString()}\n`;
+                message += `---\n`;
+            }
+            
+            message += `\n📊 စုစုပေါင်းထည့်သွင်းမှု: ${totalAdded} B`;
+        } else {
+            message += 'အကြွေးမှတ်တမ်းမရှိပါ။';
+        }
+        
+        alert(message);
+    });
+}
+
+// ========== UTILITY FUNCTIONS ==========
+function getCategoryName(category) {
+    const names = {
+        'pubg': '🎮 PUBG UC',
+        'mlbb_credit': '💎 MLBB အကြွေးစိန်များ',
+        'mlbb_normal': '💎 MLBB ပုံမှန်စိန်များ'
+    };
+    return names[category] || category;
+}
+
+function closeNotificationModal() {
+    const modal = document.getElementById('notificationModal');
+    if (modal) modal.remove();
+}
+
+function closePriceManagementModal() {
+    const modal = document.getElementById('priceManagementModal');
+    if (modal) modal.remove();
+}
+
+function closeCreditModal() {
+    const modal = document.getElementById('addCreditModal');
+    if (modal) modal.remove();
+}
+
+function closeBulkCreditModal() {
+    const modal = document.getElementById('bulkCreditModal');
+    if (modal) modal.remove();
+}
+
+function goHome() {
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById("adminPanel").style.display = "none";
+    document.getElementById("homeMenu").style.display = "grid";
+}
+
+
+// ========== VIEW USER ORDERS FUNCTION ==========
+function viewUserOrders(username) {
+    database.ref('orders').orderByChild('username').equalTo(username).once('value').then(snapshot => {
+        const orders = snapshot.val();
+        let message = `📦 ${username} ၏ အော်ဒါများ\n\n`;
+        
+        if (orders) {
+            let orderCount = 0;
+            let totalAmount = 0;
+            
+            for (let orderId in orders) {
+                const order = orders[orderId];
+                orderCount++;
+                
+                // Extract price from order (e.g., "35B" -> 35)
+                const priceMatch = order.price.match(/(\d+)B/);
+                if (priceMatch) {
+                    totalAmount += parseInt(priceMatch[1]);
+                }
+                
+                message += `🛒 ${order.product}\n`;
+                message += `💵 ${order.price}\n`;
+                message += `📅 ${new Date(order.timestamp).toLocaleDateString()}\n`;
+                message += `---\n`;
+            }
+            message += `\n📊 အကျဉ်းချုပ်:\n`;
+            message += `စုစုပေါင်းအော်ဒါ: ${orderCount}\n`;
+            message += `စုစုပေါင်းငွေပမာဏ: ${totalAmount}B`;
+        } else {
+            message += 'ဤသုံးစွဲသူအတွက် အော်ဒါမရှိပါ။';
+        }
+        
+        alert(message);
+    }).catch(error => {
+        alert('အော်ဒါများဖွင့်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+    });
+}
+
+
+
+    </script>
+</body>
+</html>
