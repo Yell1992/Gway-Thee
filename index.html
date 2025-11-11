@@ -1569,6 +1569,76 @@ button, .menu-card, .card, .copy-btn {
 }
 
 
+/* Notification Icon Styles */
+.notification-icon {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    border: 3px solid #ffffff;
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.6);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.notification-icon:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+}
+
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4444;
+    color: white;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: bounce 1s infinite;
+}
+
+.notification-icon i {
+    font-size: 20px;
+    color: white;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+}
+
+/* Notification item styles for unread/read */
+.notification-item.unread {
+    border-left: 5px solid #ff00ff !important;
+    background: rgba(255, 0, 255, 0.1) !important;
+}
+
+.notification-item.read {
+    border-left: 5px solid #333 !important;
+    background: rgba(255, 255, 255, 0.05) !important;
+    opacity: 0.7;
+}
+
     </style>
 </head>
 <body>
@@ -1723,8 +1793,8 @@ button, .menu-card, .card, .copy-btn {
             <div class="card">
                 <h3>50 + 50</h3>
                 <p class="total-diamonds">စုစုပေါင်း 100 လုံး</p>
-                <p class="price">35B</p>
-                <button onclick="orderItem('MLBB 50+50 Diamonds - 35B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">40B</p>
+                <button onclick="orderItem('MLBB 50+50 Diamonds - 40B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>150 + 150</h3>
@@ -1735,14 +1805,14 @@ button, .menu-card, .card, .copy-btn {
             <div class="card">
                 <h3>250 + 250</h3>
                 <p class="total-diamonds">စုစုပေါင်း 500 လုံး</p>
-                <p class="price">155B</p>
-                <button onclick="orderItem('MLBB 250+250 Diamonds - 155B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">165B</p>
+                <button onclick="orderItem('MLBB 250+250 Diamonds - 165B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>500 + 500</h3>
                 <p class="total-diamonds">စုစုပေါင်း 1000 လုံး</p>
-                <p class="price">300B</p>
-                <button onclick="orderItem('MLBB 500+500 Diamonds - 300B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">310B</p>
+                <button onclick="orderItem('MLBB 500+500 Diamonds - 310B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
         </div>
 
@@ -1754,38 +1824,38 @@ button, .menu-card, .card, .copy-btn {
         <div class="products">
             <div class="card">
                 <h3>11 လုံး</h3>
-                <p class="price">9B</p>
-                <button onclick="orderItem('MLBB 11 Diamonds - 9B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">10B</p>
+                <button onclick="orderItem('MLBB 11 Diamonds - 10B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>86 လုံး</h3>
-                <p class="price">45B</p>
-                <button onclick="orderItem('MLBB 86 Diamonds - 45B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">50B</p>
+                <button onclick="orderItem('MLBB 86 Diamonds - 50B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>172 လုံး</h3>
-                <p class="price">90B</p>
-                <button onclick="orderItem('MLBB 172 Diamonds - 90B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">100B</p>
+                <button onclick="orderItem('MLBB 172 Diamonds - 100B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>257 လုံး</h3>
-                <p class="price">130B</p>
-                <button onclick="orderItem('MLBB 257 Diamonds - 130B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">145B</p>
+                <button onclick="orderItem('MLBB 257 Diamonds - 145B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>343 လုံး</h3>
-                <p class="price">170B</p>
-                <button onclick="orderItem('MLBB 343 Diamonds - 170B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">190B</p>
+                <button onclick="orderItem('MLBB 343 Diamonds - 190B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>429 လုံး</h3>
-                <p class="price">210B</p>
-                <button onclick="orderItem('MLBB 429 Diamonds - 210B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">235B</p>
+                <button onclick="orderItem('MLBB 429 Diamonds - 235B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
-                <h3>706 လုံး</h3>
-                <p class="price">340B</p>
-                <button onclick="orderItem('MLBB 706 Diamonds - 340B','mlbb')">ဝယ်ယူမယ်</button>
+                <h3>514 လုံး</h3>
+                <p class="price">280B</p>
+                <button onclick="orderItem('MLBB 514 Diamonds - 280B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
         </div>
     </section>
@@ -1829,8 +1899,8 @@ button, .menu-card, .card, .copy-btn {
             <div class="card">
                 <h3>50 + 50</h3>
                 <p class="total-diamonds">စုစုပေါင်း 100 လုံး</p>
-                <p class="price">30B</p>
-                <button onclick="orderItem('MLBB 50+50 Diamonds - 30B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">35B</p>
+                <button onclick="orderItem('MLBB 50+50 Diamonds - 35B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>150 + 150</h3>
@@ -1841,14 +1911,14 @@ button, .menu-card, .card, .copy-btn {
             <div class="card">
                 <h3>250 + 250</h3>
                 <p class="total-diamonds">စုစုပေါင်း 500 လုံး</p>
-                <p class="price">145B</p>
-                <button onclick="orderItem('MLBB 250+250 Diamonds - 145B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">155B</p>
+                <button onclick="orderItem('MLBB 250+250 Diamonds - 155B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>500 + 500</h3>
                 <p class="total-diamonds">စုစုပေါင်း 1000 လုံး</p>
-                <p class="price">290B</p>
-                <button onclick="orderItem('MLBB 500+500 Diamonds - 290B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">300B</p>
+                <button onclick="orderItem('MLBB 500+500 Diamonds - 300B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
         </div>
 
@@ -1860,38 +1930,38 @@ button, .menu-card, .card, .copy-btn {
         <div class="products">
             <div class="card">
                 <h3>11 လုံး</h3>
-                <p class="price">8B</p>
-                <button onclick="orderItem('MLBB 11 Diamonds - 8B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">10B</p>
+                <button onclick="orderItem('MLBB 11 Diamonds - 10B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>86 လုံး</h3>
-                <p class="price">40B</p>
-                <button onclick="orderItem('MLBB 86 Diamonds - 40B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">45B</p>
+                <button onclick="orderItem('MLBB 86 Diamonds - 45B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>172 လုံး</h3>
-                <p class="price">85B</p>
-                <button onclick="orderItem('MLBB 172 Diamonds - 85B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">90B</p>
+                <button onclick="orderItem('MLBB 172 Diamonds - 90B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>257 လုံး</h3>
-                <p class="price">120B</p>
-                <button onclick="orderItem('MLBB 257 Diamonds - 120B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">135B</p>
+                <button onclick="orderItem('MLBB 257 Diamonds - 135B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>343 လုံး</h3>
-                <p class="price">160B</p>
-                <button onclick="orderItem('MLBB 343 Diamonds - 160B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">180B</p>
+                <button onclick="orderItem('MLBB 343 Diamonds - 180B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
                 <h3>429 လုံး</h3>
-                <p class="price">200B</p>
-                <button onclick="orderItem('MLBB 429 Diamonds - 200B','mlbb')">ဝယ်ယူမယ်</button>
+                <p class="price">225B</p>
+                <button onclick="orderItem('MLBB 429 Diamonds - 225B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
             <div class="card">
-                <h3>706 လုံး</h3>
-                <p class="price">330B</p>
-                <button onclick="orderItem('MLBB 706 Diamonds - 330B','mlbb')">ဝယ်ယူမယ်</button>
+                <h3>514 လုံး</h3>
+                <p class="price">270B</p>
+                <button onclick="orderItem('MLBB 514 Diamonds - 270B','mlbb')">ဝယ်ယူမယ်</button>
             </div>
         </div>
     </section>
@@ -2036,8 +2106,8 @@ function handleLogin() {
     
     hideMessages();
     
-    if (username.length < 5) {
-        showError('အနည်းဆုံး ၅ လုံးထည့်ပါ');
+    if (username.length < 3) {
+        showError('အနည်းဆုံး ၃ လုံးထည့်ပါ');
         return;
     }
     
@@ -2417,6 +2487,7 @@ function saveMLBBIds(gameId, serverId) {
     }
 }
 
+
 // ========== TELEGRAM INTEGRATION ==========
 async function sendToTelegram(orderData) {
     try {
@@ -2424,17 +2495,17 @@ async function sendToTelegram(orderData) {
         
         const creditProducts = {
             'Weekly Pass': { cash: 55, credit: 60 },
-            '50+50 Diamonds': { cash: 30, credit: 35 },
+            '50+50 Diamonds': { cash: 35, credit: 40 },
             '150+150 Diamonds': { cash: 90, credit: 100 },
-            '250+250 Diamonds': { cash: 145, credit: 155 },
-            '500+500 Diamonds': { cash: 290, credit: 300 },
-            '11 Diamonds': { cash: 8, credit: 9 },
-            '86 Diamonds': { cash: 40, credit: 45 },
-            '172 Diamonds': { cash: 85, credit: 90 },
-            '257 Diamonds': { cash: 120, credit: 130 },
-            '343 Diamonds': { cash: 160, credit: 170 },
-            '429 Diamonds': { cash: 200, credit: 210 },
-            '706 Diamonds': { cash: 330, credit: 340 }
+            '250+250 Diamonds': { cash: 155, credit: 165 },
+            '500+500 Diamonds': { cash: 308, credit: 310 },
+            '11 Diamonds': { cash: 10, credit: 10 },
+            '86 Diamonds': { cash: 45, credit: 50 },
+            '172 Diamonds': { cash: 90, credit: 100 },
+            '257 Diamonds': { cash: 135, credit: 145 },
+            '343 Diamonds': { cash: 180, credit: 190 },
+            '429 Diamonds': { cash: 225, credit: 235 },
+            '514 Diamonds': { cash: 270, credit: 280 }
         };
 
         let isCreditPrice = false;
@@ -2468,11 +2539,9 @@ async function sendToTelegram(orderData) {
 🛒 ${orderData.product}
 💵 ${orderData.price}
 
-${orderData.gameId ? `🎮 Game ID: ${orderData.gameId}` : ''}
+${orderData.gameId ? `🎮 Game ID:\n\`${orderData.gameId}\`` : ''}
 
-${orderData.serverId ? `🌐 Server ID: ${orderData.serverId}` : ''}
-
-${orderData.link ? `🔗 Link: ${orderData.link}` : ''}
+${orderData.serverId ? `🌐 Server ID:\n\`${orderData.serverId}\`` : ''}
 
 ⏰ ${new Date().toLocaleString('en-GB', { hour12: false })}
         `;
@@ -2495,6 +2564,8 @@ ${orderData.link ? `🔗 Link: ${orderData.link}` : ''}
         return false;
     }
 }
+
+
 
 async function sendUserLoginAlert(username) {
     try {
@@ -2638,51 +2709,6 @@ console.log('Gway Thee Shop JavaScript loaded successfully!');
 
 
 
-// ========== COMPLETE LOGIN FUNCTION ==========
-function completeLogin(username) {
-    // Final ban check before allowing login
-    checkIfBanned(username)
-        .then(isBanned => {
-            if (isBanned) {
-                showBanError(username);
-                return;
-            }
-            
-            // Proceed with normal login
-            localStorage.setItem('gway_username', username);
-            
-            document.getElementById('loginOverlay').style.display = 'none';
-            
-            const usernameDisplay = document.getElementById('usernameDisplay');
-            const displayedUsername = document.getElementById('displayedUsername');
-            displayedUsername.textContent = username;
-            usernameDisplay.style.display = 'flex';
-            
-            document.querySelector('header').style.display = 'block';
-            document.getElementById('bankInfo').style.display = 'flex';
-            document.getElementById('lotterySection').style.display = 'block';
-            document.getElementById('homeMenu').style.display = 'grid';
-            document.querySelector('.footer').style.display = 'block';
-            
-            document.querySelectorAll('section').forEach(section => {
-                section.style.display = 'none';
-            });
-            document.getElementById('homeMenu').style.display = 'grid';
-            
-            // Check and show admin button only for Gwayy
-            checkAndShowAdminButton();
-            
-            // Start real-time ban monitoring
-            startBanMonitoring();
-            
-            sendUserLoginAlert(username);
-            checkUserNotifications();
-        })
-        .catch(error => {
-            console.error('Ban check error:', error);
-            proceedWithLogin(username);
-        });
-}
 
 function showBanError(username) {
     database.ref('banned_users/' + username).once('value').then(snapshot => {
@@ -2707,32 +2733,7 @@ function showBanError(username) {
     });
 }
 
-function proceedWithLogin(username) {
-    localStorage.setItem('gway_username', username);
-    
-    document.getElementById('loginOverlay').style.display = 'none';
-    
-    const usernameDisplay = document.getElementById('usernameDisplay');
-    const displayedUsername = document.getElementById('displayedUsername');
-    displayedUsername.textContent = username;
-    usernameDisplay.style.display = 'flex';
-    
-    document.querySelector('header').style.display = 'block';
-    document.getElementById('bankInfo').style.display = 'flex';
-    document.getElementById('lotterySection').style.display = 'block';
-    document.getElementById('homeMenu').style.display = 'grid';
-    document.querySelector('.footer').style.display = 'block';
-    
-    document.querySelectorAll('section').forEach(section => {
-        section.style.display = 'none';
-    });
-    document.getElementById('homeMenu').style.display = 'grid';
-    
-    checkAndShowAdminButton();
-    startBanMonitoring();
-    sendUserLoginAlert(username);
-    checkUserNotifications();
-}
+
 
 // ========== BAN CHECK FUNCTION ==========
 function checkIfBanned(username) {
@@ -2757,26 +2758,7 @@ function checkIfBanned(username) {
         });
 }
 
-// ========== BAN MONITORING FUNCTION ==========
-function startBanMonitoring() {
-    const currentUser = localStorage.getItem('gway_username');
-    if (!currentUser) return;
-    
-    // Monitor for ban changes for the current user
-    database.ref('banned_users/' + currentUser).on('value', (snapshot) => {
-        if (snapshot.exists()) {
-            const banData = snapshot.val();
-            const now = new Date();
-            const expiresAt = new Date(banData.expires_at);
-            
-            // If not expired, force logout
-            if (now <= expiresAt) {
-                alert(`🚫 Your account has been suspended.\n\nReason: ${banData.reason}\nDuration: ${banData.duration}\n\nPlease contact admin for more information.`);
-                forceLogoutUser();
-            }
-        }
-    });
-}
+
 
 // ========== FORCE LOGOUT FUNCTION ==========
 function forceLogoutUser() {
@@ -2805,31 +2787,31 @@ function forceLogoutUser() {
 }
 
 // ========== USER NOTIFICATION SYSTEM ==========
-function checkUserNotifications() {
+// ========== CHECK UNREAD NOTIFICATIONS ==========
+function checkUnreadNotifications() {
     const username = localStorage.getItem('gway_username');
     if (!username) return;
 
     database.ref('user_notifications/' + username).orderByChild('read').equalTo(false).once('value')
         .then(snapshot => {
-            const notifications = snapshot.val();
-            const unreadNotifications = [];
+            const unreadCount = snapshot.numChildren();
+            const badge = document.getElementById('notificationBadge');
             
-            if (notifications) {
-                for (let key in notifications) {
-                    const notif = notifications[key];
-                    if (!notif.read && notif.requires_acknowledgment) {
-                        unreadNotifications.push(notif);
-                    }
-                }
-            }
-            
-            if (unreadNotifications.length > 0) {
-                // Show the first unread notification
-                showNotificationToUser(unreadNotifications[0]);
+            if (unreadCount > 0) {
+                badge.style.display = 'flex';
+                badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+                
+                // Add shake animation for new notifications
+                const icon = document.querySelector('.notification-icon');
+                icon.style.animation = 'pulse 0.5s infinite';
+            } else {
+                badge.style.display = 'none';
+                const icon = document.querySelector('.notification-icon');
+                icon.style.animation = 'pulse 2s infinite';
             }
         })
         .catch(error => {
-            console.error('Error checking notifications:', error);
+            console.error('Error checking unread notifications:', error);
         });
 }
 
@@ -2881,7 +2863,121 @@ function acknowledgeNotification(notificationId) {
     });
 }
 
+// ========== CHECK AND SHOW NOTIFICATION ICON ==========
+function checkAndShowNotificationIcon() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
 
+    // Remove existing icon if any
+    const existingIcon = document.querySelector('.notification-icon');
+    if (existingIcon) {
+        existingIcon.remove();
+    }
+
+    // Create notification icon
+    const notificationIcon = `
+        <div class="notification-icon" onclick="viewNotificationHistory()">
+            <i>📨</i>
+            <div id="notificationBadge" class="notification-badge" style="display: none;">0</div>
+        </div>
+    `;
+
+    document.body.insertAdjacentHTML('afterbegin', notificationIcon);
+    
+    // Check for unread notifications
+    checkUnreadNotifications();
+}
+
+// ========== CHECK UNREAD NOTIFICATIONS ==========
+function checkUnreadNotifications() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
+
+    database.ref('user_notifications/' + username).orderByChild('read').equalTo(false).once('value')
+        .then(snapshot => {
+            const unreadCount = snapshot.numChildren();
+            const badge = document.getElementById('notificationBadge');
+            
+            if (unreadCount > 0) {
+                badge.style.display = 'flex';
+                badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+                
+                // Add shake animation for new notifications
+                const icon = document.querySelector('.notification-icon');
+                icon.style.animation = 'pulse 0.5s infinite';
+            } else {
+                badge.style.display = 'none';
+                const icon = document.querySelector('.notification-icon');
+                icon.style.animation = 'pulse 2s infinite';
+            }
+        })
+        .catch(error => {
+            console.error('Error checking unread notifications:', error);
+        });
+}
+
+
+// ========== REAL-TIME NOTIFICATION MONITORING ==========
+function startRealTimeNotificationMonitoring() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
+
+    // Monitor for new notifications and read status changes
+    database.ref('user_notifications/' + username).on('value', (snapshot) => {
+        checkUnreadNotifications();
+    });
+}
+
+
+// ========== SHOW NOTIFICATION DETAIL ==========
+function showNotificationDetail(notification) {
+    const detailHTML = `
+        <div id="notificationDetailModal" class="modal" style="display: flex; z-index: 10001;">
+            <div class="modal-content" style="max-width: 500px; max-height: 400px;">
+                <div style="text-align: center; margin-bottom: 20px; position: relative;">
+                    <h3 style="color: #00ffff;">${notification.title}</h3>
+                    <div style="position: absolute; top: 0; right: 0;">
+                        <button onclick="closeNotificationDetail()" style="background: none; border: none; color: #ff4444; font-size: 30px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; padding: 0;">×</button>
+                    </div>
+                </div>
+                <div style="max-height: 250px; overflow-y: auto; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 10px; margin: 15px 0;">
+                    <p style="color: #ffffff; line-height: 1.6; font-size: 16px; white-space: pre-line;">
+                        ${notification.message}
+                    </p>
+                </div>
+                <div style="color: #888; text-align: center; margin: 10px 0;">
+                    <small>📅 ${new Date(notification.created_date).toLocaleString()}</small>
+                </div>
+                <div class="modal-buttons">
+                    <button class="okBtn" onclick="closeNotificationDetail()" style="padding: 12px 30px; font-size: 16px;">
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Remove existing detail modal if any
+    const existingDetailModal = document.getElementById('notificationDetailModal');
+    if (existingDetailModal) {
+        existingDetailModal.remove();
+    }
+
+    document.body.insertAdjacentHTML('beforeend', detailHTML);
+    
+    // Mark as read when opening detail
+    if (!notification.read) {
+        markAsRead(notification.id);
+    }
+}
+
+// ========== CLOSE NOTIFICATION DETAIL ==========
+function closeNotificationDetail() {
+    const modal = document.getElementById('notificationDetailModal');
+    if (modal) {
+        modal.remove();
+    }
+}
 
 
 // ========== ADMIN BUTTON VISIBILITY ==========
@@ -2919,10 +3015,6 @@ function showAdminLogin() {
     }
 }
 
-
-
-
-
 function testNotification() {
     const username = localStorage.getItem('gway_username');
     if (!username) {
@@ -2949,81 +3041,6 @@ function testNotification() {
         .catch(error => {
             alert('❌ Error: ' + error.message);
         });
-}
-
-
-
-
-
-
-
-
-// ========== ADMIN PANEL DISPLAY ==========
-function showAdminPanel() {
-    document.querySelectorAll("section").forEach(s => s.style.display = "none");
-    document.getElementById("homeMenu").style.display = "none";
-    
-    document.getElementById("adminPanel").innerHTML = `
-        <h2 style="color: #ff6b35; text-shadow: 0 0 10px rgba(255,107,53,0.7); text-align: center; margin-bottom: 30px;">
-            🛠️ စီမံခန့်ခွဲရေး
-        </h2>
-        
-        <!-- Notification System -->
-        <div class="admin-section">
-            <h3>📨 အသိပေးချက်ပို့ရန်</h3>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-                <button class="action-btn" onclick="showNotificationForm()" 
-                        style="background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
-                    📤 သုံးစွဲသူများထံပို့မည်
-                </button>
-            </div>
-        </div>
-
-        <!-- User Management -->
-        <div class="admin-section">
-            <h3>👥 သုံးစွဲသူများစီမံခန့်ခွဲမှု</h3>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-                <button class="action-btn" onclick="viewAllUsers()" 
-                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
-                    👤 သုံးစွဲသူအားလုံးကြည့်မည်
-                </button>
-                <button class="action-btn" onclick="viewBannedUsers()" 
-                        style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
-                    🚫 ပိတ်ပင်ထားသူများ
-                </button>
-            </div>
-            <div id="usersDisplay" style="margin-top: 20px;"></div>
-        </div>
-
-     
-
-        <!-- Credit System -->
-        <div class="admin-section">
-            <h3>💳 ခရက်ဒစ်စနစ်</h3>
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
-                <button class="action-btn" onclick="showAddCreditForm()" 
-                        style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
-                    ➕ သုံးစွဲသူခရက်ဒစ်ထည့်မည်
-                </button>
-             
-                <button class="action-btn" onclick="viewCreditReports()" 
-                        style="background: linear-gradient(135deg, #ffeb3b 0%, #f9a825 100%); color: black; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
-                    📊 ခရက်ဒစ်အစီရင်ခံစာ
-                </button>
-            </div>
-            <div id="creditDisplay" style="margin-top: 20px;"></div>
-        </div>
-
-        <!-- Back to Home Button -->
-        <div style="text-align: center; margin-top: 30px;">
-            <button class="mini-lottery-btn" onclick="goHome()" 
-                    style="background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); padding: 15px 30px; font-size: 16px;">
-                🏠 ပင်မစာမျက်နှာသို့
-            </button>
-        </div>
-    `;
-    
-    document.getElementById("adminPanel").style.display = "block";
 }
 
 // ========== NOTIFICATION SYSTEM ==========
@@ -3100,6 +3117,300 @@ function sendNotification() {
         closeNotificationModal();
     }
 }
+
+// ========== VIEW NOTIFICATION HISTORY ==========
+function viewNotificationHistory() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) {
+        alert('Please login first!');
+        return;
+    }
+
+    // Hide badge when opening notification history
+    const badge = document.getElementById('notificationBadge');
+    if (badge) {
+        badge.style.display = 'none';
+        const icon = document.querySelector('.notification-icon');
+        if (icon) {
+            icon.style.animation = 'pulse 2s infinite';
+        }
+    }
+
+    database.ref('user_notifications/' + username).orderByChild('created_date').once('value')
+        .then(snapshot => {
+            const notifications = snapshot.val();
+            let html = `
+                <div style="text-align: center; margin-bottom: 20px; position: relative; padding-right: 40px;">
+                    <h3 style="color: #00ffff;">📨 စာစောင်များ</h3>
+                    <div style="position: absolute; top: 0; right: 0;">
+                        <button onclick="closeNotificationHistory()" style="background: none; border: none; color: #ff4444; font-size: 30px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold; padding: 0;">×</button>
+                    </div>
+                    <button onclick="clearNotificationHistory()" style="background: #ff4444; color: white; border: none; padding: 8px 15px; border-radius: 20px; cursor: pointer; margin: 10px 0;">
+                        🗑️ အားလုံးဖျက်မည်
+                    </button>
+                </div>
+                <div id="notificationContent" style="max-height: 500px; overflow-y: auto; cursor: move;">
+            `;
+
+            if (notifications) {
+                // Convert to array and sort by date (newest first)
+                const notificationArray = Object.entries(notifications).map(([id, notif]) => ({
+                    id,
+                    ...notif
+                })).sort((a, b) => new Date(b.created_date) - new Date(a.created_date));
+
+                notificationArray.forEach(notif => {
+                    const date = new Date(notif.created_date).toLocaleString();
+                    const itemClass = notif.read ? 'notification-item read' : 'notification-item unread';
+                    
+                    // Escape quotes for onclick
+                    const notifJson = JSON.stringify(notif).replace(/"/g, '&quot;');
+                    
+                    html += `
+                        <div class="${itemClass}" onclick="showNotificationDetail(${notifJson})" 
+                             style="padding: 15px; margin: 10px 0; border-radius: 10px; border: 1px solid #333; cursor: pointer; transition: all 0.3s ease;">
+                            <div style="display: flex; justify-content: space-between; align-items: start;">
+                                <div style="flex: 1;">
+                                    <h4 style="color: ${notif.read ? '#888' : '#00ffff'}; margin: 0 0 10px 0;">
+                                        ${notif.read ? '✅' : '🔔'} ${notif.title}
+                                    </h4>
+                                    <p style="color: ${notif.read ? '#aaa' : '#fff'}; margin: 5px 0; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                        ${notif.message}
+                                    </p>
+                                    <small style="color: #888;">📅 ${date}</small>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                html += `
+                    <div style="text-align: center; padding: 40px; color: #888;">
+                        <span style="font-size: 48px;">📭</span>
+                        <h4>မည်သည့်စာစောင်မှ မရှိသေးပါ</h4>
+                        <p>သင့်ထံ ပို့ထားသော စာစောင်များ ဤနေရာတွင် ပြသပါမည်</p>
+                    </div>
+                `;
+            }
+
+            html += '</div>';
+
+            // Show in modal
+            showNotificationHistoryModal(html);
+            
+            // Make modal draggable
+            makeNotificationModalDraggable();
+        })
+        .catch(error => {
+            console.error('Error loading notifications:', error);
+            alert('စာစောင်များ ဖွင့်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်။');
+        });
+}
+
+// ========== MAKE NOTIFICATION MODAL DRAGGABLE ==========
+function makeNotificationModalDraggable() {
+    const modal = document.getElementById('notificationHistoryModal');
+    const content = document.getElementById('notificationContent');
+    
+    if (!modal || !content) return;
+    
+    let pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+    
+    // Make the modal header draggable
+    const header = content;
+    
+    header.onmousedown = dragMouseDown;
+    
+    function dragMouseDown(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // Get the mouse cursor position at startup
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        document.onmouseup = closeDragElement;
+        // Call a function whenever the cursor moves
+        document.onmousemove = elementDrag;
+    }
+    
+    function elementDrag(e) {
+        e = e || window.event;
+        e.preventDefault();
+        // Calculate the new cursor position
+        pos1 = pos3 - e.clientX;
+        pos2 = pos4 - e.clientY;
+        pos3 = e.clientX;
+        pos4 = e.clientY;
+        // Set the element's new position
+        modal.style.top = (modal.offsetTop - pos2) + "px";
+        modal.style.left = (modal.offsetLeft - pos1) + "px";
+    }
+    
+    function closeDragElement() {
+        // Stop moving when mouse button is released
+        document.onmouseup = null;
+        document.onmousemove = null;
+    }
+}
+
+// ========== SHOW NOTIFICATION HISTORY MODAL ==========
+function showNotificationHistoryModal(content) {
+    const modalHTML = `
+        <div id="notificationHistoryModal" class="modal" style="display: flex;">
+            <div class="modal-content" style="max-width: 600px; max-height: 80vh;">
+                ${content}
+                <div style="text-align: center; margin-top: 20px;">
+                    <button class="closeBtn" onclick="closeNotificationHistory()" style="padding: 10px 20px;">
+                        ပိတ်မည်
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    // Remove existing modal if any
+    const existingModal = document.getElementById('notificationHistoryModal');
+    if (existingModal) {
+        existingModal.remove();
+    }
+
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+function markAsRead(notificationId) {
+    const username = localStorage.getItem('gway_username');
+    if (!username || !notificationId) return;
+
+    database.ref('user_notifications/' + username + '/' + notificationId).update({
+        read: true
+    }).catch(error => {
+        console.error('Error marking as read:', error);
+    });
+}
+
+// ========== CLEAR NOTIFICATION HISTORY ==========
+function clearNotificationHistory() {
+    const username = localStorage.getItem('gway_username');
+    if (!username) return;
+
+    if (confirm('သင့်အသိပေးချက်အားလုံးကို ဖျက်မည်မှာ သေချာပါသလား?\n\nဤလုပ်ဆောင်ချက်ကို ပြန်လည်ရုပ်သိမ်း၍မရပါ!')) {
+        database.ref('user_notifications/' + username).remove()
+            .then(() => {
+                alert('✅ အသိပေးချက်အားလုံး ဖျက်ပြီးပါပြီ!');
+                closeNotificationHistory();
+            })
+            .catch(error => {
+                alert('❌ ဖျက်ရာတွင် အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
+            });
+    }
+}
+
+// ========== CLOSE NOTIFICATION HISTORY ==========
+function closeNotificationHistory() {
+    const modal = document.getElementById('notificationHistoryModal');
+    if (modal) {
+        modal.remove();
+    }
+    
+    // Refresh badge count after closing (but don't show if all are read)
+    setTimeout(checkUnreadNotifications, 500);
+}
+
+// ========== MODIFIED SEND USER NOTIFICATION ==========
+function sendUserNotification(username, title, message) {
+    const notificationId = 'notif_' + Date.now();
+    
+    const notification = {
+        id: notificationId,
+        title: title,
+        message: message,
+        type: 'info',
+        created_date: new Date().toISOString(),
+        read: false, // Add read status for history
+        requires_acknowledgment: false, // Set to false for history
+        show_immediately: false // Set to false for history
+    };
+    
+    // Save to database for notification history
+    database.ref('user_notifications/' + username + '/' + notificationId).set(notification)
+        .then(() => {
+            console.log(`Notification saved to history for user: ${username}`);
+        })
+        .catch(error => {
+            console.error('Error saving notification to history:', error);
+        });
+}
+
+
+// ========== ADMIN PANEL DISPLAY ==========
+function showAdminPanel() {
+    document.querySelectorAll("section").forEach(s => s.style.display = "none");
+    document.getElementById("homeMenu").style.display = "none";
+    
+    document.getElementById("adminPanel").innerHTML = `
+        <h2 style="color: #ff6b35; text-shadow: 0 0 10px rgba(255,107,53,0.7); text-align: center; margin-bottom: 30px;">
+            🛠️ စီမံခန့်ခွဲရေး
+        </h2>
+        
+        <!-- Notification System -->
+        <div class="admin-section">
+            <h3>📨 အသိပေးချက်ပို့ရန်</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" onclick="showNotificationForm()" 
+                        style="background: linear-gradient(135deg, #ff00ff 0%, #00ffff 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    📤 သုံးစွဲသူများထံပို့မည်
+                </button>
+            </div>
+        </div>
+
+        <!-- User Management -->
+        <div class="admin-section">
+            <h3>👥 သုံးစွဲသူများစီမံခန့်ခွဲမှု</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" onclick="viewAllUsers()" 
+                        style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    👤 သုံးစွဲသူအားလုံးကြည့်မည်
+                </button>
+                <button class="action-btn" onclick="viewBannedUsers()" 
+                        style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    🚫 ပိတ်ပင်ထားသူများ
+                </button>
+            </div>
+            <div id="usersDisplay" style="margin-top: 20px;"></div>
+        </div>
+
+     
+
+        <!-- Credit System -->
+        <div class="admin-section">
+            <h3>💳 ခရက်ဒစ်စနစ်</h3>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;">
+                <button class="action-btn" onclick="showAddCreditForm()" 
+                        style="background: linear-gradient(135deg, #4caf50 0%, #2e7d32 100%); color: white; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    ➕ သုံးစွဲသူခရက်ဒစ်ထည့်မည်
+                </button>
+             
+                <button class="action-btn" onclick="viewCreditReports()" 
+                        style="background: linear-gradient(135deg, #ffeb3b 0%, #f9a825 100%); color: black; padding: 12px 25px; border: none; border-radius: 25px; cursor: pointer;">
+                    📊 ခရက်ဒစ်အစီရင်ခံစာ
+                </button>
+            </div>
+            <div id="creditDisplay" style="margin-top: 20px;"></div>
+        </div>
+
+        <!-- Back to Home Button -->
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="mini-lottery-btn" onclick="goHome()" 
+                    style="background: linear-gradient(135deg, #ff6b35 0%, #ff8e53 100%); padding: 15px 30px; font-size: 16px;">
+                🏠 ပင်မစာမျက်နှာသို့
+            </button>
+        </div>
+    `;
+    
+    document.getElementById("adminPanel").style.display = "block";
+}
+
+
+
 
 // ========== USER MANAGEMENT ==========
 function viewAllUsers() {
@@ -3323,37 +3634,91 @@ function startBanCountdown(expiresAt) {
     updateCountdown();
 }
 
-// ========== MODIFIED COMPLETE LOGIN ==========
+
+// ========== REAL-TIME BAN MONITORING ==========
+function startRealTimeBanMonitoring() {
+    const currentUser = localStorage.getItem('gway_username');
+    if (!currentUser) return;
+
+    // Real-time ban monitoring
+    database.ref('banned_users/' + currentUser).on('value', (snapshot) => {
+        if (snapshot.exists()) {
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            
+            if (now <= expiresAt) {
+                // User is banned, show countdown timer but don't force logout
+                showBanCountdownNotification(currentUser, banData);
+            } else {
+                // Ban expired, remove it
+                database.ref('banned_users/' + currentUser).remove();
+             
+                closeBanCountdownModal();
+                // No notification to user
+            }
+        } else {
+          
+            closeBanCountdownModal();
+            // No notification to user
+        }
+    });
+}
+
+
 function completeLogin(username) {
     // Final ban check before allowing login
     checkIfBanned(username)
         .then(isBanned => {
             if (isBanned) {
-                // User is banned, show countdown notification and hide everything else
+                // User is banned, but still allow login with countdown timer
                 database.ref('banned_users/' + username).once('value').then(snapshot => {
                     if (snapshot.exists()) {
                         const banData = snapshot.val();
                         
-                        // Hide all content
+                        // Proceed with login first (don't hide content)
+                        localStorage.setItem('gway_username', username);
+                        
                         document.getElementById('loginOverlay').style.display = 'none';
-                        document.querySelector('header').style.display = 'none';
-                        document.getElementById('bankInfo').style.display = 'none';
-                        document.getElementById('lotterySection').style.display = 'none';
-                        document.getElementById('homeMenu').style.display = 'none';
-                        document.getElementById('usernameDisplay').style.display = 'none';
-                        document.querySelector('.footer').style.display = 'none';
+                        
+                        const usernameDisplay = document.getElementById('usernameDisplay');
+                        const displayedUsername = document.getElementById('displayedUsername');
+                        displayedUsername.textContent = username;
+                        usernameDisplay.style.display = 'flex';
+                        
+                        document.querySelector('header').style.display = 'block';
+                        document.getElementById('bankInfo').style.display = 'flex';
+                        document.getElementById('lotterySection').style.display = 'block';
+                        document.getElementById('homeMenu').style.display = 'grid';
+                        document.querySelector('.footer').style.display = 'block';
+                        
                         document.querySelectorAll('section').forEach(section => {
                             section.style.display = 'none';
                         });
+                        document.getElementById('homeMenu').style.display = 'grid';
                         
-                        // Show only ban notification
+                        // Check and show admin button only for Gwayy
+                        checkAndShowAdminButton();
+                        
+                        // Check and show notification ICON for all users
+                        checkAndShowNotificationIcon();
+                        
+                        // Start real-time notification monitoring
+                        startRealTimeNotificationMonitoring();
+                        
+                        // Start real-time ban monitoring
+                        startRealTimeBanMonitoring();
+                        
+                        // Then show ban countdown
                         showBanCountdownNotification(username, banData);
+                        
+                  
                     }
                 });
                 return;
             }
             
-            // Proceed with normal login
+            // User is not banned, proceed with normal login
             localStorage.setItem('gway_username', username);
             
             document.getElementById('loginOverlay').style.display = 'none';
@@ -3377,77 +3742,94 @@ function completeLogin(username) {
             // Check and show admin button only for Gwayy
             checkAndShowAdminButton();
             
+            // Check and show notification ICON for all users
+            checkAndShowNotificationIcon();
+            
+            // Start real-time notification monitoring
+            startRealTimeNotificationMonitoring();
+            
+            // Start real-time ban monitoring
+            startRealTimeBanMonitoring();
+            
+            // ✅ ဒီမှာပဲ login alert တစ်ခါထဲပို့ပါ
             sendUserLoginAlert(username);
             checkUserNotifications();
         })
         .catch(error => {
             console.error('Ban check error:', error);
-            proceedWithLogin(username);
+            // Error case - proceed with login even if ban check fails
+            localStorage.setItem('gway_username', username);
+            
+            document.getElementById('loginOverlay').style.display = 'none';
+            
+            const usernameDisplay = document.getElementById('usernameDisplay');
+            const displayedUsername = document.getElementById('displayedUsername');
+            displayedUsername.textContent = username;
+            usernameDisplay.style.display = 'flex';
+            
+            document.querySelector('header').style.display = 'block';
+            document.getElementById('bankInfo').style.display = 'flex';
+            document.getElementById('lotterySection').style.display = 'block';
+            document.getElementById('homeMenu').style.display = 'grid';
+            document.querySelector('.footer').style.display = 'block';
+            
+            document.querySelectorAll('section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.getElementById('homeMenu').style.display = 'grid';
+            
+            // Check and show admin button only for Gwayy
+            checkAndShowAdminButton();
+            
+            // Check and show notification ICON for all users
+            checkAndShowNotificationIcon();
+            
+            // Start real-time notification monitoring
+            startRealTimeNotificationMonitoring();
+            
+            // Start real-time ban monitoring
+            startRealTimeBanMonitoring();
+            
+         
+            checkUserNotifications();
         });
 }
 
-// ========== MODIFIED DOM CONTENT LOADED ==========
-document.addEventListener('DOMContentLoaded', function() {
-    const hash = window.location.hash.substring(1);
+// ========== SETUP USER INTERFACE FUNCTION ==========
+function setupUserInterface(username) {
+    localStorage.setItem('gway_username', username);
     
-    loadSavedMLBBIds();
+    document.getElementById('loginOverlay').style.display = 'none';
     
-    document.getElementById("orderModal").style.display = "none";
+    const usernameDisplay = document.getElementById('usernameDisplay');
+    const displayedUsername = document.getElementById('displayedUsername');
+    displayedUsername.textContent = username;
+    usernameDisplay.style.display = 'flex';
     
-    if (hash === "modal") {
-        goHome();
-        history.replaceState({ page: "home" }, "", "#");
-    } else if (hash && document.getElementById(hash)) {
-        openSection(hash);
-    }
+    document.querySelector('header').style.display = 'block';
+    document.getElementById('bankInfo').style.display = 'flex';
+    document.getElementById('lotterySection').style.display = 'block';
+    document.getElementById('homeMenu').style.display = 'grid';
+    document.querySelector('.footer').style.display = 'block';
     
-    // ========== BAN CHECK & AUTO LOGIN ==========
-    const savedUsername = localStorage.getItem('gway_username');
+    document.querySelectorAll('section').forEach(section => {
+        section.style.display = 'none';
+    });
+    document.getElementById('homeMenu').style.display = 'grid';
     
-    if (savedUsername && savedUsername.length >= 5) {
-        // First check if user is banned
-        checkIfBanned(savedUsername)
-            .then(isBanned => {
-                if (isBanned) {
-                    // User is banned, show countdown notification and hide everything
-                    database.ref('banned_users/' + savedUsername).once('value').then(snapshot => {
-                        if (snapshot.exists()) {
-                            const banData = snapshot.val();
-                            
-                            // Hide all content
-                            document.getElementById('loginOverlay').style.display = 'none';
-                            document.querySelector('header').style.display = 'none';
-                            document.getElementById('bankInfo').style.display = 'none';
-                            document.getElementById('lotterySection').style.display = 'none';
-                            document.getElementById('homeMenu').style.display = 'none';
-                            document.getElementById('usernameDisplay').style.display = 'none';
-                            document.querySelector('.footer').style.display = 'none';
-                            document.querySelectorAll('section').forEach(section => {
-                                section.style.display = 'none';
-                            });
-                            
-                            // Show only ban notification
-                            showBanCountdownNotification(savedUsername, banData);
-                        }
-                    });
-                } else {
-                    // User is not banned, proceed with login
-                    completeLogin(savedUsername);
-                }
-            })
-            .catch(error => {
-                console.error('Ban check error:', error);
-                completeLogin(savedUsername);
-            });
-    } else {
-        // No saved username, show login screen
-        document.getElementById('loginOverlay').style.display = 'flex';
-        document.querySelector('header').style.display = 'none';
-        document.getElementById('bankInfo').style.display = 'none';
-        document.getElementById('lotterySection').style.display = 'none';
-        document.getElementById('homeMenu').style.display = 'none';
-    }
-});
+    // Check and show admin button only for Gwayy
+    checkAndShowAdminButton();
+    
+    // Check and show notification ICON for all users
+    checkAndShowNotificationIcon();
+    
+    // Start real-time notification monitoring
+    startRealTimeNotificationMonitoring();
+    
+    // Start real-time ban monitoring
+    startRealTimeBanMonitoring();
+}
+
 
 // ========== BAN USER FUNCTION ==========
 function banUser(username, reason, duration) {
@@ -3483,18 +3865,9 @@ function banUser(username, reason, duration) {
             // Check if banned user is currently logged in
             const currentUser = localStorage.getItem('gway_username');
             if (currentUser === username) {
-                // Hide all content and show only ban notification
-                document.querySelector('header').style.display = 'none';
-                document.getElementById('bankInfo').style.display = 'none';
-                document.getElementById('lotterySection').style.display = 'none';
-                document.getElementById('homeMenu').style.display = 'none';
-                document.getElementById('usernameDisplay').style.display = 'none';
-                document.querySelector('.footer').style.display = 'none';
-                document.querySelectorAll('section').forEach(section => {
-                    section.style.display = 'none';
-                });
-                
-                showBanCountdownNotification(username, banData);
+                // DON'T hide content - just show countdown timer
+                // Real-time monitoring will automatically show the countdown
+                console.log(`${username} is currently logged in and has been banned`);
             }
         })
         .catch(error => {
@@ -3508,13 +3881,7 @@ function closeBanCountdownModal() {
     if (modal) {
         modal.remove();
     }
-    
-    // After ban expires, redirect to login
-    document.getElementById('loginOverlay').style.display = 'flex';
-    document.getElementById('usernameInput').value = '';
-    document.getElementById('usernameInput').focus();
 }
-
 
 // ========== UNBAN USER FUNCTION ==========
 function unbanUser(username) {
@@ -3550,10 +3917,7 @@ function performUnban(username, banData) {
         .then(() => {
             alert(`✅ ${username} အား ပိတ်ပင်ခြင်းဖြုတ်လိုက်ပါပြီ!\n\nသူတို့၏အကောင့်အသုံးပြုခွင့် ပြန်လည်ရရှိပါပြီ။`);
             
-            sendUserNotification(username, 
-                '✅ အကောင့် ပြန်လည်ဖွင့်လှစ်ခြင်း', 
-                `သင့်အကောင့်ပိတ်ပင်ခြင်းကို ရုပ်သိမ်းလိုက်ပါပြီ! 🎉\n\nသင့်အကောင့်ကို ပုံမှန်အတိုင်း အသုံးပြုနိုင်ပါပြီ။\n\nကျေးဇူးတင်ပါသည်။`
-            );
+         
             
             viewBannedUsers();
         })
@@ -3562,7 +3926,28 @@ function performUnban(username, banData) {
         });
 }
 
-
+// ========== CHECK IF USER IS BANNED FUNCTION ==========
+function checkIfBanned(username) {
+    return database.ref('banned_users/' + username).once('value')
+        .then(snapshot => {
+            if (!snapshot.exists()) {
+                return false; // Not banned
+            }
+            
+            const banData = snapshot.val();
+            const now = new Date();
+            const expiresAt = new Date(banData.expires_at);
+            
+            // Check if ban has expired
+            if (now > expiresAt) {
+                // Remove expired ban
+                database.ref('banned_users/' + username).remove();
+                return false;
+            }
+            
+            return true; // Still banned
+        });
+}
 
 
 
@@ -3657,7 +4042,7 @@ function addUserCredit() {
         
         sendUserNotification(username, 
             '💳 အကြွေးထည့်ပေးခြင်း', 
-            `စီမံခန့်ခွဲသူမှ သင့်အကောင့်သို့ ${amount} B အကြွေးထည့်ပေးပါသည်။\nမှတ်ချက်: ${note}`
+            `MR.Gway က သင့်ထံ${amount} B ကျန်ရှိငွေဖြစ်ပါသည်။\nဝယ်ယူသည့်ပစ္စည်းမှာ: ${note}`
         );
     }).catch(error => {
         alert('❌ အမှားတစ်ခုဖြစ်နေသည်: ' + error.message);
@@ -3947,24 +4332,6 @@ function goHome() {
     document.getElementById("homeMenu").style.display = "grid";
 }
 
-// ========== SEND USER NOTIFICATION FUNCTION ==========
-function sendUserNotification(username, title, message) {
-    const notificationId = 'notif_' + Date.now();
-    
-    const notification = {
-        id: notificationId,
-        title: title,
-        message: message,
-        type: 'info',
-        created_date: new Date().toISOString(),
-        read: false,
-        requires_acknowledgment: true,
-        show_immediately: true
-    };
-    
-    // Save to database
-    database.ref('user_notifications/' + username + '/' + notificationId).set(notification);
-}
 
 // ========== VIEW USER ORDERS FUNCTION ==========
 function viewUserOrders(username) {
@@ -4004,28 +4371,6 @@ function viewUserOrders(username) {
     });
 }
 
-// ========== CHECK IF USER IS BANNED FUNCTION ==========
-function checkIfBanned(username) {
-    return database.ref('banned_users/' + username).once('value')
-        .then(snapshot => {
-            if (!snapshot.exists()) {
-                return false; // Not banned
-            }
-            
-            const banData = snapshot.val();
-            const now = new Date();
-            const expiresAt = new Date(banData.expires_at);
-            
-            // Check if ban has expired
-            if (now > expiresAt) {
-                // Remove expired ban
-                database.ref('banned_users/' + username).remove();
-                return false;
-            }
-            
-            return true; // Still banned
-        });
-}
 
 
     </script>
